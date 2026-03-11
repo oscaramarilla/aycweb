@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 export default function Home() {
   const [cliente, setCliente] = useState("");
@@ -9,8 +11,51 @@ export default function Home() {
 
   const handleGenerarPDF = (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí pondremos la magia para crear el PDF real
-    alert(`¡Listo! Simulando PDF para el cliente: ${cliente} por un total de Gs. ${Number(precio) * Number(cantidad)}`);
+
+    // 1. Crear el documento en blanco
+    const doc = new jsPDF();
+    const fecha = new Date().toLocaleDateString("es-PY");
+
+    // 2. Título y Datos del Cliente
+    doc.setFontSize(22);
+    doc.setTextColor(30, 58, 138); // Azul oscuro corporativo
+    doc.text("Presupuesto Oficial", 14, 20);
+
+    doc.setFontSize(12);
+    doc.setTextColor(100, 100, 100);
+    doc.text(`Fecha: ${fecha}`, 14, 30);
+    doc.setTextColor(0, 0, 0);
+    doc.text(`Cliente: ${cliente}`, 14, 40);
+
+    // 3. Cálculos
+    const precioNum = Number(precio);
+    const cantNum = Number(cantidad);
+    const total = precioNum * cantNum;
+
+    // 4. Crear la tabla de productos
+    autoTable(doc, {
+      startY: 50,
+      head: [["Descripción del Producto", "Cantidad", "Precio Unit. (Gs)", "Total (Gs)"]],
+      body: [
+        [
+          producto, 
+          cantidad, 
+          precioNum.toLocaleString("es-PY"), 
+          total.toLocaleString("es-PY")
+        ],
+      ],
+      theme: "striped",
+      headStyles: { fillColor: [37, 99, 235] }, // Azul brillante
+    });
+
+    // 5. Mostrar el Gran Total abajo
+    const finalY = (doc as any).lastAutoTable.finalY || 70;
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text(`Total a Pagar: Gs. ${total.toLocaleString("es-PY")}`, 14, finalY + 15);
+
+    // 6. Descargar el archivo automáticamente
+    doc.save(`Presupuesto_${cliente.replace(/\s+/g, '_')}.pdf`);
   };
 
   return (
