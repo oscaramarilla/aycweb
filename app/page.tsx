@@ -2,7 +2,6 @@
 import { useState } from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import Image from "next/image";
 
 export default function Home() {
   const [cliente, setCliente] = useState("");
@@ -10,13 +9,12 @@ export default function Home() {
   const [precio, setPrecio] = useState("550000");
   const [cantidad, setCantidad] = useState("2");
   
-  // URL de la imagen (por defecto usa la de tu servidor para evitar errores CORS)
-  const [imagenUrl, setImagenUrl] = useState("/productos/pupitre.jpg");
+  // 🔗 AHORA USAMOS LA URL COMPLETA DE TU WEB PRINCIPAL
+  const [imagenUrl, setImagenUrl] = useState("https://metalmadeas.com/productos/pupitre.jpg");
 
   const handleGenerarPDF = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 1. Crear el documento en blanco
     const doc = new jsPDF();
     const fecha = new Date().toLocaleDateString("es-PY");
 
@@ -24,11 +22,10 @@ export default function Home() {
     // 🎨 FORMATO CORPORATIVO DEL PDF (HEADER)
     // ==========================================
     doc.setFontSize(28);
-    doc.setTextColor(30, 58, 138); // Azul oscuro corporativo
+    doc.setTextColor(30, 58, 138); 
     doc.setFont("helvetica", "bold");
     doc.text("PRESUPUESTO", 14, 25);
 
-    // Datos de tu empresa a la derecha
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
     doc.setFont("helvetica", "normal");
@@ -37,7 +34,6 @@ export default function Home() {
     doc.text("Lambaré, Paraguay", 140, 30);
     doc.text("WhatsApp: +595 982 451828", 140, 35);
 
-    // Línea separadora elegante
     doc.setDrawColor(200, 200, 200);
     doc.line(14, 42, 196, 42);
 
@@ -53,13 +49,12 @@ export default function Home() {
     doc.text(`Cliente / Institución: ${cliente}`, 14, 63);
     doc.text(`Fecha de Emisión: ${fecha}`, 14, 70);
 
-    // Cálculos matemáticos
     const precioNum = Number(precio);
     const cantNum = Number(cantidad);
     const total = precioNum * cantNum;
 
     // ==========================================
-    // 📊 TABLA DE PRODUCTOS MEJORADA
+    // 📊 TABLA DE PRODUCTOS
     // ==========================================
     autoTable(doc, {
       startY: 85,
@@ -76,49 +71,46 @@ export default function Home() {
       headStyles: { fillColor: [30, 58, 138], textColor: 255, fontStyle: 'bold' },
       styles: { fontSize: 10, cellPadding: 6 },
       columnStyles: {
-        0: { cellWidth: 80 }, // Ancho de la descripción
+        0: { cellWidth: 80 }, 
         1: { halign: 'center' },
         2: { halign: 'right' },
         3: { halign: 'right', fontStyle: 'bold' },
       }
     });
 
-    // Detectar dónde terminó la tabla para seguir dibujando abajo
     const finalY = (doc as any).lastAutoTable.finalY || 120;
 
     // ==========================================
-    // 🖼️ INYECTAR IMAGEN Y TOTALES
+    // 🖼️ INYECTAR IMAGEN CON PASE VIP (CORS)
     // ==========================================
-    
-    // Cargar la imagen mágica antes de guardar
     try {
       const img = new window.Image();
+      // ¡EL PASE VIP PARA QUE EL NAVEGADOR NO BLOQUEE LA FOTO!
+      img.crossOrigin = "Anonymous"; 
       img.src = imagenUrl;
-      // Esperamos a que la imagen cargue en la memoria del navegador
+      
       await new Promise((resolve, reject) => {
           img.onload = resolve;
           img.onerror = reject;
       });
-      // Dibujar imagen a la izquierda debajo de la tabla (X: 14, Y: finalY + 15, Ancho: 50, Alto: 40)
+      
       doc.addImage(img, 'JPEG', 14, finalY + 15, 60, 45);
     } catch(error) {
-      console.warn("No se pudo cargar la imagen en el PDF. Revisa la URL.");
+      console.warn("No se pudo cargar la imagen en el PDF por seguridad del navegador.");
     }
 
-    // Dibujar el TOTAL a pagar a la derecha de la imagen
+    // Dibujar el TOTAL
     doc.setFontSize(16);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(30, 58, 138);
     doc.text(`Total a Pagar: Gs. ${total.toLocaleString("es-PY")}`, 110, finalY + 30);
 
-    // Footer de Garantía y Condiciones (Al final de la hoja)
     doc.setFontSize(9);
     doc.setTextColor(150, 150, 150);
     doc.setFont("helvetica", "normal");
     doc.text("Garantía: 3 años contra defectos de fabricación.", 14, 275);
     doc.text("Este presupuesto tiene validez por 15 días desde su emisión.", 14, 280);
 
-    // 6. Descargar el archivo mágicamente
     doc.save(`Presupuesto_${cliente.replace(/\s+/g, '_')}.pdf`);
   };
 
@@ -128,7 +120,7 @@ export default function Home() {
         
         <div className="text-center mb-8">
           <span className="bg-blue-100 text-blue-800 font-black tracking-widest uppercase text-[10px] px-3 py-1 rounded-full mb-4 inline-block">
-            Motor V2.0
+            Motor V2.1
           </span>
           <h1 className="text-3xl font-black text-blue-900 tracking-tight mb-2">MM Cotizador</h1>
           <p className="text-sm text-zinc-500">Generador de PDF con formato institucional</p>
@@ -136,8 +128,13 @@ export default function Home() {
 
         {/* Vista previa de la foto en la web */}
         <div className="mb-8 flex justify-center">
-          <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-zinc-200 shadow-sm">
-            <img src={imagenUrl} alt="Vista previa" className="object-cover w-full h-full" />
+          <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-zinc-200 shadow-sm bg-zinc-100 flex items-center justify-center">
+            {/* Fallback visual si la URL está vacía */}
+            {imagenUrl ? (
+              <img src={imagenUrl} alt="Vista previa" className="object-cover w-full h-full" crossOrigin="anonymous" />
+            ) : (
+              <span className="text-zinc-400 text-xs">Sin imagen</span>
+            )}
           </div>
         </div>
 
