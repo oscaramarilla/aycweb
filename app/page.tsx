@@ -2,40 +2,68 @@
 import { useState } from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import Image from "next/image";
 
 export default function Home() {
   const [cliente, setCliente] = useState("");
   const [producto, setProducto] = useState("Mesa personalizada modelo AyC 2026");
   const [precio, setPrecio] = useState("550000");
   const [cantidad, setCantidad] = useState("2");
+  
+  // URL de la imagen (por defecto usa la de tu servidor para evitar errores CORS)
+  const [imagenUrl, setImagenUrl] = useState("/productos/pupitre.jpg");
 
-  const handleGenerarPDF = (e: React.FormEvent) => {
+  const handleGenerarPDF = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // 1. Crear el documento en blanco
     const doc = new jsPDF();
     const fecha = new Date().toLocaleDateString("es-PY");
 
-    // 2. Título y Datos del Cliente
-    doc.setFontSize(22);
+    // ==========================================
+    // 🎨 FORMATO CORPORATIVO DEL PDF (HEADER)
+    // ==========================================
+    doc.setFontSize(28);
     doc.setTextColor(30, 58, 138); // Azul oscuro corporativo
-    doc.text("Presupuesto Oficial", 14, 20);
+    doc.setFont("helvetica", "bold");
+    doc.text("PRESUPUESTO", 14, 25);
 
-    doc.setFontSize(12);
+    // Datos de tu empresa a la derecha
+    doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
-    doc.text(`Fecha: ${fecha}`, 14, 30);
-    doc.setTextColor(0, 0, 0);
-    doc.text(`Cliente: ${cliente}`, 14, 40);
+    doc.setFont("helvetica", "normal");
+    doc.text("METAL MAD E.A.S.", 140, 20);
+    doc.text("RUC: 80123456-7", 140, 25);
+    doc.text("Lambaré, Paraguay", 140, 30);
+    doc.text("WhatsApp: +595 982 451828", 140, 35);
 
-    // 3. Cálculos
+    // Línea separadora elegante
+    doc.setDrawColor(200, 200, 200);
+    doc.line(14, 42, 196, 42);
+
+    // ==========================================
+    // 👤 DATOS DEL CLIENTE
+    // ==========================================
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "bold");
+    doc.text("Facturar a:", 14, 55);
+    
+    doc.setFont("helvetica", "normal");
+    doc.text(`Cliente / Institución: ${cliente}`, 14, 63);
+    doc.text(`Fecha de Emisión: ${fecha}`, 14, 70);
+
+    // Cálculos matemáticos
     const precioNum = Number(precio);
     const cantNum = Number(cantidad);
     const total = precioNum * cantNum;
 
-    // 4. Crear la tabla de productos
+    // ==========================================
+    // 📊 TABLA DE PRODUCTOS MEJORADA
+    // ==========================================
     autoTable(doc, {
-      startY: 50,
-      head: [["Descripción del Producto", "Cantidad", "Precio Unit. (Gs)", "Total (Gs)"]],
+      startY: 85,
+      head: [["Descripción del Producto", "Cant.", "Precio Unit. (Gs)", "Subtotal (Gs)"]],
       body: [
         [
           producto, 
@@ -45,79 +73,123 @@ export default function Home() {
         ],
       ],
       theme: "striped",
-      headStyles: { fillColor: [37, 99, 235] }, // Azul brillante
+      headStyles: { fillColor: [30, 58, 138], textColor: 255, fontStyle: 'bold' },
+      styles: { fontSize: 10, cellPadding: 6 },
+      columnStyles: {
+        0: { cellWidth: 80 }, // Ancho de la descripción
+        1: { halign: 'center' },
+        2: { halign: 'right' },
+        3: { halign: 'right', fontStyle: 'bold' },
+      }
     });
 
-    // 5. Mostrar el Gran Total abajo
-    const finalY = (doc as any).lastAutoTable.finalY || 70;
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "bold");
-    doc.text(`Total a Pagar: Gs. ${total.toLocaleString("es-PY")}`, 14, finalY + 15);
+    // Detectar dónde terminó la tabla para seguir dibujando abajo
+    const finalY = (doc as any).lastAutoTable.finalY || 120;
 
-    // 6. Descargar el archivo automáticamente
+    // ==========================================
+    // 🖼️ INYECTAR IMAGEN Y TOTALES
+    // ==========================================
+    
+    // Cargar la imagen mágica antes de guardar
+    try {
+      const img = new window.Image();
+      img.src = imagenUrl;
+      // Esperamos a que la imagen cargue en la memoria del navegador
+      await new Promise((resolve, reject) => {
+          img.onload = resolve;
+          img.onerror = reject;
+      });
+      // Dibujar imagen a la izquierda debajo de la tabla (X: 14, Y: finalY + 15, Ancho: 50, Alto: 40)
+      doc.addImage(img, 'JPEG', 14, finalY + 15, 60, 45);
+    } catch(error) {
+      console.warn("No se pudo cargar la imagen en el PDF. Revisa la URL.");
+    }
+
+    // Dibujar el TOTAL a pagar a la derecha de la imagen
+    doc.setFontSize(16);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(30, 58, 138);
+    doc.text(`Total a Pagar: Gs. ${total.toLocaleString("es-PY")}`, 110, finalY + 30);
+
+    // Footer de Garantía y Condiciones (Al final de la hoja)
+    doc.setFontSize(9);
+    doc.setTextColor(150, 150, 150);
+    doc.setFont("helvetica", "normal");
+    doc.text("Garantía: 3 años contra defectos de fabricación.", 14, 275);
+    doc.text("Este presupuesto tiene validez por 15 días desde su emisión.", 14, 280);
+
+    // 6. Descargar el archivo mágicamente
     doc.save(`Presupuesto_${cliente.replace(/\s+/g, '_')}.pdf`);
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 p-6 flex flex-col items-center justify-center">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-100">
-        <div className="text-center mb-6">
-          <h1 className="text-2xl font-black text-blue-900 tracking-tight">AYC<span className="text-orange-500">web</span></h1>
-          <p className="text-sm text-gray-500">Generador Rápido de Presupuestos</p>
+    <main className="min-h-screen bg-zinc-50 p-6 flex flex-col items-center justify-center font-sans">
+      <div className="bg-white p-8 rounded-3xl shadow-xl w-full max-w-lg border border-zinc-200">
+        
+        <div className="text-center mb-8">
+          <span className="bg-blue-100 text-blue-800 font-black tracking-widest uppercase text-[10px] px-3 py-1 rounded-full mb-4 inline-block">
+            Motor V2.0
+          </span>
+          <h1 className="text-3xl font-black text-blue-900 tracking-tight mb-2">MM Cotizador</h1>
+          <p className="text-sm text-zinc-500">Generador de PDF con formato institucional</p>
         </div>
 
-        <form onSubmit={handleGenerarPDF} className="space-y-4">
+        {/* Vista previa de la foto en la web */}
+        <div className="mb-8 flex justify-center">
+          <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-zinc-200 shadow-sm">
+            <img src={imagenUrl} alt="Vista previa" className="object-cover w-full h-full" />
+          </div>
+        </div>
+
+        <form onSubmit={handleGenerarPDF} className="space-y-5">
+          
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Nombre del Cliente / Empresa</label>
+            <label className="block text-xs font-bold text-zinc-600 uppercase mb-1">Cliente / Institución</label>
             <input 
-              type="text" 
-              value={cliente}
-              onChange={(e) => setCliente(e.target.value)}
-              placeholder="Ej. SIT PARAGUAY SA"
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
+              type="text" value={cliente} onChange={(e) => setCliente(e.target.value)}
+              placeholder="Ej. Colegio San José"
+              className="w-full border border-zinc-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-600 outline-none" required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Producto</label>
+            <label className="block text-xs font-bold text-zinc-600 uppercase mb-1">Producto</label>
             <input 
-              type="text" 
-              value={producto}
-              onChange={(e) => setProducto(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
+              type="text" value={producto} onChange={(e) => setProducto(e.target.value)}
+              className="w-full border border-zinc-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-600 outline-none" required
             />
           </div>
 
           <div className="flex gap-4">
             <div className="w-1/3">
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Cant.</label>
+              <label className="block text-xs font-bold text-zinc-600 uppercase mb-1">Cant.</label>
               <input 
-                type="number" 
-                value={cantidad}
-                onChange={(e) => setCantidad(e.target.value)}
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                required
+                type="number" value={cantidad} onChange={(e) => setCantidad(e.target.value)}
+                className="w-full border border-zinc-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-600 outline-none" required
               />
             </div>
             <div className="w-2/3">
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Precio Unitario (Gs.)</label>
+              <label className="block text-xs font-bold text-zinc-600 uppercase mb-1">Precio Unitario (Gs.)</label>
               <input 
-                type="number" 
-                value={precio}
-                onChange={(e) => setPrecio(e.target.value)}
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                required
+                type="number" value={precio} onChange={(e) => setPrecio(e.target.value)}
+                className="w-full border border-zinc-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-600 outline-none" required
               />
             </div>
           </div>
 
+          <div>
+            <label className="block text-xs font-bold text-zinc-600 uppercase mb-1">URL de la Foto (Opcional)</label>
+            <input 
+              type="text" value={imagenUrl} onChange={(e) => setImagenUrl(e.target.value)}
+              className="w-full border border-zinc-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-600 outline-none text-zinc-500"
+            />
+          </div>
+
           <button 
             type="submit" 
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg mt-4 transition-colors shadow-md"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black text-lg py-4 rounded-xl mt-6 transition-all shadow-lg hover:scale-[1.02]"
           >
-            Generar Presupuesto PDF
+            Descargar Presupuesto Oficial
           </button>
         </form>
       </div>
