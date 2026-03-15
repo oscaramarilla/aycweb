@@ -1,192 +1,176 @@
 "use client";
 import { useState } from "react";
 
-export default function PreciosAYC() {
-  const [planSeleccionado, setPlanSeleccionado] = useState<number | null>(null);
+export default function AycWebMasterFunnel() {
+  const whatsappLink = "https://wa.me/595985864209?text=Hola%20Oscar,%20vengo%20de%20AYCweb.%20Me%20interesa%20analizar%20mi%20empresa.";
 
   const planes = [
     {
-      id: 1,
       nombre: "Landing Page Flash",
       precio: "1.500.000",
       mantenimiento: "0",
-      descripcion: "Tu presencia digital profesional en tiempo récord. Ideal para captar clientes rápido.",
-      features: ["Diseño One-Pager de Alto Impacto", "Formulario de contacto a WhatsApp", "Adaptable a celulares", "Optimizada para velocidad"],
-      condiciones: "Pago 100% adelantado para iniciar el desarrollo. Entrega en 3 a 5 días hábiles.",
-      anticipo: "1.500.000",
-      cta: "Quiero mi Landing Page",
+      descripcion: "Tu presencia digital profesional en tiempo récord para captar clientes.",
+      features: ["Diseño One-Pager Alto Impacto", "Formulario a WhatsApp", "Adaptable a celulares"],
+      roi: "Si captas 1 cliente extra al mes, se paga sola.",
+      cta: "Quiero mi Landing",
       color: "zinc"
     },
     {
-      id: 2,
-      nombre: "Plan Inicial (Automatización)",
+      nombre: "Automatización Inicial",
       precio: "2.500.000",
       mantenimiento: "250.000",
       popular: true,
-      descripcion: "Digitaliza tu primer proceso crítico. Motores de presupuestos y bases de datos.",
-      features: ["1 Cotizador PDF o Portal a medida", "Hosting Premium incluido", "Soporte vía WhatsApp", "Certificado SSL de seguridad"],
-      condiciones: "Anticipo del 50% para iniciar. El 50% restante al finalizar el mes con la entrega. Luego, mantenimiento mensual.",
-      anticipo: "1.250.000",
-      cta: "Automatizar mi empresa",
+      descripcion: "Para negocios que necesitan digitalizar su primer proceso crítico (ej. Cotizador).",
+      features: ["1 Motor PDF a medida", "Hosting Premium", "Soporte Técnico VIP"],
+      roi: "Ahorra más de 40 horas operativas al mes a tu equipo.",
+      cta: "Automatizar ahora",
       color: "blue"
-    },
-    {
-      id: 3,
-      nombre: "Plan Empresarial PRO",
-      precio: "4.500.000",
-      mantenimiento: "450.000",
-      descripcion: "Arquitectura completa para fábricas y empresas con múltiples vendedores.",
-      features: ["Cotizador Multi-Producto Complejo", "Portal de Pedidos B2B", "Cálculos Logísticos Avanzados", "Capacitación al equipo"],
-      condiciones: "Anticipo del 50% para iniciar. El 50% restante al finalizar el mes con la entrega. Mantenimiento mensual premium.",
-      anticipo: "2.250.000",
-      cta: "Transformación Total",
-      color: "zinc"
     }
   ];
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white py-20 px-4 md:px-8 font-sans selection:bg-blue-500/30">
-      <div className="max-w-7xl mx-auto">
-        
-        {/* ENCABEZADO */}
-        <div className="text-center mb-16">
-          <span className="text-blue-500 font-black tracking-widest uppercase text-sm mb-4 block">Automatizaciones y Construcciones Web</span>
-          <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
-            El sitio de desarrollo y arquitectura de tu <span className="text-blue-500">entorno digital a medida.</span>
-          </h1>
-          <p className="text-zinc-400 text-lg md:text-xl max-w-3xl mx-auto">
-            Somos la empresa que te ahorra millones y mucho tiempo. Selecciona el plan que mejor se adapte a tu operativa.
-          </p>
-        </div>
-
-        {/* TARJETAS DE PRECIOS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          {planes.map((plan) => (
-            <div 
-              key={plan.id} 
-              className={`relative p-8 rounded-3xl border transition-all duration-300 flex flex-col cursor-pointer hover:-translate-y-2 ${
-                planSeleccionado === plan.id 
-                  ? 'border-blue-500 bg-blue-900/20 shadow-[0_0_30px_rgba(37,99,235,0.2)]' 
-                  : plan.popular 
-                    ? 'border-zinc-700 bg-zinc-900/80 hover:border-blue-400' 
-                    : 'border-zinc-800 bg-zinc-900/40 hover:border-zinc-600'
-              }`}
-              onClick={() => {
-                setPlanSeleccionado(plan.id);
-                document.getElementById("checkout-section")?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              {plan.popular && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest">
-                  El más rentable
-                </span>
-              )}
-              
-              <h3 className="text-2xl font-bold mb-2">{plan.nombre}</h3>
-              <p className="text-zinc-400 text-sm mb-6 min-h-[60px]">{plan.descripcion}</p>
-              
-              <div className="mb-6">
-                <span className="text-4xl font-black">Gs. {plan.precio}</span>
-                {plan.mantenimiento !== "0" && <span className="text-zinc-500 text-sm block mt-1">+ Gs. {plan.mantenimiento} / mes</span>}
-              </div>
-
-              <div className="mb-8 border-t border-zinc-800 pt-6 flex-grow">
-                <ul className="space-y-4">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-zinc-300">
-                      <span className="text-blue-500 font-bold mt-0.5">✓</span> {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <button 
-                className={`w-full py-4 rounded-xl font-black transition-all ${
-                  planSeleccionado === plan.id || plan.color === 'blue' 
-                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/50' 
-                    : 'bg-white text-zinc-950 hover:bg-zinc-200'
-                }`}
-              >
-                {planSeleccionado === plan.id ? 'Plan Seleccionado ↓' : plan.cta}
-              </button>
-            </div>
-          ))}
-        </div>
-
-        {/* SECCIÓN DE CHECKOUT DINÁMICA */}
-        {planSeleccionado && (
-          <div id="checkout-section" className="max-w-4xl mx-auto bg-zinc-900 border border-zinc-800 rounded-3xl p-6 md:p-12 shadow-2xl animate-fade-in-up">
-            
-            <div className="text-center mb-8 border-b border-zinc-800 pb-8">
-              <h2 className="text-2xl md:text-3xl font-black mb-4">Has seleccionado: <span className="text-blue-500">{planes.find(p => p.id === planSeleccionado)?.nombre}</span></h2>
-              <p className="text-zinc-400 text-lg">{planes.find(p => p.id === planSeleccionado)?.condiciones}</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              
-              {/* Instrucciones Bancarias */}
-              <div>
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                  <span className="bg-blue-500/20 text-blue-500 p-2 rounded-lg">🏦</span> Transferencia Bancaria
-                </h3>
-                <div className="bg-zinc-950 p-6 rounded-2xl border border-zinc-800 space-y-3 font-mono text-sm text-zinc-300">
-                  <p><span className="text-zinc-500">Banco:</span> Itaú</p>
-                  <p><span className="text-zinc-500">Titular:</span> Oscar Amarilla</p>
-                  <p><span className="text-zinc-500">C.I.:</span> 4499507</p>
-                  <p><span className="text-zinc-500">Cuenta:</span> 720601573</p>
-                  <p><span className="text-zinc-500">Alias / Celular:</span> 0985864209</p>
-                </div>
-              </div>
-
-              {/* Instrucciones Cripto */}
-              <div>
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                  <span className="bg-yellow-500/20 text-yellow-500 p-2 rounded-lg">⚡</span> Cripto (USDT)
-                </h3>
-                <div className="bg-zinc-950 p-6 rounded-2xl border border-zinc-800 space-y-3 text-sm text-zinc-300">
-                  <p className="text-zinc-500 font-mono mb-2">Red: Tron (TRC20) - Binance</p>
-                  <p className="font-mono text-xs md:text-sm break-all bg-zinc-900 p-3 rounded-lg border border-zinc-800 text-blue-400">
-                    TLUzuQDLjVwp4UDFAEFuypw5LmFf1K1PRQ
-                  </p>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Resumen y Envío */}
-            <div className="mt-10 bg-blue-900/10 border border-blue-900/30 rounded-2xl p-6 text-center">
-              <p className="text-lg mb-2">Monto a transferir hoy (Anticipo):</p>
-              <p className="text-4xl font-black text-white mb-6">Gs. {planes.find(p => p.id === planSeleccionado)?.anticipo}</p>
-              
-              <p className="text-sm text-zinc-400 mb-6">
-                * La factura legal correspondiente será preparada y emitida contra el comprobante de pago del anticipo.
-              </p>
-
-              <a 
-                href={`https://wa.me/595985864209?text=Hola%20Oscar,%20acabo%20de%20seleccionar%20el%20${planes.find(p => p.id === planSeleccionado)?.nombre}%20en%20AYCweb.%20Aquí%20tienes%20el%20comprobante%20de%20pago%20del%20anticipo:`}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-block px-10 py-4 bg-blue-600 hover:bg-blue-500 text-white font-black text-lg rounded-xl transition-all shadow-lg hover:-translate-y-1 w-full md:w-auto"
-              >
-                Enviar comprobante por WhatsApp
-              </a>
-            </div>
-
-          </div>
-        )}
-
-        {/* GARANTÍA */}
-        <div className="mt-24 max-w-3xl mx-auto text-center border-t border-zinc-800 pt-16">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-zinc-900 border-4 border-blue-500 rounded-full mb-6">
-             <span className="text-3xl">🛡️</span>
-          </div>
-          <h3 className="text-2xl font-black mb-4">Garantía de Satisfacción Absoluta</h3>
-          <p className="text-zinc-400 text-lg">
-            Estamos tan seguros de la calidad y velocidad de nuestra arquitectura digital que te ofrecemos una <strong>garantía de 30 días</strong>. Si no te gusta nuestro trabajo, te devolvemos tu dinero sin hacer preguntas.
-          </p>
-        </div>
-
+    <main className="min-h-screen bg-zinc-950 text-white font-sans selection:bg-blue-500/30 pb-20">
+      
+      {/* ⚠️ GATILLO DE ESCASEZ Y URGENCIA */}
+      <div className="bg-blue-600 text-white text-xs md:text-sm font-black text-center py-3 px-4 shadow-md sticky top-0 z-50 tracking-wide">
+        Analizamos tu empresa gratis en 5 minutos. Solo tomamos 5 proyectos nuevos por mes (2 cupos disponibles).
       </div>
+
+      {/* 1. HERO SECTION (NEURO-OPTIMIZADO) */}
+      <section className="relative overflow-hidden pt-24 pb-20 flex flex-col items-center text-center px-6 border-b border-zinc-900">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-96 bg-blue-600/10 blur-[120px] pointer-events-none"></div>
+        
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 text-blue-400 text-xs font-bold tracking-widest mb-8 uppercase shadow-xl relative z-10">
+          <span className="flex h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
+          AYC | Automatización Empresarial
+        </div>
+
+        <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6 max-w-5xl leading-tight relative z-10">
+          Automatizamos procesos y generamos clientes para tu empresa.
+        </h1>
+        <h2 className="text-2xl md:text-3xl font-bold text-blue-500 mb-8 relative z-10">
+          Implementaciones listas en menos de 7 días.
+        </h2>
+
+        <p className="text-lg text-zinc-400 mb-10 max-w-2xl leading-relaxed relative z-10">
+          Convierte tu web en una máquina de clientes y cotizaciones automáticas. Deja de perder tiempo en tareas manuales repetitivas.
+        </p>
+
+        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="relative z-10 px-10 py-5 bg-blue-600 hover:bg-blue-500 text-white font-black text-xl rounded-xl transition-all hover:-translate-y-1 shadow-[0_0_30px_rgba(37,99,235,0.4)]">
+          Analizar mi empresa (Gratis)
+        </a>
+      </section>
+
+      {/* 2. EL PROBLEMA */}
+      <section className="py-20 bg-zinc-900/30 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+          <h3 className="text-3xl font-black mb-12">Las empresas pierden cientos de horas al año en:</h3>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {["Cotizaciones manuales", "Pedidos por WhatsApp", "Seguimiento de clientes", "Procesos repetitivos"].map((problema, i) => (
+              <div key={i} className="bg-zinc-950 border border-zinc-800 p-6 rounded-2xl text-zinc-300 font-bold border-t-4 border-t-red-500/50">
+                {problema}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. CASO REAL (PRUEBA SOCIAL) */}
+      <section className="py-24 px-6 border-y border-zinc-800">
+        <div className="max-w-5xl mx-auto bg-blue-900/10 border border-blue-900/30 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-3xl rounded-full"></div>
+          <h3 className="text-blue-400 font-bold tracking-widest uppercase text-sm mb-4 relative z-10">Caso de Éxito Demostrable</h3>
+          <h4 className="text-3xl md:text-4xl font-black text-white mb-10 relative z-10">Industria Manufacturera (Metal Mad)</h4>
+          
+          <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16 relative z-10">
+            <div className="bg-zinc-950/50 p-6 rounded-2xl border border-zinc-800 w-full md:w-1/2">
+              <span className="text-red-400 font-bold uppercase text-sm block mb-2">Antes</span>
+              <span className="text-3xl font-black text-white">2 Horas</span>
+              <p className="text-zinc-400 mt-2">Para armar una cotización en Word.</p>
+            </div>
+            <div className="bg-blue-900/20 p-6 rounded-2xl border border-blue-500/30 w-full md:w-1/2 shadow-[0_0_15px_rgba(37,99,235,0.2)]">
+              <span className="text-blue-400 font-bold uppercase text-sm block mb-2">Después con AYC</span>
+              <span className="text-3xl font-black text-white">15 Segundos</span>
+              <p className="text-zinc-300 mt-2">Generando el PDF desde el celular.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. CÓMO FUNCIONA (REDUCCIÓN DE FRICCIÓN) */}
+      <section className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h3 className="text-3xl md:text-4xl font-black text-center mb-16">Cómo funciona nuestro proceso</h3>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              { num: "1", titulo: "Diagnóstico Rápido", desc: "Encontramos tus fugas de tiempo." },
+              { num: "2", titulo: "Arquitectura", desc: "Diseñamos tu sistema ideal." },
+              { num: "3", titulo: "Implementación", desc: "Desarrollo y código en 7 días." },
+              { num: "4", titulo: "Automatización Activa", desc: "Ahorras horas desde el día uno." }
+            ].map((paso, i) => (
+              <div key={i} className="text-center">
+                <div className="w-16 h-16 bg-zinc-900 border-2 border-blue-500 text-blue-500 rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-6">
+                  {paso.num}
+                </div>
+                <h4 className="text-xl font-bold mb-2">{paso.titulo}</h4>
+                <p className="text-zinc-400">{paso.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. PRECIOS B2B ANCLADOS AL ROI */}
+      <section className="py-20 px-6 bg-zinc-900/50 border-t border-zinc-800">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h3 className="text-3xl md:text-5xl font-black mb-4">Inversión Transparente</h3>
+            <p className="text-zinc-400 text-lg">Precios claros. Resultados medibles.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {planes.map((plan, index) => (
+              <div key={index} className={`relative p-8 rounded-3xl border ${plan.popular ? 'border-blue-500 bg-blue-900/10' : 'border-zinc-800 bg-zinc-950'} flex flex-col`}>
+                {plan.popular && (
+                  <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-xs font-black px-4 py-1 rounded-full uppercase tracking-widest">
+                    Más Solicitado
+                  </span>
+                )}
+                
+                <h4 className="text-2xl font-bold mb-2">{plan.nombre}</h4>
+                <p className="text-zinc-400 text-sm mb-6 min-h-[40px]">{plan.descripcion}</p>
+                
+                <div className="mb-6">
+                  <span className="text-4xl font-black">Gs. {plan.precio}</span>
+                </div>
+
+                <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-3 mb-8">
+                  <p className="text-green-400 text-sm font-bold text-center">💡 {plan.roi}</p>
+                </div>
+
+                <div className="mb-8 border-t border-zinc-800 pt-6 flex-grow">
+                  <ul className="space-y-4">
+                    {plan.features.map((feature, i) => (
+                      <li key={i} className="flex items-center gap-3 text-sm">
+                        <span className="text-blue-500 font-bold">✓</span> {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <a 
+                  href={`${whatsappLink}%20Quiero%20el%20plan%20${plan.nombre.replace(/\s+/g, '%20')}`}
+                  target="_blank" rel="noopener noreferrer"
+                  className={`block w-full text-center py-4 rounded-xl font-black transition-all ${plan.popular ? 'bg-blue-600 hover:bg-blue-500 shadow-lg' : 'bg-zinc-800 text-white hover:bg-zinc-700'}`}
+                >
+                  {plan.cta}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
     </main>
   );
 }
