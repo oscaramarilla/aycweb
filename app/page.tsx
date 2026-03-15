@@ -1,244 +1,101 @@
 "use client";
-import { useState } from "react";
-import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
 
-export default function Home() {
-  const [cliente, setCliente] = useState("");
-  // 🔗 AHORA USAMOS LA URL COMPLETA DE TU WEB PRINCIPAL
-  const [imagenUrl, setImagenUrl] = useState("https://metalmadeas.com/productos/pupitre.jpg");
-  
-  // ⚙️ ESTADO MULTI-PRODUCTO
-  const [productos, setProductos] = useState([
-    { descripcion: "Mesa personalizada modelo AyC 2026", cantidad: 2, precio: 550000 }
-  ]);
+export default function PreciosAYC() {
+  const whatsappLink = "https://wa.me/595985864209?text=Hola%20Oscar,%20quiero%20consultar%20por%20el%20Plan%20";
 
-  const agregarFila = () => {
-    setProductos([...productos, { descripcion: "", cantidad: 1, precio: 0 }]);
-  };
-
-  const quitarFila = (index: number) => {
-    const nuevosProductos = productos.filter((_, i) => i !== index);
-    setProductos(nuevosProductos);
-  };
-
-  const actualizarProducto = (index: number, campo: string, valor: string | number) => {
-    const nuevosProductos = [...productos];
-    nuevosProductos[index] = { ...nuevosProductos[index], [campo]: valor };
-    setProductos(nuevosProductos);
-  };
-
-  const handleGenerarPDF = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const doc = new jsPDF();
-    const fecha = new Date().toLocaleDateString("es-PY");
-
-    // ==========================================
-    // 🎨 FORMATO CORPORATIVO DEL PDF (HEADER)
-    // ==========================================
-    doc.setFontSize(28);
-    doc.setTextColor(30, 58, 138); 
-    doc.setFont("helvetica", "bold");
-    doc.text("PRESUPUESTO", 14, 25);
-
-    doc.setFontSize(10);
-    doc.setTextColor(100, 100, 100);
-    doc.setFont("helvetica", "normal");
-    doc.text("METAL MAD E.A.S.", 140, 20);
-    doc.text("RUC: 80123456-7", 140, 25);
-    doc.text("Lambaré, Paraguay", 140, 30);
-    doc.text("WhatsApp: +595 985 864209", 140, 35);
-
-    doc.setDrawColor(200, 200, 200);
-    doc.line(14, 42, 196, 42);
-
-    // ==========================================
-    // 👤 DATOS DEL CLIENTE
-    // ==========================================
-    doc.setFontSize(12);
-    doc.setTextColor(0, 0, 0);
-    doc.setFont("helvetica", "bold");
-    doc.text("Facturar a:", 14, 55);
-    
-    doc.setFont("helvetica", "normal");
-    doc.text(`Cliente / Institución: ${cliente}`, 14, 63);
-    doc.text(`Fecha de Emisión: ${fecha}`, 14, 70);
-
-    // ==========================================
-    // 📊 TABLA DE PRODUCTOS (DINÁMICA)
-    // ==========================================
-    let granTotal = 0;
-    const filasTabla = productos.map(prod => {
-      const subtotal = Number(prod.precio) * Number(prod.cantidad);
-      granTotal += subtotal;
-      return [
-        prod.descripcion, 
-        prod.cantidad.toString(), 
-        Number(prod.precio).toLocaleString("es-PY"), 
-        subtotal.toLocaleString("es-PY")
-      ];
-    });
-
-    autoTable(doc, {
-      startY: 85,
-      head: [["Descripción del Producto", "Cant.", "Precio Unit. (Gs)", "Subtotal (Gs)"]],
-      body: filasTabla,
-      theme: "striped",
-      headStyles: { fillColor: [30, 58, 138], textColor: 255, fontStyle: 'bold' },
-      styles: { fontSize: 10, cellPadding: 6 },
-      columnStyles: {
-        0: { cellWidth: 80 }, 
-        1: { halign: 'center' },
-        2: { halign: 'right' },
-        3: { halign: 'right', fontStyle: 'bold' },
-      }
-    });
-
-    const finalY = (doc as any).lastAutoTable.finalY || 120;
-
-    // ==========================================
-    // 🖼️ INYECTAR IMAGEN CON PASE VIP (CORS)
-    // ==========================================
-    if (imagenUrl) {
-      try {
-        const img = new window.Image();
-        // ¡EL PASE VIP PARA QUE EL NAVEGADOR NO BLOQUEE LA FOTO!
-        img.crossOrigin = "Anonymous"; 
-        img.src = imagenUrl;
-        
-        await new Promise((resolve, reject) => {
-            img.onload = resolve;
-            img.onerror = reject;
-        });
-        
-        doc.addImage(img, 'JPEG', 14, finalY + 15, 60, 45);
-      } catch(error) {
-        console.warn("No se pudo cargar la imagen en el PDF por seguridad del navegador.");
-      }
+  const planes = [
+    {
+      nombre: "Plan Inicial",
+      precio: "2.500.000",
+      mantenimiento: "250.000",
+      descripcion: "Para negocios que necesitan digitalizar su primer proceso crítico.",
+      features: ["1 Cotizador PDF a medida", "Hosting Premium incluido", "Soporte vía WhatsApp", "Certificado SSL de seguridad"],
+      cta: "Plan Inicial",
+      color: "zinc"
+    },
+    {
+      nombre: "Plan Empresarial",
+      precio: "4.500.000",
+      mantenimiento: "450.000",
+      popular: true,
+      descripcion: "La solución completa para empresas en crecimiento y fábricas.",
+      features: ["Cotizador Multi-Producto V3", "Portal de Pedidos B2B", "Cálculos Logísticos Avanzados", "Capacitación al equipo", "Prioridad de Soporte"],
+      cta: "Plan Empresarial",
+      color: "blue"
+    },
+    {
+      nombre: "Sistemas IA Custom",
+      precio: "Consultar",
+      mantenimiento: "Variable",
+      descripcion: "Desarrollo de software de alta complejidad e integraciones con IA.",
+      features: ["Integración con GPT-4 / Gemini", "Automatización de Contratos", "ERP a medida para Fábricas", "Consultoría Estratégica"],
+      cta: "Sistemas IA",
+      color: "zinc"
     }
-
-    // ==========================================
-    // 💰 DIBUJAR EL GRAN TOTAL Y FOOTER
-    // ==========================================
-    doc.setFontSize(16);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(30, 58, 138);
-    doc.text(`Total a Pagar: Gs. ${granTotal.toLocaleString("es-PY")}`, 110, finalY + 30);
-
-    doc.setFontSize(9);
-    doc.setTextColor(150, 150, 150);
-    doc.setFont("helvetica", "normal");
-    doc.text("Garantía: 3 años contra defectos de fabricación.", 14, 275);
-    doc.text("Este presupuesto tiene validez por 15 días desde su emisión.", 14, 280);
-
-    doc.save(`Presupuesto_${cliente.replace(/\s+/g, '_')}.pdf`);
-  };
+  ];
 
   return (
-    <main className="min-h-screen bg-zinc-50 p-6 flex flex-col items-center justify-center font-sans py-12">
-      <div className="bg-white p-8 rounded-3xl shadow-xl w-full max-w-2xl border border-zinc-200">
-        
-        <div className="text-center mb-8">
-          <span className="bg-blue-100 text-blue-800 font-black tracking-widest uppercase text-[10px] px-3 py-1 rounded-full mb-4 inline-block">
-            Motor V3.0 PRO
-          </span>
-          <h1 className="text-3xl font-black text-blue-900 tracking-tight mb-2">MM Cotizador</h1>
-          <p className="text-sm text-zinc-500">Generador de PDF Institucional Multi-Producto</p>
+    <main className="min-h-screen bg-zinc-950 text-white py-24 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-20">
+          <h1 className="text-4xl md:text-6xl font-black mb-6">Inversión en <span className="text-blue-500">Eficiencia</span></h1>
+          <p className="text-zinc-400 text-xl max-w-2xl mx-auto">
+            No cobramos por horas de código, cobramos por los millones que le ahorramos a tu empresa.
+          </p>
         </div>
 
-        {/* Vista previa de la foto en la web */}
-        <div className="mb-8 flex justify-center">
-          <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-zinc-200 shadow-sm bg-zinc-100 flex items-center justify-center">
-            {imagenUrl ? (
-              <img src={imagenUrl} alt="Vista previa" className="object-cover w-full h-full" crossOrigin="anonymous" />
-            ) : (
-              <span className="text-zinc-400 text-xs">Sin imagen</span>
-            )}
-          </div>
-        </div>
-
-        <form onSubmit={handleGenerarPDF} className="space-y-6">
-          
-          <div>
-            <label className="block text-xs font-bold text-zinc-600 uppercase mb-1">Cliente / Institución</label>
-            <input 
-              type="text" value={cliente} onChange={(e) => setCliente(e.target.value)}
-              placeholder="Ej. Colegio San José"
-              className="w-full border border-zinc-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-600 outline-none" required
-            />
-          </div>
-
-          <div className="space-y-4">
-            <label className="block text-xs font-bold text-zinc-600 uppercase border-b pb-2">Lista de Productos</label>
-            
-            {productos.map((producto, index) => (
-              <div key={index} className="flex gap-3 items-start bg-zinc-50 p-4 rounded-xl border border-zinc-200 relative group transition-all hover:border-blue-300">
-                <div className="flex-grow space-y-3">
-                  <input 
-                    type="text" 
-                    placeholder="Descripción (Ej. Silla ergonómica)"
-                    value={producto.descripcion}
-                    onChange={(e) => actualizarProducto(index, "descripcion", e.target.value)}
-                    className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-600 outline-none"
-                    required
-                  />
-                  <div className="flex gap-2">
-                    <input 
-                      type="number" 
-                      placeholder="Cant."
-                      value={producto.cantidad}
-                      onChange={(e) => actualizarProducto(index, "cantidad", e.target.value)}
-                      className="w-24 border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-600 outline-none"
-                      required
-                    />
-                    <input 
-                      type="number" 
-                      placeholder="Precio Unitario"
-                      value={producto.precio}
-                      onChange={(e) => actualizarProducto(index, "precio", e.target.value)}
-                      className="flex-grow border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-600 outline-none"
-                      required
-                    />
-                  </div>
-                </div>
-                {productos.length > 1 && (
-                  <button 
-                    type="button" 
-                    onClick={() => quitarFila(index)}
-                    className="bg-red-50 text-red-500 hover:bg-red-500 hover:text-white px-3 py-2 rounded-lg font-bold text-sm transition-colors h-full mt-1"
-                    title="Eliminar producto"
-                  >
-                    X
-                  </button>
-                )}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {planes.map((plan, index) => (
+            <div key={index} className={`relative p-8 rounded-3xl border ${plan.popular ? 'border-blue-500 bg-blue-900/10' : 'border-zinc-800 bg-zinc-900/50'} flex flex-col`}>
+              {plan.popular && (
+                <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-xs font-black px-4 py-1 rounded-full uppercase tracking-widest">
+                  Más Solicitado
+                </span>
+              )}
+              
+              <h3 className="text-2xl font-bold mb-2">{plan.nombre}</h3>
+              <p className="text-zinc-400 text-sm mb-6 min-h-[48px]">{plan.descripcion}</p>
+              
+              <div className="mb-8">
+                <span className="text-4xl font-black">Gs. {plan.precio}</span>
+                {plan.mantenimiento !== "Variable" && <span className="text-zinc-500 text-sm"> /único</span>}
               </div>
-            ))}
-          </div>
 
-          <button 
-            type="button" 
-            onClick={agregarFila}
-            className="w-full border-2 border-dashed border-zinc-300 text-zinc-600 font-bold py-3 rounded-xl hover:bg-zinc-100 hover:border-blue-400 hover:text-blue-600 transition-colors"
-          >
-            + Agregar otro producto
-          </button>
+              <div className="mb-8 border-t border-zinc-800 pt-6">
+                <p className="text-xs font-bold text-zinc-500 uppercase mb-4 tracking-widest">¿Qué incluye?</p>
+                <ul className="space-y-4">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-3 text-sm">
+                      <span className="text-blue-500">✓</span> {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-          <div>
-            <label className="block text-xs font-bold text-zinc-600 uppercase mb-1 mt-4">URL de la Foto (Opcional)</label>
-            <input 
-              type="text" value={imagenUrl} onChange={(e) => setImagenUrl(e.target.value)}
-              className="w-full border border-zinc-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-600 outline-none text-zinc-500"
-            />
-          </div>
+              <div className="mt-auto">
+                {plan.mantenimiento !== "Variable" && (
+                  <p className="text-center text-xs text-zinc-500 mb-4">
+                    + Gs. {plan.mantenimiento}/mes de mantenimiento
+                  </p>
+                )}
+                <a 
+                  href={`${whatsappLink}${plan.cta.replace(/\s+/g, '%20')}`}
+                  className={`block w-full text-center py-4 rounded-xl font-black transition-all ${plan.color === 'blue' ? 'bg-blue-600 hover:bg-blue-500 shadow-[0_0_20px_rgba(37,99,235,0.3)]' : 'bg-white text-black hover:bg-zinc-200'}`}
+                >
+                  Seleccionar {plan.cta}
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
 
-          <button 
-            type="submit" 
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black text-lg py-4 rounded-xl mt-6 transition-all shadow-lg hover:scale-[1.02]"
-          >
-            Descargar Presupuesto Oficial
-          </button>
-        </form>
+        <div className="mt-20 text-center bg-zinc-900 border border-zinc-800 p-10 rounded-3xl">
+          <h4 className="text-2xl font-bold mb-4">¿Necesitas una solución híbrida?</h4>
+          <p className="text-zinc-400 mb-8 max-w-xl mx-auto">Analizamos tu flujo de trabajo actual y armamos un presupuesto basado en el retorno de inversión para tu caso específico.</p>
+          <a href={whatsappLink + "Consultoria%20Hibrida"} className="text-blue-400 font-bold border-b border-blue-400 pb-1 hover:text-blue-300">
+            Hablar con un consultor ahora
+          </a>
+        </div>
       </div>
     </main>
   );
