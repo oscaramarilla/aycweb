@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import Image from "next/image"; // Importamos Image de Next.js para tu futuro logo
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,30 +20,29 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${inter.className} bg-zinc-950 text-white min-h-screen flex flex-col`}>
         
-        {/* NAVEGACIÓN - ESTRATEGIA DE ORO */}
-        <header className="sticky top-0 z-40 w-full backdrop-blur-lg bg-zinc-950/80 border-b border-zinc-800">
-          <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="font-black text-2xl tracking-tighter text-white hover:opacity-80 transition-opacity">
-              AYC<span className="text-blue-500">.</span>
+        {/* NAVEGACIÓN - ENFOQUE MÓVIL (MOBILE-FIRST) */}
+        <header className="sticky top-0 z-40 w-full backdrop-blur-lg bg-zinc-950/90 border-b border-zinc-800">
+          <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+            
+            {/* ESPACIO PARA LOGO (Centrado en móvil, a la izquierda en PC) */}
+            <Link href="/" className="flex items-center justify-center mt-1 md:mt-0">
+              {/* Opción 1: Logo en texto (Actual) */}
+              <span className="font-black text-3xl tracking-tighter text-white">
+                AYC<span className="text-blue-500">.</span>
+              </span>
+              
+              {/* Opción 2: Logo en Imagen. 
+                  (Cuando tengas tu logo.png en la carpeta 'public', borra el 'span' de arriba y descomenta esta línea) */}
+              {/* <Image src="/tu-logo.png" alt="AYC Logo" width={120} height={40} className="object-contain" /> */}
             </Link>
             
-            {/* Enlaces de Navegación (Se ocultan en pantallas muy chicas para no amontonar) */}
-            <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-zinc-400">
+            {/* ENLACES DE MENÚ (Visibles siempre, optimizados para celular) */}
+            <nav className="flex items-center justify-center gap-5 sm:gap-8 text-[13px] sm:text-sm font-semibold text-zinc-300 w-full md:w-auto pb-1 md:pb-0">
               <Link href="/casos" className="hover:text-white transition-colors">Casos Reales</Link>
               <Link href="/servicios" className="hover:text-white transition-colors">Sistemas SaaS</Link>
               <Link href="/sectores" className="hover:text-white transition-colors">Industrias</Link>
             </nav>
 
-            {/* Botón CTA Destacado */}
-            <div className="flex items-center gap-4">
-              <Link 
-                href="/contacto" 
-                className="bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold px-6 py-2.5 rounded-full transition-all shadow-[0_0_20px_rgba(37,99,235,0.2)] hover:shadow-[0_0_25px_rgba(37,99,235,0.4)]"
-              >
-                Solicitar Diagnóstico
-              </Link>
-            </div>
           </div>
         </header>
 
@@ -51,7 +51,7 @@ export default function RootLayout({
           {children}
         </div>
 
-        {/* BOTÓN FLOTANTE DE WHATSAPP GLOBAL */}
+        {/* BOTÓN FLOTANTE DE WHATSAPP GLOBAL (Tu única vía de conversión ahora) */}
         <a 
           href="https://wa.me/595991701000?text=Hola%20equipo%20de%20AYC,%20estoy%20en%20su%20web%20y%20quiero%20sistematizar%20mi%20empresa." 
           target="_blank" 
