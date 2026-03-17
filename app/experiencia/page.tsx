@@ -131,10 +131,10 @@ export default function ExperienciaPage() {
             </div>
             
             <p className="text-white font-black text-2xl mb-8 uppercase tracking-widest">
-              Esta es nuestra historia. Estás en manos de expertos.
+              Esta es mi historia o experiencia real ademas de hacer otros negocios B2B y me encanta el Marketing, Arquitectura y la Ingenieria .
             </p>
 
-            <Link href="https://wa.me/595991701000?text=Hola%20Oscar,%20le%20el%20dossier%20corporativo%20de%20A%20Y%20C%20y%20me%20gustaría%20agendar%20una%20reunión%20comercial." 
+            <Link href="https://wa.me/595985864209?text=Hola%20Oscar,%20le%20el%20dossier%20corporativo%20de%20A%20Y%20C%20y%20me%20gustaría%20agendar%20una%20reunión%20comercial." 
                   target="_blank"
                   className="inline-block bg-white text-blue-900 hover:bg-zinc-200 font-black py-5 px-10 rounded-full transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] hover:scale-105">
               Agendar Reunión Comercial
@@ -146,3 +146,4 @@ export default function ExperienciaPage() {
     </main>
   );
 }
+
