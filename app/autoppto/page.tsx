@@ -10,7 +10,7 @@ export default function CotizadorPage() {
   
   // ⚙️ ESTADO MULTI-PRODUCTO
   const [productos, setProductos] = useState([
-    { descripcion: "Mesa personalizada modelo AyC 2026", cantidad: 2, precio: 550000 }
+    { descripcion: "Pack Digital Express o Pack Automatizacion Empresarial o PRO  ", cantidad: 2, precio: 550000 }
   ]);
 
   const agregarFila = () => {
@@ -37,12 +37,12 @@ export default function CotizadorPage() {
     doc.setFont("helvetica", "bold");
     doc.setFontSize(22);
     doc.setTextColor(30, 58, 138);
-    doc.text("PRESUPUESTO", 14, 25);
+    doc.text("PRESUPUESTO / OFERTA", 14, 25);
     
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
-    doc.text("METAL MAD E.A.S.", 140, 20);
-    doc.text("RUC: 80123456-7", 140, 25);
+    doc.text("AyC Automatizacion y Codigo", 140, 20);
+    doc.text("RUC: 4499507-5", 140, 25);
     doc.text("Lambaré, Paraguay", 140, 30);
     doc.text("WhatsApp: +595 985 864209", 140, 35);
     
@@ -103,8 +103,8 @@ export default function CotizadorPage() {
     
     doc.setFontSize(9);
     doc.setTextColor(150, 150, 150);
-    doc.text("Validez del presupuesto: 15 días.", 14, 280);
-    doc.text("Generado por AYCweb.com", 140, 280);
+    doc.text("Alias para confirmar el pago a telefono 0985 864 209 .", 14, 280);
+    doc.text("Oscar Amarilla de A&C", 140, 280);
 
     doc.save(`Presupuesto_${cliente.replace(/\s+/g, '_')}.pdf`);
   };
@@ -214,3 +214,4 @@ export default function CotizadorPage() {
     </main>
   );
 }
+
