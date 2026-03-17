@@ -16,10 +16,10 @@ export default function ExperienciaPage() {
           </h1>
         </div>
 
-        {/* INTRODUCCIÓN */}
+        {/* INTRODUCCIÓN CORREGIDA (Solo AYC y Oscar Amarilla) */}
         <div className="prose prose-invert prose-lg max-w-none mb-24 text-zinc-400 leading-relaxed">
           <p>
-            En el mundo de los negocios a gran escala, la confianza no se exige; se demuestra. Para <strong>Metalmad EAS</strong>, <strong>Oriplast</strong> y todo el ecosistema empresarial fundado por el <strong>Sr. Oscar Emigdio Amarilla Cáceres</strong>, esa demostración de capacidad técnica, financiera y logística tiene un respaldo irrefutable: nuestra impecable trayectoria como contratistas del Estado Paraguayo bajo la firma <strong>A Y C S.R.L.</strong>
+            En el mundo de los negocios a gran escala, la confianza no se exige; se demuestra. Para la firma <strong>A Y C S.R.L.</strong> y su Socio Gerente, el <strong>Sr. Oscar Emigdio Amarilla Cáceres</strong>, esa demostración de capacidad técnica, financiera y logística tiene un respaldo irrefutable: nuestra impecable trayectoria operativa como contratistas de primer nivel del Estado Paraguayo.
           </p>
           <p>
             Operar bajo las estrictas exigencias de la Ley N° 2051/03 de Contrataciones Públicas significa superar auditorías exhaustivas, garantizar entregas en plazos inflexibles y respaldar operaciones con pólizas de seguros multimillonarias. A lo largo de los años, Oscar Amarilla ha liderado la adjudicación y ejecución perfecta de <strong>más de 30 contratos de gran envergadura</strong> con las instituciones más exigentes del país.
@@ -111,22 +111,22 @@ export default function ExperienciaPage() {
 
         </div>
 
-        {/* CIERRE / EL FUTURO */}
+        {/* CIERRE CORREGIDO (Solo AYC y Oscar Amarilla) */}
         <div className="mt-28 p-10 md:p-14 bg-gradient-to-br from-blue-900/30 via-zinc-900 to-zinc-950 border border-zinc-800 rounded-[2rem] text-center relative overflow-hidden">
           {/* Decorative glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-blue-500/10 blur-[100px] pointer-events-none"></div>
           
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-black mb-6 text-white tracking-tight">De Proveedores del Estado a Desarrolladores B2B Internacionales</h2>
+            <h2 className="text-3xl md:text-4xl font-black mb-6 text-white tracking-tight">De Contratista del Estado a Socio B2B Internacional</h2>
             <div className="text-zinc-300 leading-relaxed max-w-3xl mx-auto space-y-6 mb-10 text-lg">
               <p>
-                El historial de A Y C S.R.L. no es un simple currículum; es una hoja de ruta de cómo se domina el mercado paraguayo. Oscar Amarilla ha tomado todo este conocimiento —la rigurosidad técnica de los ministerios, la logística masiva de los municipios, la arquitectura corporativa de las universidades y la solvencia financiera asegurada— y lo ha transformado.
+                El historial de <strong>A Y C S.R.L.</strong> no es un simple currículum; es una hoja de ruta de cómo se domina el mercado paraguayo. Oscar Amarilla ha tomado todo este conocimiento —la rigurosidad técnica de los ministerios, la logística masiva de los municipios, la arquitectura corporativa de las universidades y la solvencia financiera asegurada— y lo ha transformado en un sistema operativo impecable.
               </p>
               <p>
-                Hoy, la nueva era liderada por <strong>Metalmad EAS</strong> (fabricación de mobiliarios de máxima resistencia) y <strong>Oriplast</strong> (soluciones industriales plásticas) ya no busca simplemente ganar licitaciones. Busca el desarrollo comercial B2B y la expansión internacional.
+                Hoy, la nueva era de A Y C S.R.L. ya no busca simplemente ganar licitaciones. Con una infraestructura consolidada y un equipo de expertos, nuestro objetivo es el desarrollo comercial B2B y la expansión corporativa internacional.
               </p>
               <p className="text-blue-400 font-bold text-xl bg-blue-900/20 py-4 px-6 rounded-2xl border border-blue-500/20">
-                Si nuestra estructura pudo cumplir en tiempo y forma más de 30 contratos estatales de máxima exigencia sin una sola falla, estamos listos para ser el motor que escale tu próximo proyecto privado a nivel global.
+                Si nuestra estructura pudo cumplir en tiempo y forma más de 30 mega-contratos de máxima exigencia sin una sola falla, estamos listos para ser el motor que escale tu próximo proyecto privado a nivel global.
               </p>
             </div>
             
