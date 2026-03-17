@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,14 +17,43 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-zinc-950 text-white min-h-screen flex flex-col`}>
         
-        {/* Aquí va el contenido de todas tus páginas */}
-        {children}
+        {/* NAVEGACIÓN - ESTRATEGIA DE ORO */}
+        <header className="sticky top-0 z-40 w-full backdrop-blur-lg bg-zinc-950/80 border-b border-zinc-800">
+          <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            {/* Logo */}
+            <Link href="/" className="font-black text-2xl tracking-tighter text-white hover:opacity-80 transition-opacity">
+              AYC<span className="text-blue-500">.</span>
+            </Link>
+            
+            {/* Enlaces de Navegación (Se ocultan en pantallas muy chicas para no amontonar) */}
+            <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-zinc-400">
+              <Link href="/casos" className="hover:text-white transition-colors">Casos Reales</Link>
+              <Link href="/servicios" className="hover:text-white transition-colors">Sistemas SaaS</Link>
+              <Link href="/sectores" className="hover:text-white transition-colors">Industrias</Link>
+            </nav>
 
-        {/* BOTÓN FLOTANTE DE WHATSAPP */}
+            {/* Botón CTA Destacado */}
+            <div className="flex items-center gap-4">
+              <Link 
+                href="/contacto" 
+                className="bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold px-6 py-2.5 rounded-full transition-all shadow-[0_0_20px_rgba(37,99,235,0.2)] hover:shadow-[0_0_25px_rgba(37,99,235,0.4)]"
+              >
+                Solicitar Diagnóstico
+              </Link>
+            </div>
+          </div>
+        </header>
+
+        {/* CONTENIDO DINÁMICO DE LAS PÁGINAS */}
+        <div className="flex-grow">
+          {children}
+        </div>
+
+        {/* BOTÓN FLOTANTE DE WHATSAPP GLOBAL */}
         <a 
-          href="https://wa.me/595991701000?text=Hola%20equipo%20de%20AYCweb,%20quiero%20sistematizar%20mi%20empresa." 
+          href="https://wa.me/595991701000?text=Hola%20equipo%20de%20AYC,%20estoy%20en%20su%20web%20y%20quiero%20sistematizar%20mi%20empresa." 
           target="_blank" 
           rel="noopener noreferrer"
           className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-400 text-white p-4 rounded-full shadow-[0_0_20px_rgba(34,197,94,0.4)] transition-all z-50 flex items-center justify-center hover:scale-110"
