@@ -37,7 +37,10 @@ export default function RootLayout({
             </Link>
             
             {/* ENLACES DE MENÚ (Visibles siempre, optimizados para celular) */}
-            <nav className="flex items-center justify-center gap-5 sm:gap-8 text-[13px] sm:text-sm font-semibold text-zinc-300 w-full md:w-auto pb-1 md:pb-0">
+            {/* ENLACES DE MENÚ (Visibles siempre, optimizados para celular) */}
+            <nav className="flex items-center justify-center gap-4 sm:gap-6 text-[12px] sm:text-sm font-semibold text-zinc-300 w-full md:w-auto pb-1 md:pb-0 flex-wrap">
+              <Link href="/experiencia" className="hover:text-white transition-colors text-blue-400">Trayectoria B2G</Link>
+              <span className="text-zinc-700 hidden sm:inline">|</span>
               <Link href="/casos" className="hover:text-white transition-colors">Casos Reales</Link>
               <Link href="/servicios" className="hover:text-white transition-colors">Sistemas SaaS</Link>
               <Link href="/sectores" className="hover:text-white transition-colors">Industrias</Link>
@@ -67,3 +70,4 @@ export default function RootLayout({
     </html>
   );
 }
+
