@@ -117,8 +117,8 @@ export default function CotizadorPage() {
           <span className="bg-blue-100 text-blue-800 font-black tracking-widest uppercase text-[10px] px-3 py-1 rounded-full mb-4 inline-block">
             Motor V3.0 PRO
           </span>
-          <h1 className="text-3xl font-black text-blue-900 tracking-tight mb-2">MM Cotizador</h1>
-          <p className="text-sm text-zinc-500">Generador de PDF Institucional Multi-Producto</p>
+          <h1 className="text-3xl font-black text-blue-900 tracking-tight mb-2">Cotizador Automatico Cliente</h1>
+          <p className="text-sm text-zinc-500">Generador de PDF Presupuesto B2B</p>
         </div>
 
         <div className="mb-8 flex justify-center">
@@ -214,4 +214,3 @@ export default function CotizadorPage() {
     </main>
   );
 }
-
