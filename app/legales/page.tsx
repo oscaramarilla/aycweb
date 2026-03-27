@@ -1,8 +1,9 @@
-'use client'
+"use client";
+
 import React, { useState } from 'react';
 
 export default function GeneradorContrato() {
-  // Estados para los campos dinámicos del formulario
+  // Estados para los campos dinámicos
   const [empresa, setEmpresa] = useState('[NOMBRE DE LA EMPRESA]');
   const [ruc, setRuc] = useState('[RUC]');
   const [direccion, setDireccion] = useState('[DIRECCIÓN]');
@@ -10,20 +11,48 @@ export default function GeneradorContrato() {
   const [precio, setPrecio] = useState('1.500.000');
   const [anticipo, setAnticipo] = useState('750.000');
 
-  // Función simulada para generar PDF y enviar por WhatsApp
-  const handleGenerarPDF = () => {
-    alert('Lógica para exportar el div #documento-contrato a PDF (ej. html2pdf o jspdf)');
+  // Función para manejar el cambio de plan y actualizar precios
+  const handleSelectChange = (e: any) => {
+    const opcion = e.target.value;
+    if (opcion === 'express') {
+      setServicio('Pack Digital Express');
+      setPrecio('1.500.000');
+      setAnticipo('750.000');
+    } else if (opcion === 'pro') {
+      setServicio('Pack Digital Pro');
+      setPrecio('3.000.000');
+      setAnticipo('1.500.000');
+    }
+  };
+
+  // Función REAL para generar el PDF
+  const handleGenerarPDF = async () => {
+    // Importamos dinámicamente para que Next.js no tire error de SSR
+    const html2pdf = (await import('html2pdf.js')).default;
+    const elemento = document.getElementById('documento-contrato');
+
+    const opciones = {
+      margin: 15, // Márgenes un poco más amplios para que respire
+      filename: `Contrato_SOW_${empresa.replace(/\s+/g, '_')}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opciones).from(elemento).save();
   };
 
   const handleEnviarWhatsApp = () => {
-    const mensaje = `Hola Oscar, aquí te envío el comprobante del anticipo para iniciar el ${servicio}.`;
+    const nombreEmpresa = empresa !== '[NOMBRE DE LA EMPRESA]' ? empresa : 'mi empresa';
+    const mensaje = `Hola Oscar, aquí te envío el comprobante del anticipo para iniciar el proyecto de ${nombreEmpresa} (${servicio}).`;
+    // Reemplaza los X con tu número real de WhatsApp de AYC (ej. 595981123456)
     window.open(`https://wa.me/595XXXXXXXXX?text=${encodeURIComponent(mensaje)}`, '_blank');
   };
 
   return (
     <div className="flex min-h-screen bg-gray-900 text-white font-sans">
       
-      {/* PANEL IZQUIERDO - FORMULARIO Y ONBOARDING */}
+      {/* PANEL IZQUIERDO */}
       <div className="w-1/3 p-6 border-r border-gray-700 flex flex-col gap-6">
         <div>
           <h2 className="text-2xl font-bold mb-4 text-white">AYC.</h2>
@@ -60,10 +89,7 @@ export default function GeneradorContrato() {
               <label className="block text-xs text-blue-400 font-semibold mb-1">SERVICIO A CONTRATAR</label>
               <select 
                 className="w-full p-2 bg-gray-800 rounded border border-gray-600 focus:border-blue-500 outline-none"
-                onChange={(e) => {
-                  setServicio(e.target.options[e.target.selectedIndex].text);
-                  // Aquí puedes agregar lógica para cambiar el precio según la opción
-                }}
+                onChange={handleSelectChange}
               >
                 <option value="express">Pack Digital Express (Gs. 1.500.000)</option>
                 <option value="pro">Pack Digital Pro (Gs. 3.000.000)</option>
@@ -72,14 +98,14 @@ export default function GeneradorContrato() {
           </div>
         </div>
 
-        {/* ONBOARDING ÁGIL MEJORADO */}
+        {/* ONBOARDING ÁGIL */}
         <div className="bg-gray-800 p-5 rounded-lg border border-blue-900">
           <h3 className="text-yellow-500 font-semibold mb-3">Siguientes Pasos (Onboarding Ágil)</h3>
           <ol className="text-sm text-gray-300 flex flex-col gap-2 list-decimal pl-4">
             <li>Haz clic en <strong>"Generar y Descargar PDF"</strong>.</li>
             <li>Realiza la transferencia del <strong>50% de anticipo (Gs. {anticipo})</strong> a la cuenta asignada.</li>
-            <li>Envíanos el PDF y el comprobante de transferencia por WhatsApp.</li>
-            <li className="text-blue-400 font-semibold">¡Listo! La recepción del anticipo valida este documento y activa tu proyecto en nuestro cronograma.</li>
+            <li>Envíanos el PDF y el comprobante por WhatsApp.</li>
+            <li className="text-blue-400 font-semibold">¡Listo! La recepción del anticipo valida este documento y activa tu proyecto.</li>
           </ol>
           
           <div className="mt-5 flex flex-col gap-3">
@@ -99,10 +125,9 @@ export default function GeneradorContrato() {
         </div>
       </div>
 
-      {/* PANEL DERECHO - PREVISUALIZACIÓN DEL CONTRATO */}
+      {/* PANEL DERECHO - DOCUMENTO */}
       <div className="w-2/3 bg-gray-200 p-8 overflow-y-auto flex justify-center">
-        {/* Contenedor tipo "Hoja A4" */}
-        <div id="documento-contrato" className="bg-white text-black p-10 max-w-2xl shadow-lg text-sm leading-relaxed">
+        <div id="documento-contrato" className="bg-white text-black p-10 max-w-2xl shadow-lg text-sm leading-relaxed w-full">
           <h1 className="text-center font-bold text-lg mb-6 underline">CONTRATO DE PRESTACIÓN DE SERVICIOS DIGITALES (SOW)</h1>
           
           <p className="mb-4 font-bold">REUNIDOS:</p>
@@ -131,7 +156,6 @@ export default function GeneradorContrato() {
             Al realizar el pago del anticipo o remitir este documento, El Cliente declara haber leído y aceptado los <strong>Términos Generales de Contratación</strong> disponibles en <em>aycweb.com/contrato</em>, los cuales forman parte integral de este acuerdo (regulando Propiedad Intelectual, Ley 7593/2025 de Datos Personales, y responsabilidades). El presente acuerdo se perfecciona mediante la confirmación por escrito (WhatsApp/Email) acompañada del comprobante de transferencia del anticipo.
           </p>
 
-          {/* Área de firmas (Más visual que funcional gracias a la nueva redacción) */}
           <div className="flex justify-between mt-12 pt-8">
             <div className="w-[45%] border-t border-black text-center pt-2">
               <p className="font-bold">Oscar Emigdio Amarilla</p>
