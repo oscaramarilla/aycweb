@@ -3,188 +3,209 @@
 import React, { useState } from 'react';
 
 export default function GeneradorContrato() {
-  // Estados para los campos dinámicos
-  const [empresa, setEmpresa] = useState('[NOMBRE DE LA EMPRESA]');
-  const [ruc, setRuc] = useState('[RUC]');
-  const [direccion, setDireccion] = useState('[DIRECCIÓN]');
-  const [servicio, setServicio] = useState('Pack Digital Express');
-  const [precio, setPrecio] = useState('1.500.000');
-  const [anticipo, setAnticipo] = useState('750.000');
+  // Estados para guardar los datos del cliente en tiempo real
+  const [datos, setDatos] = useState({
+    empresa: '',
+    ruc: '',
+    direccion: '',
+    representante: '',
+    servicio: 'Pack Digital Express',
+  });
 
-  // Función para manejar el cambio de plan y actualizar precios
-  const handleSelectChange = (e: any) => {
-    const opcion = e.target.value;
-    if (opcion === 'express') {
-      setServicio('Pack Digital Express');
-      setPrecio('1.500.000');
-      setAnticipo('750.000');
-    } else if (opcion === 'pro') {
-      setServicio('Pack Digital Pro');
-      setPrecio('3.000.000');
-      setAnticipo('1.500.000');
-    }
+  // Lógica de precios según el servicio seleccionado
+  const planes = {
+    "Pack Digital Express": { precio: "1.500.000", anticipo: "750.000", saldo: "750.000" },
+    "Automatización Empresarial": { precio: "4.500.000", anticipo: "2.250.000", saldo: "2.250.000" },
+    "Motor de Cotizaciones PRO": { precio: "8.000.000", anticipo: "4.000.000", saldo: "4.000.000" }
   };
 
-  // Función REAL y blindada para generar el PDF
-  const handleGenerarPDF = async () => {
-    try {
-      // Aviso en consola para saber que arrancó
-      console.log("Iniciando generación de PDF...");
-      
-      const elemento = document.getElementById('documento-contrato');
-      if (!elemento) {
-        alert("No se encontró el contrato en la pantalla.");
-        return;
-      }
+  const planSeleccionado = planes[datos.servicio as keyof typeof planes];
 
-      // Importación dinámica segura para Next.js
-      const html2pdfModule = await import('html2pdf.js');
-      const html2pdf = html2pdfModule.default || html2pdfModule;
-
-      const opciones: any = {
-        margin: 15,
-        filename: `Contrato_SOW_${empresa.replace(/\s+/g, '_')}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true }, // useCORS ayuda con los estilos
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
-
-      // Generamos el PDF
-      await html2pdf().set(opciones).from(elemento).save();
-      console.log("¡PDF generado con éxito!");
-
-    } catch (error) {
-      console.error("Error al generar el PDF:", error);
-      alert("Hubo un problema al generar el PDF. Mirá la consola (F12) para más detalles.");
-    }
+  // Función infalible para generar PDF usando el navegador
+  const generarPDF = () => {
+    window.print();
   };
 
-  const handleEnviarWhatsApp = () => {
-    const nombreEmpresa = empresa !== '[NOMBRE DE LA EMPRESA]' ? empresa : 'mi empresa';
-    const mensaje = `Hola Oscar, aquí te envío el comprobante del anticipo para iniciar el proyecto de ${nombreEmpresa} (${servicio}).`;
-    // Reemplaza los X con tu número real de WhatsApp de AYC
-    window.open(`https://wa.me/595XXXXXXXXX?text=${encodeURIComponent(mensaje)}`, '_blank');
-  };
+  // Link de WhatsApp dinámico
+  const empresaNombre = datos.empresa || 'mi empresa';
+  const whatsappLink = `https://wa.me/595985864209?text=${encodeURIComponent(`Hola Oscar, ya generé el contrato por el ${datos.servicio} para ${empresaNombre}. Te paso el comprobante del anticipo para agendar el inicio del proyecto.`)}`;
 
   return (
-    <div className="flex min-h-screen bg-gray-900 text-white font-sans">
+    <main className="min-h-screen bg-zinc-950 text-zinc-300 font-sans selection:bg-blue-500/30">
       
-      {/* PANEL IZQUIERDO */}
-      <div className="w-1/3 p-6 border-r border-gray-700 flex flex-col gap-6">
-        <div>
-          <h2 className="text-2xl font-bold mb-4 text-white">AYC.</h2>
+      {/* ==========================================
+          VISTA WEB (OCULTA AL IMPRIMIR EL PDF)
+          ========================================== */}
+      <div className="print:hidden py-12 px-4 sm:px-6 max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
+        
+        {/* Columna Izquierda (FORMULARIO) */}
+        <div className="w-full lg:w-2/5 order-2 lg:order-1 space-y-8">
           
-          <div className="flex flex-col gap-4">
-            <div>
-              <label className="block text-xs text-blue-400 font-semibold mb-1">RUC / DOCUMENTO</label>
-              <input 
-                type="text" 
-                placeholder="Ej: 80012345-6" 
-                className="w-full p-2 bg-gray-800 rounded border border-gray-600 focus:border-blue-500 outline-none"
-                onChange={(e) => setRuc(e.target.value || '[RUC]')}
-              />
+          <div>
+            <h1 className="text-4xl font-black text-white mb-4">Generador de SOW</h1>
+            <p className="text-zinc-400 mb-8">Completa los datos corporativos. El contrato se actualizará en tiempo real. Luego imprímelo como PDF y envíanos el comprobante.</p>
+
+            <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl space-y-4 mb-8">
+              <div>
+                <label className="block text-xs font-bold text-blue-400 uppercase mb-1">Nombre de la Empresa o Cliente</label>
+                <input type="text" className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-white focus:border-blue-500 outline-none" placeholder="Ej: Metalúrgica del Sur S.A." onChange={e => setDatos({...datos, empresa: e.target.value})} />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-blue-400 uppercase mb-1">RUC</label>
+                  <input type="text" className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-white focus:border-blue-500 outline-none" placeholder="Ej: 80012345-6" onChange={e => setDatos({...datos, ruc: e.target.value})} />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-blue-400 uppercase mb-1">Representante Legal</label>
+                  <input type="text" className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-white focus:border-blue-500 outline-none" placeholder="Nombre de quien firma" onChange={e => setDatos({...datos, representante: e.target.value})} />
+                </div>
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-blue-400 uppercase mb-1">Dirección Física</label>
+                <input type="text" className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-white focus:border-blue-500 outline-none" placeholder="Ej: Av. Principal 123, Asunción" onChange={e => setDatos({...datos, direccion: e.target.value})} />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-blue-400 uppercase mb-1">Servicio a Contratar</label>
+                <select className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-white focus:border-blue-500 outline-none" onChange={e => setDatos({...datos, servicio: e.target.value})}>
+                  <option value="Pack Digital Express">Pack Digital Express (Gs. 1.500.000)</option>
+                  <option value="Automatización Empresarial">Automatización Empresarial (Gs. 4.500.000)</option>
+                  <option value="Motor de Cotizaciones PRO">Motor de Cotizaciones PRO (Gs. 8.000.000)</option>
+                </select>
+              </div>
             </div>
-            <div>
-              <label className="block text-xs text-blue-400 font-semibold mb-1">NOMBRE DE LA EMPRESA / CLIENTE</label>
-              <input 
-                type="text" 
-                placeholder="Ej: Empresa S.A." 
-                className="w-full p-2 bg-gray-800 rounded border border-gray-600 focus:border-blue-500 outline-none"
-                onChange={(e) => setEmpresa(e.target.value || '[NOMBRE DE LA EMPRESA]')}
-              />
-            </div>
-            <div>
-              <label className="block text-xs text-blue-400 font-semibold mb-1">DIRECCIÓN FÍSICA</label>
-              <input 
-                type="text" 
-                placeholder="Ej: Av. Principal 123, Asunción" 
-                className="w-full p-2 bg-gray-800 rounded border border-gray-600 focus:border-blue-500 outline-none"
-                onChange={(e) => setDireccion(e.target.value || '[DIRECCIÓN]')}
-              />
-            </div>
-            <div>
-              <label className="block text-xs text-blue-400 font-semibold mb-1">SERVICIO A CONTRATAR</label>
-              <select 
-                className="w-full p-2 bg-gray-800 rounded border border-gray-600 focus:border-blue-500 outline-none"
-                onChange={handleSelectChange}
-              >
-                <option value="express">Pack Digital Express (Gs. 1.500.000)</option>
-                <option value="pro">Pack Digital Pro (Gs. 3.000.000)</option>
-              </select>
+
+            <div className="bg-blue-900/20 border border-blue-500/30 p-6 rounded-2xl">
+              <h3 className="text-white font-bold mb-4">Siguientes Pasos (Onboarding Ágil)</h3>
+              <ol className="list-decimal pl-4 space-y-3 text-sm text-zinc-300">
+                <li>Haz clic en <strong>"Generar PDF"</strong> y selecciona "Guardar como PDF".</li>
+                <li>Realiza la transferencia del <strong>50% de anticipo (Gs. {planSeleccionado.anticipo})</strong> a la cuenta asignada.</li>
+                <li>Envíanos el PDF y el comprobante por WhatsApp.</li>
+                <li className="text-blue-400 font-bold">¡Listo! La recepción del anticipo valida el documento y activa tu proyecto.</li>
+              </ol>
+              
+              <div className="mt-6 flex flex-col gap-3">
+                <button onClick={generarPDF} className="w-full bg-white text-zinc-950 hover:bg-zinc-200 font-black py-4 rounded-xl shadow-xl transition-all">
+                  🖨️ Generar y Descargar PDF
+                </button>
+                <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="w-full bg-blue-600 hover:bg-blue-500 text-white font-black py-4 rounded-xl text-center shadow-lg transition-all">
+                  💬 Enviar Comprobante por WhatsApp
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* ONBOARDING ÁGIL */}
-        <div className="bg-gray-800 p-5 rounded-lg border border-blue-900">
-          <h3 className="text-yellow-500 font-semibold mb-3">Siguientes Pasos (Onboarding Ágil)</h3>
-          <ol className="text-sm text-gray-300 flex flex-col gap-2 list-decimal pl-4">
-            <li>Haz clic en <strong>"Generar y Descargar PDF"</strong>.</li>
-            <li>Realiza la transferencia del <strong>50% de anticipo (Gs. {anticipo})</strong> a la cuenta asignada.</li>
-            <li>Envíanos el PDF y el comprobante por WhatsApp.</li>
-            <li className="text-blue-400 font-semibold">¡Listo! La recepción del anticipo valida este documento y activa tu proyecto.</li>
-          </ol>
-          
-          <div className="mt-5 flex flex-col gap-3">
-            <button 
-              onClick={handleGenerarPDF}
-              className="w-full bg-white text-gray-900 font-bold py-2 rounded flex justify-center items-center gap-2 hover:bg-gray-200 transition"
-            >
-              🖨️ Generar y Descargar PDF
-            </button>
-            <button 
-              onClick={handleEnviarWhatsApp}
-              className="w-full bg-blue-600 text-white font-bold py-2 rounded flex justify-center items-center gap-2 hover:bg-blue-700 transition"
-            >
-              💬 Enviar Comprobante por WhatsApp
-            </button>
+        {/* Columna Derecha (VISTA PREVIA EN WEB) */}
+        <div className="w-full lg:w-3/5 order-1 lg:order-2">
+          <div className="sticky top-6">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="flex h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
+              <p className="text-blue-400 font-bold text-sm tracking-wide uppercase">Previsualización del Contrato</p>
+            </div>
+            
+            <div className="bg-white text-black p-6 sm:p-10 font-serif rounded-xl shadow-2xl border border-zinc-800 max-h-[800px] overflow-y-auto">
+              <div className="border-b-2 border-zinc-300 pb-4 mb-6 text-center">
+                <h1 className="text-xl sm:text-2xl font-black">AYCweb.com</h1>
+                <p className="text-xs sm:text-sm font-sans text-zinc-600 font-bold tracking-widest uppercase mt-1">Automatizaciones Corporativas</p>
+                <p className="text-xs mt-2 text-zinc-500">Titular: Oscar Emigdio Amarilla Cáceres - RUC: 4499507-5</p>
+              </div>
+
+              <h2 className="text-lg font-bold text-center mb-6 uppercase underline">
+                Orden de Servicio Digital (SOW)
+              </h2>
+
+              <div className="space-y-4 text-sm sm:text-base text-justify leading-relaxed">
+                <p>
+                  <strong>REUNIDOS:</strong><br/>
+                  De una parte, <strong>Oscar Emigdio Amarilla Cáceres</strong> (en adelante "AYCweb"), con RUC 4499507-5.<br/>
+                  De otra parte, <strong className="bg-yellow-100">{datos.empresa || '[NOMBRE DE LA EMPRESA]'}</strong>, con RUC <strong className="bg-yellow-100">{datos.ruc || '[RUC]'}</strong> y domicilio en <strong className="bg-yellow-100">{datos.direccion || '[DIRECCIÓN]'}</strong> (en adelante "El Cliente").
+                </p>
+
+                <p>
+                  <strong>PRIMERA: OBJETO Y ALCANCE</strong><br/>
+                  AYCweb se compromete al desarrollo y despliegue del sistema: <strong className="bg-yellow-100 text-blue-800">{datos.servicio}</strong>. El alcance estricto de este servicio se rige por la descripción oficial del plan vigente. Toda funcionalidad adicional será presupuestada por separado mediante un control de cambios.
+                </p>
+
+                <p>
+                  <strong>SEGUNDA: INVERSIÓN Y FORMA DE PAGO</strong><br/>
+                  La inversión total para el desarrollo es de <strong>Gs. {planSeleccionado.precio}</strong>. El pago se estructura así:<br/>
+                  1. <strong>Anticipo (50%):</strong> La suma de <strong>Gs. {planSeleccionado.anticipo}</strong> abonada para asegurar el espacio en el calendario de producción.<br/>
+                  2. <strong>Saldo (50%):</strong> El remanente de <strong>Gs. {planSeleccionado.saldo}</strong> a ser cancelado contra la notificación de finalización para la puesta en producción.
+                </p>
+
+                <p>
+                  <strong>TERCERA: RESPONSABILIDADES Y DEMORAS</strong><br/>
+                  El Cliente se compromete a entregar los accesos, textos y aprobaciones a tiempo. Si El Cliente demora más de <strong>15 días</strong> en proveer el material necesario, AYCweb podrá pausar el proyecto o dar por finalizado el hito, habilitando el cobro del saldo por el trabajo ya ejecutado.
+                </p>
+
+                <p>
+                  <strong>CUARTA: CONDICIONES LEGALES DE CONTRATACIÓN</strong><br/>
+                  Al realizar el pago del anticipo o remitir este documento, El Cliente declara haber leído y aceptado los <strong>Términos Generales de Contratación</strong> disponibles en <em>aycweb.com/contrato</em>, los cuales regulan la Propiedad Intelectual, la Ley 7593/2025 de Protección de Datos Personales y limitación de responsabilidad. El acuerdo se perfecciona mediante la confirmación por escrito acompañada del comprobante de transferencia.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* PANEL DERECHO - DOCUMENTO */}
-      <div className="w-2/3 bg-gray-200 p-8 overflow-y-auto flex justify-center">
-        <div id="documento-contrato" className="bg-white text-black p-10 max-w-2xl shadow-lg text-sm leading-relaxed w-full">
-          <h1 className="text-center font-bold text-lg mb-6 underline">CONTRATO DE PRESTACIÓN DE SERVICIOS DIGITALES (SOW)</h1>
-          
-          <p className="mb-4 font-bold">REUNIDOS:</p>
-          <p className="mb-2">De una parte, <strong>Oscar Emigdio Amarilla Cáceres</strong> (en adelante "AYCweb"), con RUC 4499507-5.</p>
-          <p className="mb-6">De otra parte, <strong>{empresa}</strong>, con RUC <strong>{ruc}</strong> y domicilio en <strong>{direccion}</strong> (en adelante "El Cliente").</p>
+      {/* ==========================================
+          VISTA DE IMPRESIÓN (SOLO SE VE EN EL PDF)
+          ========================================== */}
+      <div className="hidden print:block bg-white text-black p-10 font-serif max-w-4xl mx-auto">
+        <div className="border-b-2 border-zinc-300 pb-4 mb-8 text-center">
+          <h1 className="text-2xl font-black">AYCweb.com | Automatizaciones Corporativas</h1>
+          <p className="text-sm">Titular: Oscar Emigdio Amarilla Cáceres - RUC: 4499507-5</p>
+          <p className="text-sm">Cel: +595 985 864209 | Lambaré, Paraguay</p>
+        </div>
 
-          <p className="font-bold mb-1">PRIMERA: OBJETO Y ALCANCE</p>
-          <p className="mb-4 text-justify">
-            AYCweb se compromete al desarrollo y despliegue del sistema: <strong>{servicio}</strong>. El alcance estricto de este servicio, sus características y revisiones permitidas se rigen por la descripción oficial del plan vigente. Toda funcionalidad adicional será presupuestada por separado mediante un control de cambios.
+        <h2 className="text-xl font-bold text-center mb-8 uppercase underline">
+          Orden de Prestación de Servicios Digitales (SOW)
+        </h2>
+
+        <div className="space-y-6 text-justify leading-relaxed">
+          <p>
+            <strong>REUNIDOS:</strong><br/>
+            De una parte, <strong>Oscar Emigdio Amarilla Cáceres</strong> (en adelante "AYCweb"), con RUC 4499507-5.<br/>
+            De otra parte, <strong>{datos.empresa || '_________________________'}</strong>, con RUC <strong>{datos.ruc || '_________________'}</strong> y domicilio en <strong>{datos.direccion || '_________________________'}</strong> (en adelante "El Cliente"), representada en este acto por <strong>{datos.representante || '_________________________'}</strong>.
           </p>
 
-          <p className="font-bold mb-1">SEGUNDA: INVERSIÓN Y FORMA DE PAGO</p>
-          <p className="mb-2">La inversión total para el desarrollo es de <strong>Gs. {precio}</strong>. El pago se estructura así:</p>
-          <ul className="list-decimal pl-5 mb-4 text-justify">
-            <li className="mb-1"><strong>Anticipo (50%):</strong> La suma de <strong>Gs. {anticipo}</strong> abonada a la firma para agendar el inicio del proyecto. Este monto asegura el espacio en el calendario de producción y no es reembolsable en caso de cancelación por parte del Cliente.</li>
-            <li><strong>Saldo (50%):</strong> El remanente de <strong>Gs. {anticipo}</strong> a ser cancelado contra la entrega y notificación de finalización para la puesta en producción.</li>
-          </ul>
-
-          <p className="font-bold mb-1">TERCERA: RESPONSABILIDADES Y TIEMPOS</p>
-          <p className="mb-4 text-justify">
-            El Cliente se compromete a entregar los accesos, textos, logotipos y aprobaciones en los tiempos requeridos. Si el Cliente demora más de <strong>15 días</strong> en proveer el material necesario o feedback, AYCweb podrá pausar el proyecto o dar por finalizado el hito, habilitando el cobro del saldo por el trabajo ya ejecutado.
+          <p>
+            <strong>PRIMERA: OBJETO Y ALCANCE</strong><br/>
+            AYCweb se compromete al desarrollo y despliegue del sistema: <strong>{datos.servicio}</strong>. El alcance estricto de este servicio, sus características y revisiones permitidas se rigen por la descripción oficial del plan vigente. Toda funcionalidad adicional será presupuestada por separado mediante un control de cambios por escrito.
           </p>
 
-          <p className="font-bold mb-1">CUARTA: CONDICIONES LEGALES Y DE FIRMA</p>
-          <p className="mb-8 text-justify">
-            Al realizar el pago del anticipo o remitir este documento, El Cliente declara haber leído y aceptado los <strong>Términos Generales de Contratación</strong> disponibles en <em>aycweb.com/contrato</em>, los cuales forman parte integral de este acuerdo (regulando Propiedad Intelectual, Ley 7593/2025 de Datos Personales, y responsabilidades). El presente acuerdo se perfecciona mediante la confirmación por escrito (WhatsApp/Email) acompañada del comprobante de transferencia del anticipo.
+          <p>
+            <strong>SEGUNDA: INVERSIÓN Y FORMA DE PAGO</strong><br/>
+            La inversión total para el desarrollo es de <strong>Gs. {planSeleccionado.precio}</strong>. El pago se estructura así:<br/>
+            1. <strong>Anticipo (50%):</strong> La suma de <strong>Gs. {planSeleccionado.anticipo}</strong> abonada a la firma para agendar el inicio del proyecto. Este monto asegura el espacio en el calendario de producción y no es reembolsable en caso de cancelación por parte del Cliente.<br/>
+            2. <strong>Saldo (50%):</strong> El remanente de <strong>Gs. {planSeleccionado.saldo}</strong> a ser cancelado contra la entrega y notificación de finalización para la puesta en producción.
           </p>
 
-          <div className="flex justify-between mt-12 pt-8">
-            <div className="w-[45%] border-t border-black text-center pt-2">
-              <p className="font-bold">Oscar Emigdio Amarilla</p>
-              <p className="text-xs text-gray-600">AYCweb.com</p>
-            </div>
-            <div className="w-[45%] border-t border-black text-center pt-2">
-              <p className="font-bold">{empresa === '[NOMBRE DE LA EMPRESA]' ? '[FIRMA CLIENTE]' : empresa}</p>
-              <p className="text-xs text-gray-600">Representante Legal / Titular</p>
-            </div>
+          <p>
+            <strong>TERCERA: RESPONSABILIDADES Y DEMORAS DEL CLIENTE</strong><br/>
+            El Cliente se compromete a entregar los accesos, textos, logotipos y aprobaciones en los tiempos requeridos. Si El Cliente demora más de <strong>15 días</strong> en proveer el material o feedback necesario para avanzar, AYCweb tendrá el derecho de pausar el proyecto o dar por finalizado el hito, habilitando el cobro del saldo por el trabajo ya ejecutado hasta la fecha.
+          </p>
+
+          <p>
+            <strong>CUARTA: CONDICIONES LEGALES Y MARCO REGULATORIO</strong><br/>
+            Al realizar el pago del anticipo o remitir este documento, El Cliente declara haber leído y aceptado los <strong>Términos Generales de Contratación</strong> (Contrato Marco - MSA) disponibles en <em>www.aycweb.com/contrato</em>, los cuales forman parte integral e inseparable de este acuerdo. Dichos términos regulan el licenciamiento y Propiedad Intelectual, la aplicación de la Ley 7593/2025 de Protección de Datos Personales, y los límites de responsabilidad. El presente acuerdo se perfecciona mediante la confirmación por escrito acompañada del comprobante de transferencia bancaria del anticipo.
+          </p>
+        </div>
+
+        <div className="mt-24 grid grid-cols-2 gap-20 text-center">
+          <div>
+            <div className="border-b border-black mb-2"></div>
+            <p className="font-bold">Oscar Emigdio Amarilla C.</p>
+            <p className="text-sm">AYCweb.com | RUC: 4499507-5</p>
+          </div>
+          <div>
+            <div className="border-b border-black mb-2"></div>
+            <p className="font-bold">{datos.representante || 'Firma de El Cliente'}</p>
+            <p className="text-sm">{datos.empresa || 'Representante Legal'}</p>
           </div>
         </div>
       </div>
-    </div>
+
+    </main>
   );
 }
