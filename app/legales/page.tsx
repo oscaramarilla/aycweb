@@ -25,27 +25,44 @@ export default function GeneradorContrato() {
     }
   };
 
-  // Función REAL para generar el PDF
+  // Función REAL y blindada para generar el PDF
   const handleGenerarPDF = async () => {
-    // Importamos dinámicamente para que Next.js no tire error de SSR
-    const html2pdf = (await import('html2pdf.js')).default;
-    const elemento = document.getElementById('documento-contrato');
+    try {
+      // Aviso en consola para saber que arrancó
+      console.log("Iniciando generación de PDF...");
+      
+      const elemento = document.getElementById('documento-contrato');
+      if (!elemento) {
+        alert("No se encontró el contrato en la pantalla.");
+        return;
+      }
 
-    const opciones: any = {
-      margin: 15, // Márgenes un poco más amplios para que respire
-      filename: `Contrato_SOW_${empresa.replace(/\s+/g, '_')}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+      // Importación dinámica segura para Next.js
+      const html2pdfModule = await import('html2pdf.js');
+      const html2pdf = html2pdfModule.default || html2pdfModule;
 
-   html2pdf().set(opciones).from(elemento!).save();
+      const opciones: any = {
+        margin: 15,
+        filename: `Contrato_SOW_${empresa.replace(/\s+/g, '_')}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true }, // useCORS ayuda con los estilos
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      // Generamos el PDF
+      await html2pdf().set(opciones).from(elemento).save();
+      console.log("¡PDF generado con éxito!");
+
+    } catch (error) {
+      console.error("Error al generar el PDF:", error);
+      alert("Hubo un problema al generar el PDF. Mirá la consola (F12) para más detalles.");
+    }
   };
 
   const handleEnviarWhatsApp = () => {
     const nombreEmpresa = empresa !== '[NOMBRE DE LA EMPRESA]' ? empresa : 'mi empresa';
     const mensaje = `Hola Oscar, aquí te envío el comprobante del anticipo para iniciar el proyecto de ${nombreEmpresa} (${servicio}).`;
-    // Reemplaza los X con tu número real de WhatsApp de AYC (ej. 595981123456)
+    // Reemplaza los X con tu número real de WhatsApp de AYC
     window.open(`https://wa.me/595XXXXXXXXX?text=${encodeURIComponent(mensaje)}`, '_blank');
   };
 
