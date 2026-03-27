@@ -31,7 +31,7 @@ export default function GeneradorContrato() {
     const html2pdf = (await import('html2pdf.js')).default;
     const elemento = document.getElementById('documento-contrato');
 
-    const opciones = {
+    const opciones: any = {
       margin: 15, // Márgenes un poco más amplios para que respire
       filename: `Contrato_SOW_${empresa.replace(/\s+/g, '_')}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
