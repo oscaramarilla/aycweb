@@ -45,12 +45,12 @@ export default function CasosPage() {
         </div>
       </section>
 
-      {/* CASO 2: GASTRONOMÍA UNIFORMADO Y CORPORATIVO */}
+      {/* 🔥 AJUSTE VISUAL: CASO GASTRONOMÍA Y CONFIDENCIALIDAD SEPARADOS */}
       <section className="py-24 bg-zinc-950 border-b border-zinc-900">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center flex-row-reverse">
           <div className="lg:order-2">
             <span className="inline-block px-3 py-1 rounded-full bg-orange-900/30 text-orange-400 text-xs font-bold uppercase tracking-widest border border-orange-900/50 mb-6">Retail & Gastronomía</span>
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-6">Sistemas de Pedido (La Tableta)</h2>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-6">Sistemas de Pedido</h2>
             <div className="space-y-4 mb-8">
               <p className="text-zinc-400 leading-relaxed"><strong className="text-red-400">El Problema:</strong> Colapso en horas pico. Pedidos tomados manualmente por WhatsApp, errores en las órdenes y pérdida de clientes por demora.</p>
               <p className="text-zinc-400 leading-relaxed"><strong className="text-emerald-400">La Solución:</strong> Motores dinámicos de pedidos. El cliente elige, el sistema calcula costos y la cocina recibe la orden estructurada sin errores humanos.</p>
@@ -62,11 +62,20 @@ export default function CasosPage() {
                 </ul>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-               <a href="https://latabletapy.com" target="_blank" rel="noopener noreferrer" className="bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 px-6 rounded-xl transition-all inline-flex justify-center">Ver Caso La Tableta &rarr;</a>
-               <span className="bg-zinc-900 border border-zinc-800 text-zinc-400 text-xs font-medium py-3 px-6 rounded-xl flex items-center justify-center text-center">
-                  Proyecto privado no publicable por confidencialidad comercial
-               </span>
+            
+            <div className="mt-8 flex flex-col gap-6">
+               <div>
+                 <a href="https://latabletapy.com" target="_blank" rel="noopener noreferrer" className="bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 px-6 rounded-xl transition-all inline-flex items-center gap-2">Ver Caso La Tableta &rarr;</a>
+               </div>
+               
+               {/* Bloque Legal de Confidencialidad (Totalmente separado del botón) */}
+               <div className="bg-zinc-900/80 border border-zinc-800 p-4 rounded-xl flex items-start gap-3">
+                 <span className="text-zinc-500 mt-0.5">🔒</span>
+                 <p className="text-zinc-400 text-xs font-medium leading-relaxed">
+                   Adicionalmente, hemos desarrollado motores de pedido para <strong className="text-zinc-200">Empanadas Areco</strong> y <strong className="text-zinc-200">Pizzazos</strong>.<br/>
+                   (Proyectos privados no publicables por acuerdos de confidencialidad comercial).
+                 </p>
+               </div>
             </div>
           </div>
           <div className="lg:order-1 bg-zinc-900 rounded-[2rem] border border-zinc-800 p-8 shadow-2xl">

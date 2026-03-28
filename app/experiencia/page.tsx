@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export default function ExperienciaPage() {
   const whatsappNumber = "595985864209";
@@ -20,18 +19,24 @@ export default function ExperienciaPage() {
         </div>
       </section>
 
-      {/* 🔥 PUNTO 4: INSTITUCIONES EN CHIPS SEPARADOS */}
-      <section className="py-12 bg-black border-b border-zinc-900">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-zinc-600 mb-8">
+      {/* 🔥 AJUSTE VISUAL: Instituciones en Cards independientes (Grilla) */}
+      <section className="py-16 bg-black border-b border-zinc-900">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-zinc-500 mb-10">
             Instituciones y empresas que confían en nuestro criterio:
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-4">
-            <span className="bg-zinc-900 border border-zinc-800 px-6 py-3 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Colegio Cristo Rey</span>
-            <span className="bg-zinc-900 border border-zinc-800 px-6 py-3 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Caja Mutual UC</span>
-            <span className="bg-zinc-900 border border-zinc-800 px-6 py-3 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Webprox</span>
-            <span className="bg-zinc-900 border border-zinc-800 px-6 py-3 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Metal Mad E.A.S.</span>
-            <span className="bg-zinc-900 border border-zinc-800 px-6 py-3 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Ministerio de Educación (MEC)</span>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {[
+              "Colegio Cristo Rey", 
+              "Caja Mutual UC", 
+              "Webprox", 
+              "Metal Mad E.A.S.", 
+              "Ministerio de Educación"
+            ].map((inst, index) => (
+              <div key={index} className="bg-zinc-900/80 border border-zinc-800 py-5 px-4 rounded-2xl flex items-center justify-center text-center shadow-sm hover:border-blue-500/30 transition-colors">
+                <span className="text-zinc-300 text-sm font-bold">{inst}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -51,7 +56,6 @@ export default function ExperienciaPage() {
         </div>
       </section>
 
-      {/* CTA FINAL UNIFICADO */}
       <section className="py-24 bg-black text-center relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-6 relative z-10">
           <h2 className="text-3xl md:text-5xl font-black text-white mb-6">Trabajemos con seriedad.</h2>
