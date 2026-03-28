@@ -5,7 +5,7 @@ export default function Home() {
   const whatsappMsg = encodeURIComponent("¡Hola Oscar! Quiero agendar una sesión de diagnóstico para automatizar mi empresa.");
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50">
       
       {/* 1. HERO POTENTE */}
       <section className="relative pt-20 pb-20 md:pt-32 md:pb-24 px-6 text-center overflow-hidden border-b border-zinc-900">
@@ -39,7 +39,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🔥 NUEVO: BLOQUE DE PRUEBA RÁPIDA (Authority Bar) */}
+      {/* 2. PRUEBA RÁPIDA (Authority Bar) */}
       <section className="py-12 bg-black border-b border-zinc-900">
         <div className="max-w-6xl mx-auto px-6">
           <p className="text-center text-sm font-bold uppercase tracking-widest text-zinc-600 mb-8">
@@ -53,7 +53,6 @@ export default function Home() {
             <span className="flex items-center gap-2"><span className="text-zinc-300">■</span> Corporativo B2G</span>
           </div>
 
-          {/* 3 Mini Cards de Casos (Prueba contundente instantánea) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
             <Link href="/casos" className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl hover:bg-zinc-900 hover:border-blue-900/50 transition-colors group cursor-pointer block">
               <span className="text-xs font-bold uppercase tracking-widest text-blue-500 mb-2 block">Industria Metalúrgica</span>
@@ -79,7 +78,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. ARQUITECTURA DE SERVICIOS (Los 3 Pilares) */}
+      {/* 3. ARQUITECTURA DE SERVICIOS */}
       <section className="py-24 bg-zinc-900/30 border-b border-zinc-900">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">

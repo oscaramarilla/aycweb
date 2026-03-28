@@ -37,14 +37,15 @@ export default function RootLayout({
 
   return (
     <html lang="es" className={`${inter.variable} scroll-smooth`}>
-      <body className="antialiased bg-zinc-950 text-white min-h-screen flex flex-col font-sans">
+      <body className="antialiased bg-zinc-950 text-zinc-50 min-h-screen flex flex-col font-sans">
         
         {/* 🛑 NAVEGACIÓN GLOBAL UNIFICADA Y DEFINITIVA */}
-        <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-zinc-950/80 border-b border-zinc-800">
+        <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-zinc-950/90 border-b border-zinc-800 shadow-sm">
           <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
             
             <Link href="/" className="flex items-center gap-3 group">
               <div className="w-8 h-8 relative flex items-center justify-center transition-transform group-hover:scale-105">
+                 {/* Asegúrate de tener public/logo-ayc.webp */}
                  <Image src="/logo-ayc.webp" alt="AYCweb Logo" width={32} height={32} className="object-contain" />
               </div>
               <span className="font-black text-2xl tracking-tighter text-white italic">AYCweb</span>
@@ -61,7 +62,7 @@ export default function RootLayout({
                <a 
                 href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
                 target="_blank" rel="noopener noreferrer"
-                className="bg-zinc-100 hover:bg-white text-zinc-950 text-xs font-black px-5 py-2.5 rounded-lg transition-colors shadow-sm"
+                className="bg-blue-600 hover:bg-blue-500 text-white text-xs font-black px-5 py-2.5 rounded-lg transition-colors shadow-sm"
                >
                  Agendar Diagnóstico
                </a>
@@ -70,7 +71,7 @@ export default function RootLayout({
           </div>
         </header>
 
-        {/* CONTENIDO DE LA PÁGINA */}
+        {/* CONTENIDO PRINCIPAL */}
         <main className="flex-grow">
           {children}
         </main>
@@ -87,7 +88,7 @@ export default function RootLayout({
            </div>
         </footer>
 
-        {/* BOTÓN FLOTANTE WHATSAPP */}
+        {/* BOTÓN FLOTANTE WHATSAPP (Solo el ícono verde de conversión) */}
         <a 
           href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`} 
           target="_blank" 
