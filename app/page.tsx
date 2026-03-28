@@ -7,7 +7,7 @@ export default function LandingOS() {
   // Estado para controlar qué método de pago ve el usuario
   const [metodoPago, setMetodoPago] = useState<"fiat" | "crypto">("fiat");
 
-  // Número de WhatsApp de AYCweb (Reemplazar con el real)
+  // Número de WhatsApp de AYCweb (Reemplazar con el real si es otro)
   const numeroWhatsApp = "595982451828"; 
   const mensajeBase = encodeURIComponent("¡Hola AYCweb! Acabo de ver la propuesta en la landing y quiero arrancar con mi proyecto de desarrollo/automatización. Aquí envío mi comprobante:");
 
@@ -16,12 +16,12 @@ export default function LandingOS() {
       
       {/* 🛑 NAVBAR MINIMALISTA: Cero fugas. Solo logo y micro-prueba */}
       <nav className="flex justify-between items-center px-6 py-4 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="flex items-center gap-2">
-          {/* Reemplaza con tu logo real en /public */}
-          <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center font-black text-xs">
-            AYC
+        <div className="flex items-center gap-3">
+          {/* Logo Optimizado en WebP */}
+          <div className="w-8 h-8 relative flex items-center justify-center">
+             <Image src="/logo-ayc.webp" alt="AYCweb Logo" width={32} height={32} className="object-contain" />
           </div>
-          <span className="font-bold tracking-tight">AYCweb</span>
+          <span className="font-bold tracking-tight text-lg">AYCweb</span>
         </div>
         <div className="hidden md:flex items-center gap-2 text-xs font-medium text-emerald-400 bg-emerald-400/10 px-3 py-1.5 rounded-full border border-emerald-400/20">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -29,7 +29,7 @@ export default function LandingOS() {
         </div>
       </nav>
 
-      {/* 🚀 HERO SECTION: El dolor y la promesa (Lenguaje /oscar) */}
+      {/* 🚀 HERO SECTION: El dolor y la promesa */}
       <section className="px-6 pt-20 pb-16 max-w-4xl mx-auto text-center">
         <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900 text-sm font-semibold text-zinc-300 shadow-xl">
           Sistemas Web & Automatización B2B
@@ -71,7 +71,6 @@ export default function LandingOS() {
       <section className="py-24 max-w-6xl mx-auto px-6">
         <h2 className="text-3xl md:text-4xl font-black text-center mb-16">No lo decimos nosotros. <br/><span className="text-zinc-500">Lo dicen sus facturaciones.</span></h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Rellenar con clientes reales de AYC o Metal Mad */}
           {[
             { nombre: "Carlos M.", empresa: "Distribuidora Mayorista", quote: "Antes perdíamos 2 horas al día cotizando. La automatización de AYC nos bajó eso a 3 minutos. El sistema se pagó solo el primer mes." },
             { nombre: "Laura G.", empresa: "Clínica Odontológica", quote: "Nuestra web anterior era un adorno. Desde que lanzamos la nueva landing con AYC, las reservas por WhatsApp subieron un 40%." },
@@ -89,7 +88,7 @@ export default function LandingOS() {
         </div>
       </section>
 
-      {/* 💳 SISTEMA DE PAGO INTEGRADO (Cerebro de /os) */}
+      {/* 💳 SISTEMA DE PAGO INTEGRADO */}
       <section id="checkout" className="py-24 bg-black relative overflow-hidden">
         {/* Glow de fondo */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none"></div>
@@ -105,7 +104,6 @@ export default function LandingOS() {
               <div className="flex justify-between items-end border-b border-zinc-800 pb-6 mb-6">
                 <div>
                   <p className="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-1">Inversión Única</p>
-                  {/* PRECIO DUAL: Gs y USD */}
                   <p className="text-4xl font-black text-white">Gs. 3.500.000</p>
                 </div>
                 <div className="text-right">
@@ -147,13 +145,13 @@ export default function LandingOS() {
                   <h3 className="font-bold text-xl mb-2">Escanea para transferir</h3>
                   <p className="text-sm text-zinc-500 mb-6">Aceptamos transferencias desde cualquier banco local (SIPAP).</p>
                   <div className="bg-white p-4 rounded-2xl inline-block mb-6 mx-auto w-48 h-48 border-4 border-zinc-800 relative overflow-hidden">
-                    {/* Reemplaza con tu QR real en /public */}
-                    <Image src="/qr-fiat.png" alt="QR Banco" fill className="object-cover" />
+                    {/* QR Fiat Optimizado */}
+                    <Image src="/qr-fiat.webp" alt="QR Banco" fill className="object-cover" />
                   </div>
                   <div className="text-left bg-zinc-900 p-4 rounded-xl border border-zinc-800 text-sm space-y-2 mb-8 mx-auto max-w-sm">
                     <p><span className="text-zinc-500">Banco:</span> Itaú (Ejemplo)</p>
                     <p><span className="text-zinc-500">Cuenta:</span> 123456789</p>
-                    <p><span className="text-zinc-500">Titular:</span> AYCweb S.A. / Oscar Amarilla</p>
+                    <p><span className="text-zinc-500">Titular:</span> AYCweb / Oscar Amarilla</p>
                     <p><span className="text-zinc-500">RUC:</span> 8000000-1</p>
                   </div>
                 </div>
@@ -162,8 +160,8 @@ export default function LandingOS() {
                   <h3 className="font-bold text-xl text-blue-400 mb-2">Red TRC20 / BEP20</h3>
                   <p className="text-sm text-zinc-500 mb-6">Transfiere USDT rápido y sin comisiones locales.</p>
                   <div className="bg-white p-4 rounded-2xl inline-block mb-6 mx-auto w-48 h-48 border-4 border-blue-900/50 relative overflow-hidden">
-                    {/* Reemplaza con tu QR real de Binance en /public */}
-                    <Image src="/qr-crypto.png" alt="QR USDT" fill className="object-cover" />
+                    {/* QR Crypto Optimizado */}
+                    <Image src="/qr-crypto.webp" alt="QR USDT" fill className="object-cover" />
                   </div>
                   <div className="text-left bg-blue-950/20 p-4 rounded-xl border border-blue-900/30 text-sm space-y-2 mb-8 mx-auto max-w-sm overflow-hidden">
                     <p className="text-zinc-500 mb-1">Billetera USDT (TRC20):</p>
@@ -172,7 +170,7 @@ export default function LandingOS() {
                 </div>
               )}
 
-              {/* Botón de Confirmación por WhatsApp (Fijo en todas las vistas) */}
+              {/* Botón de Confirmación por WhatsApp */}
               <a 
                 href={`https://wa.me/${numeroWhatsApp}?text=${mensajeBase}`}
                 target="_blank"
@@ -191,7 +189,7 @@ export default function LandingOS() {
         </div>
       </section>
 
-      {/* 📱 STICKY CTA MOBILE: Agresividad comercial para celulares */}
+      {/* 📱 STICKY CTA MOBILE */}
       <div className="md:hidden fixed bottom-0 left-0 w-full bg-zinc-950/90 backdrop-blur-lg border-t border-zinc-800 p-4 z-50">
         <a 
           href="#checkout" 
