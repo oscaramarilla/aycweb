@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export default function CasosPage() {
   const whatsappNumber = "595985864209";
@@ -8,27 +7,8 @@ export default function CasosPage() {
   return (
     <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans selection:bg-blue-500 selection:text-white">
       
-      {/* 🛑 NAVEGACIÓN (Consistente con el resto del sitio) */}
-      <nav className="flex justify-between items-center px-6 py-4 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-3">
-          <Link href="/" className="flex items-center justify-center mt-1 md:mt-0 gap-2">
-            <div className="w-8 h-8 relative flex items-center justify-center">
-               <Image src="/logo-ayc.webp" alt="AYCweb Logo" width={32} height={32} className="object-contain" />
-            </div>
-            <span className="font-black text-2xl tracking-tighter text-white italic">AYCweb</span>
-          </Link>
-          <nav className="flex items-center justify-center gap-4 sm:gap-6 text-[12px] sm:text-sm font-semibold text-zinc-300 w-full md:w-auto pb-1 md:pb-0 flex-wrap">
-            <Link href="/experiencia" className="hover:text-white transition-colors text-blue-400">Trayectoria B2G</Link>
-            <span className="text-zinc-700 hidden sm:inline">|</span>
-            <Link href="/casos" className="text-white font-bold">Casos Reales</Link>
-            <Link href="/servicios" className="hover:text-white transition-colors">Sistemas SaaS</Link>
-            <Link href="/sectores" className="hover:text-white transition-colors">Industrias</Link>
-          </nav>
-        </div>
-      </nav>
-
       {/* 🚀 HERO SECTION: Casos Reales */}
-      <section className="relative pt-20 pb-16 md:pt-28 md:pb-24 px-6 text-center overflow-hidden border-b border-zinc-900">
+      <section className="relative pt-16 pb-16 md:pt-28 md:pb-24 px-6 text-center overflow-hidden border-b border-zinc-900">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-[1.05] text-white">

@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// 🔥 1. COMPONENTE DE COPIA RÁPIDA (Blindado y elegante)
 const CampoCopia = ({ etiqueta, valor }: { etiqueta: string; valor: string }) => {
   const [copiado, setCopiado] = useState(false);
 
@@ -15,14 +14,18 @@ const CampoCopia = ({ etiqueta, valor }: { etiqueta: string; valor: string }) =>
   };
 
   return (
-    <div className="flex items-center justify-between gap-2 p-2.5 mt-2 bg-zinc-950 rounded-lg border border-zinc-800 text-sm shadow-inner group">
+    <div className="flex items-center justify-between gap-2 p-3 mt-2 bg-zinc-950/50 rounded-xl border border-zinc-800/80 text-sm shadow-inner group">
       <div className="overflow-hidden flex flex-col sm:flex-row sm:items-center">
-        <span className="text-zinc-500 mr-2 text-xs uppercase tracking-wider font-bold">{etiqueta}:</span>
-        <span className="text-white font-mono tracking-tight text-xs sm:text-sm truncate">{valor}</span>
+        <span className="text-zinc-500 mr-2 text-[11px] uppercase tracking-widest font-bold">{etiqueta}</span>
+        <span className="text-zinc-200 font-mono tracking-tight text-sm truncate">{valor}</span>
       </div>
       <button 
         onClick={ejecutarCopia} 
-        className={`flex-shrink-0 text-xs font-black px-3 py-1.5 rounded-md transition-all active:scale-95 ${copiado ? "bg-emerald-500 text-zinc-950 shadow-[0_0_10px_rgba(16,185,129,0.4)]" : "bg-zinc-800 hover:bg-zinc-700 text-zinc-300"}`}
+        className={`flex-shrink-0 text-xs font-bold px-3 py-1.5 rounded-lg transition-all active:scale-95 ${
+          copiado 
+            ? "bg-emerald-500 text-zinc-950 shadow-[0_0_10px_rgba(16,185,129,0.4)]" 
+            : "bg-zinc-800 hover:bg-zinc-700 text-zinc-300"
+        }`}
       >
         {copiado ? "¡Copiado!" : "Copiar"}
       </button>
@@ -30,55 +33,55 @@ const CampoCopia = ({ etiqueta, valor }: { etiqueta: string; valor: string }) =>
   );
 };
 
-// 🔥 2. TERMINAL DE PAGO INTEGRADO (Visible y Agresivo)
 const TerminalDePago = ({ planNombre, planPrecio }: { planNombre: string, planPrecio: string }) => {
   const [metodoPago, setMetodoPago] = useState<"fiat" | "crypto">("fiat");
   const numeroWhatsApp = "595985864209"; 
   const mensajeBase = encodeURIComponent(`¡Hola Oscar! Ya realicé el pago por el plan ${planNombre} (${planPrecio}). Aquí envío mi comprobante para iniciar:`);
 
   return (
-    <div className="mt-6 rounded-3xl border border-zinc-800 bg-zinc-900/50 p-4 shadow-xl overflow-hidden relative">
-      {/* Tabs de Pago */}
-      <div className="flex p-1.5 gap-1.5 bg-zinc-950 rounded-xl mb-6 shadow-inner">
+    <div className="mt-8 rounded-3xl border border-zinc-800 bg-zinc-900 p-2 shadow-2xl relative overflow-hidden">
+      <div className="flex p-1.5 gap-1.5 bg-zinc-950 rounded-2xl mb-4 shadow-inner">
         <button 
           onClick={() => setMetodoPago("fiat")}
-          className={`flex-1 py-3 text-xs sm:text-sm font-bold rounded-lg transition-all ${metodoPago === "fiat" ? "bg-zinc-800 text-white shadow-md border border-zinc-700" : "text-zinc-600 hover:text-zinc-400"}`}
+          className={`flex-1 py-3 text-xs sm:text-sm font-bold rounded-xl transition-all flex items-center justify-center gap-2 ${metodoPago === "fiat" ? "bg-zinc-800 text-white shadow-md border border-zinc-700" : "text-zinc-500 hover:text-zinc-300"}`}
         >
           🏦 Banco / SIPAP
         </button>
         <button 
           onClick={() => setMetodoPago("crypto")}
-          className={`flex-1 py-3 text-xs sm:text-sm font-bold rounded-lg transition-all ${metodoPago === "crypto" ? "bg-blue-900/20 text-blue-400 shadow-md border border-blue-900/30" : "text-zinc-600 hover:text-zinc-400"}`}
+          className={`flex-1 py-3 text-xs sm:text-sm font-bold rounded-xl transition-all flex items-center justify-center gap-2 ${metodoPago === "crypto" ? "bg-blue-900/30 text-blue-400 shadow-md border border-blue-900/40" : "text-zinc-500 hover:text-zinc-300"}`}
         >
           🪙 USDT (TRC20)
         </button>
       </div>
 
-      {/* Contenido Dinámico */}
-      <div className="text-center">
+      <div className="p-4 text-center">
         {metodoPago === "fiat" ? (
           <div className="animate-in fade-in duration-300">
-            <div className="bg-white p-3 rounded-2xl inline-block mb-4 mx-auto w-40 h-40 border-4 border-zinc-800 relative shadow-lg">
+            <div className="bg-white p-3 rounded-2xl inline-block mb-6 mx-auto w-40 h-40 border-4 border-zinc-800 relative shadow-lg">
               <Image src="/qr-fiat.webp" alt="QR Banco" fill className="object-cover rounded-xl" />
             </div>
-            
-            <div className="text-left bg-zinc-900/80 p-4 rounded-xl border border-zinc-800/50 text-sm mb-6 max-w-sm mx-auto shadow-inner">
-              <p className="text-zinc-400 mb-1">Banco Itaú Paraguay</p>
-              <p className="text-white font-bold mb-3">Oscar Emigdio Amarilla Caceres</p>
+            <div className="text-left bg-zinc-950/80 p-5 rounded-2xl border border-zinc-800/80 text-sm mb-6 max-w-sm mx-auto shadow-inner">
+              <div className="mb-4">
+                <p className="text-zinc-500 text-xs uppercase tracking-widest font-bold mb-1">Banco Itaú</p>
+                <p className="text-white font-bold text-base">Oscar Emigdio Amarilla Caceres</p>
+              </div>
               <CampoCopia etiqueta="Cuenta" valor="720601573" />
-              <CampoCopia etiqueta="Alias / Tel" valor="0985864209" />
+              <CampoCopia etiqueta="Alias/Tel" valor="0985864209" />
               <CampoCopia etiqueta="RUC" valor="4499507-5" />
             </div>
           </div>
         ) : (
           <div className="animate-in fade-in duration-300">
-            <div className="bg-white p-3 rounded-2xl inline-block mb-4 mx-auto w-40 h-40 border-4 border-blue-900/50 relative shadow-[0_0_30px_rgba(37,99,235,0.1)]">
+            <div className="bg-white p-3 rounded-2xl inline-block mb-6 mx-auto w-40 h-40 border-4 border-blue-900/50 relative shadow-[0_0_30px_rgba(37,99,235,0.15)]">
               <Image src="/qr-crypto.webp" alt="QR USDT" fill className="object-cover rounded-xl" />
             </div>
-
-            <div className="text-left bg-blue-950/10 p-4 rounded-xl border border-blue-900/20 text-sm mb-6 max-w-sm mx-auto shadow-inner">
-              <p className="text-blue-400 font-bold mb-1">Red TRON (TRC20)</p>
-              <p className="text-zinc-400 text-xs mb-3">Envía únicamente USDT a esta dirección.</p>
+            <div className="text-left bg-blue-950/20 p-5 rounded-2xl border border-blue-900/30 text-sm mb-6 max-w-sm mx-auto shadow-inner">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <p className="text-blue-400 font-bold text-base">Red TRON (TRC20)</p>
+              </div>
+              <p className="text-zinc-400 text-xs mb-4">Envía únicamente USDT a esta dirección Web3.</p>
               <CampoCopia etiqueta="Address" valor="TLUzuQDLjVwp4UDFAEFuypw5LmFf1K1PRQ" />
             </div>
           </div>
@@ -88,9 +91,9 @@ const TerminalDePago = ({ planNombre, planPrecio }: { planNombre: string, planPr
           href={`https://wa.me/${numeroWhatsApp}?text=${mensajeBase}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-6 rounded-xl flex items-center justify-center gap-3 transition-all active:scale-95 shadow-[0_0_20px_-5px_rgba(16,185,129,0.4)]"
+          className="w-full bg-[#25D366] hover:bg-[#1DA851] text-zinc-950 font-black py-4 px-6 rounded-xl flex items-center justify-center gap-3 transition-all active:scale-95 shadow-[0_0_20px_-5px_rgba(37,211,102,0.5)]"
         >
-          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
           Ya pagué, enviar comprobante
         </a>
       </div>
@@ -98,7 +101,6 @@ const TerminalDePago = ({ planNombre, planPrecio }: { planNombre: string, planPr
   );
 };
 
-// 🔥 3. PÁGINA PRINCIPAL
 export default function LandingOS() {
   const whatsappNumber = "595985864209";
 
@@ -114,7 +116,7 @@ export default function LandingOS() {
         "Landing comercial 100% responsive",
         "Copy orientado a conversión B2B",
         "Botones estratégicos a WhatsApp",
-        "Bloque de pago con QR integrado",
+        "Sección de prueba social y objeciones",
         "Entrega rápida (72hs hábiles)",
       ]
     },
@@ -123,41 +125,27 @@ export default function LandingOS() {
       name: "Automatización Inicial",
       price: "Gs. 2.500.000",
       usd: "USD 340",
-      badge: "Ecosistema PRO",
+      badge: "Más Recomendado",
       summary: "Para empresas que necesitan captar, ordenar y acelerar su operación comercial.",
       features: [
         "Todo lo del plan Landing Flash",
-        "Formulario de Cotización inteligente",
+        "Formulario B2B inteligente",
         "Flujo de captación y precalificación",
         "Optimización SEO Técnica (PageSpeed 99)",
-        "Base preparada para escalar a CRM interno",
+        "Base preparada para escalar a CRM",
       ]
     },
   ];
 
   return (
-    <div className="bg-zinc-950 text-zinc-50 font-sans min-h-screen selection:bg-blue-500 selection:text-white pb-24 md:pb-0">
+    <div className="bg-zinc-950 text-zinc-50 font-sans min-h-screen selection:bg-blue-500 selection:text-white pb-28 md:pb-12">
       
-      {/* NAVEGACIÓN */}
-      <nav className="flex justify-between items-center px-6 py-4 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 relative flex items-center justify-center">
-             <Image src="/logo-ayc.webp" alt="AYCweb Logo" width={32} height={32} className="object-contain" />
-          </div>
-          <span className="font-black tracking-tighter text-xl italic text-white">AYCweb</span>
-        </div>
-        <div className="hidden md:flex items-center gap-2 text-xs font-medium text-emerald-400 bg-emerald-400/10 px-3 py-1.5 rounded-full border border-emerald-400/20">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          Garantía de Resultados
-        </div>
-      </nav>
-
       {/* HERO SECTION */}
       <section className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:py-32 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <p className="inline-flex rounded-full border border-blue-900/50 bg-blue-950/30 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-400 mb-6 shadow-inner">
+            <p className="inline-flex rounded-full border border-zinc-800 bg-zinc-900 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-zinc-300 mb-6 shadow-inner">
               Sistemas Digitales de Venta
             </p>
             <h1 className="max-w-4xl text-4xl font-black tracking-tighter text-white sm:text-5xl lg:text-6xl leading-[1.1]">
@@ -177,6 +165,7 @@ export default function LandingOS() {
               </a>
             </div>
 
+            {/* Micro-resultados */}
             <div className="mt-12 grid gap-4 sm:grid-cols-3 border-t border-zinc-900 pt-8">
               {[
                 { label: "Respuesta", value: "15 seg" },
@@ -193,17 +182,17 @@ export default function LandingOS() {
 
           <aside className="rounded-[2.5rem] border border-zinc-800 bg-black p-8 text-white shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-emerald-400 to-blue-500"></div>
-            <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">El Recorrido del Cliente</p>
-            <h2 className="text-2xl font-black tracking-tight sm:text-3xl mb-8">Un embudo letal.</h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Qué obtiene el cliente</p>
+            <h2 className="text-2xl font-black tracking-tight sm:text-3xl mb-6">Un recorrido sin fricción.</h2>
             <ul className="grid gap-4 relative z-10">
               {[
-                "1. Atención: Mensaje claro y directo.",
-                "2. Propuesta: Oferta y precio visible.",
-                "3. Cobro: QR y datos bancarios a un click.",
-                "4. Cierre: WhatsApp pre-armado."
+                "Automatización pensada para vender, no para decorar.",
+                "Embudo lógico: atención, prueba, pago y cierre.",
+                "Diseño liviano, mobile-first y sin scripts pesados.",
+                "Código preparado para SEO y velocidad extrema."
               ].map((point) => (
                 <li key={point} className="rounded-2xl border border-zinc-800 bg-zinc-900/80 p-4 text-sm font-medium text-zinc-300 flex items-start gap-3 shadow-sm">
-                   <span className="text-blue-500 mt-0.5">✔</span> {point}
+                   <span className="text-blue-500 mt-0.5 font-black">✓</span> {point}
                 </li>
               ))}
             </ul>
@@ -211,39 +200,58 @@ export default function LandingOS() {
         </div>
       </section>
 
+      {/* LOS 3 PASOS DEL EMBUDO */}
+      <section className="border-y border-zinc-900 bg-black">
+        <div className="mx-auto max-w-7xl px-6 py-16">
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              { title: "1. Captar", text: "Mensaje claro, propuesta concreta y CTA sin distracciones visuales." },
+              { title: "2. Cobrar", text: "Métodos de pago visibles con QR y datos de copia rápida." },
+              { title: "3. Confirmar", text: "Botón final con mensaje preconfigurado para validar rápido por WhatsApp." },
+            ].map((step) => (
+              <article key={step.title} className="rounded-3xl border border-zinc-800 bg-zinc-900/50 p-8 shadow-inner">
+                <p className="text-sm font-bold uppercase tracking-widest text-blue-500 mb-3">{step.title}</p>
+                <p className="text-base leading-relaxed text-zinc-400">{step.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* SECCIÓN DE PLANES CON TERMINAL INYECTADA */}
-      <section id="planes" className="mx-auto max-w-7xl px-6 py-16 sm:py-24 border-t border-zinc-900">
-        <div className="max-w-3xl mb-16 text-center mx-auto">
-          <p className="text-sm font-bold uppercase tracking-widest text-blue-500 mb-4">Planes de Implementación</p>
+      <section id="planes" className="mx-auto max-w-7xl px-6 py-16 sm:py-24">
+        <div className="max-w-3xl mb-16 text-left mx-auto md:text-center">
+          <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-4">Planes listos para vender</p>
           <h2 className="text-3xl font-black tracking-tight text-white sm:text-5xl mb-6">
             Elegí tu plan, revisá el pago y cerrá en el mismo flujo.
           </h2>
           <p className="text-lg leading-relaxed text-zinc-400">
-            Cada plan ya incluye la pasarela de confirmación. Tu cliente entiende, confía, paga y se contacta sin perderse en el camino.
+            Cada plan ya incluye la pasarela de confirmación integrada. Así el visitante entiende,
+            confía y actúa sin perderse.
           </p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
           {plans.map((plan) => (
-            <article key={plan.id} className="rounded-[2.5rem] border border-zinc-800 bg-black p-8 shadow-2xl flex flex-col relative overflow-hidden">
+            <article key={plan.id} className="rounded-[2.5rem] border border-zinc-800 bg-black p-6 sm:p-10 shadow-2xl flex flex-col relative overflow-hidden">
                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
               
               <div className="flex items-start justify-between gap-4 mb-8 relative z-10">
                 <div>
-                  <p className="inline-block rounded-full bg-zinc-900 border border-zinc-700 px-3 py-1 text-xs font-bold uppercase tracking-widest text-zinc-300 mb-4">
+                  <p className="inline-block rounded-full bg-zinc-900 border border-zinc-700 px-3 py-1 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-zinc-300 mb-4">
                     {plan.badge}
                   </p>
-                  <h3 className="text-3xl font-black tracking-tight text-white">{plan.name}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-zinc-400">{plan.summary}</p>
+                  <h3 className="text-3xl sm:text-4xl font-black tracking-tight text-white">{plan.name}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-zinc-400">{plan.summary}</p>
                 </div>
               </div>
 
               <div className="rounded-2xl bg-zinc-900/50 border border-zinc-800 p-6 mb-8 flex justify-between items-end relative z-10 shadow-inner">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Inversión Única</p>
-                  <p className="text-4xl font-black text-white">{plan.price}</p>
+                  <p className="text-3xl sm:text-4xl font-black text-white">{plan.price}</p>
                 </div>
-                <div className="text-right">
+                <div className="text-right hidden sm:block">
                   <p className="text-xl font-bold text-blue-400">{plan.usd}</p>
                 </div>
               </div>
@@ -251,16 +259,16 @@ export default function LandingOS() {
               <ul className="grid gap-4 text-sm text-zinc-300 mb-8 flex-1 relative z-10">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
-                    <span className="text-emerald-500 font-bold text-lg leading-none">✓</span>
-                    <span className="font-medium">{feature}</span>
+                    <span className="text-emerald-500 font-black text-lg leading-none">✓</span>
+                    <span className="font-medium text-zinc-300">{feature}</span>
                   </li>
                 ))}
               </ul>
 
-              {/* 🔥 AQUÍ INYECTAMOS LA TERMINAL DE PAGO REAL */}
+              {/* TERMINAL DE PAGO REAL */}
               <div className="mt-auto relative z-10 border-t border-zinc-800 pt-8">
-                 <h4 className="text-white font-bold text-lg mb-2 text-center">Activar este Plan</h4>
-                 <p className="text-zinc-500 text-xs text-center mb-4">Realiza el pago escaneando o copiando los datos a continuación:</p>
+                 <h4 className="text-white font-bold text-lg mb-2 text-center">Datos de Pago & Confirmación</h4>
+                 <p className="text-zinc-500 text-xs text-center mb-2">Escanea el QR o copia los datos para transferir.</p>
                  <TerminalDePago planNombre={plan.name} planPrecio={plan.price} />
               </div>
             </article>
@@ -268,8 +276,45 @@ export default function LandingOS() {
         </div>
       </section>
 
+      {/* SECCIÓN DE OBJECIONES (FAQ) */}
+      <section className="border-t border-zinc-900 bg-zinc-950/50">
+        <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24">
+          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-4">
+                Objeciones frecuentes
+              </p>
+              <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl">
+                Lo importante no es solo el diseño. Es la lógica comercial.
+              </h2>
+            </div>
+            <div className="grid gap-6">
+              {[
+                {
+                  q: "¿Por qué mostrar el pago antes del WhatsApp?",
+                  a: "Porque reduce fricción. El cliente serio quiere ver cuánto cuesta y cómo pagar sin tener que pedir permiso para cada paso.",
+                },
+                {
+                  q: "¿Esto sigue siendo mobile-first?",
+                  a: "Sí. Todo está pensado en bloques, lectura simple, botones altos, contraste fuerte y cero dependencia de animaciones pesadas.",
+                },
+                {
+                  q: "¿Se puede mejorar después?",
+                  a: "Sí. Esta base está hecha para escalar a casos, sectores, formularios más avanzados y automatizaciones internas.",
+                },
+              ].map((item) => (
+                <article key={item.q} className="rounded-3xl border border-zinc-800 bg-zinc-900 p-6 shadow-sm">
+                  <h3 className="text-lg font-bold text-white">{item.q}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-400">{item.a}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* STICKY CTA MOBILE */}
-      <div className="md:hidden fixed bottom-0 left-0 w-full bg-zinc-950/90 backdrop-blur-lg border-t border-zinc-800 p-4 z-50 shadow-[0_-20px_30px_-10px_rgba(0,0,0,0.7)]">
+      <div className="md:hidden fixed bottom-0 left-0 w-full bg-zinc-950/95 backdrop-blur-lg border-t border-zinc-800 p-4 z-50 shadow-[0_-20px_30px_-10px_rgba(0,0,0,0.7)]">
         <a 
           href="#planes" 
           className="w-full flex bg-blue-600 text-white font-black py-4 px-6 rounded-xl items-center justify-center text-lg active:scale-95 transition-transform shadow-[0_0_20px_rgba(37,99,235,0.4)]"
