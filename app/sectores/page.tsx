@@ -1,81 +1,125 @@
+import Link from "next/link";
+
 export default function SectoresPage() {
+  const whatsappNumber = "595985864209";
+  const whatsappMsg = encodeURIComponent("¡Hola Oscar! Vi la página de sectores y quiero ver cómo aplicar una solución similar en mi industria.");
+
   const sectores = [
     {
-      titulo: "Industria y Manufactura",
-      icono: "🏭",
-      dolor: "Caos en inventarios de materia prima, horas hombre sin medir y cuellos de botella en la línea de producción.",
-      solucion: "Sistemas ERP a medida para control de stock, logística de entrega y trazabilidad en tiempo real."
+      id: "industria",
+      titulo: "Industria & Manufactura",
+      color: "blue",
+      dolor: "Cotizaciones lentas, inventario desconectado y fricción B2B.",
+      solucion: "Sistematizamos la cotización. Tu equipo comercial genera presupuestos en PDF en segundos, directo desde una plataforma en la nube.",
+      caso: { nombre: "Metal Mad E.A.S.", desc: "De 2hs manuales a 3 min por cotización.", url: "/casos" }
     },
     {
-      titulo: "Constructoras y Obras",
-      icono: "🏗️",
-      dolor: "Pérdida de control de presupuestos, materiales desperdiciados y reportes diarios en papel que se pierden.",
-      solucion: "Software de gestión de obras para reportes digitales, control de proveedores y flujo de caja en la nube."
+      id: "salud",
+      titulo: "Salud & Clínicas",
+      color: "purple",
+      dolor: "Dependencia total de redes sociales y agendamiento desordenado en WhatsApp.",
+      solucion: "Creamos ecosistemas 24/7. El paciente entra, ve la autoridad de la clínica y se agenda automáticamente, filtrando a los curiosos.",
+      caso: { nombre: "Dra. Bianca", desc: "Consultorio digital de agendamiento automático.", url: "/casos" }
     },
     {
-      titulo: "Distribuidoras B2B",
-      icono: "🚚",
-      dolor: "Rutas de entrega ineficientes, toma de pedidos manuales por WhatsApp y facturas traspapeladas.",
-      solucion: "Portales automatizados para toma de pedidos 24/7, ruteo inteligente y facturación conectada."
+      id: "operativa",
+      titulo: "Servicios Legales & B2B",
+      color: "emerald",
+      dolor: "Onboarding lento, redacción manual de contratos y pérdida de tiempo administrativo.",
+      solucion: "Implementamos generadores de documentos. Llenás un formulario y el sistema escupe un contrato B2B blindado, listo para firmar.",
+      caso: { nombre: "AYC Contratos", desc: "Automatización de documentación legal.", url: "/legales" }
     },
     {
-      titulo: "Servicios Profesionales",
-      icono: "💼",
-      dolor: "Cotizaciones que tardan días en enviarse y seguimiento de clientes desorganizado en planillas de Excel.",
-      solucion: "CRMs personalizados y motores de generación de presupuestos en PDF al instante (como el MM Cotizador)."
+      id: "gastronomia",
+      titulo: "Retail & Gastronomía",
+      color: "orange",
+      dolor: "Colapso en horas pico, pedidos mal tomados y catálogos estáticos en PDF.",
+      solucion: "Desarrollamos motores de pedidos donde el cliente elige, el sistema calcula y la cocina recibe la orden estructurada sin errores humanos.",
+      caso: { nombre: "La Tableta / Pizzazos", desc: "Sistemas de captación de pedidos dinámicos.", url: "/casos" }
     },
     {
-      titulo: "Comercios y Retail",
-      icono: "📦",
-      dolor: "Descuadre de inventario entre sucursales y falta de métricas exactas sobre qué productos dan rentabilidad.",
-      solucion: "Sistemas centralizados de Punto de Venta (POS), control de cajas y dashboards de ventas en vivo."
-    },
-    {
-      titulo: "Empresas en Expansión",
-      icono: "🚀",
-      dolor: "Procesos 100% dependientes del dueño. Imposibilidad de abrir nuevas sucursales por falta de control.",
-      solucion: "Sistematización de manuales operativos e infraestructura de software replicable para escalar sin caos."
+      id: "corporativo",
+      titulo: "Instituciones & B2G",
+      color: "zinc",
+      dolor: "Infraestructura web obsoleta que no transmite confianza para licitaciones o socios corporativos.",
+      solucion: "Construimos portales institucionales robustos, con seguridad extrema y PageSpeed 99/100, diseñados para soportar alto tráfico.",
+      caso: { nombre: "Colegio Cristo Rey", desc: "Desarrollo institucional de alta confianza.", url: "/casos" }
     }
   ];
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white px-6 py-20">
-      <div className="max-w-6xl mx-auto">
-        
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-black mb-6">
-            Sectores que <span className="text-blue-500">Sistematizamos</span>
+    <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans pb-24 md:pb-0">
+      
+      {/* 🚀 HERO SECTION */}
+      <section className="relative pt-20 pb-16 md:pt-28 md:pb-24 px-6 text-center overflow-hidden border-b border-zinc-900">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+        <div className="max-w-4xl mx-auto relative z-10">
+          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-[1.05] text-white">
+            Soluciones por <span className="text-blue-500">Industria.</span>
           </h1>
-          <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
-            No vendemos software genérico. Entendemos los dolores operativos exactos de tu industria y construimos la tecnología para erradicarlos.
+          <p className="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+            Cada sector tiene cuellos de botella únicos. No aplicamos la misma plantilla para todos; diseñamos la arquitectura exacta que tu operativa exige.
           </p>
         </div>
+      </section>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sectores.map((sector, index) => (
-            <div key={index} className="p-8 bg-zinc-900 border border-zinc-800 rounded-2xl hover:border-blue-500 hover:shadow-[0_0_30px_rgba(37,99,235,0.1)] transition-all group">
-              <div className="text-4xl mb-4 opacity-80 group-hover:opacity-100 transition-opacity">{sector.icono}</div>
-              <h2 className="text-2xl font-bold mb-6 text-white group-hover:text-blue-400 transition-colors">{sector.titulo}</h2>
-              
-              <div className="space-y-5">
-                <div>
-                  <span className="text-xs font-bold text-red-400 uppercase tracking-wider flex items-center gap-2 mb-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span> El Problema
-                  </span>
-                  <p className="text-sm text-zinc-400 leading-relaxed">{sector.dolor}</p>
+      {/* 🧩 SECTORES CON CASOS ENLAZADOS */}
+      <section className="py-20 bg-black border-b border-zinc-900">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {sectores.map((sector) => (
+              <div key={sector.id} className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 flex flex-col hover:border-zinc-600 transition-colors">
+                <h2 className="text-2xl font-black text-white mb-4 flex items-center gap-3">
+                  <span className={`w-3 h-3 rounded-full bg-${sector.color}-500`}></span>
+                  {sector.titulo}
+                </h2>
+                
+                <div className="mb-6 space-y-4">
+                  <p className="text-zinc-400 text-sm leading-relaxed">
+                    <strong className="text-red-400">Problema Común:</strong> {sector.dolor}
+                  </p>
+                  <p className="text-zinc-300 text-sm leading-relaxed">
+                    <strong className="text-emerald-400">Cómo lo resolvemos:</strong> {sector.solucion}
+                  </p>
                 </div>
-                <div className="pt-4 border-t border-zinc-800">
-                  <span className="text-xs font-bold text-green-400 uppercase tracking-wider flex items-center gap-2 mb-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> Solución AYC
-                  </span>
-                  <p className="text-sm text-zinc-300 leading-relaxed">{sector.solucion}</p>
+
+                {/* CASO RELACIONADO (Puente a la conversión) */}
+                <div className="mt-auto bg-zinc-950 p-5 rounded-2xl border border-zinc-800/80 shadow-inner">
+                  <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Caso de Éxito Aplicado</p>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                      <h4 className="text-white font-bold text-base">{sector.caso.nombre}</h4>
+                      <p className="text-zinc-500 text-xs">{sector.caso.desc}</p>
+                    </div>
+                    <Link href={sector.caso.url} className={`shrink-0 bg-${sector.color}-600/20 text-${sector.color}-400 hover:bg-${sector.color}-600/40 border border-${sector.color}-900/50 text-xs font-bold py-2 px-4 rounded-lg transition-colors`}>
+                      Ver Detalles &rarr;
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+      </section>
 
-      </div>
-    </main>
+      {/* 🚀 CTA FINAL */}
+      <section className="py-24 bg-zinc-950 text-center relative overflow-hidden">
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="max-w-3xl mx-auto px-6 relative z-10">
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-6">¿No encontraste tu rubro?</h2>
+          <p className="text-xl text-zinc-400 mb-10 leading-relaxed">
+            La ingeniería de software se adapta a cualquier proceso. Agendá una llamada y evaluemos cómo sistematizar tu operativa específica.
+          </p>
+          <a 
+            href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
+            target="_blank" rel="noopener noreferrer"
+            className="inline-flex bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)] active:scale-95"
+          >
+            Agendar Diagnóstico Gratuito
+          </a>
+        </div>
+      </section>
+
+    </div>
   );
 }
