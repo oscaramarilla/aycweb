@@ -2,14 +2,13 @@ import Link from "next/link";
 
 export default function Home() {
   const whatsappNumber = "595985864209";
-  // Pitch corto y directo para el primer contacto
-  const whatsappMsg = encodeURIComponent("Hola Oscar. Vi tu enfoque de sistemas digitales orientados a ventas y quiero ver cómo aplicarlo en mi empresa.");
+  const whatsappMsg = encodeURIComponent("¡Hola Oscar! Quiero agendar una sesión de diagnóstico para automatizar mi empresa.");
 
   return (
     <div className="flex flex-col min-h-screen">
       
-      {/* 1. HERO POTENTE: El nuevo posicionamiento premium */}
-      <section className="relative pt-24 pb-20 md:pt-32 md:pb-28 px-6 text-center overflow-hidden border-b border-zinc-900">
+      {/* 1. HERO POTENTE */}
+      <section className="relative pt-20 pb-20 md:pt-32 md:pb-24 px-6 text-center overflow-hidden border-b border-zinc-900">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-blue-900/50 bg-blue-950/30 text-sm font-semibold text-blue-300 shadow-inner">
@@ -28,7 +27,7 @@ export default function Home() {
               target="_blank" rel="noopener noreferrer"
               className="bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)] active:scale-95"
             >
-              Agendar Diagnóstico Comercial
+              Agendar Diagnóstico Gratuito
             </a>
             <Link 
               href="/os" 
@@ -40,69 +39,89 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. EL DIFERENCIAL (Ingeniería + Marketing + Ventas) */}
-      <section className="py-20 bg-zinc-950 border-b border-zinc-900">
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <h2 className="text-2xl md:text-3xl font-black mb-6 text-zinc-300">Un enfoque diferente al de la agencia común.</h2>
-          <p className="text-lg text-zinc-500 max-w-3xl mx-auto leading-relaxed">
-            Soy Oscar Amarilla. Mi enfoque no es solo escribir código. Combino <strong>pensamiento de ingeniería, estrategia de marketing y lógica de conversión</strong>. Antes de programar una herramienta, analizo cómo encajará en tu proceso operativo para asegurar que realmente te ahorre tiempo y genere retorno.
+      {/* 🔥 NUEVO: BLOQUE DE PRUEBA RÁPIDA (Authority Bar) */}
+      <section className="py-12 bg-black border-b border-zinc-900">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="text-center text-sm font-bold uppercase tracking-widest text-zinc-600 mb-8">
+            Sistemas desarrollados operando en:
           </p>
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-zinc-400 font-medium text-sm md:text-base">
+            <span className="flex items-center gap-2"><span className="text-blue-500">■</span> Industria B2B</span>
+            <span className="flex items-center gap-2"><span className="text-emerald-500">■</span> Salud & Odontología</span>
+            <span className="flex items-center gap-2"><span className="text-orange-500">■</span> Gastronomía</span>
+            <span className="flex items-center gap-2"><span className="text-purple-500">■</span> Educación</span>
+            <span className="flex items-center gap-2"><span className="text-zinc-300">■</span> Corporativo B2G</span>
+          </div>
+
+          {/* 3 Mini Cards de Casos (Prueba contundente instantánea) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+            <Link href="/casos" className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl hover:bg-zinc-900 hover:border-blue-900/50 transition-colors group cursor-pointer block">
+              <span className="text-xs font-bold uppercase tracking-widest text-blue-500 mb-2 block">Industria Metalúrgica</span>
+              <h3 className="text-lg font-black text-white mb-2 group-hover:text-blue-400 transition-colors">Metal Mad E.A.S.</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed mb-4">De presupuestos manuales de 2 horas a un cotizador PDF automático de 3 minutos.</p>
+              <span className="text-blue-500 text-xs font-bold group-hover:underline">Ver caso &rarr;</span>
+            </Link>
+
+            <Link href="/casos" className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl hover:bg-zinc-900 hover:border-purple-900/50 transition-colors group cursor-pointer block">
+              <span className="text-xs font-bold uppercase tracking-widest text-purple-500 mb-2 block">Salud & Estética</span>
+              <h3 className="text-lg font-black text-white mb-2 group-hover:text-purple-400 transition-colors">Dra. Bianca</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed mb-4">De depender de Instagram a un ecosistema de agendamiento 24/7 directo a WhatsApp.</p>
+              <span className="text-purple-500 text-xs font-bold group-hover:underline">Ver caso &rarr;</span>
+            </Link>
+
+            <Link href="/casos" className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl hover:bg-zinc-900 hover:border-emerald-900/50 transition-colors group cursor-pointer block">
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-500 mb-2 block">Legal & Operativa</span>
+              <h3 className="text-lg font-black text-white mb-2 group-hover:text-emerald-400 transition-colors">Automatización AYC</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed mb-4">Reducción total de fricción administrativa mediante generador de contratos dinámicos B2B.</p>
+              <span className="text-emerald-500 text-xs font-bold group-hover:underline">Ver caso &rarr;</span>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* 3. PAQUETES CLAROS (No herramientas sueltas, sino soluciones) */}
+      {/* 3. ARQUITECTURA DE SERVICIOS (Los 3 Pilares) */}
       <section className="py-24 bg-zinc-900/30 border-b border-zinc-900">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-black text-white mb-4">Ecosistemas a tu medida</h2>
-            <p className="text-zinc-400">Dejamos de vender herramientas sueltas. Implementamos soluciones completas.</p>
+            <p className="text-zinc-400">No te vendemos herramientas sueltas. Implementamos soluciones modulares.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Paquete A: Captación */}
             <div className="bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-blue-900 transition-colors">
-              <div className="w-12 h-12 bg-blue-950/50 text-blue-500 rounded-xl flex items-center justify-center mb-6 border border-blue-900/50">
-                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-              </div>
               <h3 className="text-2xl font-bold text-white mb-3">Captación & Ventas</h3>
-              <p className="text-zinc-400 mb-6 text-sm leading-relaxed">Sistemas diseñados para traer, filtrar y convertir leads fríos en clientes calificados.</p>
-              <ul className="space-y-3 text-sm text-zinc-300">
+              <p className="text-zinc-500 mb-6 text-sm">Sistemas para traer, filtrar y convertir leads en clientes calificados.</p>
+              <ul className="space-y-3 text-sm text-zinc-300 mb-6">
                 <li className="flex gap-2"><span className="text-blue-500">✔</span> Embudos digitales (Funnels)</li>
                 <li className="flex gap-2"><span className="text-blue-500">✔</span> Landings de alta conversión</li>
-                <li className="flex gap-2"><span className="text-blue-500">✔</span> Integración inteligente con WhatsApp</li>
               </ul>
+              <Link href="/servicios" className="text-blue-500 text-sm font-bold hover:underline">Ver detalles &rarr;</Link>
             </div>
-            {/* Paquete B: Automatización Documental */}
+            
             <div className="bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-emerald-900 transition-colors">
-              <div className="w-12 h-12 bg-emerald-950/50 text-emerald-500 rounded-xl flex items-center justify-center mb-6 border border-emerald-900/50">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Operativa & Documentos</h3>
-              <p className="text-zinc-400 mb-6 text-sm leading-relaxed">Sistemas para ahorrar horas de trabajo manual, reducir errores y proyectar profesionalismo.</p>
-              <ul className="space-y-3 text-sm text-zinc-300">
-                <li className="flex gap-2"><span className="text-emerald-500">✔</span> Generadores automáticos de Presupuestos</li>
-                <li className="flex gap-2"><span className="text-emerald-500">✔</span> Emisión de contratos automáticos</li>
-                <li className="flex gap-2"><span className="text-emerald-500">✔</span> Formularios internos corporativos</li>
+              <h3 className="text-2xl font-bold text-white mb-3">Operativa Automática</h3>
+              <p className="text-zinc-500 mb-6 text-sm">Sistemas para ahorrar horas de trabajo manual y reducir errores.</p>
+              <ul className="space-y-3 text-sm text-zinc-300 mb-6">
+                <li className="flex gap-2"><span className="text-emerald-500">✔</span> Cotizadores PDF Automáticos</li>
+                <li className="flex gap-2"><span className="text-emerald-500">✔</span> Emisión de contratos</li>
               </ul>
+              <Link href="/servicios" className="text-emerald-500 text-sm font-bold hover:underline">Ver detalles &rarr;</Link>
             </div>
-            {/* Paquete C: A Medida */}
+
             <div className="bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-purple-900 transition-colors">
-              <div className="w-12 h-12 bg-purple-950/50 text-purple-500 rounded-xl flex items-center justify-center mb-6 border border-purple-900/50">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-              </div>
               <h3 className="text-2xl font-bold text-white mb-3">Herramientas a Medida</h3>
-              <p className="text-zinc-400 mb-6 text-sm leading-relaxed">Desarrollo de software específico para resolver cuellos de botella únicos de tu industria.</p>
-              <ul className="space-y-3 text-sm text-zinc-300">
-                <li className="flex gap-2"><span className="text-purple-500">✔</span> Calculadoras y Configuradores</li>
+              <p className="text-zinc-500 mb-6 text-sm">Ingeniería de software para resolver cuellos de botella de tu industria.</p>
+              <ul className="space-y-3 text-sm text-zinc-300 mb-6">
                 <li className="flex gap-2"><span className="text-purple-500">✔</span> Portales de clientes B2B</li>
-                <li className="flex gap-2"><span className="text-purple-500">✔</span> Dashboards de control y métricas</li>
+                <li className="flex gap-2"><span className="text-purple-500">✔</span> Dashboards de control</li>
               </ul>
+              <Link href="/servicios" className="text-purple-500 text-sm font-bold hover:underline">Ver detalles &rarr;</Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4. EL DOLOR Y LA FUGA (Identificar el problema del cliente) */}
+      {/* 4. EL DOLOR (Problema del cliente) */}
       <section className="py-24 bg-zinc-950 border-b border-zinc-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-5xl font-black text-white mb-8">¿Dónde estás perdiendo dinero hoy?</h2>
@@ -115,18 +134,14 @@ export default function Home() {
               <span className="text-red-500 font-bold">✕</span> 
               <span>Tu equipo pierde horas redactando presupuestos o contratos manualmente, cometiendo errores.</span>
             </p>
-            <p className="text-zinc-300 text-lg flex gap-4 items-start">
-              <span className="text-red-500 font-bold">✕</span> 
-              <span>El seguimiento de clientes es un caos disperso en hojas de cálculo y papeles.</span>
-            </p>
-            <div className="pt-6 border-t border-zinc-800 mt-6">
+            <div className="pt-6 border-t border-zinc-800 mt-6 text-center md:text-left">
               <p className="text-white font-bold text-xl">Lo que yo hago es convertir ese proceso manual en un sistema digital simple: <span className="text-blue-400">captar, ordenar, automatizar y acelerar.</span></p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 5. CTA FINAL: Vender el Resultado */}
+      {/* 5. CTA FINAL */}
       <section className="py-24 bg-black text-center relative overflow-hidden">
          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="max-w-3xl mx-auto px-6 relative z-10">
