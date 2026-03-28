@@ -8,27 +8,8 @@ export default function ServiciosPage() {
   return (
     <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans selection:bg-blue-500 selection:text-white pb-24 md:pb-0">
       
-      {/* 🛑 NAVEGACIÓN */}
-      <nav className="flex justify-between items-center px-6 py-4 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-3">
-          <Link href="/" className="flex items-center justify-center mt-1 md:mt-0 gap-2">
-            <div className="w-8 h-8 relative flex items-center justify-center">
-               <Image src="/logo-ayc.webp" alt="AYCweb Logo" width={32} height={32} className="object-contain" />
-            </div>
-            <span className="font-black text-2xl tracking-tighter text-white italic">AYCweb</span>
-          </Link>
-          <nav className="flex items-center justify-center gap-4 sm:gap-6 text-[12px] sm:text-sm font-semibold text-zinc-300 w-full md:w-auto pb-1 md:pb-0 flex-wrap">
-            <Link href="/experiencia" className="hover:text-white transition-colors text-blue-400">Trayectoria B2G</Link>
-            <span className="text-zinc-700 hidden sm:inline">|</span>
-            <Link href="/casos" className="hover:text-white transition-colors">Casos Reales</Link>
-            <Link href="/servicios" className="text-white font-bold">Sistemas SaaS</Link>
-            <Link href="/sectores" className="hover:text-white transition-colors">Industrias</Link>
-          </nav>
-        </div>
-      </nav>
-
       {/* 🚀 HERO SECTION: Posicionamiento */}
-      <section className="relative pt-20 pb-16 md:pt-28 md:pb-24 px-6 text-center overflow-hidden border-b border-zinc-900">
+      <section className="relative pt-12 pb-16 md:pt-28 md:pb-24 px-6 text-center overflow-hidden border-b border-zinc-900">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
         <div className="max-w-4xl mx-auto relative z-10">
           <span className="inline-block px-4 py-1.5 rounded-full bg-blue-900/30 text-blue-400 text-xs font-bold uppercase tracking-widest border border-blue-900/50 mb-6 shadow-inner">
@@ -103,7 +84,7 @@ export default function ServiciosPage() {
         </div>
       </section>
 
-      {/* 🧩 MÓDULOS INYECTABLES (Mostrar tecnología pero orientada a beneficio) */}
+      {/* 🧩 MÓDULOS INYECTABLES */}
       <section className="py-24 bg-zinc-950 border-b border-zinc-900">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
@@ -124,7 +105,6 @@ export default function ServiciosPage() {
               </div>
             </div>
             
-            {/* Visualización de la Arquitectura */}
             <div className="w-full lg:w-1/2 relative">
                <div className="bg-zinc-900/80 border border-zinc-800 p-8 rounded-[2rem] shadow-2xl relative z-10">
                  <div className="flex items-center gap-4 mb-6 border-b border-zinc-800 pb-6">
@@ -151,7 +131,6 @@ export default function ServiciosPage() {
                    </div>
                  </div>
                </div>
-               {/* Grid Decorativa */}
                <div className="absolute top-10 -right-10 w-full h-full border-2 border-dashed border-zinc-800 rounded-[2rem] -z-10"></div>
             </div>
           </div>
