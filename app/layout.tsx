@@ -50,11 +50,12 @@ export default function RootLayout({
               <span className="font-black text-2xl tracking-tighter text-white italic">AYCweb</span>
             </Link>
             
+            {/* 🔥 MENÚ MEJORADO: Nombres claros y orientados a resultados */}
             <nav className="flex items-center justify-center gap-4 sm:gap-6 text-[12px] sm:text-sm font-semibold text-zinc-300 w-full md:w-auto pb-1 md:pb-0 flex-wrap">
-              <Link href="/experiencia" className="hover:text-white transition-colors text-blue-400">Trayectoria B2G</Link>
+              <Link href="/servicios" className="hover:text-white transition-colors">Qué hacemos</Link>
+              <Link href="/casos" className="hover:text-white transition-colors">Casos de Éxito</Link>
               <span className="text-zinc-700 hidden sm:inline">|</span>
-              <Link href="/casos" className="hover:text-white transition-colors">Casos Reales</Link>
-              <Link href="/servicios" className="hover:text-white transition-colors">Sistemas SaaS</Link>
+              <Link href="/experiencia" className="hover:text-white transition-colors text-blue-400">Nuestra Autoridad</Link>
             </nav>
           </div>
         </header>
@@ -67,7 +68,7 @@ export default function RootLayout({
         {/* FOOTER CORPORATIVO CON DATOS LEGALES (RUC) */}
         <footer className="bg-black py-8 border-t border-zinc-900 text-center text-zinc-500 text-xs">
            <div className="max-w-6xl mx-auto px-6 flex flex-col items-center justify-center gap-2">
-              <p className="font-bold text-zinc-400">AYCweb - Automatizaciones Corporativas</p>
+              <p className="font-bold text-zinc-400">AYCweb - Sistemas Digitales B2B</p>
               <p>Oscar Emigdio Amarilla Caceres | RUC: 4499507-5</p>
               <p>© {new Date().getFullYear()} Todos los derechos reservados. Asunción, Paraguay.</p>
            </div>
