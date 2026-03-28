@@ -1,493 +1,283 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import type { Metadata } from "next";
+import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "AYC Web | Automatización y sistemas digitales para vender más",
-  description:
-    "Landing de alto enfoque comercial para captar leads, mostrar métodos de pago y cerrar por WhatsApp con mensajes preconfigurados.",
-  openGraph: {
-    title: "AYC Web | Automatización y sistemas digitales para vender más",
-    description:
-      "Landing optimizada para conversión, experiencia mobile y alto rendimiento.",
-    url: "https://aycweb.com",
-    siteName: "AYC Web",
-    locale: "es_PY",
-    type: "website",
-  },
-  alternates: {
-    canonical: "https://aycweb.com",
-  },
-};
+// 🔥 1. COMPONENTE DE COPIA RÁPIDA (Blindado y elegante)
+const CampoCopia = ({ etiqueta, valor }: { etiqueta: string; valor: string }) => {
+  const [copiado, setCopiado] = useState(false);
 
-type Plan = {
-  id: string;
-  name: string;
-  price: string;
-  badge?: string;
-  summary: string;
-  features: string[];
-  whatsappText: string;
-};
+  const ejecutarCopia = () => {
+    navigator.clipboard.writeText(valor);
+    setCopiado(true);
+    setTimeout(() => setCopiado(false), 2000);
+  };
 
-type PaymentMethod = {
-  id: string;
-  title: string;
-  description: string;
-  details: string[];
-  qrSrc: string;
-  qrAlt: string;
-  note: string;
-};
-
-const WHATSAPP_NUMBER = "595982451828";
-
-const plans: Plan[] = [
-  {
-    id: "landing-flash",
-    name: "Landing Page Flash",
-    price: "Gs. 1.500.000",
-    badge: "Entrada rápida",
-    summary:
-      "Ideal para salir ya a vender con una página enfocada en contacto, autoridad y WhatsApp.",
-    features: [
-      "Landing comercial 100% responsive",
-      "Copy orientado a conversión",
-      "Botones estratégicos a WhatsApp",
-      "Sección de prueba social y objeciones",
-      "Bloque de pago con QR y datos visibles",
-      "Entrega rápida",
-    ],
-    whatsappText:
-      "Hola Oscar. Quiero avanzar con el plan Landing Page Flash de AYC Web. Ya revisé los datos de pago y quiero continuar.",
-  },
-  {
-    id: "automatizacion-inicial",
-    name: "Automatización Inicial",
-    price: "Gs. 2.500.000",
-    badge: "Más recomendado",
-    summary:
-      "Para empresas que necesitan algo más que una web: captar, ordenar y acelerar su operación comercial.",
-    features: [
-      "Todo lo del plan Landing Page Flash",
-      "Formulario empresarial inteligente",
-      "Flujo de captación y precalificación",
-      "CTA por etapa del embudo",
-      "Bloques por sector o caso de uso",
-      "Base preparada para escalar a sistema interno",
-    ],
-    whatsappText:
-      "Hola Oscar. Quiero avanzar con el plan Automatización Inicial de AYC Web. Ya revisé los datos de pago y quiero continuar.",
-  },
-];
-
-const paymentMethods: PaymentMethod[] = [
-  {
-    id: "fiat",
-    title: "Pago en fiat",
-    description:
-      "Transferencia bancaria, billetera o cobro local. Reemplazá estos datos por los reales antes de publicar.",
-    details: [
-      "Titular: AYC WEB / OSCAR AMARILLA",
-      "Banco: TU BANCO AQUÍ",
-      "Cuenta: 0000000000",
-      "Alias / referencia: AYCWEB",
-      "Moneda: Guaraníes (PYG)",
-    ],
-    qrSrc: "/payments/qr-fiat.png",
-    qrAlt: "QR de pago fiat de AYC Web",
-    note:
-      "Después del pago, tocá el botón de confirmación para enviar el comprobante por WhatsApp.",
-  },
-  {
-    id: "crypto",
-    title: "Pago en cripto",
-    description:
-      "Podés mostrar USDT, BTC u otra red. Reemplazá wallet, red y QR por los definitivos.",
-    details: [
-      "Moneda sugerida: USDT",
-      "Red sugerida: TRC20 o la que uses realmente",
-      "Wallet: TU_WALLET_AQUI",
-      "Confirmación: enviar hash o captura del envío",
-    ],
-    qrSrc: "/payments/qr-crypto.png",
-    qrAlt: "QR de pago cripto de AYC Web",
-    note:
-      "Verificá siempre que la red y la wallet coincidan antes de enviar fondos.",
-  },
-];
-
-const trustPoints = [
-  "Automatización pensada para vender, no para decorar.",
-  "Embudo lógico: atención, prueba, pago y cierre.",
-  "Diseño liviano, mobile-first y sin scripts innecesarios.",
-  "Código preparado para SEO, claridad comercial y velocidad.",
-];
-
-const results = [
-  {
-    label: "Respuesta comercial",
-    value: "2 horas → 15 segundos",
-  },
-  {
-    label: "Experiencia",
-    value: "Embudo simple y sin fricción",
-  },
-  {
-    label: "Enfoque",
-    value: "B2B / B2G / PyMEs serias",
-  },
-];
-
-function makeWhatsAppLink(message: string) {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-}
-
-function PlanCard({ plan }: { plan: Plan }) {
   return (
-    <article
-      id={plan.id}
-      className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm"
-    >
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500">
-            {plan.badge ?? "Plan"}
-          </p>
-          <h3 className="mt-2 text-2xl font-black tracking-tight text-zinc-950">
-            {plan.name}
-          </h3>
-          <p className="mt-2 text-sm leading-6 text-zinc-600">{plan.summary}</p>
-        </div>
-        <div className="rounded-2xl bg-zinc-950 px-4 py-3 text-right text-white">
-          <p className="text-xs uppercase tracking-[0.18em] text-zinc-300">Inversión</p>
-          <p className="mt-1 text-xl font-black">{plan.price}</p>
-        </div>
+    <div className="flex items-center justify-between gap-2 p-2.5 mt-2 bg-zinc-950 rounded-lg border border-zinc-800 text-sm shadow-inner group">
+      <div className="overflow-hidden flex flex-col sm:flex-row sm:items-center">
+        <span className="text-zinc-500 mr-2 text-xs uppercase tracking-wider font-bold">{etiqueta}:</span>
+        <span className="text-white font-mono tracking-tight text-xs sm:text-sm truncate">{valor}</span>
       </div>
-
-      <ul className="mt-6 grid gap-3 text-sm text-zinc-700">
-        {plan.features.map((feature) => (
-          <li key={feature} className="flex items-start gap-3">
-            <span className="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-zinc-950" />
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
-
-      <div className="mt-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-        <p className="text-sm font-bold text-zinc-950">Embudo de cierre recomendado</p>
-        <ol className="mt-3 grid gap-2 text-sm text-zinc-700">
-          <li>1. Revisás el plan.</li>
-          <li>2. Abrís el método de pago.</li>
-          <li>3. Escaneás el QR o copiás los datos.</li>
-          <li>4. Confirmás por WhatsApp con mensaje ya preparado.</li>
-        </ol>
-      </div>
-
-      <div className="mt-6 grid gap-4">
-        {paymentMethods.map((method) => {
-          const message = `${plan.whatsappText} Método elegido: ${method.title}.`;
-
-          return (
-            <details
-              key={`${plan.id}-${method.id}`}
-              className="group rounded-2xl border border-zinc-200 bg-white p-4 open:border-zinc-950"
-            >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
-                <div>
-                  <p className="text-base font-bold text-zinc-950">{method.title}</p>
-                  <p className="mt-1 text-sm text-zinc-600">{method.description}</p>
-                </div>
-                <span className="shrink-0 rounded-full border border-zinc-300 px-3 py-1 text-xs font-semibold text-zinc-700 transition group-open:border-zinc-950 group-open:text-zinc-950">
-                  Ver datos
-                </span>
-              </summary>
-
-              <div className="mt-4 grid gap-4 md:grid-cols-[1.1fr_0.9fr] md:items-center">
-                <div className="rounded-2xl bg-zinc-50 p-4">
-                  <p className="text-sm font-bold text-zinc-950">Datos de pago</p>
-                  <ul className="mt-3 grid gap-2 text-sm text-zinc-700">
-                    {method.details.map((detail) => (
-                      <li key={detail} className="rounded-xl border border-zinc-200 bg-white px-3 py-2">
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-3 text-xs leading-5 text-zinc-500">{method.note}</p>
-                </div>
-
-                <div className="flex flex-col items-center rounded-2xl border border-zinc-200 p-4 text-center">
-                  <Image
-                    src={method.qrSrc}
-                    alt={method.qrAlt}
-                    width={220}
-                    height={220}
-                    className="h-auto w-full max-w-[220px] rounded-2xl border border-zinc-200"
-                  />
-                  <p className="mt-3 text-sm font-semibold text-zinc-950">Escaneá el QR para pagar</p>
-                  <p className="mt-1 text-xs leading-5 text-zinc-500">
-                    Después de pagar, confirmá abajo para acelerar la validación.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <a
-                  href={makeWhatsAppLink(message)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-zinc-950 px-5 py-3 text-center text-sm font-bold text-white transition hover:opacity-90"
-                >
-                  Ya hice el pago · Confirmar por WhatsApp
-                </a>
-                <a
-                  href={makeWhatsAppLink(
-                    `${plan.whatsappText} Todavía no pagué. Quiero reservar el plan ${plan.name} y necesito asistencia.`
-                  )}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-zinc-300 px-5 py-3 text-center text-sm font-bold text-zinc-900 transition hover:border-zinc-950"
-                >
-                  Quiero reservar y hacer una consulta
-                </a>
-              </div>
-            </details>
-          );
-        })}
-      </div>
-    </article>
+      <button 
+        onClick={ejecutarCopia} 
+        className={`flex-shrink-0 text-xs font-black px-3 py-1.5 rounded-md transition-all active:scale-95 ${copiado ? "bg-emerald-500 text-zinc-950 shadow-[0_0_10px_rgba(16,185,129,0.4)]" : "bg-zinc-800 hover:bg-zinc-700 text-zinc-300"}`}
+      >
+        {copiado ? "¡Copiado!" : "Copiar"}
+      </button>
+    </div>
   );
-}
+};
 
-export default function HomePage() {
+// 🔥 2. TERMINAL DE PAGO INTEGRADO (Visible y Agresivo)
+const TerminalDePago = ({ planNombre, planPrecio }: { planNombre: string, planPrecio: string }) => {
+  const [metodoPago, setMetodoPago] = useState<"fiat" | "crypto">("fiat");
+  const numeroWhatsApp = "595985864209"; 
+  const mensajeBase = encodeURIComponent(`¡Hola Oscar! Ya realicé el pago por el plan ${planNombre} (${planPrecio}). Aquí envío mi comprobante para iniciar:`);
+
   return (
-    <main className="bg-white text-zinc-950">
-      <section className="border-b border-zinc-200 bg-zinc-50">
-        <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-zinc-600 sm:text-sm">
-            Agencia de automatización y sistemas digitales · B2B / B2G · Paraguay
-          </p>
-        </div>
-      </section>
+    <div className="mt-6 rounded-3xl border border-zinc-800 bg-zinc-900/50 p-4 shadow-xl overflow-hidden relative">
+      {/* Tabs de Pago */}
+      <div className="flex p-1.5 gap-1.5 bg-zinc-950 rounded-xl mb-6 shadow-inner">
+        <button 
+          onClick={() => setMetodoPago("fiat")}
+          className={`flex-1 py-3 text-xs sm:text-sm font-bold rounded-lg transition-all ${metodoPago === "fiat" ? "bg-zinc-800 text-white shadow-md border border-zinc-700" : "text-zinc-600 hover:text-zinc-400"}`}
+        >
+          🏦 Banco / SIPAP
+        </button>
+        <button 
+          onClick={() => setMetodoPago("crypto")}
+          className={`flex-1 py-3 text-xs sm:text-sm font-bold rounded-lg transition-all ${metodoPago === "crypto" ? "bg-blue-900/20 text-blue-400 shadow-md border border-blue-900/30" : "text-zinc-600 hover:text-zinc-400"}`}
+        >
+          🪙 USDT (TRC20)
+        </button>
+      </div>
 
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+      {/* Contenido Dinámico */}
+      <div className="text-center">
+        {metodoPago === "fiat" ? (
+          <div className="animate-in fade-in duration-300">
+            <div className="bg-white p-3 rounded-2xl inline-block mb-4 mx-auto w-40 h-40 border-4 border-zinc-800 relative shadow-lg">
+              <Image src="/qr-fiat.webp" alt="QR Banco" fill className="object-cover rounded-xl" />
+            </div>
+            
+            <div className="text-left bg-zinc-900/80 p-4 rounded-xl border border-zinc-800/50 text-sm mb-6 max-w-sm mx-auto shadow-inner">
+              <p className="text-zinc-400 mb-1">Banco Itaú Paraguay</p>
+              <p className="text-white font-bold mb-3">Oscar Emigdio Amarilla Caceres</p>
+              <CampoCopia etiqueta="Cuenta" valor="720601573" />
+              <CampoCopia etiqueta="Alias / Tel" valor="0985864209" />
+              <CampoCopia etiqueta="RUC" valor="4499507-5" />
+            </div>
+          </div>
+        ) : (
+          <div className="animate-in fade-in duration-300">
+            <div className="bg-white p-3 rounded-2xl inline-block mb-4 mx-auto w-40 h-40 border-4 border-blue-900/50 relative shadow-[0_0_30px_rgba(37,99,235,0.1)]">
+              <Image src="/qr-crypto.webp" alt="QR USDT" fill className="object-cover rounded-xl" />
+            </div>
+
+            <div className="text-left bg-blue-950/10 p-4 rounded-xl border border-blue-900/20 text-sm mb-6 max-w-sm mx-auto shadow-inner">
+              <p className="text-blue-400 font-bold mb-1">Red TRON (TRC20)</p>
+              <p className="text-zinc-400 text-xs mb-3">Envía únicamente USDT a esta dirección.</p>
+              <CampoCopia etiqueta="Address" valor="TLUzuQDLjVwp4UDFAEFuypw5LmFf1K1PRQ" />
+            </div>
+          </div>
+        )}
+
+        <a 
+          href={`https://wa.me/${numeroWhatsApp}?text=${mensajeBase}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-6 rounded-xl flex items-center justify-center gap-3 transition-all active:scale-95 shadow-[0_0_20px_-5px_rgba(16,185,129,0.4)]"
+        >
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Ya pagué, enviar comprobante
+        </a>
+      </div>
+    </div>
+  );
+};
+
+// 🔥 3. PÁGINA PRINCIPAL
+export default function LandingOS() {
+  const whatsappNumber = "595985864209";
+
+  const plans = [
+    {
+      id: "landing-flash",
+      name: "Landing Page Flash",
+      price: "Gs. 1.500.000",
+      usd: "USD 200",
+      badge: "Entrada Rápida",
+      summary: "Ideal para salir ya a vender con una página enfocada en contacto, autoridad y WhatsApp.",
+      features: [
+        "Landing comercial 100% responsive",
+        "Copy orientado a conversión B2B",
+        "Botones estratégicos a WhatsApp",
+        "Bloque de pago con QR integrado",
+        "Entrega rápida (72hs hábiles)",
+      ]
+    },
+    {
+      id: "automatizacion-inicial",
+      name: "Automatización Inicial",
+      price: "Gs. 2.500.000",
+      usd: "USD 340",
+      badge: "Ecosistema PRO",
+      summary: "Para empresas que necesitan captar, ordenar y acelerar su operación comercial.",
+      features: [
+        "Todo lo del plan Landing Flash",
+        "Formulario de Cotización inteligente",
+        "Flujo de captación y precalificación",
+        "Optimización SEO Técnica (PageSpeed 99)",
+        "Base preparada para escalar a CRM interno",
+      ]
+    },
+  ];
+
+  return (
+    <div className="bg-zinc-950 text-zinc-50 font-sans min-h-screen selection:bg-blue-500 selection:text-white pb-24 md:pb-0">
+      
+      {/* NAVEGACIÓN */}
+      <nav className="flex justify-between items-center px-6 py-4 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-50">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 relative flex items-center justify-center">
+             <Image src="/logo-ayc.webp" alt="AYCweb Logo" width={32} height={32} className="object-contain" />
+          </div>
+          <span className="font-black tracking-tighter text-xl italic text-white">AYCweb</span>
+        </div>
+        <div className="hidden md:flex items-center gap-2 text-xs font-medium text-emerald-400 bg-emerald-400/10 px-3 py-1.5 rounded-full border border-emerald-400/20">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          Garantía de Resultados
+        </div>
+      </nav>
+
+      {/* HERO SECTION */}
+      <section className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:py-32 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <p className="inline-flex rounded-full border border-zinc-300 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-700">
-              Embudo serio para vender más rápido
+            <p className="inline-flex rounded-full border border-blue-900/50 bg-blue-950/30 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-400 mb-6 shadow-inner">
+              Sistemas Digitales de Venta
             </p>
-            <h1 className="mt-5 max-w-4xl text-4xl font-black tracking-tight text-zinc-950 sm:text-5xl lg:text-6xl">
-              Convertí tu web en un sistema lógico de atención, pago y cierre.
+            <h1 className="max-w-4xl text-4xl font-black tracking-tighter text-white sm:text-5xl lg:text-6xl leading-[1.1]">
+              Convertí tu web en un sistema lógico de <span className="text-blue-500">atención, pago y cierre.</span>
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-zinc-600 sm:text-xl">
-              No vendemos una página linda. Diseñamos una estructura comercial clara para captar,
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
+              No vendemos una página linda. Diseñamos una estructura comercial clara para captar clientes,
               mostrar valor, presentar métodos de pago y cerrar por WhatsApp sin perder velocidad.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#planes"
-                className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-zinc-950 px-6 py-3 text-sm font-bold text-white transition hover:opacity-90"
-              >
-                Ver planes y activar pago
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a href="#planes" className="inline-flex min-h-14 items-center justify-center rounded-xl bg-blue-600 px-8 py-3 text-base font-black text-white transition-all hover:bg-blue-500 shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)] active:scale-95">
+                Ver planes y activar pago &rarr;
               </a>
-              <a
-                href={makeWhatsAppLink(
-                  "Hola Oscar. Estuve viendo aycweb.com y quiero que me asesores sobre cuál plan me conviene más."
-                )}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-zinc-300 px-6 py-3 text-sm font-bold text-zinc-900 transition hover:border-zinc-950"
-              >
-                Hablar por WhatsApp ahora
+              <a href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hola Oscar. Estoy en aycweb.com/os y quiero que me asesores sobre cuál plan me conviene.")}`} target="_blank" rel="noreferrer" className="inline-flex min-h-14 items-center justify-center rounded-xl border border-zinc-700 bg-zinc-900 px-8 py-3 text-base font-bold text-white transition-all hover:bg-zinc-800">
+                Consultar por WhatsApp
               </a>
             </div>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {results.map((item) => (
-                <div key={item.label} className="rounded-2xl border border-zinc-200 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
-                    {item.label}
-                  </p>
-                  <p className="mt-2 text-lg font-black text-zinc-950">{item.value}</p>
+            <div className="mt-12 grid gap-4 sm:grid-cols-3 border-t border-zinc-900 pt-8">
+              {[
+                { label: "Respuesta", value: "15 seg" },
+                { label: "Experiencia", value: "Sin fricción" },
+                { label: "Enfoque", value: "B2B Corporativo" },
+              ].map((item) => (
+                <div key={item.label} className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4 shadow-inner">
+                  <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">{item.label}</p>
+                  <p className="mt-2 text-xl font-black text-white">{item.value}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <aside className="rounded-[2rem] border border-zinc-200 bg-zinc-950 p-6 text-white shadow-sm sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400">
-              Qué obtiene el cliente
-            </p>
-            <h2 className="mt-4 text-2xl font-black tracking-tight sm:text-3xl">
-              Un recorrido sin fricción.
-            </h2>
-            <ul className="mt-6 grid gap-4">
-              {trustPoints.map((point) => (
-                <li key={point} className="rounded-2xl border border-zinc-800 bg-zinc-900 p-4 text-sm leading-6 text-zinc-200">
-                  {point}
+          <aside className="rounded-[2.5rem] border border-zinc-800 bg-black p-8 text-white shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-emerald-400 to-blue-500"></div>
+            <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">El Recorrido del Cliente</p>
+            <h2 className="text-2xl font-black tracking-tight sm:text-3xl mb-8">Un embudo letal.</h2>
+            <ul className="grid gap-4 relative z-10">
+              {[
+                "1. Atención: Mensaje claro y directo.",
+                "2. Propuesta: Oferta y precio visible.",
+                "3. Cobro: QR y datos bancarios a un click.",
+                "4. Cierre: WhatsApp pre-armado."
+              ].map((point) => (
+                <li key={point} className="rounded-2xl border border-zinc-800 bg-zinc-900/80 p-4 text-sm font-medium text-zinc-300 flex items-start gap-3 shadow-sm">
+                   <span className="text-blue-500 mt-0.5">✔</span> {point}
                 </li>
               ))}
             </ul>
-            <div className="mt-6 rounded-2xl bg-white/5 p-4">
-              <p className="text-sm font-bold">Ideal para:</p>
-              <p className="mt-2 text-sm leading-6 text-zinc-300">
-                empresas que quieren vender con más orden, mostrar autoridad y permitir que el cliente
-                pague con confianza antes de confirmar la operación.
-              </p>
-            </div>
           </aside>
         </div>
       </section>
 
-      <section className="border-y border-zinc-200 bg-zinc-50">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="grid gap-4 md:grid-cols-3">
-            {[
-              {
-                title: "1. Captar",
-                text: "Mensaje claro, propuesta concreta y CTA sin distracciones.",
-              },
-              {
-                title: "2. Cobrar",
-                text: "Métodos de pago visibles con QR y datos accesibles desde el celular.",
-              },
-              {
-                title: "3. Confirmar",
-                text: "Botón final con mensaje preconfigurado para validar rápido por WhatsApp.",
-              },
-            ].map((step) => (
-              <article key={step.title} className="rounded-3xl border border-zinc-200 bg-white p-6">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500">
-                  {step.title}
-                </p>
-                <p className="mt-3 text-base leading-7 text-zinc-700">{step.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="planes" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500">
-            Planes listos para vender
-          </p>
-          <h2 className="mt-3 text-3xl font-black tracking-tight text-zinc-950 sm:text-4xl">
+      {/* SECCIÓN DE PLANES CON TERMINAL INYECTADA */}
+      <section id="planes" className="mx-auto max-w-7xl px-6 py-16 sm:py-24 border-t border-zinc-900">
+        <div className="max-w-3xl mb-16 text-center mx-auto">
+          <p className="text-sm font-bold uppercase tracking-widest text-blue-500 mb-4">Planes de Implementación</p>
+          <h2 className="text-3xl font-black tracking-tight text-white sm:text-5xl mb-6">
             Elegí tu plan, revisá el pago y cerrá en el mismo flujo.
           </h2>
-          <p className="mt-4 text-lg leading-8 text-zinc-600">
-            Cada plan ya incluye el paso lógico de cobro y confirmación. Así el visitante entiende,
-            confía y actúa sin perderse.
+          <p className="text-lg leading-relaxed text-zinc-400">
+            Cada plan ya incluye la pasarela de confirmación. Tu cliente entiende, confía, paga y se contacta sin perderse en el camino.
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-2">
           {plans.map((plan) => (
-            <PlanCard key={plan.id} plan={plan} />
+            <article key={plan.id} className="rounded-[2.5rem] border border-zinc-800 bg-black p-8 shadow-2xl flex flex-col relative overflow-hidden">
+               <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
+              
+              <div className="flex items-start justify-between gap-4 mb-8 relative z-10">
+                <div>
+                  <p className="inline-block rounded-full bg-zinc-900 border border-zinc-700 px-3 py-1 text-xs font-bold uppercase tracking-widest text-zinc-300 mb-4">
+                    {plan.badge}
+                  </p>
+                  <h3 className="text-3xl font-black tracking-tight text-white">{plan.name}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-400">{plan.summary}</p>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-zinc-900/50 border border-zinc-800 p-6 mb-8 flex justify-between items-end relative z-10 shadow-inner">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Inversión Única</p>
+                  <p className="text-4xl font-black text-white">{plan.price}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xl font-bold text-blue-400">{plan.usd}</p>
+                </div>
+              </div>
+
+              <ul className="grid gap-4 text-sm text-zinc-300 mb-8 flex-1 relative z-10">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3">
+                    <span className="text-emerald-500 font-bold text-lg leading-none">✓</span>
+                    <span className="font-medium">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* 🔥 AQUÍ INYECTAMOS LA TERMINAL DE PAGO REAL */}
+              <div className="mt-auto relative z-10 border-t border-zinc-800 pt-8">
+                 <h4 className="text-white font-bold text-lg mb-2 text-center">Activar este Plan</h4>
+                 <p className="text-zinc-500 text-xs text-center mb-4">Realiza el pago escaneando o copiando los datos a continuación:</p>
+                 <TerminalDePago planNombre={plan.name} planPrecio={plan.price} />
+              </div>
+            </article>
           ))}
         </div>
       </section>
 
-      <section className="border-y border-zinc-200 bg-zinc-50">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500">
-                Objeciones frecuentes
-              </p>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-zinc-950 sm:text-4xl">
-                Lo importante no es solo el diseño. Es la lógica comercial.
-              </h2>
-            </div>
-            <div className="grid gap-4">
-              {[
-                {
-                  q: "¿Por qué mostrar el pago antes del WhatsApp?",
-                  a: "Porque reduce fricción. El cliente serio quiere ver cuánto cuesta y cómo pagar sin tener que pedir permiso para cada paso.",
-                },
-                {
-                  q: "¿Esto sigue siendo mobile-first?",
-                  a: "Sí. Todo está pensado en bloques, lectura simple, botones altos, contraste fuerte y cero dependencia de animaciones pesadas.",
-                },
-                {
-                  q: "¿Se puede mejorar después?",
-                  a: "Sí. Esta base está hecha para escalar a casos, sectores, formularios más avanzados y automatizaciones internas.",
-                },
-              ].map((item) => (
-                <article key={item.q} className="rounded-3xl border border-zinc-200 bg-white p-6">
-                  <h3 className="text-lg font-bold text-zinc-950">{item.q}</h3>
-                  <p className="mt-3 text-base leading-7 text-zinc-700">{item.a}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <div className="rounded-[2rem] bg-zinc-950 p-6 text-white sm:p-8 lg:p-10">
-          <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-400">
-                Cierre directo
-              </p>
-              <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
-                Si querés, la versión ideal es fusionar la claridad de aycweb.com con la fuerza de /oscar.
-              </h2>
-              <p className="mt-4 max-w-2xl text-lg leading-8 text-zinc-300">
-                Esta propuesta hace exactamente eso: mantiene autoridad, muestra precio, enseña cómo
-                pagar y recién después empuja la confirmación por WhatsApp.
-              </p>
-            </div>
-            <div className="grid gap-3">
-              <a
-                href="#planes"
-                className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-bold text-zinc-950 transition hover:opacity-90"
-              >
-                Elegir plan ahora
-              </a>
-              <a
-                href={makeWhatsAppLink(
-                  "Hola Oscar. Quiero que implementemos esta nueva landing con embudo lógico, pago visible y cierre por WhatsApp."
-                )}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-zinc-700 px-6 py-3 text-sm font-bold text-white transition hover:border-white"
-              >
-                Pedir implementación por WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="sticky bottom-0 z-40 border-t border-zinc-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <div>
-            <p className="text-sm font-bold text-zinc-950">¿Listo para activar el embudo?</p>
-            <p className="text-xs text-zinc-600">Elegí plan, mirá el pago y confirmá por WhatsApp.</p>
-          </div>
-          <div className="grid gap-3 sm:flex">
-            <a
-              href="#planes"
-              className="inline-flex min-h-11 items-center justify-center rounded-2xl bg-zinc-950 px-5 py-3 text-sm font-bold text-white transition hover:opacity-90"
-            >
-              Ver planes
-            </a>
-            <a
-              href={makeWhatsAppLink(
-                "Hola Oscar. Estoy listo para avanzar y necesito ayuda para elegir el plan correcto."
-              )}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-zinc-300 px-5 py-3 text-sm font-bold text-zinc-900 transition hover:border-zinc-950"
-            >
-              Hablar por WhatsApp
-            </a>
-          </div>
-        </div>
+      {/* STICKY CTA MOBILE */}
+      <div className="md:hidden fixed bottom-0 left-0 w-full bg-zinc-950/90 backdrop-blur-lg border-t border-zinc-800 p-4 z-50 shadow-[0_-20px_30px_-10px_rgba(0,0,0,0.7)]">
+        <a 
+          href="#planes" 
+          className="w-full flex bg-blue-600 text-white font-black py-4 px-6 rounded-xl items-center justify-center text-lg active:scale-95 transition-transform shadow-[0_0_20px_rgba(37,99,235,0.4)]"
+        >
+          Ver Planes y Pagar &rarr;
+        </a>
       </div>
-    </main>
+
+    </div>
   );
 }
-
