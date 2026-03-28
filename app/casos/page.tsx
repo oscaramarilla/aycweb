@@ -45,7 +45,7 @@ export default function CasosPage() {
         </div>
       </section>
 
-      {/* 🔥 PUNTO 5: CASO GASTRONOMÍA UNIFORMADO */}
+      {/* CASO 2: GASTRONOMÍA UNIFORMADO Y CORPORATIVO */}
       <section className="py-24 bg-zinc-950 border-b border-zinc-900">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center flex-row-reverse">
           <div className="lg:order-2">
@@ -62,10 +62,11 @@ export default function CasosPage() {
                 </ul>
               </div>
             </div>
-            <div className="flex gap-4">
-               <a href="https://latabletapy.com" target="_blank" rel="noopener noreferrer" className="bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 px-6 rounded-xl transition-all inline-flex">Ver Caso La Tableta &rarr;</a>
-               {/* 🔥 PUNTO 6: PROYECTO PRIVADO */}
-               <span className="bg-zinc-900 border border-zinc-800 text-zinc-500 text-xs font-bold py-3 px-6 rounded-xl flex items-center">Proyecto privado / No publicable</span>
+            <div className="flex flex-col sm:flex-row gap-4">
+               <a href="https://latabletapy.com" target="_blank" rel="noopener noreferrer" className="bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 px-6 rounded-xl transition-all inline-flex justify-center">Ver Caso La Tableta &rarr;</a>
+               <span className="bg-zinc-900 border border-zinc-800 text-zinc-400 text-xs font-medium py-3 px-6 rounded-xl flex items-center justify-center text-center">
+                  Proyecto privado no publicable por confidencialidad comercial
+               </span>
             </div>
           </div>
           <div className="lg:order-1 bg-zinc-900 rounded-[2rem] border border-zinc-800 p-8 shadow-2xl">

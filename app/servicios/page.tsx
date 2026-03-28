@@ -54,7 +54,7 @@ export default function ServiciosPage() {
         </div>
       </section>
 
-      {/* 🔥 PUNTO 8: MÓDULOS (Texto suavizado) */}
+      {/* MÓDULOS (Claim técnico suavizado) */}
       <section className="py-24 bg-zinc-950 border-b border-zinc-900">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
@@ -67,8 +67,8 @@ export default function ServiciosPage() {
                  <div className="flex items-center gap-4 mb-6 border-b border-zinc-800 pb-6">
                    <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black text-xl shadow-lg">01</div>
                    <div>
-                     <h4 className="text-white font-bold">Arquitectura web optimizada</h4>
-                     <p className="text-xs text-zinc-500">Núcleo preparado para conversión</p>
+                     <h4 className="text-white font-bold">Arquitectura web de alto rendimiento</h4>
+                     <p className="text-xs text-zinc-500">Base ultra-rápida optimizada para conversión</p>
                    </div>
                  </div>
                  <div className="flex items-center gap-4 border-b border-zinc-800 pb-6 ml-6 mb-6">

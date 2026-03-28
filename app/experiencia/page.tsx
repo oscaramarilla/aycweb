@@ -3,32 +3,35 @@ import Image from "next/image";
 
 export default function ExperienciaPage() {
   const whatsappNumber = "595985864209";
-  const whatsappMsg = encodeURIComponent("¡Hola! Leí sobre tu trayectoria y quiero agendar un diagnóstico.");
+  const whatsappMsg = encodeURIComponent("¡Hola Oscar! Leí sobre tu trayectoria y me interesa el nivel de disciplina operativa que aplican a los sistemas digitales. ¿Podemos agendar una reunión?");
 
   return (
     <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans pb-24 md:pb-0">
       
       <section className="relative pt-16 pb-16 md:pt-28 md:pb-16 px-6 text-center overflow-hidden border-b border-zinc-900">
-        <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter text-white">
-          Llevamos la <span className="text-blue-500">disciplina corporativa</span> al mundo digital.
-        </h1>
-        <p className="text-xl text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">
-          Antes de escribir una sola línea de código, operamos en la vida real. Entendemos de logística, contratos y licitaciones. Esa es la mentalidad que inyectamos en tu software.
-        </p>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+        <div className="max-w-4xl mx-auto relative z-10">
+          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-[1.05] text-white">
+            Llevamos la <span className="text-blue-500">disciplina corporativa</span> al mundo digital.
+          </h1>
+          <p className="text-xl text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">
+            Antes de escribir una sola línea de código, operamos en la vida real. Entendemos de logística, contratos y licitaciones. Esa es la mentalidad que inyectamos en tu software.
+          </p>
+        </div>
       </section>
 
-      {/* 🔥 PUNTO 9: INSTITUCIONES EN CHIPS/CARDS */}
+      {/* 🔥 PUNTO 4: INSTITUCIONES EN CHIPS SEPARADOS */}
       <section className="py-12 bg-black border-b border-zinc-900">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-zinc-600 mb-8">
             Instituciones y empresas que confían en nuestro criterio:
           </p>
           <div className="flex flex-wrap justify-center items-center gap-4">
-            <span className="bg-zinc-900 border border-zinc-800 px-5 py-2.5 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Colegio Cristo Rey</span>
-            <span className="bg-zinc-900 border border-zinc-800 px-5 py-2.5 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Caja Mutual UC</span>
-            <span className="bg-zinc-900 border border-zinc-800 px-5 py-2.5 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Webprox</span>
-            <span className="bg-zinc-900 border border-zinc-800 px-5 py-2.5 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Metal Mad E.A.S.</span>
-            <span className="bg-zinc-900 border border-zinc-800 px-5 py-2.5 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Ministerio de Educación (MEC)</span>
+            <span className="bg-zinc-900 border border-zinc-800 px-6 py-3 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Colegio Cristo Rey</span>
+            <span className="bg-zinc-900 border border-zinc-800 px-6 py-3 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Caja Mutual UC</span>
+            <span className="bg-zinc-900 border border-zinc-800 px-6 py-3 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Webprox</span>
+            <span className="bg-zinc-900 border border-zinc-800 px-6 py-3 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Metal Mad E.A.S.</span>
+            <span className="bg-zinc-900 border border-zinc-800 px-6 py-3 rounded-full text-zinc-300 text-sm font-bold shadow-sm">Ministerio de Educación (MEC)</span>
           </div>
         </div>
       </section>
