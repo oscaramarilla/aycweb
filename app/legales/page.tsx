@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 
 export default function GeneradorContrato() {
-  // Estados para guardar los datos del cliente en tiempo real
   const [datos, setDatos] = useState({
     empresa: '',
     ruc: '',
@@ -14,7 +13,6 @@ export default function GeneradorContrato() {
 
   const [generando, setGenerando] = useState(false);
 
-  // Lógica de precios según el servicio seleccionado
   const planes = {
     "Pack Digital Express": { precio: "1.500.000", anticipo: "750.000", saldo: "750.000" },
     "Automatización Empresarial": { precio: "4.500.000", anticipo: "2.250.000", saldo: "2.250.000" },
@@ -23,59 +21,73 @@ export default function GeneradorContrato() {
 
   const planSeleccionado = planes[datos.servicio as keyof typeof planes];
 
-  // 🔥 FUNCIÓN INFALIBLE BLINDADA (Fuerza descarga directa y pasa el filtro de TypeScript)
+  // 🔥 FUNCIÓN INFALIBLE BLINDADA PARA MÓVILES (Sintaxis simplificada anti-errores)
   const generarPDF = async () => {
     setGenerando(true);
     try {
-      // Importación dinámica para evitar errores de SSR en Next.js
       const html2pdf = (await import('html2pdf.js')).default;
       
       const elemento = document.getElementById('vista-pdf-oculta');
       
-      // 🛡️ BLINDAJE 1: Validamos que el elemento exista para que TS no llore (HTMLElement | null)
       if (!elemento) {
         alert("Error: No se pudo cargar la vista del documento.");
         setGenerando(false);
         return;
       }
 
-      const nombreArchivo = `Contrato_SOW_${datos.empresa ? datos.empresa.replace(/\s+/g, '_') : 'AYCweb'}.pdf`;
+      // 🛡️ BLINDAJE ANTI-ERRORES: Armamos el nombre del archivo de forma tradicional
+      let nombreEmpresa = "AYCweb";
+      if (datos.empresa && datos.empresa !== '') {
+        nombreEmpresa = datos.empresa.split(' ').join('_');
+      }
+      const nombreArchivo = "Contrato_SOW_" + nombreEmpresa + ".pdf";
 
-      // 🛡️ BLINDAJE 2: Tipo "any" para que TS apruebe los formatos exactos
+      // Opciones optimizadas para que no explote la memoria RAM del celular
       const opciones: any = {
         margin:       10,
         filename:     nombreArchivo,
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true },
+        image:        { type: 'jpeg', quality: 0.95 }, 
+        html2canvas:  { scale: 1.5, logging: false }, 
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
 
-      // Esto fuerza la descarga en móviles y PCs directo a la carpeta de descargas
-      await html2pdf().set(opciones).from(elemento).save();
+      // 🚀 TÁCTICA DE FUERZA BRUTA: Forzar Blob y Descarga
+      const worker = html2pdf().set(opciones).from(elemento);
+      const pdfBlob = await worker.output('blob');
+      
+      const url = window.URL.createObjectURL(pdfBlob);
+      const enlace = document.createElement('a');
+      enlace.href = url;
+      enlace.download = nombreArchivo;
+      
+      document.body.appendChild(enlace);
+      enlace.click();
+      
+      // Limpieza de memoria
+      setTimeout(() => {
+        document.body.removeChild(enlace);
+        window.URL.revokeObjectURL(url);
+      }, 100);
       
     } catch (error) {
       console.error("Error generando PDF:", error);
-      alert("Hubo un error al generar el documento. Intenta nuevamente.");
+      alert("Hubo un error de memoria en tu dispositivo al generar el documento. Intenta cerrar otras pestañas e intenta nuevamente.");
     } finally {
       setGenerando(false);
     }
   };
 
-  // Link de WhatsApp dinámico
   const empresaNombre = datos.empresa || 'mi empresa';
-  const whatsappLink = `https://wa.me/595985864209?text=${encodeURIComponent(`Hola Oscar, ya generé el contrato por el ${datos.servicio} para ${empresaNombre}. Te paso el comprobante del anticipo para agendar el inicio del proyecto.`)}`;
+  const whatsappLink = "https://wa.me/595985864209?text=" + encodeURIComponent("Hola Oscar, ya generé el contrato por el " + datos.servicio + " para " + empresaNombre + ". Te paso el comprobante del anticipo para agendar el inicio del proyecto.");
 
   return (
     <main className="min-h-screen bg-zinc-950 text-zinc-300 font-sans selection:bg-blue-500/30 overflow-x-hidden">
       
-      {/* ==========================================
-          VISTA WEB PRINCIPAL (Lo que ve el usuario)
-          ========================================== */}
+      {/* VISTA WEB PRINCIPAL */}
       <div className="py-12 px-4 sm:px-6 max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 relative z-10">
         
         {/* Columna Izquierda (FORMULARIO) */}
         <div className="w-full lg:w-2/5 order-2 lg:order-1 space-y-8">
-          
           <div>
             <h1 className="text-4xl font-black text-white mb-4">Generador de SOW</h1>
             <p className="text-zinc-400 mb-8">Completa los datos corporativos. El contrato se actualizará en tiempo real. Descárgalo en PDF y envíanos el comprobante.</p>
@@ -187,10 +199,7 @@ export default function GeneradorContrato() {
         </div>
       </div>
 
-      {/* ==========================================
-          VISTA OCULTA EXCLUSIVA PARA EL PDF
-          (Esto es lo que captura html2pdf y lo baja al celular)
-          ========================================== */}
+      {/* VISTA OCULTA EXCLUSIVA PARA EL PDF */}
       <div className="absolute -left-[9999px] top-0 opacity-0 pointer-events-none">
         <div id="vista-pdf-oculta" className="bg-white text-black p-10 font-serif w-[800px] mx-auto">
           <div className="border-b-2 border-zinc-300 pb-4 mb-8 text-center">
@@ -207,7 +216,7 @@ export default function GeneradorContrato() {
             <p>
               <strong>REUNIDOS:</strong><br/>
               De una parte, <strong>Oscar Emigdio Amarilla Cáceres</strong> (en adelante "AYCweb"), con RUC 4499507-5.<br/>
-              De otra parte, <strong>{datos.empresa || '_________________________'}</strong>, con RUC <strong>{datos.ruc || '_________________'}</strong> y domicilio en <strong>{datos.direccion || '_________________________'}</strong> (en adelante "El Cliente"), representada en este acto por <strong>{datos.representante || '_________________________'}</strong>.
+              De otra parte, <strong>{datos.empresa || '________'}</strong>, con RUC <strong>{datos.ruc || '_____'}</strong> y domicilio en <strong>{datos.direccion || '________'}</strong> (en adelante "El Cliente"), representada en este acto por <strong>{datos.representante || '_________'}</strong>.
             </p>
 
             <p>
