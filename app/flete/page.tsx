@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
-import CalculadoraFletes from '../../components/tools/CalculadoraFletes';
-
+import CalculadoraFletes from '../../components/tools/MotorFletes';
 // Magia SEO
 export const metadata: Metadata = {
   title: 'Calculadora de Fletes B2B | AYCweb',
