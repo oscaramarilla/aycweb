@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import CalculadoraFletes from '@/components/tools/CalculadoraFletes';
+import CalculadoraFletes from '../../components/tools/CalculadoraFletes';
 
 // Magia SEO
 export const metadata: Metadata = {
