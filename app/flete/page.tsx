@@ -2,19 +2,20 @@ import type { Metadata } from "next";
 import CalculadoraFletes from "@/components/tools/MotorFletes";
 
 export const metadata: Metadata = {
-  title: "Calculadora de Fletes B2B | AYCweb",
-  description: "Calculá costos operativos, peajes, diésel y margen de ganancia para fletes logísticos en Paraguay al instante.",
+  title: "Motor Inteligente de Fletes | AYCweb",
+  description: "Calculadora logística B2B conectada a Petropar. Costos operativos, personal, desgaste y rentabilidad automatizada en Paraguay.",
 };
 
 export default function FletePage() {
   return (
     <div className="py-12 px-4">
-      <div className="max-w-4xl mx-auto mb-8 text-center">
+      <div className="max-w-5xl mx-auto mb-8 text-center">
         <h1 className="text-4xl font-black text-white mb-4">
-          Calculadora Logística
+          Arquitectura Logística Digital
         </h1>
-        <p className="text-zinc-400">
-          Una muestra de nuestros motores de cálculo B2B a medida.
+        <p className="text-zinc-400 text-lg">
+          No vendemos páginas. Construimos infraestructura operativa. <br/>
+          Probá en vivo cómo nuestro software convierte el caos logístico en números rentables y transparentes.
         </p>
       </div>
 
