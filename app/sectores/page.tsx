@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function SectoresPage() {
   const whatsappNumber = "595985864209";
-  const whatsappMsg = encodeURIComponent("¡Hola! Vi la página de sectores y quiero agendar un diagnóstico.");
+  const whatsappMsg = encodeURIComponent("¡Hola Oscar! Vi la página de sectores y quiero agendar un diagnóstico.");
 
   const sectores = [
     {
@@ -11,7 +11,7 @@ export default function SectoresPage() {
       color: "blue",
       dolor: "Cotizaciones lentas, inventario desconectado y fricción B2B.",
       solucion: "Sistematizamos la cotización. Tu equipo comercial genera presupuestos en PDF en segundos, directo desde una plataforma en la nube.",
-      caso: { nombre: "Metal Mad E.A.S.", desc: "De 2hs manuales a 3 min por cotización.", url: "/casos", btnText: "Ver caso Metal Mad" }
+      caso: { nombre: "Metal Mad E.A.S.", url: "/casos", btnText: "Ver caso Metal Mad" }
     },
     {
       id: "salud",
@@ -19,7 +19,7 @@ export default function SectoresPage() {
       color: "purple",
       dolor: "Dependencia total de redes sociales y agendamiento desordenado en WhatsApp.",
       solucion: "Creamos ecosistemas 24/7. El paciente entra, ve la autoridad de la clínica y se agenda automáticamente, filtrando a los curiosos.",
-      caso: { nombre: "Dra. Bianca", desc: "Consultorio digital de agendamiento automático.", url: "/casos", btnText: "Ver caso Dra. Bianca" }
+      caso: { nombre: "Dra. Bianca", url: "/casos", btnText: "Ver caso Dra. Bianca" }
     },
     {
       id: "operativa",
@@ -27,15 +27,15 @@ export default function SectoresPage() {
       color: "emerald",
       dolor: "Onboarding lento, redacción manual de contratos y pérdida de tiempo administrativo.",
       solucion: "Implementamos generadores de documentos. Llenás un formulario y el sistema escupe un contrato B2B blindado, listo para firmar.",
-      caso: { nombre: "AYC Contratos", desc: "Automatización de documentación legal.", url: "/legales", btnText: "Ver demo legal" }
+      caso: { nombre: "AYC Contratos", url: "/legales", btnText: "Ver demo legal" }
     },
     {
       id: "corporativo",
       titulo: "Instituciones & B2G",
       color: "zinc",
       dolor: "Infraestructura web obsoleta que no transmite confianza para licitaciones o socios corporativos.",
-      solucion: "Construimos portales institucionales robustos, con seguridad extrema y PageSpeed optimizado, diseñados para soportar alto tráfico.",
-      caso: { nombre: "Colegio Cristo Rey", desc: "Desarrollo institucional de alta confianza.", url: "/casos", btnText: "Ver caso Cristo Rey" }
+      solucion: "Construimos portales institucionales robustos, con seguridad extrema y arquitectura optimizada, diseñados para soportar alto tráfico.",
+      caso: { nombre: "Colegio Cristo Rey", url: "/casos", btnText: "Ver caso Cristo Rey" }
     }
   ];
 
@@ -60,9 +60,9 @@ export default function SectoresPage() {
                 <div className="mt-auto bg-zinc-950 p-5 rounded-2xl border border-zinc-800/80">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
+                      <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Caso de Éxito Aplicado</p>
                       <h4 className="text-white font-bold text-base">{sector.caso.nombre}</h4>
                     </div>
-                    {/* 🔥 PUNTO 7: BOTONES ESPECÍFICOS */}
                     <Link href={sector.caso.url} className={`shrink-0 text-${sector.color}-400 border border-${sector.color}-900/50 text-xs font-bold py-2 px-4 rounded-lg`}>
                       {sector.caso.btnText} &rarr;
                     </Link>
@@ -86,4 +86,3 @@ export default function SectoresPage() {
     </div>
   );
 }
-
