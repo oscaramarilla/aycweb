@@ -7,10 +7,14 @@ import Link from "next/link";
 const CampoCopia = ({ etiqueta, valor }: { etiqueta: string; valor: string }) => {
   const [copiado, setCopiado] = useState(false);
 
-  const ejecutarCopia = () => {
-    navigator.clipboard.writeText(valor);
-    setCopiado(true);
-    setTimeout(() => setCopiado(false), 2000);
+  const ejecutarCopia = async () => {
+    try {
+      await navigator.clipboard.writeText(valor);
+      setCopiado(true);
+      setTimeout(() => setCopiado(false), 2000);
+    } catch (error) {
+      console.error("No se pudo copiar:", error);
+    }
   };
 
   return (
@@ -58,11 +62,12 @@ const TerminalDePago = ({ planNombre, planPrecio }: { planNombre: string, planPr
       <div className="p-4 text-center">
         {metodoPago === "fiat" ? (
           <div className="animate-in fade-in duration-300">
-            <div className="bg-white p-3 rounded-2xl inline-block mb-6 mx-auto w-40 h-40 border-4 border-zinc-800 relative shadow-lg">
-              <Image src="/qr-fiat.webp" alt="QR Banco" fill className="object-cover rounded-xl" />
+            {/* CORRECCIÓN DE QR ESTIRADO: Se cambió object-cover por object-contain y se ajustó el tamaño */}
+            <div className="bg-white p-2 rounded-2xl inline-block mb-6 mx-auto w-48 h-48 border-4 border-zinc-800 relative shadow-lg">
+              <Image src="/qr-fiat.webp" alt="QR Banco" fill className="object-contain p-2 rounded-xl" priority />
             </div>
             <div className="text-left bg-zinc-950/80 p-5 rounded-2xl border border-zinc-800/80 text-sm mb-6 max-w-sm mx-auto shadow-inner">
-              <div className="mb-4">
+              <div className="mb-4 border-b border-zinc-800 pb-3">
                 <p className="text-zinc-500 text-xs uppercase tracking-widest font-bold mb-1">Banco Itaú</p>
                 <p className="text-white font-bold text-base">Oscar Emigdio Amarilla Caceres</p>
               </div>
@@ -73,11 +78,12 @@ const TerminalDePago = ({ planNombre, planPrecio }: { planNombre: string, planPr
           </div>
         ) : (
           <div className="animate-in fade-in duration-300">
-            <div className="bg-white p-3 rounded-2xl inline-block mb-6 mx-auto w-40 h-40 border-4 border-blue-900/50 relative shadow-[0_0_30px_rgba(37,99,235,0.15)]">
-              <Image src="/qr-crypto.webp" alt="QR USDT" fill className="object-cover rounded-xl" />
+             {/* CORRECCIÓN DE QR ESTIRADO: object-contain aplicado */}
+            <div className="bg-white p-2 rounded-2xl inline-block mb-6 mx-auto w-48 h-48 border-4 border-blue-900/50 relative shadow-[0_0_30px_rgba(37,99,235,0.15)]">
+              <Image src="/qr-crypto.webp" alt="QR USDT" fill className="object-contain p-2 rounded-xl" priority />
             </div>
             <div className="text-left bg-blue-950/20 p-5 rounded-2xl border border-blue-900/30 text-sm mb-6 max-w-sm mx-auto shadow-inner">
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-2 border-b border-blue-900/30 pb-3">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                 <p className="text-blue-400 font-bold text-base">Red TRON (TRC20)</p>
               </div>
@@ -273,6 +279,31 @@ export default function LandingOS() {
               </div>
             </article>
           ))}
+        </div>
+
+        {/* --- INYECTADO: MANTENIMIENTO Y CROSS-LINK SAAS --- */}
+        <div className="mx-auto mt-12 flex max-w-4xl flex-col items-center gap-8 rounded-3xl border border-zinc-800 bg-zinc-900/50 p-8 text-left md:flex-row">
+          <div className="flex-1">
+            <h4 className="mb-2 text-xl font-bold text-white">Mantenimiento y Tranquilidad Operativa</h4>
+            <p className="text-sm text-zinc-400">
+              Tu sistema necesita un motor que no se apague. Nos encargamos del hosting premium, dominio a tu nombre, seguridad y soporte continuo.
+            </p>
+          </div>
+          <div className="flex-shrink-0 border-l border-zinc-800 pl-8 text-center md:text-right">
+            <p className="mb-1 text-sm font-bold uppercase tracking-widest text-zinc-500">Desde</p>
+            <p className="text-3xl font-black text-blue-400">
+              $15 USD<span className="text-sm font-medium text-zinc-500">/mes</span>
+            </p>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-8 max-w-2xl text-center">
+          <p className="text-sm text-zinc-400">
+            ¿Preferís no pagar el desarrollo inicial y tener todo el software y el mantenimiento en una sola suscripción? <br />
+            <Link href="/sos" className="mt-2 inline-block font-bold text-emerald-400 hover:underline">
+              Ver planes SaaS mensuales →
+            </Link>
+          </p>
         </div>
       </section>
 

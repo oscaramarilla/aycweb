@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
 
-// 🚀 EL FIX DEL SEO: Esto destruye el "Create Next App" en Google
 export const metadata: Metadata = {
   title: "Ingeniería Comercial y Sistemas B2B | AYCweb",
   description: "Construimos infraestructura digital y software operativo B2B en Paraguay. Cotizadores, embudos y portales para industrias y empresas que buscan escalar.",
@@ -28,24 +27,25 @@ export default function Home() {
             No hacemos "sitios web bonitos". Construimos activos digitales (cotizadores, embudos, paneles) que convierten procesos manuales en máquinas comerciales 24/7.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
+            {/* CORRECCIÓN #1: El botón ahora lleva a /oscar (Venta) en vez de /os (Checkout) */}
+            <Link 
+              href="/oscar" 
+              className="bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)] active:scale-95"
+            >
+              Ver Planes y Precios
+            </Link>
             <a 
               href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
               target="_blank" rel="noopener noreferrer"
-              className="bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)] active:scale-95"
-            >
-              Agendar Diagnóstico Gratuito
-            </a>
-            <Link 
-              href="/os" 
               className="bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-white font-bold py-4 px-8 rounded-xl transition-all"
             >
-              Ver Sistema "Máquina 24/7"
-            </Link>
+              Agendar Diagnóstico
+            </a>
           </div>
         </div>
       </section>
 
-      {/* FRANJA DE PRUEBA RÁPIDA (Rubros) */}
+      {/* FRANJA DE PRUEBA RÁPIDA */}
       <section className="py-12 bg-black border-b border-zinc-900">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-zinc-600 mb-8">
@@ -54,8 +54,8 @@ export default function Home() {
           <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-zinc-300 font-bold text-sm md:text-base">
             <span className="flex items-center gap-2"><span className="text-blue-500">■</span> Metal Mad</span>
             <span className="flex items-center gap-2"><span className="text-purple-500">■</span> Dra. Bianca</span>
-            <span className="flex items-center gap-2"><span className="text-zinc-500">■</span> A y C</span>
-            <span className="flex items-center gap-2"><span className="text-emerald-500">■</span> Coop y Cia</span>
+            <span className="flex items-center gap-2"><span className="text-zinc-500">■</span> Cristo Rey</span>
+            <span className="flex items-center gap-2"><span className="text-emerald-500">■</span> Caja Mutual UC</span>
           </div>
         </div>
       </section>
