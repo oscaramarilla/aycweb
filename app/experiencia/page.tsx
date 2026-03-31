@@ -45,11 +45,11 @@ export default function ExperienciaPage() {
               </p>
             </div>
             
-            {/* LA CITA DE AUTORIDAD (QUOTE) */}
+            {/* CORRECCIÓN: Quote limpio y sin bugs visuales */}
             <div className="bg-zinc-900/80 rounded-[2rem] border border-zinc-800 p-10 shadow-2xl relative">
               <div className="absolute -top-6 -left-6 text-7xl text-blue-500/20 font-serif font-black">&quot;</div>
               <p className="text-xl md:text-2xl font-bold text-white leading-relaxed relative z-10 mb-8 italic">
-                Nos dimos cuenta de que las empresas B2B no necesitan páginas web más lindas. Necesitan infraestructura digital que elimine el caos manual y acelere las ventas.
+                &quot;Nos dimos cuenta de que las empresas B2B no necesitan páginas web más lindas. Necesitan infraestructura digital que elimine el caos manual y acelere las ventas.&quot;
               </p>
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center font-black text-xl text-white shadow-lg border-2 border-zinc-800">
@@ -57,7 +57,7 @@ export default function ExperienciaPage() {
                 </div>
                 <div>
                   <p className="font-bold text-white">Oscar Amarilla</p>
-                  <p className="text-zinc-500 text-sm">Fundador, AYCweb</p>
+                  <p className="text-zinc-500 text-sm">Director de Infraestructura B2B</p>
                 </div>
               </div>
             </div>
@@ -65,7 +65,7 @@ export default function ExperienciaPage() {
         </div>
       </section>
 
-      {/* CLIENTES ELITE (Reemplazo de los botones simples) */}
+      {/* CLIENTES ELITE */}
       <section className="py-24 bg-zinc-950 border-b border-zinc-900 relative overflow-hidden">
         <div className="absolute top-1/2 right-0 w-96 h-96 bg-blue-600/5 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -76,38 +76,47 @@ export default function ExperienciaPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            {/* CARDS DE CLIENTES */}
+            {/* CORRECCIÓN: SVGs elegantes en lugar de Emojis rotos */}
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-blue-500/50 transition-colors group">
-              <div className="text-4xl mb-4 opacity-50 group-hover:opacity-100 transition-opacity">🏛️</div>
+              <div className="w-10 h-10 mb-5 text-zinc-500 group-hover:text-blue-400 transition-colors">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+              </div>
               <h3 className="text-xl font-bold text-white mb-2">Ministerio de Educación</h3>
               <p className="text-zinc-500 text-sm">Desarrollo de sistemas a escala gubernamental, garantizando seguridad, soporte y alta concurrencia de usuarios.</p>
             </div>
 
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-blue-500/50 transition-colors group">
-              <div className="text-4xl mb-4 opacity-50 group-hover:opacity-100 transition-opacity">🎓</div>
+              <div className="w-10 h-10 mb-5 text-zinc-500 group-hover:text-blue-400 transition-colors">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 14l9-5-9-5-9 5 9 5z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path></svg>
+              </div>
               <h3 className="text-xl font-bold text-white mb-2">Colegio Cristo Rey</h3>
               <p className="text-zinc-500 text-sm">Infraestructura digital para una de las instituciones educativas más prestigiosas y exigentes del país.</p>
             </div>
 
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-blue-500/50 transition-colors group">
-              <div className="text-4xl mb-4 opacity-50 group-hover:opacity-100 transition-opacity">🏦</div>
+              <div className="w-10 h-10 mb-5 text-zinc-500 group-hover:text-blue-400 transition-colors">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              </div>
               <h3 className="text-xl font-bold text-white mb-2">Caja Mutual UC</h3>
               <p className="text-zinc-500 text-sm">Soluciones tecnológicas orientadas al sector financiero e institucional, priorizando la privacidad de datos.</p>
             </div>
 
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-blue-500/50 transition-colors group">
-              <div className="text-4xl mb-4 opacity-50 group-hover:opacity-100 transition-opacity">🏭</div>
+              <div className="w-10 h-10 mb-5 text-zinc-500 group-hover:text-blue-400 transition-colors">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              </div>
               <h3 className="text-xl font-bold text-white mb-2">Metal Mad E.A.S.</h3>
               <p className="text-zinc-500 text-sm">Digitalización del área comercial mediante motores logísticos y generadores automáticos de presupuestos B2B.</p>
             </div>
 
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-blue-500/50 transition-colors group">
-              <div className="text-4xl mb-4 opacity-50 group-hover:opacity-100 transition-opacity">💻</div>
+              <div className="w-10 h-10 mb-5 text-zinc-500 group-hover:text-blue-400 transition-colors">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+              </div>
               <h3 className="text-xl font-bold text-white mb-2">Webprox</h3>
               <p className="text-zinc-500 text-sm">Alianzas tecnológicas y despliegue de arquitectura digital para operaciones en la nube.</p>
             </div>
 
-            {/* CARD CTA PARA EL PROSPECTO */}
             <div className="bg-gradient-to-br from-blue-900/40 to-black border border-blue-800/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center">
               <h3 className="text-lg font-bold text-blue-400 mb-2">Tu Empresa</h3>
               <p className="text-zinc-400 text-sm mb-6">El próximo caso de éxito en eficiencia operativa.</p>
@@ -120,7 +129,6 @@ export default function ExperienciaPage() {
         </div>
       </section>
 
-      {/* CTA FINAL */}
       <section className="py-24 bg-black text-center relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-6 relative z-10">
           <h2 className="text-3xl md:text-5xl font-black text-white mb-6">Pasemos de la teoría a los números.</h2>

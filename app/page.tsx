@@ -20,14 +20,15 @@ export default function Home() {
             <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
             Ingeniería Comercial & Automatización
           </div>
+          {/* CORRECCIÓN DE COPY: "Diseñamos" en lugar de "Diseño" */}
           <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-[1.05] text-white">
-            Diseño sistemas digitales que <span className="text-blue-500">venden, ordenan y aceleran</span> empresas.
+            Diseñamos sistemas digitales que <span className="text-blue-500">venden, ordenan y aceleran</span> empresas.
           </h1>
           <p className="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
             No hacemos "sitios web bonitos". Construimos activos digitales (cotizadores, embudos, paneles) que convierten procesos manuales en máquinas comerciales 24/7.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            {/* CORRECCIÓN #1: El botón ahora lleva a /oscar (Venta) en vez de /os (Checkout) */}
+            {/* CORRECCIÓN DE CTA: Lleva a /oscar */}
             <Link 
               href="/oscar" 
               className="bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)] active:scale-95"
@@ -45,7 +46,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FRANJA DE PRUEBA RÁPIDA */}
       <section className="py-12 bg-black border-b border-zinc-900">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-zinc-600 mb-8">
@@ -60,7 +60,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MICROFRANJA DE MÉTRICAS */}
       <section className="py-10 bg-zinc-950 border-b border-zinc-900 overflow-hidden">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center md:divide-x md:divide-zinc-800">
@@ -84,7 +83,23 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 bg-black border-b border-zinc-900">
+      {/* CORRECCIÓN: PRUEBA CONCRETA ARRIBA */}
+      <section className="py-12 bg-black border-b border-zinc-900">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full text-xs font-bold text-zinc-400 mb-4 uppercase tracking-widest">
+            <span className="text-emerald-500">✓</span> Impacto Real
+          </div>
+          <h2 className="text-2xl md:text-4xl font-black text-white mb-4">
+            "De tardar 2 horas cotizando en Excel, a generar un presupuesto PDF automático en 45 segundos."
+          </h2>
+          <p className="text-zinc-500 font-bold mb-6">— Caso de Estudio: Metal Mad E.A.S.</p>
+          <Link href="/casos" className="text-blue-500 font-bold hover:underline">
+            Ver evidencia operativa en vivo &rarr;
+          </Link>
+        </div>
+      </section>
+
+      <section className="py-20 bg-zinc-950 border-b border-zinc-900">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h2 className="text-2xl md:text-3xl font-black mb-6 text-zinc-300">Un enfoque diferente al de la agencia común.</h2>
           <p className="text-lg text-zinc-500 max-w-3xl mx-auto leading-relaxed">
@@ -103,17 +118,20 @@ export default function Home() {
             <div className="bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-blue-900 transition-colors">
               <h3 className="text-2xl font-bold text-white mb-3">Captación & Ventas</h3>
               <p className="text-zinc-500 mb-6 text-sm">Embudos y landings B2B de alta conversión.</p>
-              <Link href="/servicios" className="text-blue-500 text-sm font-bold hover:underline">Ver embudos tácticos &rarr;</Link>
+              {/* CORRECCIÓN DE ANCLAS */}
+              <Link href="/servicios#captacion" className="text-blue-500 text-sm font-bold hover:underline">Ver embudos tácticos &rarr;</Link>
             </div>
             <div className="bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-emerald-900 transition-colors">
               <h3 className="text-2xl font-bold text-white mb-3">Operativa Automática</h3>
               <p className="text-zinc-500 mb-6 text-sm">Cotizadores PDF y emisión de contratos sin errores.</p>
-              <Link href="/servicios" className="text-emerald-500 text-sm font-bold hover:underline">Ver motores de cálculo &rarr;</Link>
+              {/* CORRECCIÓN DE ANCLAS */}
+              <Link href="/servicios#operativa" className="text-emerald-500 text-sm font-bold hover:underline">Ver motores de cálculo &rarr;</Link>
             </div>
             <div className="bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-purple-900 transition-colors">
               <h3 className="text-2xl font-bold text-white mb-3">Sistemas a Medida</h3>
               <p className="text-zinc-500 mb-6 text-sm">Portales B2B y dashboards de control.</p>
-              <Link href="/servicios" className="text-purple-500 text-sm font-bold hover:underline">Ver portales corporativos &rarr;</Link>
+              {/* CORRECCIÓN DE ANCLAS */}
+              <Link href="/servicios#medida" className="text-purple-500 text-sm font-bold hover:underline">Ver portales corporativos &rarr;</Link>
             </div>
           </div>
         </div>
