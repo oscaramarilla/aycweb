@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import LanguageSelector from "@/components/LanguageSelector"; // 👈 ACÁ IMPORTAMOS EL BOTÓN
 
 export const metadata: Metadata = {
   title: "Ingeniería Comercial e Infraestructura B2B | AYCweb",
@@ -11,10 +12,15 @@ export default function Home() {
   const whatsappMsgDiagnostico = encodeURIComponent("¡Hola Oscar! Quiero mostrarles el cuello de botella actual de mi empresa para ver qué sistema operativo me recomiendan construir.");
 
   return (
-    <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans">
+    <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans relative">
       
+      {/* 🌐 SELECTOR DE IDIOMAS FLOTANTE */}
+      <div className="absolute top-6 right-6 z-50">
+        <LanguageSelector />
+      </div>
+
       {/* CAPA 1: HERO (Dolor + Promesa Fuerte) */}
-      <section className="relative pt-20 pb-20 md:pt-32 md:pb-24 px-6 text-center overflow-hidden border-b border-zinc-900">
+      <section className="relative pt-24 pb-20 md:pt-32 md:pb-24 px-6 text-center overflow-hidden border-b border-zinc-900">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-blue-900/50 bg-blue-950/30 text-xs font-bold uppercase tracking-widest text-blue-300 shadow-inner">
