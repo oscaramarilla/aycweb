@@ -2,33 +2,32 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ingeniería Comercial y Sistemas B2B | AYCweb",
-  description: "Construimos infraestructura digital y software operativo B2B en Paraguay. Cotizadores, embudos y portales para industrias y empresas que buscan escalar.",
+  title: "Ingeniería Comercial e Infraestructura B2B | AYCweb",
+  description: "No hacemos webs decorativas. Construimos cotizadores, embudos y portales que reducen errores, aceleran ventas y eliminan el caos manual en empresas.",
 };
 
 export default function Home() {
   const whatsappNumber = "595985864209";
-  const whatsappMsg = encodeURIComponent("¡Hola! Quiero agendar una sesión de diagnóstico para automatizar mi empresa.");
+  const whatsappMsgDiagnostico = encodeURIComponent("¡Hola Oscar! Quiero mostrarles el cuello de botella actual de mi empresa para ver qué sistema operativo me recomiendan construir.");
 
   return (
-    <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50">
+    <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans">
       
+      {/* CAPA 1: HERO (Dolor + Promesa Fuerte) */}
       <section className="relative pt-20 pb-20 md:pt-32 md:pb-24 px-6 text-center overflow-hidden border-b border-zinc-900">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-blue-900/50 bg-blue-950/30 text-sm font-semibold text-blue-300 shadow-inner">
+        <div className="max-w-5xl mx-auto relative z-10">
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-blue-900/50 bg-blue-950/30 text-xs font-bold uppercase tracking-widest text-blue-300 shadow-inner">
             <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-            Ingeniería Comercial & Automatización
+            Infraestructura Digital B2B
           </div>
-          {/* CORRECCIÓN DE COPY: "Diseñamos" en lugar de "Diseño" */}
-          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-[1.05] text-white">
-            Diseñamos sistemas digitales que <span className="text-blue-500">venden, ordenan y aceleran</span> empresas.
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tighter leading-[1.05] text-white">
+            Diseñamos sistemas que <br className="hidden md:block" /> <span className="text-blue-500">venden, automatizan y ordenan</span> empresas.
           </h1>
-          <p className="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-            No hacemos "sitios web bonitos". Construimos activos digitales (cotizadores, embudos, paneles) que convierten procesos manuales en máquinas comerciales 24/7.
+          <p className="text-lg md:text-xl text-zinc-400 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+            No hacemos "webs decorativas". Construimos cotizadores, embudos, contratos automáticos y dashboards que reducen errores, aceleran ventas y eliminan el caos manual.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            {/* CORRECCIÓN DE CTA: Lleva a /oscar */}
             <Link 
               href="/oscar" 
               className="bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)] active:scale-95"
@@ -36,118 +35,136 @@ export default function Home() {
               Ver Planes y Precios
             </Link>
             <a 
-              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
+              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsgDiagnostico}`}
               target="_blank" rel="noopener noreferrer"
               className="bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-white font-bold py-4 px-8 rounded-xl transition-all"
             >
-              Agendar Diagnóstico
+              Mostranos tu cuello de botella
             </a>
           </div>
         </div>
       </section>
 
-      <section className="py-12 bg-black border-b border-zinc-900">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-zinc-600 mb-8">
-            Sistemas desarrollados para industria, salud, corporativo y legal:
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-zinc-300 font-bold text-sm md:text-base">
-            <span className="flex items-center gap-2"><span className="text-blue-500">■</span> Metal Mad</span>
-            <span className="flex items-center gap-2"><span className="text-purple-500">■</span> Dra. Bianca</span>
-            <span className="flex items-center gap-2"><span className="text-zinc-500">■</span> Cristo Rey</span>
-            <span className="flex items-center gap-2"><span className="text-emerald-500">■</span> Caja Mutual UC</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-10 bg-zinc-950 border-b border-zinc-900 overflow-hidden">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center md:divide-x md:divide-zinc-800">
+      {/* CAPA 2: PRUEBA RÁPIDA (Credenciales duras) */}
+      <section className="py-10 bg-black border-b border-zinc-900 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-center divide-zinc-800 md:divide-x">
             <div className="px-4">
-              <p className="text-4xl font-black text-white mb-2">99<span className="text-blue-500 text-2xl">/100</span></p>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">PageSpeed Google</p>
-            </div>
-            <div className="px-4">
-              <p className="text-4xl font-black text-white mb-2">+15</p>
+              <p className="text-3xl font-black text-white mb-1">+15</p>
               <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Sistemas B2B Activos</p>
             </div>
-            <div className="px-4">
-              <p className="text-4xl font-black text-white mb-2">100<span className="text-emerald-500 text-2xl">%</span></p>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Trazabilidad Operativa</p>
+            <div className="px-4 hidden md:block">
+              <p className="text-3xl font-black text-white mb-1">99<span className="text-blue-500 text-lg">/100</span></p>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">PageSpeed Performance</p>
             </div>
             <div className="px-4">
-              <p className="text-4xl font-black text-white mb-2">24<span className="text-blue-500 text-2xl">/7</span></p>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Captación Automática</p>
+              <p className="text-3xl font-black text-white mb-1">RUC</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">4499507-5 (Asunción, PY)</p>
+            </div>
+            <div className="px-4">
+              <p className="text-sm font-bold text-zinc-300 mb-1 flex items-center gap-2 justify-center">
+                <span className="text-blue-500">■</span> Industria <span className="text-emerald-500 ml-2">■</span> Salud
+              </p>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Sectores Optimizados</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CORRECCIÓN: PRUEBA CONCRETA ARRIBA */}
-      <section className="py-12 bg-black border-b border-zinc-900">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full text-xs font-bold text-zinc-400 mb-4 uppercase tracking-widest">
-            <span className="text-emerald-500">✓</span> Impacto Real
+      {/* CAPA 3: ECOSISTEMAS A MEDIDA */}
+      <section className="py-24 bg-zinc-900/30 border-b border-zinc-900">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4">El fin del trabajo manual</h2>
+            <p className="text-zinc-400 text-lg">Elegí el módulo que necesita tu operación hoy.</p>
           </div>
-          <h2 className="text-2xl md:text-4xl font-black text-white mb-4">
-            "De tardar 2 horas cotizando en Excel, a generar un presupuesto PDF automático en 45 segundos."
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-blue-900 transition-colors flex flex-col h-full">
+              <h3 className="text-2xl font-bold text-white mb-3">Captación & Ventas</h3>
+              <p className="text-zinc-500 mb-6 text-sm flex-grow">Embudos B2B, precalificación automática y rutas directas a tu WhatsApp corporativo.</p>
+              <Link href="/servicios#captacion" className="text-blue-500 text-sm font-bold hover:underline mt-auto">Ver infraestructura de ventas &rarr;</Link>
+            </div>
+            <div className="bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-emerald-900 transition-colors flex flex-col h-full">
+              <h3 className="text-2xl font-bold text-white mb-3">Operativa Automática</h3>
+              <p className="text-zinc-500 mb-6 text-sm flex-grow">Motores de cálculo, cotizadores dinámicos y emisión de PDFs en segundos sin tocar Excel.</p>
+              <Link href="/servicios#operativa" className="text-emerald-500 text-sm font-bold hover:underline mt-auto">Ver cotizadores dinámicos &rarr;</Link>
+            </div>
+            <div className="bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-purple-900 transition-colors flex flex-col h-full">
+              <h3 className="text-2xl font-bold text-white mb-3">Sistemas a Medida</h3>
+              <p className="text-zinc-500 mb-6 text-sm flex-grow">Portales institucionales, dashboards de control y sistemas centralizados para escalar sin caos.</p>
+              <Link href="/servicios#medida" className="text-purple-500 text-sm font-bold hover:underline mt-auto">Ver portales corporativos &rarr;</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CAPA 4: CASOS (Prueba viva) */}
+      <section className="py-24 bg-black border-b border-zinc-900">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-black text-white">No lo prometemos. Lo demostramos.</h2>
+          </div>
+          <div className="bg-zinc-900/50 border border-zinc-800 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600/10 rounded-full blur-[80px] pointer-events-none"></div>
+            <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
+              <div className="flex-1">
+                <div className="inline-flex items-center gap-2 bg-zinc-950 border border-zinc-800 px-3 py-1 rounded-full text-[10px] font-bold text-zinc-400 mb-6 uppercase tracking-widest">
+                  <span className="text-emerald-500">✓</span> Caso: Metal Mad E.A.S.
+                </div>
+                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 leading-tight">
+                  "De tardar 2 horas cotizando en Excel, a generar un presupuesto B2B en 45 segundos."
+                </h3>
+                <p className="text-zinc-400 mb-8">
+                  El equipo comercial perdía horas valiosas calculando fletes y materiales a mano. Desarrollamos un motor logístico integrado que emite PDFs formales al instante, eliminando el margen de error.
+                </p>
+                <Link href="/casos" className="inline-flex items-center gap-2 text-white font-bold bg-zinc-800 hover:bg-zinc-700 py-3 px-6 rounded-xl transition-all">
+                  Ver este y otros casos operativos &rarr;
+                </Link>
+              </div>
+              <div className="w-full md:w-1/3 bg-black border border-zinc-800 rounded-2xl p-6 text-center shadow-inner">
+                 <p className="text-5xl font-black text-emerald-500 mb-2">-98%</p>
+                 <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">Tiempo de cotización</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CAPA 5: AUTORIDAD Y ORIGEN */}
+      <section className="py-24 bg-zinc-950 border-b border-zinc-900">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <span className="text-blue-500 text-6xl mb-6 block">⚒️</span>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-6">
+            Antes de escribir código, <br/>operamos en la vida real.
           </h2>
-          <p className="text-zinc-500 font-bold mb-6">— Caso de Estudio: Metal Mad E.A.S.</p>
-          <Link href="/casos" className="text-blue-500 font-bold hover:underline">
-            Ver evidencia operativa en vivo &rarr;
+          <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-8">
+            AYCweb no nació en un escritorio de diseño gráfico. Nacimos en el barro de la logística, la manufactura y las licitaciones (Metal Mad, AYC S.R.L.). Conocemos el caos empresarial porque lo vivimos, y construimos el software para solucionarlo.
+          </p>
+          <Link href="/experiencia" className="text-blue-400 font-bold hover:underline">
+            Conocé nuestra historia de operador a constructor &rarr;
           </Link>
         </div>
       </section>
 
-      <section className="py-20 bg-zinc-950 border-b border-zinc-900">
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <h2 className="text-2xl md:text-3xl font-black mb-6 text-zinc-300">Un enfoque diferente al de la agencia común.</h2>
-          <p className="text-lg text-zinc-500 max-w-3xl mx-auto leading-relaxed">
-            <strong>AYCweb combina ingeniería comercial, automatización y software B2B</strong> para transformar procesos manuales en sistemas que venden y operan mejor. Analizamos cómo encajará la herramienta en tu proceso para asegurar retorno de inversión real.
-          </p>
-        </div>
-      </section>
-
-      <section className="py-24 bg-zinc-900/30 border-b border-zinc-900">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-4">Ecosistemas a tu medida</h2>
-            <p className="text-zinc-400">Implementamos soluciones modulares con objetivos claros.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-blue-900 transition-colors">
-              <h3 className="text-2xl font-bold text-white mb-3">Captación & Ventas</h3>
-              <p className="text-zinc-500 mb-6 text-sm">Embudos y landings B2B de alta conversión.</p>
-              {/* CORRECCIÓN DE ANCLAS */}
-              <Link href="/servicios#captacion" className="text-blue-500 text-sm font-bold hover:underline">Ver embudos tácticos &rarr;</Link>
-            </div>
-            <div className="bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-emerald-900 transition-colors">
-              <h3 className="text-2xl font-bold text-white mb-3">Operativa Automática</h3>
-              <p className="text-zinc-500 mb-6 text-sm">Cotizadores PDF y emisión de contratos sin errores.</p>
-              {/* CORRECCIÓN DE ANCLAS */}
-              <Link href="/servicios#operativa" className="text-emerald-500 text-sm font-bold hover:underline">Ver motores de cálculo &rarr;</Link>
-            </div>
-            <div className="bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-purple-900 transition-colors">
-              <h3 className="text-2xl font-bold text-white mb-3">Sistemas a Medida</h3>
-              <p className="text-zinc-500 mb-6 text-sm">Portales B2B y dashboards de control.</p>
-              {/* CORRECCIÓN DE ANCLAS */}
-              <Link href="/servicios#medida" className="text-purple-500 text-sm font-bold hover:underline">Ver portales corporativos &rarr;</Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-zinc-950 text-center relative overflow-hidden">
+      {/* CAPA 6: CIERRE PREFILTRADO */}
+      <section className="py-24 bg-black text-center relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-6 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-6">Dependé menos del caos manual.</h2>
-          <div className="flex justify-center mt-8">
+          <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-4">El próximo paso</p>
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-6">¿Cuál es el cuello de botella de tu empresa hoy?</h2>
+          <p className="text-zinc-400 text-lg mb-10 max-w-xl mx-auto">
+            Hablemos 5 minutos. Nos contás dónde estás perdiendo tiempo o ventas, y te decimos exactamente qué sistema te conviene construir primero.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
              <a 
-              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
+              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsgDiagnostico}`}
               target="_blank" rel="noopener noreferrer"
-              className="bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.3)] active:scale-95"
+              className="bg-emerald-600 hover:bg-emerald-500 text-black font-black py-4 px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(16,185,129,0.3)] active:scale-95"
             >
-              Agendar Diagnóstico
+              Agendar Diagnóstico Operativo
             </a>
+            <Link href="/oscar" className="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white font-bold py-4 px-10 rounded-xl transition-all">
+              Ver Escalera de Planes
+            </Link>
           </div>
         </div>
       </section>

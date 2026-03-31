@@ -13,7 +13,7 @@ export default function LanguageSelector() {
     { code: "PT", label: "Português", icon: "🇧🇷" },
   ];
 
-  // Cerrar el menú si se hace clic afuera
+  // Cierra el menú si el usuario hace clic afuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -25,20 +25,20 @@ export default function LanguageSelector() {
   }, []);
 
   return (
-    <div className="relative inline-block text-left" ref={dropdownRef}>
+    <div className="relative inline-block text-left font-sans" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 font-bold py-2 px-4 rounded-xl transition-all active:scale-95 text-sm"
+        className="flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 hover:border-zinc-700 text-zinc-300 font-bold py-2.5 px-4 rounded-xl transition-all active:scale-95 text-sm shadow-inner"
       >
-        <span>{languages.find(l => l.code === selected)?.icon}</span>
+        <span className="text-base">{languages.find(l => l.code === selected)?.icon}</span>
         {selected}
-        <svg className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className={`w-4 h-4 text-zinc-500 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-40 origin-top-right rounded-xl bg-zinc-900 border border-zinc-800 shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
+        <div className="absolute right-0 mt-2 w-44 origin-top-right rounded-xl bg-zinc-900 border border-zinc-800 shadow-[0_10px_40px_rgba(0,0,0,0.8)] overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
           <div className="py-1">
             {languages.map((lang) => (
               <button
@@ -46,15 +46,15 @@ export default function LanguageSelector() {
                 onClick={() => {
                   setSelected(lang.code);
                   setIsOpen(false);
-                  // ACÁ LUEGO AGREGAREMOS LA LÓGICA DE TRADUCCIÓN REAL
+                  // Aquí conectaremos la lógica de internacionalización luego
                 }}
                 className={`w-full text-left px-4 py-3 text-sm flex items-center gap-3 transition-colors ${
                   selected === lang.code 
-                    ? "bg-blue-900/20 text-blue-400 font-bold" 
-                    : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                    ? "bg-blue-900/20 text-blue-400 font-bold border-l-2 border-blue-500" 
+                    : "text-zinc-400 hover:bg-zinc-800 hover:text-white border-l-2 border-transparent"
                 }`}
               >
-                <span>{lang.icon}</span>
+                <span className="text-base">{lang.icon}</span>
                 {lang.label}
               </button>
             ))}
@@ -64,3 +64,4 @@ export default function LanguageSelector() {
     </div>
   );
 }
+
