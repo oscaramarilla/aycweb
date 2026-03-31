@@ -54,8 +54,8 @@ export default function Home() {
           <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-zinc-300 font-bold text-sm md:text-base">
             <span className="flex items-center gap-2"><span className="text-blue-500">■</span> Metal Mad</span>
             <span className="flex items-center gap-2"><span className="text-purple-500">■</span> Dra. Bianca</span>
-            <span className="flex items-center gap-2"><span className="text-zinc-500">■</span> Cristo Rey</span>
-            <span className="flex items-center gap-2"><span className="text-emerald-500">■</span> Caja Mutual UC</span>
+            <span className="flex items-center gap-2"><span className="text-zinc-500">■</span> A y C</span>
+            <span className="flex items-center gap-2"><span className="text-emerald-500">■</span> Coop y Cia</span>
           </div>
         </div>
       </section>
