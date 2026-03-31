@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("ES");
+  const { language, setLanguage } = useLanguage();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const languages = [
@@ -13,7 +14,6 @@ export default function LanguageSelector() {
     { code: "PT", label: "Português", icon: "🇧🇷" },
   ];
 
-  // Cierra el menú si el usuario hace clic afuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -30,8 +30,8 @@ export default function LanguageSelector() {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 hover:border-zinc-700 text-zinc-300 font-bold py-2.5 px-4 rounded-xl transition-all active:scale-95 text-sm shadow-inner"
       >
-        <span className="text-base">{languages.find(l => l.code === selected)?.icon}</span>
-        {selected}
+        <span className="text-base">{languages.find(l => l.code === language)?.icon}</span>
+        {language}
         <svg className={`w-4 h-4 text-zinc-500 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
         </svg>
@@ -44,12 +44,11 @@ export default function LanguageSelector() {
               <button
                 key={lang.code}
                 onClick={() => {
-                  setSelected(lang.code);
+                  setLanguage(lang.code as "ES" | "EN" | "PT");
                   setIsOpen(false);
-                  // Aquí conectaremos la lógica de internacionalización luego
                 }}
                 className={`w-full text-left px-4 py-3 text-sm flex items-center gap-3 transition-colors ${
-                  selected === lang.code 
+                  language === lang.code 
                     ? "bg-blue-900/20 text-blue-400 font-bold border-l-2 border-blue-500" 
                     : "text-zinc-400 hover:bg-zinc-800 hover:text-white border-l-2 border-transparent"
                 }`}
@@ -64,4 +63,3 @@ export default function LanguageSelector() {
     </div>
   );
 }
-
