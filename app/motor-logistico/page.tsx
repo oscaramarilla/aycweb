@@ -4,16 +4,14 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 // --- CONSTANTES Y ESTADÍSTICAS LATAM ---
-const TIPO_CAMBIO_PYG = 7700; // Tasa de cambio referencial Gs/USD
-const FUEL_PRICE_USD = 1.25;  // Promedio LATAM proyectado al 2030 + 10% margen seguridad
+import { calcularCotizacion, formatters, CotizacionResultados } from "@/lib/domain/cotizadorLogistico";
+import { buildWhatsappUrl } from "@/lib/services/whatsappBuilderService";
 
-// Formatters
-const fmtUsd = (n: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(n);
-const fmtPyg = (n: number) => new Intl.NumberFormat('es-PY', { style: 'currency', currency: 'PYG', maximumFractionDigits: 0 }).format(n * TIPO_CAMBIO_PYG);
+const FUEL_PRICE_USD = 1.25;  // Promedio LATAM proyectado al 2030 + 10% margen seguridad
 
 export default function MotorLogisticoLanding() {
   const whatsappNumber = "595985864209";
-  const whatsappMsg = encodeURIComponent("¡Hola Oscar! Probé el Motor Logístico Internacional en su web y quiero implementarlo en mi empresa de transporte. ¿Agendamos una auditoría?");
+  const whatsappMsg = buildWhatsappUrl("Oscar", "Motor Logístico Internacional", 1500); // Placeholder values, as the actual client name, service, and amount are not available in this context.
 
   // --- ESTADOS DEL MOTOR ---
   const [distancia, setDistancia] = useState<number | "">("");
@@ -25,7 +23,7 @@ export default function MotorLogisticoLanding() {
   const [margen, setMargen] = useState<number>(30); // % Ganancia
 
   // --- RESULTADOS ---
-  const [resultados, setResultados] = useState({
+  const [resultados, setResultados] = useState<CotizacionResultados>({
     litros: 0,
     costoCombustible: 0,
     dias: 0,
@@ -41,30 +39,18 @@ export default function MotorLogisticoLanding() {
   // --- MOTOR DE CÁLCULO EN VIVO ---
   useEffect(() => {
     const dist = typeof distancia === "number" ? distancia : 0;
-    if (dist <= 0) return;
-
-    const litros = dist / rendimiento;
-    const costoCombustible = litros * FUEL_PRICE_USD;
-    
-    // Cálculo de días (tope seguro 450 km por jornada)
-    const dias = Math.ceil(dist / 450) || 1;
-    const costoChofer = dias * choferDia;
-
-    const numPeajes = Math.floor(dist / kmPorPeaje);
-    const costoPeajes = numPeajes * peajeUsd;
-
-    const costoMant = dist * mantKm;
-
-    const totalOperativo = costoCombustible + costoChofer + costoPeajes + costoMant;
-    
-    const margenDecimal = margen / 100;
-    const precioVenta = totalOperativo / (1 - margenDecimal);
-    const ganancia = precioVenta - totalOperativo;
-
-    setResultados({
-      litros, costoCombustible, dias, costoChofer, numPeajes, costoPeajes, costoMant, totalOperativo, precioVenta, ganancia
-    });
+    setResultados(calcularCotizacion({
+      distancia: dist,
+      rendimiento,
+      choferDia,
+      mantKm,
+      peajeUsd,
+      kmPorPeaje,
+      margen
+    }));
   }, [distancia, rendimiento, choferDia, mantKm, peajeUsd, kmPorPeaje, margen]);
+
+  const { fmtUsd, fmtPyg } = formatters;
 
   return (
     <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans pb-24 md:pb-0">
