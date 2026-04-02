@@ -1,14 +1,11 @@
 "use client";
-
 import { useState } from "react";
-import { jsPDF } from "jspdf";
-import autoTable from "jspdf-autotable";
+import { buildAndExportPdf } from "../../lib/services/pdfBuilderService";
 
 export default function CotizadorPage() {
   const [cliente, setCliente] = useState("");
   const [imagenUrl, setImagenUrl] = useState("https://metalmadeas.com/productos/pupitre.jpg");
   
-  // ⚙️ ESTADO MULTI-PRODUCTO
   const [productos, setProductos] = useState([
     { descripcion: "Pack Digital Express o Pack Automatizacion Empresarial o PRO  ", cantidad: 2, precio: 550000 }
   ]);
@@ -30,89 +27,18 @@ export default function CotizadorPage() {
 
   const handleGenerarPDF = async (e: React.FormEvent) => {
     e.preventDefault();
-    const doc = new jsPDF();
-    const fecha = new Date().toLocaleDateString("es-PY");
-    
-    // Encabezado
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(22);
-    doc.setTextColor(30, 58, 138);
-    doc.text("PRESUPUESTO / OFERTA", 14, 25);
-    
-    doc.setFontSize(10);
-    doc.setTextColor(100, 100, 100);
-    doc.text("AyC Automatizacion y Codigo", 140, 20);
-    doc.text("RUC: 4499507-5", 140, 25);
-    doc.text("Lambaré, Paraguay", 140, 30);
-    doc.text("WhatsApp: +595 985 864209", 140, 35);
-    
-    doc.setDrawColor(200, 200, 200);
-    doc.line(14, 42, 196, 42);
-
-    doc.setFontSize(12);
-    doc.setTextColor(50, 50, 50);
-    doc.text(`Cliente / Institución: ${cliente}`, 14, 63);
-    doc.text(`Fecha de Emisión: ${fecha}`, 14, 70);
-
-    // 📊 TABLA DE PRODUCTOS (DINÁMICA)
-    let granTotal = 0;
-    const filasTabla = productos.map(prod => {
-      const subtotal = Number(prod.precio) * Number(prod.cantidad);
-      granTotal += subtotal;
-      return [
-        prod.descripcion,
-        prod.cantidad.toString(),
-        Number(prod.precio).toLocaleString("es-PY"),
-        subtotal.toLocaleString("es-PY")
-      ];
-    });
-
-    autoTable(doc, {
-      startY: 85,
-      head: [["Descripción del Producto", "Cant.", "Precio Unit. (Gs)", "Subtotal (Gs)"]],
-      body: filasTabla,
-      theme: "striped",
-      headStyles: { fillColor: [30, 58, 138], textColor: 255, fontStyle: 'bold' },
-      styles: { fontSize: 10, cellPadding: 6 },
-    });
-
-    // @ts-ignore
-    const finalY = doc.lastAutoTable.finalY || 85;
-
-    // 🖼️ INYECTAR IMAGEN CON PASE VIP (CORS)
-    if (imagenUrl) {
-      try {
-        const img = new window.Image();
-        img.crossOrigin = "Anonymous";
-        img.src = imagenUrl;
-        await new Promise((resolve, reject) => {
-          img.onload = resolve;
-          img.onerror = reject;
-        });
-        doc.addImage(img, 'JPEG', 14, finalY + 15, 60, 45);
-      } catch(error) {
-        console.warn("No se pudo cargar la imagen en el PDF por seguridad del navegador.");
-      }
-    }
-
-    // 💰 DIBUJAR EL GRAN TOTAL Y FOOTER
-    doc.setFontSize(16);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(30, 58, 138);
-    doc.text(`Total a Pagar: Gs. ${granTotal.toLocaleString("es-PY")}`, 110, finalY + 30);
-    
-    doc.setFontSize(9);
-    doc.setTextColor(150, 150, 150);
-    doc.text("Alias para confirmar el pago a telefono 0985 864 209 .", 14, 280);
-    doc.text("Oscar Amarilla de A&C", 140, 280);
-
-    doc.save(`Presupuesto_${cliente.replace(/\s+/g, '_')}.pdf`);
+    // AQUÍ DEBES LLAMAR AL SERVICIO EXTERNO pdfBuilderService
+    const data = {
+      cliente,
+      productos,
+      imagenUrl,
+    };
+    await buildAndExportPdf(data);
   };
 
   return (
     <main className="min-h-screen bg-zinc-50 p-6 flex flex-col items-center justify-center font-sans py-12">
       <div className="bg-white p-8 rounded-3xl shadow-xl w-full max-w-2xl border border-zinc-200">
-        
         <div className="text-center mb-8">
           <span className="bg-blue-100 text-blue-800 font-black tracking-widest uppercase text-[10px] px-3 py-1 rounded-full mb-4 inline-block">
             Motor V3.0 PRO
@@ -120,7 +46,6 @@ export default function CotizadorPage() {
           <h1 className="text-3xl font-black text-blue-900 tracking-tight mb-2">Cotizador Automatico Cliente</h1>
           <p className="text-sm text-zinc-500">Generador de PDF Presupuesto B2B</p>
         </div>
-
         <div className="mb-8 flex justify-center">
           <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-zinc-200 shadow-sm bg-zinc-100 flex items-center justify-center">
             {imagenUrl ? (
@@ -130,7 +55,6 @@ export default function CotizadorPage() {
             )}
           </div>
         </div>
-
         <form onSubmit={handleGenerarPDF} className="space-y-6">
           <div>
             <label className="block text-xs font-bold text-zinc-600 uppercase mb-1">Cliente / Institución</label>
@@ -142,7 +66,6 @@ export default function CotizadorPage() {
               required
             />
           </div>
-
           <div className="space-y-4">
             <label className="block text-xs font-bold text-zinc-600 uppercase border-b pb-2">Lista de Productos</label>
             {productos.map((producto, index) => (
@@ -195,7 +118,6 @@ export default function CotizadorPage() {
               + Agregar otro producto
             </button>
           </div>
-
           <div>
             <label className="block text-xs font-bold text-zinc-600 uppercase mb-1 mt-4">URL de la Foto (Opcional)</label>
             <input 
@@ -205,7 +127,6 @@ export default function CotizadorPage() {
               className="w-full border border-zinc-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-600 outline-none text-zinc-700"
             />
           </div>
-
           <button type="submit" className="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition-colors shadow-lg mt-6">
             📄 Generar Presupuesto Oficial
           </button>
