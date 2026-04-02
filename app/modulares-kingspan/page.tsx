@@ -33,7 +33,7 @@ export default function ModularesKingspanLanding() {
       {/* BENEFICIOS Y CARACTERÍSTICAS */}
       <section className="py-16 px-6 bg-zinc-900 border-t border-b border-zinc-800">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          {benefits.map((benefit, index) => (
+         {benefits?.map((benefit, index) => (
             <div key={index} className="p-6 bg-zinc-950 rounded-xl border border-zinc-800 shadow-lg">
               <h3 className="text-2xl font-bold text-white mb-3">{benefit}</h3>
               <p className="text-zinc-400">Descripción del beneficio {index + 1}.</p>
@@ -51,11 +51,11 @@ export default function ModularesKingspanLanding() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
-              href={`https://wa.me/${contact.whatsappNumber}?text=${whatsappMsg}`}
+              href={`https://wa.me/${contact?.whatsappNumber}?text=${whatsappMsg}`}
               target="_blank" rel="noopener noreferrer"
               className="bg-green-600 hover:bg-green-500 text-black font-black py-4 px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(16,185,129,0.3)] active:scale-95"
             >
-              {hero.callToAction}
+           {String(hero?.callToAction)}
             </a>
             <Link href="/contacto" className="bg-zinc-950 border border-zinc-800 hover:bg-zinc-900 text-white font-bold py-4 px-10 rounded-xl transition-all">
               Ver Otros Servicios
