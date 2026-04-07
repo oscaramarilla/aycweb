@@ -1,10 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import LanguageSelector from "@/components/LanguageSelector";
-import { LanguageProvider, useLanguage } from "@/context/LanguageContext";
+import { useLanguage } from "@/context/LanguageContext";
 
-function HomeContent() {
+export default function Home() {
   const { t } = useLanguage();
   const whatsappNumber = "595985864209";
   const whatsappMsgDiagnostico = encodeURIComponent("¡Hola Oscar! Quiero mostrarles el cuello de botella actual de mi empresa para ver qué sistema operativo me recomiendan construir.");
@@ -12,13 +11,8 @@ function HomeContent() {
   return (
     <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans relative">
       
-      {/* 🌐 SELECTOR DE IDIOMAS FLOTANTE */}
-      <div className="absolute top-6 right-6 z-50">
-        <LanguageSelector />
-      </div>
-
       {/* CAPA 1: HERO */}
-      <section className="relative pt-24 pb-20 md:pt-32 md:pb-24 px-6 text-center overflow-hidden border-b border-zinc-900">
+      <section className="relative pt-12 pb-20 md:pt-24 md:pb-24 px-6 text-center overflow-hidden border-b border-zinc-900">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-blue-900/50 bg-blue-950/30 text-xs font-bold uppercase tracking-widest text-blue-300 shadow-inner">
@@ -174,14 +168,5 @@ function HomeContent() {
       </section>
 
     </div>
-  );
-}
-
-// Envolvemos el contenido en el Provider de Idioma para que funcione el cerebro
-export default function Home() {
-  return (
-    <LanguageProvider>
-      <HomeContent />
-    </LanguageProvider>
   );
 }
