@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { MetalMadConfig } from "@/lib/config/metalMad";
 import { buildWhatsappUrl } from "@/lib/services/whatsappBuilderService";
+import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
 export default function MetalMadLanding() {
   const { hero, features, contact } = MetalMadConfig;

@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
+import Image from "next/image";
+import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
 export default function Home() {
   const { t } = useLanguage();
-  const whatsappNumber = "595985864209";
-  const whatsappMsgDiagnostico = encodeURIComponent("¡Hola Oscar! Quiero mostrarles el cuello de botella actual de mi empresa para ver qué sistema operativo me recomiendan construir.");
+  const whatsappNumber = AYCWEB_CONTACT.whatsappNumber;
+  const whatsappMsgDiagnostico = encodeURIComponent(AYCWEB_CONTACT.globalMessages.diagnosis);
 
   return (
     <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans relative">
@@ -26,12 +28,14 @@ export default function Home() {
             {t("heroSubtitle")}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
+            {/* NUEVO CTA 1: EMPUJA A LA PRUEBA, NO AL PRECIO */}
             <Link 
-              href="/oscar" 
+              href="/casos" 
               className="bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)] active:scale-95"
             >
-              {t("btnPlanes")}
+              Probar infraestructura en vivo
             </Link>
+            {/* CTA 2: DIAGNÓSTICO */}
             <a 
               href={`https://wa.me/${whatsappNumber}?text=${whatsappMsgDiagnostico}`}
               target="_blank" rel="noopener noreferrer"
@@ -64,6 +68,50 @@ export default function Home() {
                 <span className="text-blue-500">■</span> Industria <span className="text-emerald-500 ml-2">■</span> Salud
               </p>
               <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">{t("statsSectores")}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NUEVA CAPA 2.5: DEMO ESTRELLA (FLETES) ARRIBA DE TODO */}
+      <section className="py-24 bg-zinc-950 border-b border-zinc-900 relative overflow-hidden">
+        <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 bg-emerald-950/30 border border-emerald-900/50 px-3 py-1 rounded-full text-[10px] font-bold text-emerald-400 mb-6 uppercase tracking-widest">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Demo Interactiva
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+                Dejá de perder dinero cotizando fletes a ojo.
+              </h2>
+              <p className="text-zinc-400 text-lg mb-8 leading-relaxed">
+                La mayoría de las transportistas cotizan en base a la "experiencia" del operador. Nosotros construimos un Motor Logístico B2B que calcula combustible Petropar, peajes, RRHH y desgaste de flota en tiempo real, generando un PDF formal en 45 segundos.
+              </p>
+              <Link href="/flete" className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-black font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_30px_rgba(16,185,129,0.3)] active:scale-95">
+                Probar el Motor Logístico ahora &rarr;
+              </Link>
+            </div>
+            <div className="flex-1 w-full relative">
+              <div className="aspect-[4/3] rounded-2xl border border-zinc-800 bg-black p-2 shadow-2xl relative overflow-hidden">
+                 {/* Si tenés una imagen del cotizador, cambiala acá. Si no, dejamos este placeholder premium */}
+                 <div className="w-full h-full bg-zinc-900 rounded-xl border border-zinc-800 flex flex-col p-6">
+                    <div className="flex justify-between items-center border-b border-zinc-800 pb-4 mb-4">
+                      <span className="font-bold text-white">Calculadora B2B</span>
+                      <span className="text-xs text-emerald-500 font-mono">API Petropar Online</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4 opacity-50">
+                       <div className="h-12 bg-zinc-800 rounded-lg"></div>
+                       <div className="h-12 bg-zinc-800 rounded-lg"></div>
+                       <div className="h-12 bg-zinc-800 rounded-lg"></div>
+                       <div className="h-12 bg-zinc-800 rounded-lg"></div>
+                    </div>
+                    <div className="mt-auto h-16 bg-emerald-900/20 border border-emerald-900/50 rounded-lg flex items-center justify-between px-4">
+                       <span className="text-sm font-bold text-zinc-400">Total Sugerido:</span>
+                       <span className="font-mono font-bold text-emerald-400 text-xl">$825.40</span>
+                    </div>
+                 </div>
+              </div>
             </div>
           </div>
         </div>
@@ -144,7 +192,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CAPA 6: CIERRE */}
+      {/* CAPA 6: CIERRE PREFILTRADO */}
       <section className="py-24 bg-black text-center relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-6 relative z-10">
           <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-4">{t("cierrePre")}</p>

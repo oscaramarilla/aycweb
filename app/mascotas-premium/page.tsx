@@ -2,14 +2,16 @@ import React from "react";
 import Link from "next/link";
 import { MascotasPirConfig } from "@/lib/config/mascotasPir";
 import { buildWhatsappUrl } from "@/lib/services/whatsappBuilderService";
+import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
 export default function MascotasPremiumLanding() {
   const { contact, hero, benefits } = MascotasPirConfig;
   const whatsappMsg = buildWhatsappUrl(
     "Cliente Premium",
     "Casas para Mascotas Premium - Cotización",
-    0
-  ); // 0 as a placeholder for amount, as it's a request for a quote.
+    0, // 0 as a placeholder for amount, as it's a request for a quote.
+    "mascotasPir"
+  );
 
   return (
     <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans pb-24 md:pb-0">
