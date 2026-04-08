@@ -4,7 +4,7 @@ import { ModularesKingspanConfig } from "@/lib/config/client";
 import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
 export default function ModularesKingspanLanding() {
-  const { contact, hero, benefits } = ModularesKingspanConfig;
+  const { contact, hero, benefits, cta } = ModularesKingspanConfig;
   const whatsappNumber = contact?.whatsappNumber ?? AYCWEB_CONTACT.whatsappNumber;
   const whatsappMsg = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     AYCWEB_CONTACT.clientMessages?.modularesKingspan?.quotation ?? AYCWEB_CONTACT.globalMessages.generalInquiry
@@ -35,7 +35,7 @@ export default function ModularesKingspanLanding() {
          {benefits?.map((benefit, index) => (
             <div key={index} className="p-6 bg-zinc-950 rounded-xl border border-zinc-800 shadow-lg">
               <h3 className="text-2xl font-bold text-white mb-3">{benefit}</h3>
-              <p className="text-zinc-400">Descripción del beneficio {index + 1}.</p>
+              <p className="text-zinc-400">{benefit}</p>
             </div>
           ))}
         </div>
@@ -44,9 +44,9 @@ export default function ModularesKingspanLanding() {
       {/* CALL TO ACTION SECTION */}
       <section className="py-24 bg-zinc-900 border-t border-zinc-800 text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-6">¿Necesitas una oficina modular?</h2>
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-6">{cta?.title}</h2>
           <p className="text-zinc-400 text-lg mb-8 max-w-2xl mx-auto">
-            Contactanos para una cotización por m2. Diseñamos e implementamos soluciones a tu medida.
+            {cta?.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
@@ -57,7 +57,7 @@ export default function ModularesKingspanLanding() {
            {String(hero?.callToAction)}
             </a>
             <Link href="/contacto" className="bg-zinc-950 border border-zinc-800 hover:bg-zinc-900 text-white font-bold py-4 px-10 rounded-xl transition-all">
-              Ver Otros Servicios
+              {cta?.secondaryLabel}
             </Link>
           </div>
         </div>

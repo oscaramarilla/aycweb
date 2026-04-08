@@ -27,6 +27,11 @@ export type LandingPageConfig = {
   hero: HeroSection;
   features?: FeatureItem[];
   benefits?: string[]; // Assuming benefits are just strings for now
+  cta?: {
+    title: string;
+    subtitle: string;
+    secondaryLabel: string;
+  };
   seo?: {
     title: string;
     description: string;
@@ -72,6 +77,16 @@ export const ModularesKingspanConfig: LandingPageConfig = {
       icon: "sustainability", // Placeholder
     },
   ],
+  benefits: [
+    "Aislamiento térmico superior",
+    "Rapidez de instalación",
+    "Diseño adaptable",
+  ],
+  cta: {
+    title: "¿Necesitas una oficina modular?",
+    subtitle: "Contactanos para una cotización por m2. Diseñamos e implementamos soluciones a tu medida.",
+    secondaryLabel: "Ver Otros Servicios",
+  },
   seo: {
     title: "Modulares Kingspan - Paneles Aislantes y Construcción Modular",
     description: "Descubre las soluciones de construcción modular con paneles Kingspan. Aislamiento térmico, rapidez y eficiencia para tu proyecto.",

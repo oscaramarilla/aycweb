@@ -106,7 +106,7 @@ export default function LandingAYC() {
           <div>
             <h2 className="text-blue-500 font-bold tracking-wide uppercase text-sm mb-3">Caso de Estudio: Industria Manufacturera</h2>
             <h3 className="text-3xl md:text-5xl font-black text-white mb-6">Cómo <span className="text-blue-400">Metal Mad</span> redujo su tiempo de cotización en un 98%</h3>
-            <p className="text-lg text-zinc-400 mb-8">El equipo perdía 2 horas diarias armando presupuestos corporativos. Desarrollamos el "Motor V3.0 PRO", permitiendo cotizar mesas y sillas escolares en 15 segundos con cero errores de cálculo.</p>
+            <p className="text-lg text-zinc-400 mb-8">El equipo perdía 2 horas diarias armando presupuestos corporativos. Desarrollamos el &quot;Motor V3.0 PRO&quot;, permitiendo cotizar mesas y sillas escolares en 15 segundos con cero errores de cálculo.</p>
             
             <div className="grid grid-cols-2 gap-6 border-t border-zinc-800 pt-8">
               <div>

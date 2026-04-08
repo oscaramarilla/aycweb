@@ -1,6 +1,15 @@
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 
+interface AutoTableFn {
+  (options: Record<string, unknown>): void;
+  previous: { finalY: number };
+}
+
+interface JsPDFWithAutoTable extends jsPDF {
+  autoTable: AutoTableFn;
+}
+
 export async function buildAndExportPdf(data: {
   cliente: string;
   productos: { descripcion: string; cantidad: number; precio: number }[];
@@ -37,7 +46,7 @@ export async function buildAndExportPdf(data: {
   }
 
   // Información de los items (adaptado a la nueva estructura)
-  (doc as any).autoTable({
+  (doc as JsPDFWithAutoTable).autoTable({
     startY: 60,
     head: [["Descripción", "Cantidad", "Precio Unitario", "Subtotal"]],
     body: productos.map((p) => [
@@ -51,7 +60,7 @@ export async function buildAndExportPdf(data: {
   });
 
   // Total
-  const finalY = (doc as any).autoTable.previous.finalY;
+  const finalY = (doc as JsPDFWithAutoTable).autoTable.previous.finalY;
   doc.setFontSize(12);
   doc.text(`Total: Gs. ${total.toLocaleString("es-PY")}`, 140, finalY + 10);
 
