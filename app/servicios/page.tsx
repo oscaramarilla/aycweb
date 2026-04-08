@@ -1,4 +1,11 @@
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Servicios de Ingeniería Digital B2B | AYCweb Paraguay",
+  description:
+    "Landings B2B, cotizadores PDF automáticos, generación de contratos y portales de clientes. Infraestructura digital para empresas en Paraguay.",
+};
 
 export default function ServiciosPage() {
   const whatsappNumber = "595985864209";

@@ -1,3 +1,11 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contacto | AYCweb Paraguay",
+  description:
+    "Contactá a AYCweb para automatizar tu empresa. Diagnóstico técnico gratuito. Respondemos en menos de 2 horas.",
+};
+
 export default function ContactoPage() {
   return (
     <main className="px-6 py-16 max-w-3xl mx-auto">
