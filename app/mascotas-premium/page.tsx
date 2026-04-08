@@ -1,16 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import { MascotasPirConfig } from "@/lib/config/mascotasPir";
-import { buildWhatsappUrl } from "@/lib/services/whatsappBuilderService";
 import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
 export default function MascotasPremiumLanding() {
   const { contact, hero, benefits } = MascotasPirConfig;
-  const whatsappMsg = buildWhatsappUrl(
-    "Cliente Premium",
-    "Casas para Mascotas Premium - Cotización",
-    0, // 0 as a placeholder for amount, as it's a request for a quote.
-    "mascotasPir"
+  const whatsappMsg = encodeURIComponent(
+    AYCWEB_CONTACT.clientMessages?.mascotasPir?.quotation || 
+    contact.whatsappMessage || 
+    AYCWEB_CONTACT.globalMessages.generalInquiry
   );
 
   return (

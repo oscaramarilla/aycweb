@@ -1,20 +1,15 @@
-import React from "react";
 import Link from "next/link";
 import { MetalMadConfig } from "@/lib/config/metalMad";
-import { buildWhatsappUrl } from "@/lib/services/whatsappBuilderService";
 import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
 export default function MetalMadLanding() {
   const { hero, features, contact } = MetalMadConfig;
 
   // Default whatsapp number if not provided in config
-  const whatsappNumber = contact?.whatsappNumber || "+595985864209"; // Default to AYCweb general number
+  const whatsappNumber = contact?.whatsappNumber || AYCWEB_CONTACT.whatsappNumber;
 
-  const whatsappMsg = buildWhatsappUrl(
-    "Cliente B2B",
-    "Mobiliario Escolar e Institucional - Cotización por Volumen",
-    0
-  ); // 0 as a placeholder for amount, as it's a request for a quote.
+  // Use the predefined message from AYCWEB_CONTACT
+  const whatsappMsg = encodeURIComponent(AYCWEB_CONTACT.clientMessages?.metalMad?.b2bClient || AYCWEB_CONTACT.globalMessages.generalInquiry);
 
   return (
     <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans pb-24 md:pb-0">

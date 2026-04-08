@@ -26,13 +26,15 @@ export const AYCWEB_CONTACT: ContactInfo = {
     },
     "mascotasPir": {
       "premiumClient": "¡Hola Oscar! Me interesa el servicio premium de MascotasPir.",
+      "quotation": "¡Hola! Me interesa cotizar una Casa para Mascotas Premium con Paneles PIR.",
       // ... other messages for MascotasPir
     },
     "metalMad": {
         "b2bClient": "¡Hola! Soy un cliente B2B de MetalMad y quiero cotizar un proyecto."
     },
     "modularesKingspan": {
-        "b2bClient": "¡Hola! Soy un cliente B2B de Modulares Kingspan y quiero una cotización."
+        "b2bClient": "¡Hola! Soy un cliente B2B de Modulares Kingspan y quiero una cotización.",
+        "quotation": "¡Hola! Quiero solicitar un presupuesto por m2 para Oficinas Modulares Kingspan."
     },
     "motorLogistico": {
         "internationalLogistics": "¡Hola! Me interesa el Motor Logístico Internacional."

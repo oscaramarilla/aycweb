@@ -1,15 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import { ModularesKingspanConfig } from "@/lib/config/client";
-import { buildWhatsappUrl } from "@/lib/services/whatsappBuilderService";
+import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
 export default function ModularesKingspanLanding() {
   const { contact, hero, benefits } = ModularesKingspanConfig;
-  const whatsappMsg = buildWhatsappUrl(
-    "Cliente B2B",
-    "Oficinas Modulares Kingspan - Presupuesto por m2",
-    0
-  ); // 0 as a placeholder for amount, as it's a request for a quote.
+  const whatsappNumber = contact?.whatsappNumber ?? AYCWEB_CONTACT.whatsappNumber;
+  const whatsappMsg = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    AYCWEB_CONTACT.clientMessages?.modularesKingspan?.quotation ?? AYCWEB_CONTACT.globalMessages.generalInquiry
+  )}`;
 
   return (
     <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans pb-24 md:pb-0">
@@ -51,7 +50,7 @@ export default function ModularesKingspanLanding() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
-              href={`https://wa.me/${contact?.whatsappNumber}?text=${whatsappMsg}`}
+              href={whatsappMsg}
               target="_blank" rel="noopener noreferrer"
               className="bg-green-600 hover:bg-green-500 text-black font-black py-4 px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(16,185,129,0.3)] active:scale-95"
             >
