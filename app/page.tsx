@@ -28,20 +28,19 @@ export default function Home() {
             {t("heroSubtitle")}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            {/* NUEVO CTA 1: EMPUJA A LA PRUEBA, NO AL PRECIO */}
+            {/* NUEVO CTA 1: EMPUJA A LA PRUEBA VIVA */}
             <Link 
               href="/casos" 
               className="bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)] active:scale-95"
             >
               Probar infraestructura en vivo
             </Link>
-            {/* CTA 2: DIAGNÓSTICO */}
+            {/* NUEVO CTA 2: BAJA A LA TABLA DE PRECIOS */}
             <a 
-              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsgDiagnostico}`}
-              target="_blank" rel="noopener noreferrer"
+              href="#precios"
               className="bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-white font-bold py-4 px-8 rounded-xl transition-all"
             >
-              {t("btnCuello")}
+              Ver Planes y Precios
             </a>
           </div>
         </div>
@@ -73,7 +72,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NUEVA CAPA 2.5: DEMO ESTRELLA (FLETES) ARRIBA DE TODO */}
+      {/* CAPA 2.5: DEMO ESTRELLA (FLETES) ARRIBA DE TODO */}
       <section className="py-24 bg-zinc-950 border-b border-zinc-900 relative overflow-hidden">
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -94,7 +93,6 @@ export default function Home() {
             </div>
             <div className="flex-1 w-full relative">
               <div className="aspect-[4/3] rounded-2xl border border-zinc-800 bg-black p-2 shadow-2xl relative overflow-hidden">
-                 {/* Si tenés una imagen del cotizador, cambiala acá. Si no, dejamos este placeholder premium */}
                  <div className="w-full h-full bg-zinc-900 rounded-xl border border-zinc-800 flex flex-col p-6">
                     <div className="flex justify-between items-center border-b border-zinc-800 pb-4 mb-4">
                       <span className="font-bold text-white">Calculadora B2B</span>
@@ -192,6 +190,60 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CAPA 5.5: TABLA DE PRECIOS B2B */}
+      <section id="precios" className="py-24 bg-zinc-950 border-b border-zinc-900">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4">Inversión transparente</h2>
+            <p className="text-zinc-400 text-lg">Soluciones empaquetadas. Sin costos de agencia ocultos.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Básica */}
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 hover:border-zinc-600 transition-colors">
+              <h3 className="text-xl font-bold text-white mb-2">MVP Starter</h3>
+              <p className="text-4xl font-black text-emerald-400 mb-2">$75 <span className="text-lg text-zinc-500 font-medium">USD</span></p>
+              <p className="text-zinc-500 text-sm mb-6 border-b border-zinc-800 pb-6">Entrega en 48hs.</p>
+              <ul className="space-y-4 text-zinc-300 text-sm mb-8">
+                <li className="flex gap-3"><span className="text-emerald-500">✓</span> Landing B2B (1 pág)</li>
+                <li className="flex gap-3"><span className="text-emerald-500">✓</span> Enlaces a WhatsApp</li>
+                <li className="flex gap-3"><span className="text-emerald-500">✓</span> QR de Pago integrado</li>
+              </ul>
+              <Link href="/precios" className="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-all">Ver Plan Completo</Link>
+            </div>
+
+            {/* Pro (Destacado) */}
+            <div className="bg-black border-2 border-blue-600 rounded-3xl p-8 transform md:-translate-y-4 shadow-[0_0_40px_rgba(37,99,235,0.15)] relative">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest">
+                Estándar B2B
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2 mt-2">Infraestructura Flash</h3>
+              <p className="text-4xl font-black text-blue-400 mb-2">$200 <span className="text-lg text-zinc-500 font-medium">USD</span></p>
+              <p className="text-zinc-500 text-sm mb-6 border-b border-zinc-800 pb-6">Setup en 72hs.</p>
+              <ul className="space-y-4 text-white font-medium text-sm mb-8">
+                <li className="flex gap-3"><span className="text-blue-500">✓</span> Todo lo del MVP</li>
+                <li className="flex gap-3"><span className="text-blue-500">✓</span> Arquitectura PageSpeed 95+</li>
+                <li className="flex gap-3"><span className="text-blue-500">✓</span> Copy B2B y Prueba Social</li>
+              </ul>
+              <Link href="/precios" className="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-all shadow-lg">Elegir y Avanzar</Link>
+            </div>
+
+            {/* Avanzada */}
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 hover:border-zinc-600 transition-colors">
+              <h3 className="text-xl font-bold text-white mb-2">Motor Operativo</h3>
+              <p className="text-4xl font-black text-violet-400 mb-2">$340 <span className="text-lg text-zinc-500 font-medium">USD</span></p>
+              <p className="text-zinc-500 text-sm mb-6 border-b border-zinc-800 pb-6">Setup en 1 semana.</p>
+              <ul className="space-y-4 text-zinc-300 text-sm mb-8">
+                <li className="flex gap-3"><span className="text-violet-500">✓</span> Todo lo de Flash</li>
+                <li className="flex gap-3"><span className="text-violet-500">✓</span> Flujos de precalificación</li>
+                <li className="flex gap-3"><span className="text-violet-500">✓</span> Base para CRM</li>
+              </ul>
+              <Link href="/precios" className="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-all">Ver Plan Completo</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CAPA 6: CIERRE PREFILTRADO */}
       <section className="py-24 bg-black text-center relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-6 relative z-10">
@@ -208,7 +260,7 @@ export default function Home() {
             >
               {t("cierreBtn1")}
             </a>
-            <Link href="/oscar" className="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white font-bold py-4 px-10 rounded-xl transition-all">
+            <Link href="/precios" className="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white font-bold py-4 px-10 rounded-xl transition-all">
               {t("cierreBtn2")}
             </Link>
           </div>
