@@ -28,14 +28,12 @@ export default function Home() {
             {t("heroSubtitle")}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            {/* NUEVO CTA 1: EMPUJA A LA PRUEBA VIVA */}
             <Link 
               href="/casos" 
               className="bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)] active:scale-95"
             >
               Probar infraestructura en vivo
             </Link>
-            {/* NUEVO CTA 2: BAJA A LA TABLA DE PRECIOS */}
             <a 
               href="#precios"
               className="bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-white font-bold py-4 px-8 rounded-xl transition-all"
@@ -72,7 +70,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CAPA 2.5: DEMO ESTRELLA (FLETES) ARRIBA DE TODO */}
+      {/* CAPA 2.5: DEMO ESTRELLA (FLETES) ARRIBA DE TODO - CON VIDEO YOUTUBE SHORT */}
       <section className="py-24 bg-zinc-950 border-b border-zinc-900 relative overflow-hidden">
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -91,26 +89,23 @@ export default function Home() {
                 Probar el Motor Logístico ahora &rarr;
               </Link>
             </div>
-            <div className="flex-1 w-full relative">
-              <div className="aspect-[4/3] rounded-2xl border border-zinc-800 bg-black p-2 shadow-2xl relative overflow-hidden">
-                 <div className="w-full h-full bg-zinc-900 rounded-xl border border-zinc-800 flex flex-col p-6">
-                    <div className="flex justify-between items-center border-b border-zinc-800 pb-4 mb-4">
-                      <span className="font-bold text-white">Calculadora B2B</span>
-                      <span className="text-xs text-emerald-500 font-mono">API Petropar Online</span>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 opacity-50">
-                       <div className="h-12 bg-zinc-800 rounded-lg"></div>
-                       <div className="h-12 bg-zinc-800 rounded-lg"></div>
-                       <div className="h-12 bg-zinc-800 rounded-lg"></div>
-                       <div className="h-12 bg-zinc-800 rounded-lg"></div>
-                    </div>
-                    <div className="mt-auto h-16 bg-emerald-900/20 border border-emerald-900/50 rounded-lg flex items-center justify-between px-4">
-                       <span className="text-sm font-bold text-zinc-400">Total Sugerido:</span>
-                       <span className="font-mono font-bold text-emerald-400 text-xl">$825.40</span>
-                    </div>
-                 </div>
+            
+            {/* NUEVO CONTENEDOR DE VIDEO VERTICAL */}
+            <div className="flex-1 w-full relative flex justify-center lg:justify-end">
+              <div className="aspect-[9/16] w-full max-w-[320px] rounded-2xl border border-zinc-800 bg-black p-2 shadow-[0_0_50px_rgba(16,185,129,0.15)] relative overflow-hidden transform md:-rotate-2 hover:rotate-0 transition-transform duration-500">
+                <div className="w-full h-full rounded-xl overflow-hidden bg-zinc-900">
+                  <iframe 
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/n1xOvGtHsIA?autoplay=1&mute=1&loop=1&playlist=n1xOvGtHsIA" 
+                    title="Demo Cotizador AYCweb" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                  ></iframe>
+                </div>
               </div>
             </div>
+            
           </div>
         </div>
       </section>
