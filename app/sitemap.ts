@@ -1,7 +1,15 @@
 import { MetadataRoute } from 'next';
+import { articulos } from '@/lib/data/articulos';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://aycweb.com';
+
+  const articuloUrls: MetadataRoute.Sitemap = articulos.map((a) => ({
+    url: `${baseUrl}/recursos/${a.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }));
 
   return [
     // ── Núcleo del sitio ──────────────────────────────────────────────────────
@@ -29,5 +37,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/mascotas-premium`,    lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${baseUrl}/metal-mad`,           lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${baseUrl}/modulares-kingspan`,  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+
+    // ── Biblioteca de Autoridad (Blog B2B) ────────────────────────────────────
+    { url: `${baseUrl}/recursos`,            lastModified: new Date(), changeFrequency: 'weekly',  priority: 0.9 },
+    ...articuloUrls,
   ];
 }
