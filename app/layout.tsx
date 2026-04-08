@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import "./globals.css";
+import { AYCWEB_CONTACT } from "@/lib/config/contact";
 import Navbar from "@/components/Navbar"; // Tu nueva cabecera premium
 import { LanguageProvider } from "@/context/LanguageContext"; // El Cerebro Global de Idiomas
 
@@ -13,11 +14,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "AYCweb Paraguay - Desarrollo Web PRO & Automatización B2B",
-    template: "%s | AYCweb E.A.S.",
+    default: "AYCweb Paraguay | Infraestructura Digital B2B",
+    template: "%s | AYCweb", // Esto hará que cada página agregue automáticamente " | AYCweb" al final
   },
-  description: "Transformamos negocios manuales en máquinas de ventas digitales automáticas en Paraguay. Oscar Amarilla - RUC 4499507-5.",
-  keywords: ["desarrollo web paraguay", "automatización B2B paraguay", "seo paraguay"],
+  description: "Transformamos negocios manuales en máquinas de ventas digitales automáticas en Paraguay. Cotizadores, embudos y portales operativos.",
+  keywords: ["desarrollo web paraguay", "automatización B2B paraguay", "sistemas operativos", "cotizadores dinámicos"],
   authors: [{ name: "Oscar Amarilla Cáceres", url: "https://aycweb.com" }],
 };
 
@@ -29,8 +30,8 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
-  const whatsappNumber = "595985864209";
-  const whatsappMsg = encodeURIComponent("¡Hola! Estoy en la web de AYC y busco agendar un diagnóstico para sistematizar mi negocio.");
+  const whatsappNumber = AYCWEB_CONTACT.whatsappNumber;
+  const whatsappMsg = encodeURIComponent(AYCWEB_CONTACT.globalMessages.generalInquiry);
 
   return (
     <html lang="es" className={`${inter.variable} scroll-smooth`}>

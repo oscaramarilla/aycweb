@@ -1,6 +1,9 @@
+import { AYCWEB_CONTACT } from "@/lib/config/contact";
+
 export const MotorAycwebConfig = {
   contact: {
-    whatsappNumber: "+595985864209", // Número de WhatsApp para demostraciones
+    whatsappNumber: AYCWEB_CONTACT.whatsappNumber,
+    whatsappMessage: AYCWEB_CONTACT.globalMessages.generalInquiry,
   },
   hero: {
     title: "Motor AYCweb SaaS: Transforma tus presupuestos de horas a minutos.",

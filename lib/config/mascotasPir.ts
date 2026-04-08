@@ -1,6 +1,9 @@
+import { AYCWEB_CONTACT } from "@/lib/config/contact";
+
 export const MascotasPirConfig = {
   contact: {
-    whatsappNumber: "+595985864209", // Número de WhatsApp para cotizaciones
+    whatsappNumber: AYCWEB_CONTACT.whatsappNumber,
+    whatsappMessage: AYCWEB_CONTACT.clientMessages?.mascotasPir?.premiumClient || "",
   },
   hero: {
     title: "Casas para Mascotas Premium con Paneles PIR: Durabilidad Extrema y Confort Total",

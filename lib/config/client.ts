@@ -1,4 +1,5 @@
 import { StaticImageData } from "next/image";
+import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
 export type CallToAction = {
   text: string;
@@ -21,6 +22,7 @@ export type FeatureItem = {
 export type LandingPageConfig = {
   contact?: {
     whatsappNumber: string;
+    whatsappMessage?: string; // Optional for client-specific global message
   };
   hero: HeroSection;
   features?: FeatureItem[];
@@ -36,7 +38,8 @@ export type LandingPageConfig = {
 
 export const ModularesKingspanConfig: LandingPageConfig = {
   contact: {
-    whatsappNumber: "+595985864209", // Ejemplo de número de WhatsApp
+    whatsappNumber: AYCWEB_CONTACT.whatsappNumber,
+    whatsappMessage: AYCWEB_CONTACT.globalMessages.generalInquiry, // Use global inquiry message
   },
   hero: {
     title: "Oficinas Modulares Kingspan: Aislamiento térmico superior y montaje en 48hs.",

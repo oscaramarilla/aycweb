@@ -1,5 +1,6 @@
 
 import { LandingPageConfig } from "@/lib/config/client";
+import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
 export const MetalMadConfig: LandingPageConfig = {
   hero: {
@@ -28,5 +29,9 @@ export const MetalMadConfig: LandingPageConfig = {
       icon: "production", // Placeholder, replace with actual icon
     },
   ],
+  contact: {
+    whatsappNumber: AYCWEB_CONTACT.whatsappNumber,
+    whatsappMessage: AYCWEB_CONTACT.clientMessages?.metalMad?.b2bClient || "",
+  },
   // Add other sections as needed, following the LandingPageConfig structure
 };
