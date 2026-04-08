@@ -22,73 +22,67 @@ export const articulos: Articulo[] = [
     tiempoLectura: "7 min de lectura",
     autor: "Oscar Amarilla Cáceres",
     contenido: `
-## El problema que nadie quiere admitir
+## Mirá, te voy a ser directo
 
-Cada vez que un vendedor abre Excel para armar una cotización, tu empresa está perdiendo dinero. No es una hipérbole: es matemática operativa.
+Cada vez que tu vendedor abre Excel para armar una cotización, estás perdiendo plata. No es una exageración. Es matemática.
 
-El proceso típico en una empresa industrial o de servicios B2B se ve así:
+Hacé el ejercicio conmigo: ¿cuántos presupuestos emite tu equipo por semana? ¿Cuánto tiempo tarda cada uno? Multiplicá eso por el costo hora de tu vendedor. Ese número que te salió es lo que estás gastando en trabajo que puede hacerse solo, en 45 segundos, sin errores.
 
-1. El cliente pide un presupuesto por WhatsApp o email.
-2. El vendedor busca la planilla de Excel "correcta" entre 12 versiones distintas.
-3. Copia los datos del cliente, ajusta precios manualmente, calcula descuentos.
-4. Exporta a PDF (si sabe cómo), o imprime y escanea.
-5. Envía el presupuesto... 2 horas después.
+## El proceso que todos tienen y nadie quiere admitir
 
-Para entonces, el cliente ya habló con tu competidor.
+El cliente pide un presupuesto. El vendedor busca "la planilla correcta" entre las 12 versiones que tiene guardadas. Copia los datos, ajusta precios de memoria, calcula descuentos a mano, exporta a PDF si sabe cómo, y manda el presupuesto... dos horas después.
 
-## Por qué el Excel no es el problema real
+Para ese momento, el cliente ya habló con tu competidor.
 
-El Excel no es el villano. El problema es la **dependencia de criterio humano** en cada paso del proceso. Cuando el cálculo vive en la cabeza del vendedor o en una fórmula que solo él entiende, tenés:
+Y lo peor no es la demora. Lo peor es que no sabés cuántos clientes perdiste por eso, porque nadie lo registra.
 
-- **Inconsistencia de precios**: cada vendedor cotiza diferente.
-- **Errores de cálculo**: un decimal mal puesto puede costarte un contrato o tu margen.
-- **Cuello de botella humano**: si el vendedor está ocupado, el cliente espera.
-- **Cero trazabilidad**: no sabés cuántos presupuestos se enviaron, cuáles se ganaron, cuáles se perdieron.
+## El problema real no es el Excel
 
-## La arquitectura de un cotizador automático
+El Excel no es el villano. El problema es que el conocimiento de tu negocio vive en la cabeza de tus vendedores y en fórmulas que solo ellos entienden. Eso te genera cuatro problemas concretos que te cuestan dinero:
 
-Un sistema de presupuestos PDF automático no es magia. Es ingeniería comercial aplicada. Los componentes son:
+**Precios inconsistentes.** Cada vendedor cotiza diferente. Un cliente compara dos presupuestos de tu misma empresa y ve números distintos. Eso destruye credibilidad.
 
-### 1. Motor de Reglas de Negocio
-Un archivo de configuración centralizado donde vivien **todos** los precios, descuentos por volumen, condiciones especiales y variables de cálculo. Cuando cambia un precio, se cambia en un solo lugar y se actualiza en todo el sistema.
+**Errores de cálculo.** Un decimal mal puesto puede costarte el margen de un contrato entero. O peor: ganás el contrato y perdés plata en la ejecución.
 
-### 2. Formulario Inteligente
-Una interfaz donde el operador (o incluso el cliente) ingresa los parámetros del pedido: producto, cantidad, destino, condiciones de pago. El sistema valida los datos en tiempo real.
+**Cuello de botella humano.** Si el vendedor está en reunión, de viaje o de licencia, el cliente espera. Y el cliente que espera busca otra opción.
 
-### 3. Motor de Cálculo
-La lógica que toma los inputs del formulario y los procesa contra las reglas de negocio. Aquí se calculan subtotales, impuestos, fletes, descuentos y el total final. Sin intervención humana.
+**Cero visibilidad.** No sabés cuántos presupuestos se enviaron este mes, cuántos se ganaron, cuántos se perdieron ni por qué. Estás manejando tu área comercial a ciegas.
 
-### 4. Generador de PDF
-El componente que toma el resultado del cálculo e inyecta los datos en una plantilla de documento profesional: logo de la empresa, datos del cliente, desglose de items, condiciones comerciales, firma digital.
+## Cómo funciona un sistema que resuelve esto
 
-### 5. Registro y Trazabilidad
-Cada presupuesto generado queda registrado con timestamp, datos del cliente, monto y estado (enviado, aceptado, rechazado). Esto alimenta tu CRM o dashboard de ventas.
+No te estoy hablando de un software de 50.000 dólares. Te estoy hablando de ingeniería aplicada a tu proceso específico. Son cuatro piezas:
 
-## El resultado en números reales
+**Primero: un archivo central de precios.** Todos los precios, descuentos por volumen y condiciones especiales viven en un solo lugar. Cuando cambia un precio, se cambia ahí y se actualiza en todo el sistema. Nadie más puede "ajustar" nada por su cuenta.
 
-En el caso de Metal Mad E.A.S., empresa industrial de Paraguay, implementamos este sistema para cotizaciones de mobiliario escolar con cálculo de flete logístico incluido.
+**Segundo: un formulario inteligente.** El operador —o el cliente directamente— ingresa qué necesita: producto, cantidad, destino, condición de pago. El sistema valida los datos en tiempo real. Si algo no cuadra, avisa antes de calcular.
 
-**Antes del sistema:**
-- Tiempo promedio por cotización: 2 horas
-- Errores de cálculo: frecuentes
-- Presupuestos perdidos por demora: estimado 30%
+**Tercero: el motor de cálculo.** Toma los datos del formulario, los procesa contra las reglas de tu negocio y calcula subtotales, impuestos, fletes y descuentos. Sin que nadie toque nada. Sin errores.
 
-**Después del sistema:**
-- Tiempo promedio por cotización: 45 segundos
-- Errores de cálculo: 0%
-- Capacidad de respuesta: inmediata, 24/7
+**Cuarto: el PDF que sale solo.** El sistema genera el documento con tu logo, los datos del cliente, el desglose completo y las condiciones comerciales. Listo para enviar. En 45 segundos desde que el cliente pidió el presupuesto.
 
-## ¿Cuándo tiene sentido invertir en esto?
+Y cada presupuesto queda registrado: quién lo pidió, cuándo, por cuánto, si se aceptó o se rechazó. Eso es tu pipeline comercial funcionando solo.
 
-Si tu empresa emite más de 10 presupuestos por semana, el ROI de un sistema automático se justifica en el primer mes. El cálculo es simple: cuánto vale el tiempo de tu equipo de ventas multiplicado por las horas que pasan armando Excel.
+## Los números reales
 
-Si emitís 20 presupuestos por semana y cada uno toma 1 hora, estás gastando 80 horas mensuales en trabajo que puede automatizarse. A cualquier costo de hora profesional, eso es dinero que se puede redirigir a vender.
+Implementamos esto en Metal Mad E.A.S., empresa industrial de Paraguay que cotiza mobiliario escolar con cálculo de flete logístico incluido.
 
-## El siguiente paso
+Antes: 2 horas por cotización, errores frecuentes, presupuestos perdidos por demora.
 
-No necesitás un ERP de 6 cifras para tener este sistema. Necesitás ingeniería comercial aplicada a tu proceso específico. El sistema se construye en semanas, no en meses, y se adapta exactamente a tu catálogo, tus reglas de negocio y tu identidad visual.
+Después: 45 segundos por cotización, cero errores, disponibilidad 24/7.
 
-La pregunta no es si podés permitirte automatizar. Es si podés permitirte seguir sin hacerlo.
+El sistema se pagó en el primer mes. No porque sea barato, sino porque el costo de no tenerlo era más alto.
+
+## ¿Cuándo tiene sentido hacer esto?
+
+Si emitís más de 10 presupuestos por semana, el ROI se justifica en el primer mes. El cálculo es simple: tomá las horas que tu equipo gasta armando Excel y multiplicalas por el costo de esa hora. Ese es el dinero que podés redirigir a vender.
+
+Si emitís 20 presupuestos por semana y cada uno toma una hora, son 80 horas mensuales de trabajo que puede hacer una máquina. A cualquier costo de hora profesional, eso es dinero real.
+
+## La pregunta que te tenés que hacer
+
+No es si podés permitirte automatizar esto. Es si podés permitirte seguir sin hacerlo mientras tu competidor ya lo tiene.
+
+El sistema se construye en semanas, no en meses. Se adapta exactamente a tu catálogo, tus reglas de negocio y tu identidad. Y una vez que está funcionando, escala sin contratar más vendedores.
     `.trim(),
   },
   {
@@ -102,83 +96,66 @@ La pregunta no es si podés permitirte automatizar. Es si podés permitirte segu
     tiempoLectura: "6 min de lectura",
     autor: "Oscar Amarilla Cáceres",
     contenido: `
-## La ilusión de control del WhatsApp
+## Te hago una pregunta incómoda
 
-Cuando una clínica dice "gestionamos los turnos por WhatsApp", en realidad está diciendo: "tenemos un sistema de reservas que depende de que alguien esté mirando el teléfono en el momento exacto en que el paciente escribe".
+¿Cuántos pacientes te escribieron anoche después de las 8 y no recibieron respuesta hasta hoy a la mañana? ¿Cuántos de esos ya agendaron en otra clínica?
 
-Eso no es un sistema. Es una apuesta.
+No lo sabés. Y ese es exactamente el problema.
 
-Y cada vez que el paciente escribe a las 11 de la noche, o el sábado a la tarde, o durante el almuerzo, y no recibe respuesta inmediata, hay una probabilidad alta de que llame a la clínica de la competencia que sí tiene disponibilidad online.
+## WhatsApp no es un sistema de reservas
 
-## Los 5 errores que cuestan pacientes
+Cuando una clínica gestiona sus turnos por WhatsApp, en realidad está apostando a que alguien va a estar mirando el teléfono en el momento exacto en que el paciente escribe. Eso no es un sistema. Es una lotería operativa.
 
-### Error 1: Respuesta tardía = paciente perdido
+Y el comportamiento del paciente cambió. Cuando alguien decide buscar un turno, lo hace en el momento en que siente la necesidad: a las 11 de la noche, el sábado a la tarde, durante el almuerzo. No en el horario comercial de tu recepción.
 
-El comportamiento del consumidor de salud cambió. Cuando alguien decide buscar un turno, lo hace en el momento en que siente la necesidad, no en el horario comercial de tu recepción.
+Si no respondés en 15 minutos, el 40% ya tomó otra decisión. Si tardás más de una hora, ese número sube al 70%. Eso no lo digo yo: es el comportamiento documentado del consumidor digital.
 
-Si tu respuesta tarda más de 15 minutos, el 40% de los prospectos ya tomaron otra decisión. Si tarda más de una hora, ese número sube al 70%.
+## Los cinco errores que te cuestan pacientes cada semana
 
-La recepción humana no puede competir con un sistema automatizado en velocidad de respuesta.
+**Error 1: Respuesta tardía.**
+La recepción humana no puede competir con un sistema automatizado en velocidad. No porque tu recepcionista sea mala: es que no puede estar disponible las 24 horas. Un sistema sí.
 
-### Error 2: Información inconsistente sobre precios y disponibilidad
+**Error 2: Información inconsistente.**
+Cuando los precios y la disponibilidad viven en la cabeza de quien atiende, cada paciente recibe una experiencia diferente. Una recepcionista dice que la consulta vale X, otra dice Y. Eso destruye confianza antes de que el paciente pise la clínica.
 
-Cuando la información de precios y disponibilidad vive en la cabeza de la recepcionista, cada paciente recibe una experiencia diferente. Una dice que la consulta vale X, otra dice Y. Una dice que hay turno el martes, otra que no.
+**Error 3: Doble reserva.**
+Sin sistema centralizado, dos personas asignan el mismo horario a dos pacientes distintos. El resultado: un paciente enojado, una situación incómoda y daño a la reputación que no se repara fácil.
 
-Esta inconsistencia destruye la confianza antes de que el paciente pise la clínica.
+**Error 4: Cancelaciones que no se registran.**
+El paciente cancela por WhatsApp, nadie lo anota, el horario queda bloqueado. Ese turno que podría haberse reasignado se pierde. Multiplicá eso por semana y por mes.
 
-### Error 3: Doble reserva y cancelaciones sin protocolo
+**Error 5: Todo depende de una persona.**
+Si la recepcionista se enferma, se va de vacaciones o renuncia, el sistema de reservas colapsa. Toda tu captación de pacientes depende de una sola persona con un teléfono. Eso no es un negocio: es un riesgo operativo permanente.
 
-Sin un sistema centralizado, las doble reservas son inevitables. Dos recepcionistas asignan el mismo horario a dos pacientes distintos. El resultado: un paciente enojado, una situación incómoda y daño a la reputación.
+## Cómo se ve la infraestructura que resuelve esto
 
-Las cancelaciones sin protocolo son igual de dañinas. Si el paciente cancela por WhatsApp y nadie lo registra, ese horario queda bloqueado y se pierde un turno que podría haberse reasignado.
+No te estoy vendiendo un software genérico. Te estoy describiendo la arquitectura mínima que necesita una clínica para operar como negocio:
 
-### Error 4: Cero seguimiento post-consulta
+**Una página que responde antes de que pregunten.** Precios, especialidades, ubicación, seguros aceptados, horarios. El paciente llega con la decisión casi tomada. Eso reduce el trabajo de la recepción y filtra consultas que no van a convertir.
 
-El paciente que vino una vez y no volvió es el activo más desaprovechado de una clínica. Sin sistema, no hay forma de saber quién vino, cuándo fue su última consulta, si necesita un control de seguimiento.
+**Reservas online sin intervención humana.** El paciente elige especialidad, profesional, fecha y horario disponible. Confirma con sus datos. Recibe confirmación automática. Sin que nadie tenga que hacer nada.
 
-El seguimiento manual es imposible a escala. El automatizado es trivial con la infraestructura correcta.
+**Recordatorios automáticos.** 24 horas antes del turno, el paciente recibe un mensaje. Esto reduce el ausentismo entre un 30% y un 50%. Eso es ingreso que recuperás sin hacer nada extra.
 
-### Error 5: Dependencia total del personal de recepción
+**Protocolo de cancelación que funciona solo.** Si el paciente cancela, el horario se libera y puede ser tomado por otro. Sin que nadie tenga que gestionar nada.
 
-Si la recepcionista se enferma, se va de vacaciones o renuncia, el sistema de reservas colapsa. Toda la operación de captación de pacientes depende de una sola persona con un teléfono.
+**Números en tiempo real.** Cuántos turnos hay agendados, cuántos se cancelaron, cuál es la tasa de conversión de consultas a reservas. Eso es gestión, no intuición.
 
-Eso no es un negocio. Es un riesgo operativo permanente.
+## Hagamos el cálculo juntos
 
-## Cómo se ve la infraestructura correcta
+Clínica mediana, 50 consultas de turno por semana por WhatsApp. El 30% no recibe respuesta a tiempo y busca otra clínica. Son 15 pacientes perdidos por semana. Si la consulta promedio vale 150.000 guaraníes, estás perdiendo 2.250.000 por semana. 9.000.000 por mes.
 
-Una clínica con infraestructura digital correcta tiene:
+Ese es el costo de no tener sistema. No es el costo de implementarlo: es el costo de no hacerlo.
 
-**Landing page de captación**: Una página que responde las preguntas frecuentes (precios, especialidades, ubicación, seguros aceptados) antes de que el paciente las haga. Filtra y precalifica.
+La infraestructura digital se paga sola en el primer mes. Lo que no se paga solo es seguir operando como si fuera 2010.
 
-**Sistema de reservas online**: El paciente elige especialidad, profesional, fecha y horario disponible. Confirma con sus datos. Recibe confirmación automática. Sin intervención humana.
-
-**Recordatorios automáticos**: 24 horas antes del turno, el paciente recibe un recordatorio por WhatsApp o email. Esto reduce el ausentismo entre un 30% y un 50%.
-
-**Protocolo de cancelación**: Si el paciente cancela, el horario se libera automáticamente y puede ser tomado por otro paciente en lista de espera.
-
-**Dashboard de métricas**: La dirección de la clínica puede ver en tiempo real cuántos turnos hay agendados, cuántos se cancelaron, cuál es la tasa de conversión de consultas a reservas.
-
-## El costo real de no tener sistema
-
-Hagamos el cálculo conservador para una clínica mediana:
-
-- 50 consultas de turno por semana por WhatsApp
-- 30% no reciben respuesta a tiempo y buscan otra clínica
-- 15 pacientes perdidos por semana
-- Consulta promedio: 150.000 Gs
-
-**Pérdida semanal estimada: 2.250.000 Gs**
-**Pérdida mensual estimada: 9.000.000 Gs**
-
-Ese es el costo de no tener sistema. La inversión en infraestructura digital se paga sola en el primer mes.
-
-## El cambio de mentalidad necesario
+## El cambio de mentalidad que hace la diferencia
 
 Una clínica no es solo un servicio de salud. Es un negocio que necesita captar, convertir y retener pacientes. Eso requiere infraestructura comercial, no solo excelencia médica.
 
-Los mejores médicos del mundo con el peor sistema de reservas pierden pacientes frente a clínicas mediocres con buena infraestructura digital.
+Los mejores médicos del mundo con el peor sistema de reservas pierden pacientes frente a clínicas mediocres con buena infraestructura. La tecnología no reemplaza la calidad médica. La hace accesible para más pacientes.
 
-La tecnología no reemplaza la calidad médica. La hace accesible.
+Y más pacientes que llegan es más ingreso. Así de simple.
     `.trim(),
   },
   {
@@ -192,96 +169,75 @@ La tecnología no reemplaza la calidad médica. La hace accesible.
     tiempoLectura: "8 min de lectura",
     autor: "Oscar Amarilla Cáceres",
     contenido: `
-## El cementerio de ERPs en Paraguay
+## Te voy a contar algo que los vendedores de ERP no te van a decir
 
-Existe un patrón que se repite con alarmante frecuencia en empresas industriales de la región: la empresa crece, el dueño siente que "necesita un sistema", contrata un ERP costoso, el equipo no lo adopta, y 6 meses después el sistema está abandonado y la empresa volvió a las planillas de Excel.
+Hay un patrón que veo repetirse todo el tiempo en empresas industriales de la región. La empresa crece, el dueño siente que "necesita un sistema", contrata un ERP que cuesta una fortuna, el equipo no lo adopta, y seis meses después el sistema está abandonado y todos volvieron al Excel.
 
-El problema no es el ERP. El problema es la secuencia.
+El dinero gastado: perdido. Los procesos: igual que antes. Y encima, el dueño ahora desconfía de "los sistemas".
 
-Implementar un ERP en una empresa que no tiene sus procesos digitalizados es como instalar un motor de Fórmula 1 en un auto sin frenos. La potencia existe, pero no hay control.
+El problema no fue el ERP. El problema fue la secuencia.
 
-## ¿Qué es realmente un ERP?
+## Qué es realmente un ERP y por qué eso importa
 
-Un ERP (Enterprise Resource Planning) es un sistema que integra y centraliza todos los procesos de una empresa: compras, ventas, inventario, producción, finanzas, recursos humanos.
+Un ERP integra procesos. Esa es su función. Toma lo que ya existe —ventas, compras, inventario, producción, finanzas— y lo conecta en un solo sistema.
 
-La palabra clave es **integra**. Un ERP integra procesos que ya existen y están documentados. No crea procesos desde cero.
+La palabra clave es **integra**. Un ERP no crea procesos. No organiza el caos. No le enseña a tu equipo cómo trabajar.
 
-Si tus procesos son caóticos, informales o viven en la cabeza de las personas, un ERP va a digitalizar el caos. Y el caos digital es más caro y difícil de manejar que el caos analógico.
+Si tus procesos son informales, si la información vive en la cabeza de las personas, si cada área trabaja con sus propias planillas sin criterio común, el ERP va a digitalizar ese caos. Y el caos digital es más caro y más difícil de manejar que el caos analógico. Porque ahora el caos tiene licencia anual.
 
-## La secuencia correcta de digitalización industrial
+## La secuencia que funciona
 
-### Fase 1: Digitalizar el proceso comercial (meses 1-3)
+Esto es lo que le digo a cualquier dueño de empresa industrial que me pregunta por dónde empezar:
 
-Antes de pensar en ERP, una empresa industrial necesita tener su proceso de ventas digitalizado y medible.
+### Primero: digitalizá el proceso comercial (meses 1 a 3)
 
-Esto significa:
-- **Cotizador automático**: El sistema genera presupuestos PDF en segundos, con precios actualizados y cálculos correctos.
-- **Registro de oportunidades**: Cada consulta de cliente queda registrada con fecha, monto potencial y estado.
-- **Trazabilidad de presupuestos**: Sabés cuántos presupuestos enviaste, cuántos se ganaron, cuántos se perdieron y por qué.
+Antes de pensar en ERP, necesitás saber cuánto vendés, cuánto podrías vender y dónde se pierden las oportunidades. Eso requiere tres cosas:
 
-Sin esto, no sabés cuánto vendés, cuánto podrías vender ni dónde se pierden las oportunidades.
+Un cotizador automático que genere presupuestos en segundos con precios actualizados y cálculos correctos. Un registro de cada consulta de cliente con fecha, monto potencial y estado. Y trazabilidad de presupuestos: cuántos enviaste, cuántos ganaste, cuántos perdiste y por qué.
 
-### Fase 2: Digitalizar la operación (meses 3-6)
+Sin esto, estás manejando tu área comercial a ciegas. No podés mejorar lo que no podés medir.
 
-Con el proceso comercial bajo control, el siguiente paso es la operación:
+### Segundo: digitalizá la operación (meses 3 a 6)
 
-- **Órdenes de trabajo digitales**: Cada pedido confirmado genera una orden de trabajo con especificaciones, materiales necesarios y plazos.
-- **Control de inventario básico**: Sabés qué tenés en stock, qué necesitás comprar y cuándo.
-- **Registro de producción**: Cada etapa del proceso productivo queda registrada con tiempos y responsables.
+Con el proceso comercial bajo control, el siguiente paso es la operación. Cada pedido confirmado tiene que generar una orden de trabajo con especificaciones, materiales y plazos. Tenés que saber qué hay en stock, qué necesitás comprar y cuándo. Y cada etapa del proceso productivo tiene que quedar registrada con tiempos y responsables.
 
-### Fase 3: Digitalizar las finanzas (meses 6-9)
+Esto no es burocracia. Es la diferencia entre saber si ganás o perdés plata en cada pedido.
 
-Con ventas y operación digitalizadas, las finanzas se vuelven transparentes:
+### Tercero: digitalizá las finanzas (meses 6 a 9)
 
-- **Facturación integrada**: La orden de trabajo completada genera automáticamente la factura.
-- **Control de costos por proyecto**: Sabés exactamente cuánto costó producir cada pedido.
-- **Flujo de caja en tiempo real**: Ves entradas y salidas sin esperar el cierre mensual del contador.
+Con ventas y operación digitalizadas, las finanzas se vuelven transparentes solas. La orden de trabajo completada genera la factura. Sabés exactamente cuánto costó producir cada pedido. Ves el flujo de caja en tiempo real sin esperar el cierre mensual del contador.
 
-### Fase 4: ERP (mes 9 en adelante)
+### Cuarto: ahora sí, evaluá el ERP (mes 9 en adelante)
 
-Recién en este punto, con procesos documentados, digitalizados y funcionando, tiene sentido evaluar un ERP. Y lo más probable es que descubras que no necesitás el ERP más caro del mercado, sino uno que se integre con los sistemas que ya tenés funcionando.
+Recién en este punto, con procesos documentados, digitalizados y funcionando, tiene sentido evaluar un ERP. Y lo más probable es que descubras que no necesitás el más caro del mercado, sino uno que se integre con los sistemas que ya tenés funcionando.
 
 ## Por qué las empresas saltan directo al ERP
 
-Hay tres razones principales:
+Hay tres razones. Las tres son evitables.
 
-**1. Presión del ego empresarial**: "Las empresas grandes tienen ERP, entonces yo también necesito uno." El tamaño de la empresa no determina la necesidad de un ERP. La madurez de los procesos sí.
+**La presión del ego empresarial.** "Las empresas grandes tienen ERP, entonces yo también necesito uno." El tamaño de la empresa no determina la necesidad de un ERP. La madurez de los procesos sí. Una empresa de 20 personas con procesos claros y digitalizados opera mejor que una de 200 con un ERP mal implementado.
 
-**2. Vendedores de ERP**: Los vendedores de sistemas ERP son muy buenos en su trabajo. Presentan demos impresionantes, casos de éxito de empresas similares y promesas de transformación total. Lo que no muestran es la tasa de abandono de implementaciones fallidas.
+**Los vendedores de ERP son muy buenos en su trabajo.** Presentan demos impresionantes, casos de éxito de empresas similares y promesas de transformación total. Lo que no muestran es la tasa de abandono de implementaciones fallidas, que en la región supera el 60%.
 
-**3. Confundir síntoma con causa**: La empresa tiene problemas de desorganización y asume que el ERP los va a resolver. Pero el ERP no organiza: integra lo que ya está organizado.
+**Confundir el síntoma con la causa.** La empresa tiene problemas de desorganización y asume que el ERP los va a resolver. Pero el ERP no organiza: integra lo que ya está organizado. Si el problema es desorganización, la solución es organización, no software.
 
-## Señales de que tu empresa está lista para un ERP
+## Cómo saber si estás listo
 
-Tu empresa está lista para evaluar un ERP cuando:
+Tu empresa está lista para evaluar un ERP cuando tenés más de 50 empleados y la coordinación entre áreas es genuinamente compleja, tus procesos están documentados y digitalizados, tenés datos históricos de ventas y costos de al menos 12 meses, tu equipo ya usa sistemas digitales en el trabajo diario, y tenés alguien responsable de tecnología internamente.
 
-✓ Tenés más de 50 empleados y la coordinación entre áreas es compleja.
-✓ Tus procesos comerciales, operativos y financieros están documentados y digitalizados.
-✓ Tenés datos históricos de ventas, costos y producción de al menos 12 meses.
-✓ Tu equipo usa sistemas digitales en su trabajo diario (no solo WhatsApp y Excel).
-✓ Tenés un responsable interno de tecnología o podés contratar uno.
+Si no cumplís al menos cuatro de esas cinco condiciones, el ERP va a ser un gasto. No una inversión.
 
-Si no cumplís al menos 4 de estas 5 condiciones, el ERP va a ser un gasto, no una inversión.
+Tu empresa NO está lista cuando los presupuestos se hacen en Excel o a mano, el inventario se controla "a ojo", la información de ventas vive en la cabeza del dueño, no tenés datos confiables de costos y márgenes, o tu equipo resiste cualquier sistema digital.
 
-## Señales de que todavía no estás listo
+## Lo que nadie te dice sobre la secuencia
 
-Tu empresa NO está lista para un ERP cuando:
+La secuencia correcta no es más lenta que ir directo al ERP. Es más rápida. Porque cada fase genera valor inmediato y prepara el terreno para la siguiente.
 
-✗ Los presupuestos se hacen en Excel o a mano.
-✗ El inventario se controla "a ojo" o en cuadernos.
-✗ La información de ventas vive en la cabeza del dueño o del vendedor.
-✗ No tenés datos históricos confiables de costos y márgenes.
-✗ Tu equipo resiste el uso de cualquier sistema digital.
+Una empresa que digitaliza su proceso comercial en el mes 1 ya está generando retorno en el mes 2. Una empresa que implementa un ERP en el mes 1 puede estar pagando licencias durante 12 meses antes de ver el primer beneficio real.
 
-## El camino inteligente
+La digitalización industrial no es un proyecto de tecnología. Es un proyecto de ingeniería de procesos que usa tecnología como herramienta. La diferencia entre las empresas que lo hacen bien y las que fracasan no está en el presupuesto. Está en la secuencia.
 
-La secuencia correcta no es más lenta que ir directo al ERP. Es más rápida, porque cada fase genera valor inmediato y prepara el terreno para la siguiente.
-
-Una empresa que digitaliza su proceso comercial en el mes 1 ya está generando ROI en el mes 2. Una empresa que implementa un ERP en el mes 1 puede estar pagando licencias durante 12 meses antes de ver el primer beneficio real.
-
-La digitalización industrial no es un proyecto de tecnología. Es un proyecto de ingeniería de procesos que usa tecnología como herramienta.
-
-La diferencia entre las empresas que lo hacen bien y las que fracasan no está en el presupuesto. Está en la secuencia.
+Y la secuencia empieza por lo que genera dinero: el proceso comercial.
     `.trim(),
   },
 ];
