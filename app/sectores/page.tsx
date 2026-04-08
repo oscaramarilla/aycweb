@@ -31,32 +31,28 @@ export default function SectoresPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="text-4xl mb-4">🏭</div>
-              <h2 className="text-3xl font-black text-white mb-4">Industria & Logística</h2>
+              <h2 className="text-3xl font-black text-white mb-6">Industria & Logística</h2>
               
-              <div className="space-y-4 mb-8">
-                <div className="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
-                  <p className="text-xs font-bold text-red-400 uppercase tracking-widest mb-1">Cuello de botella típico</p>
-                  <p className="text-sm text-zinc-300">Cotizaciones manuales lentas, cálculo de fletes a ojo y pérdida de margen por variaciones de combustible.</p>
+              <div className="space-y-4 mb-10">
+                <div className="bg-zinc-900/50 p-5 rounded-2xl border border-zinc-800">
+                  <p className="text-xs font-bold text-red-400 uppercase tracking-widest mb-2">Cuello de botella típico</p>
+                  <p className="text-sm text-zinc-300">Cotizaciones manuales lentas en Excel, cálculo de fletes a ojo y pérdida de margen por variaciones de combustible.</p>
                 </div>
-                <div className="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
-                  <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1">Infraestructura AYCweb</p>
-                  <p className="text-sm text-zinc-300">Motores logísticos conectados a APIs de combustible. Cotizadores que emiten PDFs automáticos.</p>
-                </div>
-                <div className="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
-                  <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-1">Resultado esperado</p>
-                  <p className="text-sm text-zinc-300">Reducción del 90% en tiempos administrativos y cero errores de cálculo humano.</p>
+                <div className="bg-zinc-900/50 p-5 rounded-2xl border border-zinc-800">
+                  <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">Infraestructura AYCweb</p>
+                  <p className="text-sm text-zinc-300">Motores logísticos integrados a APIs de combustible. Cotizadores dinámicos que emiten PDFs automáticos formales.</p>
                 </div>
               </div>
               
               {/* DEEP LINK AL CASO ESPECÍFICO */}
-              <Link href="/casos#metal-mad" className="text-emerald-500 font-bold hover:underline inline-flex items-center gap-2">
-                Ver caso operativo: Metal Mad &rarr;
+              <Link href="/casos#metal-mad" className="text-emerald-500 font-bold hover:underline inline-flex items-center gap-2 text-lg">
+                Ver caso resuelto: Metal Mad E.A.S. &rarr;
               </Link>
             </div>
-            <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 shadow-2xl h-full min-h-[300px] flex items-center justify-center relative overflow-hidden group">
-               <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-               <p className="text-zinc-500 font-bold text-lg relative z-10 text-center px-4">
-                 "De tardar 2 horas cotizando fletes, a generar un contrato formal en 45 segundos."
+            <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-10 shadow-2xl h-full min-h-[300px] flex items-center justify-center relative overflow-hidden group">
+               <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+               <p className="text-zinc-400 font-bold text-xl relative z-10 text-center leading-relaxed">
+                 "De tardar 2 horas cotizando fletes, a generar un contrato formal en <span className="text-emerald-400">45 segundos</span>."
                </p>
             </div>
           </div>
@@ -67,34 +63,30 @@ export default function SectoresPage() {
       <section className="py-24 bg-zinc-950 border-b border-zinc-900">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1 bg-zinc-900 border border-zinc-800 rounded-3xl p-8 shadow-2xl h-full min-h-[300px] flex items-center justify-center relative overflow-hidden group">
-               <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-               <p className="text-zinc-500 font-bold text-lg relative z-10 text-center px-4">
-                 "Atención automatizada 24/7 sin saturar la recepción de la clínica."
+            <div className="order-2 md:order-1 bg-zinc-900 border border-zinc-800 rounded-3xl p-10 shadow-2xl h-full min-h-[300px] flex items-center justify-center relative overflow-hidden group">
+               <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+               <p className="text-zinc-400 font-bold text-xl relative z-10 text-center leading-relaxed">
+                 "Atención automatizada <span className="text-purple-400">24/7</span> sin saturar la recepción de la clínica médica."
                </p>
             </div>
             <div className="order-1 md:order-2">
               <div className="text-4xl mb-4">🏥</div>
-              <h2 className="text-3xl font-black text-white mb-4">Salud & Clínicas Especializadas</h2>
+              <h2 className="text-3xl font-black text-white mb-6">Salud & Clínicas</h2>
               
-              <div className="space-y-4 mb-8">
-                <div className="bg-black/50 p-4 rounded-xl border border-zinc-800">
-                  <p className="text-xs font-bold text-red-400 uppercase tracking-widest mb-1">Cuello de botella típico</p>
-                  <p className="text-sm text-zinc-300">Recepción saturada respondiendo precios por WhatsApp. Pacientes perdidos fuera de horario comercial.</p>
+              <div className="space-y-4 mb-10">
+                <div className="bg-black/50 p-5 rounded-2xl border border-zinc-800">
+                  <p className="text-xs font-bold text-red-400 uppercase tracking-widest mb-2">Cuello de botella típico</p>
+                  <p className="text-sm text-zinc-300">Recepción saturada respondiendo precios por WhatsApp. Pacientes perdidos fuera de horario comercial por falta de respuesta.</p>
                 </div>
-                <div className="bg-black/50 p-4 rounded-xl border border-zinc-800">
-                  <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1">Infraestructura AYCweb</p>
-                  <p className="text-sm text-zinc-300">Embudos de captación precalificada. Sistemas de derivación inteligente a agenda.</p>
-                </div>
-                <div className="bg-black/50 p-4 rounded-xl border border-zinc-800">
-                  <p className="text-xs font-bold text-purple-400 uppercase tracking-widest mb-1">Resultado esperado</p>
-                  <p className="text-sm text-zinc-300">Captación de pacientes 24/7 y liberación de carga humana en tareas repetitivas.</p>
+                <div className="bg-black/50 p-5 rounded-2xl border border-zinc-800">
+                  <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">Infraestructura AYCweb</p>
+                  <p className="text-sm text-zinc-300">Embudos de captación clínica precalificada. Sistemas de derivación inteligente a agenda automática.</p>
                 </div>
               </div>
 
               {/* DEEP LINK AL CASO ESPECÍFICO */}
-              <Link href="/casos#clinica" className="text-purple-500 font-bold hover:underline inline-flex items-center gap-2">
-                Ver caso operativo: Dra. Bianca &rarr;
+              <Link href="/casos#clinica" className="text-purple-500 font-bold hover:underline inline-flex items-center gap-2 text-lg">
+                Ver caso resuelto: Infraestructura Clínica &rarr;
               </Link>
             </div>
           </div>
@@ -107,79 +99,42 @@ export default function SectoresPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="text-4xl mb-4">💼</div>
-              <h2 className="text-3xl font-black text-white mb-4">Corporativo & Legal</h2>
+              <h2 className="text-3xl font-black text-white mb-6">Corporativo & Legal</h2>
               
-              <div className="space-y-4 mb-8">
-                <div className="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
-                  <p className="text-xs font-bold text-red-400 uppercase tracking-widest mb-1">Cuello de botella típico</p>
-                  <p className="text-sm text-zinc-300">Redacción repetitiva de Acuerdos de Trabajo (SOW), copiando y pegando plantillas en Word con alto riesgo de error.</p>
+              <div className="space-y-4 mb-10">
+                <div className="bg-zinc-900/50 p-5 rounded-2xl border border-zinc-800">
+                  <p className="text-xs font-bold text-red-400 uppercase tracking-widest mb-2">Cuello de botella típico</p>
+                  <p className="text-sm text-zinc-300">Redacción repetitiva de Acuerdos (SOW), copiando y pegando en Word con alto riesgo de error de tipeo.</p>
                 </div>
-                <div className="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
-                  <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1">Infraestructura AYCweb</p>
-                  <p className="text-sm text-zinc-300">Generadores automáticos de contratos. Formularios que inyectan datos en documentos blindados listos para firma.</p>
-                </div>
-                <div className="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800">
-                  <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1">Resultado esperado</p>
-                  <p className="text-sm text-zinc-300">Estandarización 100% segura. Cero dependencia de abogados para tareas rutinarias de ventas.</p>
+                <div className="bg-zinc-900/50 p-5 rounded-2xl border border-zinc-800">
+                  <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">Infraestructura AYCweb</p>
+                  <p className="text-sm text-zinc-300">Generadores automáticos de contratos. Formularios que inyectan datos directamente en documentos blindados.</p>
                 </div>
               </div>
 
               {/* DEEP LINK AL CASO ESPECÍFICO */}
-              <Link href="/casos#legal" className="text-blue-500 font-bold hover:underline inline-flex items-center gap-2">
-                Ver caso operativo: Generador SOW &rarr;
+              <Link href="/casos#legal" className="text-blue-500 font-bold hover:underline inline-flex items-center gap-2 text-lg">
+                Ver caso resuelto: Generador SOW &rarr;
               </Link>
             </div>
-            <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 shadow-2xl h-full min-h-[300px] flex items-center justify-center relative overflow-hidden group">
-               <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-               <p className="text-zinc-500 font-bold text-lg relative z-10 text-center px-4">
-                 "De redactar Word manual a generar contratos legales automáticos en 10 segundos."
+            <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-10 shadow-2xl h-full min-h-[300px] flex items-center justify-center relative overflow-hidden group">
+               <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+               <p className="text-zinc-400 font-bold text-xl relative z-10 text-center leading-relaxed">
+                 "De redactar un Word manual a generar contratos legales automáticos en <span className="text-blue-400">10 segundos</span>."
                </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTOR 4: EDUCACIÓN B2G */}
-      <section className="py-24 bg-zinc-950 border-b border-zinc-900">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1 bg-zinc-900 border border-zinc-800 rounded-3xl p-8 shadow-2xl h-full min-h-[300px] flex items-center justify-center relative overflow-hidden group">
-               <div className="absolute inset-0 bg-gradient-to-br from-orange-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-               <p className="text-zinc-500 font-bold text-lg relative z-10 text-center px-4">
-                 "Infraestructura escalable capaz de soportar la concurrencia de miles de usuarios simultáneos."
-               </p>
-            </div>
-            <div className="order-1 md:order-2">
-              <div className="text-4xl mb-4">🏛️</div>
-              <h2 className="text-3xl font-black text-white mb-4">Educación & Gobierno (B2G)</h2>
-              
-              <div className="space-y-4 mb-8">
-                <div className="bg-black/50 p-4 rounded-xl border border-zinc-800">
-                  <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1">Infraestructura AYCweb</p>
-                  <p className="text-sm text-zinc-300">Portales web institucionales de alto tráfico. Arquitecturas seguras en la nube (AWS/Vercel) para garantizar estabilidad.</p>
-                </div>
-                <div className="bg-black/50 p-4 rounded-xl border border-zinc-800">
-                  <p className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-1">Resultado esperado</p>
-                  <p className="text-sm text-zinc-300">Disponibilidad 99.9% y cumplimiento de estándares técnicos para licitaciones públicas.</p>
-                </div>
-              </div>
-
-              <a href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hola Oscar, quiero agendar una auditoría técnica para nuestra institución.")}`} target="_blank" rel="noopener noreferrer" className="text-orange-500 font-bold hover:underline inline-flex items-center gap-2">
-                Consultar por arquitectura institucional &rarr;
-              </a>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA FINAL */}
-      <section className="py-24 bg-black text-center relative overflow-hidden">
+      <section className="py-24 bg-black text-center relative overflow-hidden border-t border-zinc-900">
         <div className="max-w-3xl mx-auto px-6 relative z-10">
           <h2 className="text-3xl md:text-5xl font-black text-white mb-6">¿No encontrás tu sector?</h2>
           <p className="text-zinc-400 text-lg mb-10 max-w-xl mx-auto">
-            La ingeniería de software se adapta a cualquier rubro. Si tenés un cuello de botella manual, podemos automatizarlo.
+            La ingeniería de software se adapta a cualquier rubro. Si tenés un cuello de botella manual repetitivo, nosotros podemos automatizarlo.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <div className="flex justify-center">
              <a 
               href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
               target="_blank" rel="noopener noreferrer"
