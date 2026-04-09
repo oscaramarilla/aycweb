@@ -14,6 +14,7 @@ export default function Navbar() {
     { name: "Sectores", href: "/sectores" },
     { name: "Casos", href: "/casos" },
     { name: "Experiencia", href: "/experiencia" },
+    { name: "Recursos", href: "/recursos" },
   ];
 
   return (

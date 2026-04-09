@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 import "./globals.css";
 import { AYCWEB_CONTACT } from "@/lib/config/contact";
 import Navbar from "@/components/Navbar"; // Tu nueva cabecera premium
@@ -53,6 +54,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 <p className="font-bold text-zinc-400 text-sm">AYCweb - Sistemas Digitales B2B</p>
                 <p>Oscar Emigdio Amarilla Caceres | RUC: 4499507-5</p>
                 <p>© {new Date().getFullYear()} Todos los derechos reservados. Asunción, Paraguay.</p>
+                
+                {/* ENLACE AL DIRECTORIO / MAPA DEL SITIO */}
+                <div className="mt-4">
+                  <Link 
+                    href="/mapa" 
+                    className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors uppercase tracking-widest font-bold"
+                  >
+                    Mapa del Sitio B2B
+                  </Link>
+                </div>
              </div>
           </footer>
 
