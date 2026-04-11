@@ -1,0 +1,90 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "run npm build",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "cleanup old route files",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Remove-Item -LiteralPath 'c:\\Users\\User\\Documents\\aycweb\\app\\(marketing)\\layout.tsx' -Force; Remove-Item -LiteralPath 'c:\\Users\\User\\Documents\\aycweb\\app\\os\\page.tsx' -Force"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "cleanup old route files",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Remove-Item -LiteralPath 'c:\\Users\\User\\Documents\\aycweb\\app\\(marketing)\\layout.tsx' -Force; Remove-Item -LiteralPath 'c:\\Users\\User\\Documents\\aycweb\\app\\os\\page.tsx' -Force"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "cleanup old route files",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/C",
+				"del",
+				"/Q",
+				"\"c:\\Users\\User\\Documents\\aycweb\\app\\(marketing)\\layout.tsx\"",
+				"&&",
+				"del",
+				"/Q",
+				"\"c:\\Users\\User\\Documents\\aycweb\\app\\os\\page.tsx\""
+			],
+			"isBackground": false
+		},
+		{
+			"label": "delete-old-marketing-layout",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Remove-Item -LiteralPath 'c:\\Users\\User\\Documents\\aycweb\\app\\(marketing)\\layout.tsx' -Force"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "delete-old-marketing-layout-cmd",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/C",
+				"del",
+				"/Q",
+				"\"c:\\Users\\User\\Documents\\aycweb\\app\\(marketing)\\layout.tsx\""
+			],
+			"isBackground": false
+		},
+		{
+			"label": "delete-old-marketing-layout-v2",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Set-Location 'c:\\Users\\User\\Documents\\aycweb'; $p = Join-Path (Get-Location) 'app' '(marketing)' 'layout.tsx'; Remove-Item -LiteralPath $p -Force"
+			],
+			"isBackground": false
+		}
+	]
+}
