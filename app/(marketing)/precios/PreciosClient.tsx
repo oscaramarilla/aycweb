@@ -2,221 +2,231 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useLanguage } from "@/context/LanguageContext";
 
-type AccentColor = "emerald" | "blue" | "violet";
-
-const PLANES = [
-  {
-    id: "landing-comercial",
-    badge: "Captación B2B",
-    nombre: "Landing Comercial Base",
-    emoji: "🧲",
-    precioUSD: "Desde USD $350",
-    precioGs: "Desde Gs. 2.625.000",
-    descripcion:
-      "Para empresas que necesitan dejar de verse como freelancers. Un embudo de captación formal, con copy persuasivo y rutas directas a WhatsApp. Operativo en 48hs.",
-    features: [
-      "Landing Page Premium (1 página)",
-      "Copywriting orientado a cerrar ventas",
-      "Filtro de leads hacia WhatsApp",
-      "Integración de pasarela de pago (QR)",
-      "Optimización estricta PageSpeed 99/100",
-    ],
-    accent: "emerald" as AccentColor,
-    featured: false,
-    ctaText: "Solicitar Landing Base",
-    msgValue: "Hola Oscar, me interesa implementar la Landing Comercial Base a partir de USD $350 para captar mejores clientes. ¿Podemos coordinar?"
-  },
-  {
-    id: "motor-cotizacion",
-    badge: "🔥 El Estándar B2B",
-    nombre: "Motor de Cotización Base",
-    emoji: "⏱️",
-    precioUSD: "Desde USD $650",
-    precioGs: "Desde Gs. 4.875.000",
-    descripcion:
-      "Para PyMEs industriales y B2B que ya venden, pero cotizan en Excel. Automatizamos tus precios y autogeneramos tus PDFs para cotizar en segundos.",
-    features: [
-      "Todo lo de la Landing Comercial Base",
-      "Calculadora Dinámica de Presupuestos",
-      "Generación de PDFs formales en el acto",
-      "Sección de Casos de Éxito / Prueba Social",
-      "Arquitectura Multi-Página corporativa",
-    ],
-    accent: "blue" as AccentColor,
-    featured: true,
-    ctaText: "Solicitar Motor de Cotización",
-    msgValue: "Hola Oscar, quiero implementar el Motor de Cotización Base a partir de USD $650 para dejar de usar Excel. ¿Podemos agendar el setup?"
-  },
-  {
-    id: "sistema-operativo",
-    badge: "Escalabilidad Total",
-    nombre: "Sistema Operativo Empresarial",
-    emoji: "⚙️",
-    precioUSD: "Desde USD $900",
-    precioGs: "Desde Gs. 6.750.000",
-    descripcion:
-      "Para empresas con procesos operativos complejos. Embudo B2B, Motor Operativo, portales de clientes o integraciones ERP. Construido a medida.",
-    features: [
-      "Todo lo del Motor de Cotización",
-      "Embudo de captación y calificación avanzado",
-      "Portales B2B con acceso restringido",
-      "Automatización de Contratos y Documentos",
-      "Arquitectura Empresarial lista para escalar",
-    ],
-    accent: "violet" as AccentColor,
-    featured: false,
-    ctaText: "Agendar Auditoría Empresarial",
-    msgValue: "Hola Oscar, necesito un Sistema Operativo Empresarial a partir de USD $900 para automatizar procesos complejos. ¿Cuándo hacemos la auditoría?"
-  },
-];
-
-export default function PreciosClient() {
-  const { t } = useLanguage();
-  const wa = "595985864209";
-  const msgGeneral = encodeURIComponent("Hola Oscar, necesito que auditen mi operación para saber qué arquitectura web o software necesito exactamente.");
-
-  const accentStyles: Record<AccentColor, { border: string; bg: string; text: string; badge: string; glow: string; check: string; btn: string; priceBorder: string; }> = {
-    emerald: {
-      border: "border-emerald-500", bg: "bg-emerald-950/20", text: "text-emerald-400",
-      badge: "border-emerald-800/50 bg-emerald-900/40 text-emerald-300", glow: "shadow-[0_0_40px_-8px_rgba(52,211,153,0.3)]",
-      check: "text-emerald-400", btn: "bg-emerald-500 text-zinc-950 hover:bg-emerald-400", priceBorder: "border-emerald-900/40",
-    },
-    blue: {
-      border: "border-blue-500", bg: "bg-blue-950/20", text: "text-blue-400",
-      badge: "border-blue-700/60 bg-blue-900/40 text-blue-200", glow: "shadow-[0_0_50px_-8px_rgba(59,130,246,0.35)]",
-      check: "text-blue-400", btn: "bg-blue-600 text-white hover:bg-blue-500", priceBorder: "border-blue-900/40",
-    },
-    violet: {
-      border: "border-violet-500", bg: "bg-violet-950/20", text: "text-violet-400",
-      badge: "border-violet-800/50 bg-violet-900/40 text-violet-300", glow: "shadow-[0_0_40px_-8px_rgba(139,92,246,0.3)]",
-      check: "text-violet-400", btn: "bg-violet-600 text-white hover:bg-violet-500", priceBorder: "border-violet-900/40",
-    },
-  };
+export default function PreciosPage() {
+  const [tier, setTier] = useState<"empresa" | "profesional">("empresa");
 
   return (
-    <div className="min-h-screen bg-zinc-950 font-sans text-zinc-50 pb-28 md:pb-0">
+    <div className="min-h-screen bg-slate-950 text-slate-50 font-sans pb-24 pt-12 md:pt-20 relative overflow-hidden">
       
-      <section className="relative mx-auto max-w-7xl overflow-hidden px-6 pb-20 pt-12 md:pt-24 sm:pb-28">
-        <div className="pointer-events-none absolute right-0 top-0 -z-10 h-[700px] w-[700px] rounded-full bg-blue-600/8 blur-[130px]" />
+      {/* Fondo de ruido tecnológico */}
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0"></div>
+
+      {/* HERO & SELECTOR */}
+      <section className="max-w-4xl mx-auto px-6 text-center mb-16 relative z-10">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
         
-        <div className="max-w-3xl text-center mx-auto">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-zinc-400">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-blue-500" />
-            Arquitectura de Precios B2B
-          </div>
-          <h1 className="mb-6 text-4xl font-black leading-[1.05] tracking-tighter text-white sm:text-5xl lg:text-6xl">
-            Inversión clara. <br/><span className="text-blue-400">Retorno operativo medible.</span>
-          </h1>
-          <p className="mb-10 text-lg leading-relaxed text-zinc-400 sm:text-xl">
-            Sistemas empaquetados sin costos ocultos. Eligí la herramienta que resuelve tu cuello de botella actual, y escalemos desde ahí.
-          </p>
+        <div className="inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full border border-slate-800 bg-slate-900/50 text-xs font-bold uppercase tracking-widest text-slate-300 shadow-md">
+          <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+          Arquitectura de Precios
         </div>
-      </section>
+        <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-white leading-tight">
+          Inversión clara.<br />Retorno operativo medible.
+        </h1>
+        <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-12">
+          Sistemas empaquetados sin costos ocultos. Elegí tu perfil y encontrá la infraestructura exacta que necesita tu operación.
+        </p>
 
-      <section id="planes" className="mx-auto max-w-7xl px-6 py-16 sm:py-24 border-t border-zinc-900">
-        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-3">
-          {PLANES.map((plan) => {
-            const s = accentStyles[plan.accent];
-            const msgEncoded = encodeURIComponent(plan.msgValue);
-
-            return (
-              <article key={plan.id} className={`flex flex-col overflow-hidden rounded-[2rem] border-2 bg-zinc-950 transition-all duration-300 ${plan.featured ? `${s.border} ${s.glow} transform md:-translate-y-4` : "border-zinc-800 hover:border-zinc-700"}`}>
-                {plan.featured && (
-                  <div className={`w-full border-b py-2.5 text-center text-xs font-black uppercase tracking-widest ${s.bg} ${s.border} ${s.text}`}>
-                    {plan.badge}
-                  </div>
-                )}
-
-                <div className="flex flex-1 flex-col p-6 sm:p-8">
-                  <div className="mb-6">
-                    {!plan.featured && (
-                      <span className={`mb-3 inline-block rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-widest ${s.badge}`}>
-                        {plan.badge}
-                      </span>
-                    )}
-                    <div className="mb-3 flex items-center gap-3">
-                      <span className="text-3xl">{plan.emoji}</span>
-                      <h3 className="text-2xl font-black text-white sm:text-3xl">{plan.nombre}</h3>
-                    </div>
-                    <p className="text-sm leading-relaxed text-zinc-400">{plan.descripcion}</p>
-                  </div>
-
-                  <div className={`mb-6 rounded-2xl border p-5 ${s.bg} ${s.priceBorder}`}>
-                    <p className="mb-1 text-xs font-bold uppercase tracking-widest text-zinc-500">Setup Único</p>
-                    <div className="flex flex-wrap items-end gap-3">
-                      <p className={`text-4xl font-black ${s.text}`}>{plan.precioUSD}</p>
-                      <p className="pb-0.5 text-base font-semibold text-zinc-500">{plan.precioGs}</p>
-                    </div>
-                  </div>
-
-                  <ul className="mb-8 flex-1 space-y-3">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3 text-sm font-medium">
-                        <span className={`mt-0.5 text-lg font-black leading-none ${s.check}`}>✓</span>
-                        <span className="text-zinc-300">{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <a
-                    href={`https://wa.me/${wa}?text=${msgEncoded}`}
-                    target="_blank" rel="noopener noreferrer"
-                    className={`w-full rounded-xl py-4 text-center text-base font-black transition-all active:scale-95 ${s.btn} ${plan.featured ? "shadow-lg" : ""}`}
-                  >
-                    {plan.ctaText}
-                  </a>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-
-        {/* FEE DE MANTENIMIENTO DIFERENCIADO */}
-        <div className="mx-auto mt-16 max-w-5xl">
-          <div className="rounded-3xl border border-blue-900/30 bg-blue-950/10 p-8 mb-6 shadow-xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-800/50 bg-blue-900/20 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-4">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-blue-400" />
-              Soporte Continuo Diferenciado
-            </div>
-            <h4 className="mb-4 text-2xl font-black text-white">Hosting, Backups y Soporte Técnico</h4>
-            <p className="text-sm text-zinc-400 leading-relaxed mb-6">
-              Nos encargamos del hosting en servidores de alta velocidad (Vercel), dominio corporativo, copias de seguridad semanales, certificados SSL y soporte técnico directo para que tu motor no se detenga jamás.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="rounded-2xl border border-emerald-900/40 bg-emerald-950/10 p-6">
-              <p className="text-sm font-bold uppercase tracking-widest text-emerald-400 mb-2">Tier Profesional</p>
-              <p className="text-3xl font-black text-white mb-1">Desde $25</p>
-              <p className="text-sm text-zinc-400">USD/mes • Landing + Motor Base</p>
-            </div>
-            <div className="rounded-2xl border border-violet-900/40 bg-violet-950/10 p-6">
-              <p className="text-sm font-bold uppercase tracking-widest text-violet-400 mb-2">Tier Empresarial</p>
-              <p className="text-3xl font-black text-white mb-1">Desde $80</p>
-              <p className="text-sm text-zinc-400">USD/mes • Sistemas Operativos</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA FINAL DE AUDITORÍA */}
-      <section className="py-24 bg-black text-center border-t border-zinc-900 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-blue-600/5 rounded-full blur-[100px] pointer-events-none"></div>
-        <div className="max-w-3xl mx-auto px-6 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
-            No adivines qué software necesitás.
-          </h2>
-          <p className="text-zinc-400 text-xl mb-10 leading-relaxed">
-            Te decimos exactamente qué arquitectura de software necesitás para destrabar tu operación hoy mismo.
-          </p>
-          <a
-            href={`https://wa.me/${wa}?text=${msgGeneral}`}
-            target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 rounded-2xl bg-blue-600 hover:bg-blue-500 px-12 py-6 text-xl font-black text-white transition-all active:scale-95 shadow-[0_0_40px_rgba(37,99,235,0.4)]"
+        {/* TOGGLE BUTTONS */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-2xl mx-auto">
+          <button 
+            onClick={() => setTier("empresa")}
+            className={`flex-1 p-6 rounded-2xl border-2 transition-all text-left relative overflow-hidden ${
+              tier === "empresa" 
+                ? "border-blue-500 bg-blue-900/20 shadow-[0_0_30px_rgba(37,99,235,0.2)]" 
+                : "border-slate-800 bg-slate-900/50 hover:bg-slate-800"
+            }`}
           >
-            Auditar mi Operación &rarr;
-          </a>
+            <span className="text-3xl mb-3 block">🏭</span>
+            <div className="font-bold text-lg text-white mb-1">Empresa / Razón Social</div>
+            <div className="text-xs text-slate-400">Manufactureras, clínicas, agroindustria, hospitales.</div>
+          </button>
+
+          <button 
+            onClick={() => setTier("profesional")}
+            className={`flex-1 p-6 rounded-2xl border-2 transition-all text-left relative overflow-hidden ${
+              tier === "profesional" 
+                ? "border-emerald-500 bg-emerald-900/20 shadow-[0_0_30px_rgba(16,185,129,0.2)]" 
+                : "border-slate-800 bg-slate-900/50 hover:bg-slate-800"
+            }`}
+          >
+            <span className="text-3xl mb-3 block">🧑‍⚕️</span>
+            <div className="font-bold text-lg text-white mb-1">Profesional Independiente</div>
+            <div className="text-xs text-slate-400">Médicos, abogados, contadores, consultores.</div>
+          </button>
+        </div>
+      </section>
+
+      {/* ================= TIER EMPRESA ================= */}
+      {tier === "empresa" && (
+        <section className="max-w-6xl mx-auto px-6 animate-in fade-in slide-in-from-bottom-4 duration-500 relative z-10">
+          <div className="text-center mb-12">
+            <span className="text-blue-400 text-xs font-bold tracking-widest uppercase bg-blue-500/10 px-4 py-1.5 rounded-full mb-4 inline-block border border-blue-500/20">Tier Empresarial</span>
+            <h2 className="text-3xl font-black text-white mb-4">Infraestructura para operaciones complejas</h2>
+            <p className="text-slate-400">Motores que reemplazan procesos manuales enteros y recuperan horas-hombre cada semana.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1 */}
+            <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 hover:border-slate-600 transition-colors flex flex-col backdrop-blur-sm">
+              <span className="text-3xl mb-4 block">⚡</span>
+              <h3 className="text-xl font-bold text-white mb-2">Motor Comercial Base</h3>
+              <p className="text-slate-400 text-sm mb-6 h-10">Presencia corporativa con embudo de captación B2B integrado.</p>
+              
+              <div className="mb-8">
+                <div className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-1">Setup Único</div>
+                <div className="text-4xl font-black text-white mb-1"><span className="text-xl text-slate-500 mr-1">USD</span>$900</div>
+              </div>
+
+              <ul className="space-y-3 text-slate-300 text-sm mb-8 flex-1">
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Web corporativa B2B</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Copywriting de conversión</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Embudo con precalificación</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Arquitectura de alto rendimiento</li>
+              </ul>
+              
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20empresa%20y%20me%20interesa%20el%20Motor%20Comercial%20Base%20de%20USD%20%24900." target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded-xl transition-all mt-auto border border-slate-700 shadow-md">Solicitar Motor Base</a>
+            </div>
+
+            {/* Card 2 (Featured) */}
+            <div className="bg-slate-950 border-2 border-blue-500 rounded-3xl p-8 transform md:-translate-y-4 shadow-[0_0_50px_rgba(37,99,235,0.2)] relative flex flex-col">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-5 py-1.5 rounded-full uppercase tracking-widest whitespace-nowrap shadow-lg">Más Elegido</div>
+              <span className="text-3xl mb-4 block mt-2">🔧</span>
+              <h3 className="text-xl font-bold text-white mb-2">Infraestructura Operativa</h3>
+              <p className="text-slate-400 text-sm mb-6 h-10">Automatización de cotizaciones, PDFs y lógica a medida.</p>
+              
+              <div className="mb-8">
+                <div className="text-xs text-blue-400 font-bold uppercase tracking-widest mb-1">Setup Único</div>
+                <div className="text-4xl font-black text-blue-400 mb-1"><span className="text-xl text-blue-500/50 mr-1">USD</span>$1.800</div>
+              </div>
+
+              <ul className="space-y-3 text-white font-medium text-sm mb-8 flex-1">
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Todo lo del Motor Base</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Cotizador dinámico interactivo</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Generación automática de PDFs</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Lógica de negocio personalizada</li>
+              </ul>
+              
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20empresa%20y%20me%20interesa%20la%20Infraestructura%20Operativa%20de%20USD%20%241.800." target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-black py-4 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] mt-auto">Agendar Auditoría</a>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 hover:border-slate-600 transition-colors flex flex-col backdrop-blur-sm">
+              <span className="text-3xl mb-4 block">🏗️</span>
+              <h3 className="text-xl font-bold text-white mb-2">SaaS / Consultoría</h3>
+              <p className="text-slate-400 text-sm mb-6 h-10">Portales, dashboards, conexión con ERPs y sistemas legados.</p>
+              
+              <div className="mb-8">
+                <div className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-1">Inversión</div>
+                <div className="text-3xl font-black text-white mb-1">A medida</div>
+              </div>
+
+              <ul className="space-y-3 text-slate-300 text-sm mb-8 flex-1">
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Dashboards de control interno</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Portales de clientes/proveedores</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Conexión con APIs y ERPs</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Mantenimiento dedicado</li>
+              </ul>
+              
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20necesito%20una%20infraestructura%20custom%20para%20mi%20empresa." target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded-xl transition-all mt-auto border border-slate-700 shadow-md">Agendar Consultoría</a>
+            </div>
+          </div>
+
+          {/* Mantenimiento B2B */}
+          <div className="mt-8 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-4xl mx-auto backdrop-blur-md shadow-lg">
+            <p className="text-slate-300 text-sm">🛡️ <strong className="text-white">SLA Empresarial:</strong> Hosting dedicado, dominio, backups diarios y soporte técnico B2B continuo.</p>
+            <div className="font-black text-white text-xl bg-slate-950 px-5 py-2.5 rounded-xl border border-slate-700 whitespace-nowrap shadow-inner">$80 USD<span className="text-xs font-normal text-slate-500 ml-1">/mes</span></div>
+          </div>
+        </section>
+      )}
+
+      {/* ================= TIER PROFESIONAL ================= */}
+      {tier === "profesional" && (
+        <section className="max-w-6xl mx-auto px-6 animate-in fade-in slide-in-from-bottom-4 duration-500 relative z-10">
+          <div className="text-center mb-12">
+            <span className="text-emerald-400 text-xs font-bold tracking-widest uppercase bg-emerald-500/10 px-4 py-1.5 rounded-full mb-4 inline-block border border-emerald-500/20">Tier Profesional</span>
+            <h2 className="text-3xl font-black text-white mb-4">Tu consultorio trabaja por vos</h2>
+            <p className="text-slate-400">Sistemas que captan pacientes, clientes y proyectos sin que vos levantes el teléfono.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:max-w-4xl lg:mx-auto gap-8">
+            {/* Card 1 */}
+            <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 hover:border-slate-600 transition-colors flex flex-col backdrop-blur-sm">
+              <span className="text-3xl mb-4 block">🚀</span>
+              <h3 className="text-xl font-bold text-white mb-2">Presencia Pro</h3>
+              <p className="text-slate-400 text-sm mb-6 h-10">Tu marca profesional online con derivación directa a WhatsApp.</p>
+              
+              <div className="mb-8">
+                <div className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-1">Setup Único</div>
+                <div className="text-4xl font-black text-white mb-1"><span className="text-xl text-slate-500 mr-1">USD</span>$350</div>
+              </div>
+
+              <ul className="space-y-3 text-slate-300 text-sm mb-8 flex-1">
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Landing page profesional</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Copywriting para tu servicio</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Rutas directas a tu WhatsApp</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Diseño optimizado móvil</li>
+              </ul>
+              
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20profesional%20y%20me%20interesa%20Presencia%20Pro%20de%20USD%20%24350." target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded-xl transition-all mt-auto border border-slate-700 shadow-md">Solicitar Presencia Pro</a>
+            </div>
+
+            {/* Card 2 (Featured) */}
+            <div className="bg-slate-950 border-2 border-emerald-500 rounded-3xl p-8 transform md:-translate-y-4 shadow-[0_0_50px_rgba(16,185,129,0.15)] relative flex flex-col">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-emerald-600 text-slate-950 text-xs font-black px-5 py-1.5 rounded-full uppercase tracking-widest whitespace-nowrap shadow-lg">Recomendado</div>
+              <span className="text-3xl mb-4 block mt-2">🎯</span>
+              <h3 className="text-xl font-bold text-white mb-2">Consultorio Digital</h3>
+              <p className="text-slate-400 text-sm mb-6 h-10">Embudo completo con agenda, precalificación y cobros.</p>
+              
+              <div className="mb-8">
+                <div className="text-xs text-emerald-500 font-bold uppercase tracking-widest mb-1">Setup Único</div>
+                <div className="text-4xl font-black text-emerald-400 mb-1"><span className="text-xl text-emerald-600/50 mr-1">USD</span>$650</div>
+              </div>
+
+              <ul className="space-y-3 text-white font-medium text-sm mb-8 flex-1">
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Todo lo de Presencia Pro</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Agenda de turnos automatizada</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Formularios de precalificación</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Sistemas de cobro integrados</li>
+              </ul>
+              
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20profesional%20y%20me%20interesa%20el%20Consultorio%20Digital%20de%20USD%20%24650." target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-black py-4 rounded-xl transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] mt-auto">Quiero mi Sistema</a>
+            </div>
+          </div>
+
+          {/* Mantenimiento Pro */}
+          <div className="mt-8 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-4xl mx-auto backdrop-blur-md shadow-lg">
+            <p className="text-slate-300 text-sm">🛡️ <strong className="text-white">SLA Profesional:</strong> Hosting, dominio, certificado de seguridad y soporte técnico.</p>
+            <div className="font-black text-white text-xl bg-slate-950 px-5 py-2.5 rounded-xl border border-slate-700 whitespace-nowrap shadow-inner">$25 USD<span className="text-xs font-normal text-slate-500 ml-1">/mes</span></div>
+          </div>
+        </section>
+      )}
+
+      {/* GARANTÍA UNIVERSAL */}
+      <section className="max-w-4xl mx-auto px-6 mt-32 relative z-10 mb-12">
+        <div className="bg-slate-900/40 border border-slate-800 rounded-[2rem] p-8 md:p-12 text-center backdrop-blur-md relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
+          
+          <span className="text-5xl block mb-6">🤝</span>
+          <h3 className="text-2xl md:text-3xl font-black text-white mb-4">Nuestra política es simple.</h3>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+            Elegimos con quién trabajamos. Antes de arrancar, evaluamos si podemos generar impacto real en tu negocio. Si no estás conforme con el resultado o no somos el equipo correcto, te devolvemos el 100%.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-slate-950/80 border border-slate-800 p-6 rounded-2xl shadow-inner">
+              <div className="font-bold text-white mb-2">Pagás primero</div>
+              <div className="text-sm text-slate-500">Reservá tu lugar. El compromiso es mutuo desde el día uno.</div>
+            </div>
+            <div className="bg-slate-950/80 border border-slate-800 p-6 rounded-2xl shadow-inner">
+              <div className="font-bold text-white mb-2">30 días de garantía</div>
+              <div className="text-sm text-slate-500">Si no funciona para ninguna de las partes, devolución total.</div>
+            </div>
+            <div className="bg-slate-950/80 border border-slate-800 p-6 rounded-2xl shadow-inner">
+              <div className="font-bold text-white mb-2">Sin letra chica</div>
+              <div className="text-sm text-slate-500">Cero sorpresas. Cero costos ocultos. Cero excusas.</div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AYCWEB_CONTACT } from "@/lib/config/contact";
-import Navbar from "@/components/Navbar";
 import BottomNavbar from "@/components/BottomNavbar"; // IMPORTAR EL NUEVO COMPONENTE
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
@@ -10,7 +9,6 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
 
   return (
     <>
-      <Navbar />
       
       {/* Añadimos padding bottom solo en móvil para que el BottomNavbar no tape contenido */}
       <main className="flex-grow pt-20 pb-20 md:pb-0">{children}</main>

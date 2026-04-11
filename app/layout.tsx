@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#020617", // Slate 950 (Gris plateado oscuro futurista)
+  themeColor: "#020617", 
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -29,13 +29,13 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="es" className={`${inter.variable} scroll-smooth`}>
-      {/* Cambiamos bg-zinc-950 a bg-slate-950 para el tono gris/azul metálico */}
       <body className="antialiased bg-slate-950 text-slate-50 min-h-screen flex flex-col font-sans relative selection:bg-blue-500/30">
         
-        {/* Grilla sutil futurista de fondo (Opcional, le da un toque muy tech) */}
+        {/* Grilla sutil futurista de fondo */}
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0"></div>
 
         <LanguageProvider>
+          {/* ACÁ YA NO VA EL NAVBAR */}
           {children}
         </LanguageProvider>
       </body>

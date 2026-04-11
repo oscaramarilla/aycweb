@@ -67,13 +67,13 @@ export default function PreciosPage() {
             {/* Card 1 */}
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 hover:border-zinc-600 transition-colors flex flex-col">
               <span className="text-3xl mb-4 block">⚡</span>
-              <h3 className="text-xl font-bold text-white mb-2">Motor Comercial Base</h3>
-              <p className="text-zinc-400 text-sm mb-6 h-10">Presencia corporativa con embudo de captación B2B integrado.</p>
+              <h3 className="text-xl font-bold text-white mb-2">Landing Comercial Base</h3>
+              <p className="text-zinc-400 text-sm mb-6 h-10">Para empresas que necesitan dejar de verse como freelancers. Embudo de captación formal con copy persuasivo.</p>
               
               <div className="mb-8">
-                <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Setup Único</div>
-                <div className="text-4xl font-black text-white mb-1"><span className="text-xl text-zinc-500 mr-1">USD</span>$850</div>
-                <div className="text-xs text-zinc-500">Gs. 6.500.000 aprox.</div>
+                <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Desde</div>
+                <div className="text-4xl font-black text-white mb-1"><span className="text-xl text-zinc-500 mr-1">USD</span>$350</div>
+                <div className="text-xs text-zinc-500">Gs. 2.625.000 aprox.</div>
               </div>
 
               <ul className="space-y-3 text-zinc-300 text-sm mb-8 flex-1">
@@ -93,13 +93,13 @@ export default function PreciosPage() {
             <div className="bg-black border-2 border-blue-600 rounded-3xl p-8 transform md:-translate-y-4 shadow-[0_0_40px_rgba(37,99,235,0.15)] relative flex flex-col">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest whitespace-nowrap">Más Elegido</div>
               <span className="text-3xl mb-4 block mt-2">🔧</span>
-              <h3 className="text-xl font-bold text-white mb-2">Infraestructura Operativa</h3>
-              <p className="text-zinc-400 text-sm mb-6 h-10">Automatización de cotizaciones, PDFs y lógica comercial a medida.</p>
+              <h3 className="text-xl font-bold text-white mb-2">Motor de Cotización Base</h3>
+              <p className="text-zinc-400 text-sm mb-6 h-10">Para PyMEs que cotizan en Excel. Automatizamos tus precios y generamos PDFs en segundos.</p>
               
               <div className="mb-8">
                 <div className="text-xs text-blue-400 font-bold uppercase tracking-widest mb-1">Desde</div>
-                <div className="text-4xl font-black text-blue-400 mb-1"><span className="text-xl text-blue-500/50 mr-1">USD</span>$1.500</div>
-                <div className="text-xs text-zinc-500">Gs. 11.500.000 aprox.</div>
+                <div className="text-4xl font-black text-blue-400 mb-1"><span className="text-xl text-blue-500/50 mr-1">USD</span>$650</div>
+                <div className="text-xs text-zinc-500">Gs. 4.875.000 aprox.</div>
               </div>
 
               <ul className="space-y-3 text-white font-medium text-sm mb-8 flex-1">
@@ -122,28 +122,28 @@ export default function PreciosPage() {
               <p className="text-zinc-400 text-sm mb-6 h-10">Portales, dashboards, conexión con ERPs y sistemas legados.</p>
               
               <div className="mb-8">
-                <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Inversión</div>
-                <div className="text-3xl font-black text-white mb-1">A medida</div>
-                <div className="text-xs text-zinc-500">Cotización tras auditoría</div>
+                <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Desde</div>
+                <div className="text-4xl font-black text-white mb-1"><span className="text-xl text-zinc-500 mr-1">USD</span>$900</div>
+                <div className="text-xs text-zinc-500">Gs. 6.750.000 aprox.</div>
               </div>
 
               <ul className="space-y-3 text-zinc-300 text-sm mb-8 flex-1">
-                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Dashboards de control interno</li>
-                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Portales de clientes/proveedores</li>
-                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Conexión con APIs y ERPs</li>
-                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Soporte y mantenimiento dedicado</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Todo lo del Motor de Cotización</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Embudo de captación avanzado</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Portales B2B con acceso restringido</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Automatización de Contratos</li>
               </ul>
               
               <div className="text-xs text-zinc-500 italic mb-6 border-t border-zinc-800 pt-4">
-                Ideal para: operaciones con requerimientos técnicos o integraciones complejas.
+                Ideal para: empresas con procesos operativos complejos que necesitan escalar.
               </div>
-              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20necesito%20una%20infraestructura%20custom%20para%20mi%20empresa.%20%C2%BFPodemos%20agendar%20una%20consultor%C3%ADa%20t%C3%A9cnica%3F" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-all mt-auto border border-zinc-700">Agendar Consultoría</a>
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20necesito%20un%20Sistema%20Operativo%20Empresarial%20desde%20USD%20%24900%20para%20automatizar%20procesos%20complejos.%20%C2%BFCu%C3%A1ndo%20hacemos%20la%20auditor%C3%ADa%3F" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-all mt-auto border border-zinc-700">Agendar Auditoría</a>
             </div>
           </div>
 
           <div className="mt-8 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-4xl mx-auto">
-            <p className="text-zinc-400 text-sm">🛡️ <strong className="text-white">Mantenimiento & Estabilidad:</strong> Hosting enterprise, dominio, backups y soporte técnico continuo.</p>
-            <div className="font-black text-white text-xl bg-black px-4 py-2 rounded-xl border border-zinc-800 whitespace-nowrap">$25 USD<span className="text-sm font-normal text-zinc-500">/mes</span></div>
+            <p className="text-zinc-400 text-sm">🛡️ <strong className="text-white">Hosting, Backups & Soporte Técnico:</strong> Servidores enterprise, dominio, backups semanales y acceso 24/7.</p>
+            <div className="font-black text-white text-xl bg-black px-4 py-2 rounded-xl border border-zinc-800 whitespace-nowrap">Desde $80 USD<span className="text-sm font-normal text-zinc-500">/mes</span></div>
           </div>
         </section>
       )}
@@ -165,79 +165,79 @@ export default function PreciosPage() {
               <p className="text-zinc-400 text-sm mb-6 h-10">Tu marca profesional online con derivación directa a WhatsApp.</p>
               
               <div className="mb-8">
-                <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Setup Único</div>
-                <div className="text-4xl font-black text-white mb-1"><span className="text-xl text-zinc-500 mr-1">USD</span>$75</div>
-                <div className="text-xs text-zinc-500">Gs. 580.000 aprox.</div>
+                <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Desde</div>
+                <div className="text-4xl font-black text-white mb-1"><span className="text-xl text-zinc-500 mr-1">USD</span>$350</div>
+                <div className="text-xs text-zinc-500">Gs. 2.625.000 aprox.</div>
               </div>
 
               <ul className="space-y-3 text-zinc-300 text-sm mb-8 flex-1">
-                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Landing page profesional (1 pág)</li>
-                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Copywriting para tu servicio</li>
-                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Rutas directas a tu WhatsApp</li>
-                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Entrega en 48 horas</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Landing page profesional premium</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Copywriting orientado a tu especialidad</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Filtro de leads hacia WhatsApp</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> SEO on-page incluido</li>
               </ul>
               
               <div className="text-xs text-zinc-500 italic mb-6 border-t border-zinc-800 pt-4">
-                Ideal para: profesionales que necesitan presencia online inmediata.
+                Ideal para: profesionales que necesitan presencia online profesional y captar clientes.
               </div>
-              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20profesional%20independiente%20y%20me%20interesa%20Presencia%20Pro%20de%20USD%20%2475.%20%C2%BFPodemos%20coordinar%3F" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-all mt-auto border border-zinc-700">Solicitar Presencia Pro</a>
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20profesional%20independiente%20y%20me%20interesa%20la%20Landing%20Comercial%20Base%20desde%20USD%20%24350.%20%C2%BFPodemos%20coordinar%3F" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-all mt-auto border border-zinc-700">Solicitar Landing Pro</a>
             </div>
 
             {/* Card 2 (Featured) */}
             <div className="bg-black border-2 border-emerald-600 rounded-3xl p-8 transform md:-translate-y-4 shadow-[0_0_40px_rgba(16,185,129,0.15)] relative flex flex-col">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-emerald-600 text-black text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest whitespace-nowrap">Recomendado</div>
               <span className="text-3xl mb-4 block mt-2">🎯</span>
-              <h3 className="text-xl font-bold text-white mb-2">Sistema de Captación</h3>
-              <p className="text-zinc-400 text-sm mb-6 h-10">Embudo completo con prueba social y cierre directo.</p>
+              <h3 className="text-xl font-bold text-white mb-2">Motor de Cotización Pro</h3>
+              <p className="text-zinc-400 text-sm mb-6 h-10">Automatiza tus presupuestos. Genera PDFs en segundos y captura clientes a escala.</p>
               
               <div className="mb-8">
-                <div className="text-xs text-emerald-500 font-bold uppercase tracking-widest mb-1">Setup Único</div>
-                <div className="text-4xl font-black text-emerald-400 mb-1"><span className="text-xl text-emerald-600/50 mr-1">USD</span>$200</div>
-                <div className="text-xs text-zinc-500">Gs. 1.500.000 aprox.</div>
+                <div className="text-xs text-emerald-500 font-bold uppercase tracking-widest mb-1">Desde</div>
+                <div className="text-4xl font-black text-emerald-400 mb-1"><span className="text-xl text-emerald-600/50 mr-1">USD</span>$650</div>
+                <div className="text-xs text-zinc-500">Gs. 4.875.000 aprox.</div>
               </div>
 
               <ul className="space-y-3 text-white font-medium text-sm mb-8 flex-1">
-                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Todo lo de Presencia Pro</li>
-                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Sección de prueba social y métricas</li>
-                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> FAQ operativo contra objeciones</li>
-                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> SEO on-page para tu especialidad</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Todo lo de Landing Pro</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Calculadora dinámica de presupuestos</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Generación automática de PDFs</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Sección de casos de éxito y prueba social</li>
               </ul>
               
               <div className="text-xs text-zinc-400 italic mb-6 border-t border-zinc-800 pt-4">
-                Ideal para: profesionales que quieren captar clientes/pacientes de forma constante.
+                Ideal para: profesionales que ya tienen demanda y necesitan escalar sin desperdicio.
               </div>
-              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20profesional%20independiente%20y%20me%20interesa%20el%20Sistema%20de%20Captaci%C3%B3n%20de%20USD%20%24200.%20Quiero%20saber%20m%C3%A1s." target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-emerald-600 hover:bg-emerald-500 text-black font-bold py-3 rounded-xl transition-all shadow-lg mt-auto">Quiero mi Sistema</a>
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20profesional%20independiente%20y%20me%20interesa%20el%20Motor%20de%20Cotizaci%C3%B3n%20Pro%20desde%20USD%20%24650.%20Quiero%20saber%20m%C3%A1s." target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-emerald-600 hover:bg-emerald-500 text-black font-bold py-3 rounded-xl transition-all shadow-lg mt-auto">Solicitar Motor Pro</a>
             </div>
 
             {/* Card 3 */}
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 hover:border-zinc-600 transition-colors flex flex-col">
               <span className="text-3xl mb-4 block">⚙️</span>
-              <h3 className="text-xl font-bold text-white mb-2">Automatización Pro</h3>
-              <p className="text-zinc-400 text-sm mb-6 h-10">Formularios inteligentes y base para CRM.</p>
+              <h3 className="text-xl font-bold text-white mb-2">Sistema Operativo Profesional</h3>
+              <p className="text-zinc-400 text-sm mb-6 h-10">Embudo completo, formularios inteligentes y portales para tus clientes.</p>
               
               <div className="mb-8">
-                <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Setup Único</div>
-                <div className="text-4xl font-black text-white mb-1"><span className="text-xl text-zinc-500 mr-1">USD</span>$340</div>
-                <div className="text-xs text-zinc-500">Gs. 2.500.000 aprox.</div>
+                <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Desde</div>
+                <div className="text-4xl font-black text-white mb-1"><span className="text-xl text-zinc-500 mr-1">USD</span>$900</div>
+                <div className="text-xs text-zinc-500">Gs. 6.750.000 aprox.</div>
               </div>
 
               <ul className="space-y-3 text-zinc-300 text-sm mb-8 flex-1">
-                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Todo lo de Sistema de Captación</li>
-                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Formularios de precalificación</li>
-                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Integración base para CRM futuro</li>
-                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Reportes de leads y métricas</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Todo lo del Motor Pro</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Formularios de precalificación avanzados</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Portal privado para tus clientes</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Reportes de leads, métricas y conversión</li>
               </ul>
               
               <div className="text-xs text-zinc-500 italic mb-6 border-t border-zinc-800 pt-4">
-                Ideal para: profesionales que manejan volumen de consultas y necesitan filtrar.
+                Ideal para: profesionales con alto volumen que necesitan sistema completo de operación.
               </div>
-              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20profesional%20independiente%20y%20me%20interesa%20la%20Automatizaci%C3%B3n%20Profesional%20de%20USD%20%24340.%20Quiero%20agendar." target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-all mt-auto border border-zinc-700">Solicitar Automatización</a>
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20profesional%20independiente%20y%20me%20interesa%20el%20Sistema%20Operativo%20Profesional%20desde%20USD%20%24900.%20Quiero%20agendar." target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-all mt-auto border border-zinc-700">Agendar Auditoría</a>
             </div>
           </div>
 
           <div className="mt-8 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-4xl mx-auto">
-            <p className="text-zinc-400 text-sm">🛡️ <strong className="text-white">Mantenimiento & Estabilidad:</strong> Hosting, dominio, backups y soporte técnico continuo.</p>
-            <div className="font-black text-white text-xl bg-black px-4 py-2 rounded-xl border border-zinc-800 whitespace-nowrap">$15 USD<span className="text-sm font-normal text-zinc-500">/mes</span></div>
+            <p className="text-zinc-400 text-sm">🛡️ <strong className="text-white">Hosting, Backups & Soporte Técnico:</strong> Servidores optimizados, dominio, backups automáticos y acceso 24/7.</p>
+            <div className="font-black text-white text-xl bg-black px-4 py-2 rounded-xl border border-zinc-800 whitespace-nowrap">Desde $25 USD<span className="text-sm font-normal text-zinc-500">/mes</span></div>
           </div>
         </section>
       )}

@@ -172,6 +172,38 @@
 				"c:\\Users\\User\\Documents\\aycweb\\app\\oscar\\page.tsx"
 			],
 			"isBackground": false
+		},
+		{
+			"label": "overwrite os page file",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$content = @'\n\"use client\";\n\nimport { redirect } from \"next/navigation\";\n\nexport default function OSPage() {\n  redirect(\"/precios\");\n}\n'@; Set-Content -LiteralPath 'c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx' -Value $content -Encoding utf8"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "overwrite os page file",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Set-Content -LiteralPath 'c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx' -Value '\"use client\";`n`nimport { redirect } from \"next/navigation\";`n`nexport default function OSPage() {`n  redirect(\"/precios\");`n}' -Encoding utf8"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "overwrite os page file",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/C",
+				"\"echo \"use client\" > \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\" && echo. >> \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\" && echo import { redirect } from \\\"next/navigation\\\" >> \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\" && echo. >> \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\" && echo export default function OSPage() { >> \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\" && echo   redirect(\\\"/precios\\\"); >> \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\" && echo } >> \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\"\""
+			],
+			"isBackground": false
 		}
 	]
 }

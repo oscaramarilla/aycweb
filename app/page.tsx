@@ -11,7 +11,7 @@ export default function Home() {
   const whatsappMsgProfesional = encodeURIComponent("¡Hola Oscar! Soy profesional independiente y busco sistematizar mi captación y ventas.");
 
   return (
-    <div className="flex flex-col min-h-screen bg-transparent text-slate-50 font-sans relative overflow-x-hidden">
+    <div className="flex flex-col min-h-screen bg-transparent text-slate-50 font-sans relative overflow-x-hidden pt-20 md:pt-0">
       
       {/* BLOQUE 1: EL HERO FUTURISTA */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 px-6 overflow-hidden border-b border-slate-800/50">
