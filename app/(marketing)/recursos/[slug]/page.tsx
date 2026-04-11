@@ -271,7 +271,7 @@ export default async function ArticuloPage({
 
           {/* Contenido renderizado */}
           <div className="prose-custom">
-            {renderContent(articulo.contenido, colors.heading)}
+            {render(articulo.contenido, colors.heading)}
           </div>
 
           {/* Separador final */}

@@ -147,6 +147,31 @@
 				"\"c:\\Users\\User\\Documents\\aycweb\\app\\*os*\""
 			],
 			"isBackground": false
+		},
+		{
+			"label": "npm build with error capture",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "delete oscar collision",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/C",
+				"del",
+				"/Q",
+				"c:\\Users\\User\\Documents\\aycweb\\app\\oscar\\page.tsx"
+			],
+			"isBackground": false
 		}
 	]
 }
