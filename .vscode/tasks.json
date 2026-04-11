@@ -204,6 +204,183 @@
 				"\"echo \"use client\" > \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\" && echo. >> \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\" && echo import { redirect } from \\\"next/navigation\\\" >> \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\" && echo. >> \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\" && echo export default function OSPage() { >> \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\" && echo   redirect(\\\"/precios\\\"); >> \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\" && echo } >> \"c:\\Users\\User\\Documents\\aycweb\\app\\(funnels)\\os\\page.tsx\"\""
 			],
 			"isBackground": false
+		},
+		{
+			"label": "git commit navbar",
+			"type": "shell",
+			"command": "git add components/Navbar.tsx && git commit -m \"feat(navbar): mobile hamburger + persistent WhatsApp CTA\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "git commit navbar cmd",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/C",
+				"git add components\\Navbar.tsx && git commit -m \"feat(navbar): mobile hamburger + persistent WhatsApp CTA\""
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "git commit navbar poweshell",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"git add components/Navbar.tsx; git commit -m 'feat(navbar): mobile hamburger + persistent WhatsApp CTA'"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "git commit navbar poweshell2",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"\"git add components/Navbar.tsx; git commit -m \\\"feat(navbar): mobile hamburger + persistent WhatsApp CTA\\\"\""
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "overwrite PreciosClient",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$content = @'\n\"use client\";\n\nimport { useState } from \"react\";\n\nconst whatsappNumber = \"595985864209\";\n\nconst TIERS = {\n  empresa: {\n    label: \"Tier Empresarial\",\n    accent: \"lime\",\n    description: \"Motores que reemplazan procesos manuales enteros y recuperan horas-hombre cada semana.\",\n    maintenance: \"$80 USD/mes\",\n    plans: [\n      {\n        name: \"Embudo Comercial Corporativo\",\n        price: \"$900\",\n        subtitle: \"Entrega en 3 semanas\",\n        features: [\n          \"Sitio multi-página adaptado a B2B\",\n          \"Embudo con formularios condicionales\",\n          \"Base de datos de contactos preparada para CRM\",\n          \"SEO técnico y PageSpeed 95+\",\n        ],\n        ideal: \"Manufactureras, clínicas, agroindustria, distribuidoras y hospitales.\",\n      },\n      {\n        name: \"Motor Operativo\",\n        price: \"$1.800\",\n        subtitle: \"Entrega en 4-6 semanas\",\n        badge: \"MÁS ELEGIDO\",\n        features: [\n          \"Todo lo del Embudo Comercial Corporativo\",\n          \"Cotizador dinámico interactivo\",\n          \"Generación de PDFs y contratos automáticos\",\n          \"Panel de métricas y flujo interno para vendedores\",\n        ],\n        ideal: \"Empresas con procesos comerciales complejos y datos en escala.\",\n      },\n      {\n        name: \"Infraestructura Custom\",\n        price: \"A medida\",\n        subtitle: \"Cotización tras auditoría técnica\",\n        features: [\n          \"Portales seguros con login\",\n          \"Conexión con ERPs y APIs empresariales\",\n          \"Dashboards tiempo real\",\n          \"Automatización de procesos complejos y SLA dedicado\",\n        ],\n        ideal: \"Casos que requieren soluciones de software a medida.\",\n      },\n    ],\n  },\n  profesional: {\n    label: \"Tier Profesional\",\n    accent: \"sky\",\n    description: \"Sistemas que captan pacientes, clientes y proyectos sin que vos levantes el teléfono.\",\n    maintenance: \"$25 USD/mes\",\n    plans: [\n      {\n        name: \"Presencia & Captación\",\n        price: \"$350\",\n        subtitle: \"Entrega en 5 días\",\n        features: [\n          \"Landing page profesional de una sola página\",\n          \"Copywriting orientado a conversión\",\n          \"Mensajes pre-armados a WhatsApp\",\n          \"Links de pago QR / Pagopar\",\n          \"Diseño mobile-first\",\n        ],\n        ideal: \"Médicos, dentistas, abogados, contadores, fotógrafos y diseñadores.\",\n      },\n      {\n        name: \"Consultorio Digital\",\n        price: \"$650\",\n        subtitle: \"Entrega en 10-15 días\",\n        badge: \"RECOMENDADO\",\n        features: [\n          \"Todo lo anterior\",\n          \"Agenda Calendly / Google Calendar integrada\",\n          \"Formularios de precalificación\",\n          \"Blog de autoridad y SEO on-page\",\n          \"PageSpeed 95+\",\n        ],\n        ideal: \"Profesionales que buscan ventas activas con automatización.\",\n      },\n    ],\n  },\n} as const;\n\nexport default function PreciosPage() {\n  const [tier, setTier] = useState<\"empresa\" | \"profesional\">(\"empresa\");\n  const currentTier = TIERS[tier];\n\n  return (\n    <div className=\"min-h-screen bg-slate-950 text-slate-50 font-sans pb-24 pt-14 md:pt-20 relative overflow-hidden\">\n      <div className=\"absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0\"></div>\n\n      <section className=\"max-w-5xl mx-auto px-6 text-center mb-16 relative z-10\">\n        <div className=\"absolute top-0 left-1/2 -translate-x-1/2 w-[560px] h-[560px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10\"></div>\n\n        <span className=\"inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full border border-slate-800 bg-slate-900/50 text-xs font-bold uppercase tracking-widest text-slate-300 shadow-md\">\n          <span className=\"w-2 h-2 rounded-full bg-blue-500 animate-pulse\"></span>\n          ◆ Arquitectura de Precios\n        </span>\n\n        <h1 className=\"text-4xl md:text-6xl font-black mb-6 tracking-tight text-white leading-tight\">\n          Inversión clara. Retorno operativo medible.\n        </h1>\n\n        <p className=\"text-lg text-slate-400 max-w-3xl mx-auto mb-12\">\n          Elegí tu perfil y encontrá la infraestructura exacta que necesita tu operación, con planes transparentes y cobro estratégico.\n        </p>\n\n        <div className=\"grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto\">\n          <button\n            onClick={() => setTier(\"empresa\")}\n            className={`rounded-3xl border-2 px-6 py-5 text-left transition-all ${tier === \"empresa\" ? \"border-lime-300 bg-lime-500/10 shadow-[0_0_30px_rgba(200,255,46,0.12)]\" : \"border-slate-800 bg-slate-900/80 hover:border-slate-600\"}`}\n          >\n            <div className=\"flex items-center justify-between gap-4\">\n              <span className=\"text-lg font-bold text-white\">Empresa</span>\n              <span className=\"text-xs uppercase tracking-widest text-lime-200\">Infraestructura</span>\n            </div>\n            <p className=\"mt-3 text-sm text-slate-400\">Manufactureras, clínicas, agroindustria, distribuidoras, hospitales.</p>\n          </button>\n\n          <button\n            onClick={() => setTier(\"profesional\")}\n            className={`rounded-3xl border-2 px-6 py-5 text-left transition-all ${tier === \"profesional\" ? \"border-sky-300 bg-sky-500/10 shadow-[0_0_30px_rgba(126,184,255,0.18)]\" : \"border-slate-800 bg-slate-900/80 hover:border-slate-600\"}`}\n          >\n            <div className=\"flex items-center justify-between gap-4\">\n              <span className=\"text-lg font-bold text-white\">Profesional</span>\n              <span className=\"text-xs uppercase tracking-widest text-sky-200\">Captación</span>\n            </div>\n            <p className=\"mt-3 text-sm text-slate-400\">Médicos, dentistas, abogados, contadores, fotógrafos, diseñadores.</p>\n          </button>\n        </div>\n      </section>\n\n      <section className=\"max-w-6xl mx-auto px-6 relative z-10\">\n        <div className=\"text-center mb-12\">\n          <span className={`text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full inline-block mb-4 ${tier === \"empresa\" ? \"text-lime-900 bg-lime-400/15\" : \"text-sky-900 bg-sky-400/15\"}`}>{currentTier.label}</span>\n          <h2 className=\"text-3xl md:text-4xl font-black text-white mb-4\">{tier === \"empresa\" ? \"Infraestructura para operaciones complejas\" : \"Tu consultorio trabaja por vos\"}</h2>\n          <p className=\"text-slate-400 max-w-3xl mx-auto\">{currentTier.description}</p>\n        </div>\n\n        <div className=\"grid grid-cols-1 lg:grid-cols-3 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500\">\n          {currentTier.plans.map((plan) => (\n            <article key={plan.name} className=\"rounded-[2rem] border border-slate-800 bg-slate-900/90 p-8 shadow-xl\">\n              <div className=\"flex items-center justify-between gap-4 mb-6\">\n                <div>\n                  <p className=\"text-zinc-300 text-xs uppercase tracking-[0.2em] font-bold mb-3\">{plan.subtitle}</p>\n                  <h3 className=\"text-2xl font-black text-white leading-tight\">{plan.name}</h3>\n                </div>\n                {plan.badge ? <span className=\"rounded-full bg-slate-800 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-slate-200\">{plan.badge}</span> : null}\n              </div>\n\n              <div className=\"mb-8\">\n                <p className=\"text-xs uppercase tracking-[0.25em] text-slate-500 mb-2\">Desde</p>\n                <p className=\"text-4xl font-black text-white\">{plan.price}</p>\n              </div>\n\n              <ul className=\"space-y-3 mb-8 text-sm text-slate-300\">\n                {plan.features.map((feature) => (\n                  <li key={feature} className=\"flex gap-3\">\n                    <span className={`mt-1 h-5 w-5 rounded-full ${tier === \"empresa\" ? \"bg-lime-300\" : \"bg-sky-300\"} flex items-center justify-center text-xs font-black`}>✓</span>\n                    <span>{feature}</span>\n                  </li>\n                ))}\n              </ul>\n\n              <div className=\"rounded-3xl border border-slate-800 bg-slate-950/70 p-5 mb-8 text-sm text-slate-300\">\n                <p className=\"font-bold text-white mb-2\">Ideal para:</p>\n                <p>{plan.ideal}</p>\n              </div>\n\n              <a\n                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hola Oscar, soy ${tier} y me interesa ${plan.name} de ${plan.price}.`)}`}\n                target=\"_blank\"\n                rel=\"noopener noreferrer\"\n                className={`inline-flex w-full items-center justify-center rounded-3xl px-5 py-4 text-sm font-black transition-all ${tier === \"empresa\" ? \"bg-lime-300 text-slate-950 hover:bg-lime-200\" : \"bg-sky-300 text-slate-950 hover:bg-sky-200\"}`}\n              >\n                Contactar por WhatsApp\n              </a>\n            </article>\n          ))}\n        </div>\n\n        <div className=\"mt-10 grid gap-6 lg:grid-cols-3\">\n          <div className=\"rounded-3xl border border-slate-800 bg-slate-950/70 p-6 text-center\">\n            <p className=\"text-lg font-bold text-white mb-4\">Pagás primero</p>\n            <p className=\"text-sm text-slate-400\">Reservá tu lugar. El compromiso es mutuo desde el día uno.</p>\n          </div>\n          <div className=\"rounded-3xl border border-slate-800 bg-slate-950/70 p-6 text-center\">\n            <p className=\"text-lg font-bold text-white mb-4\">30 días de garantía</p>\n            <p className=\"text-sm text-slate-400\">Si no funciona para ninguna de las partes, devolución total.</p>\n          </div>\n          <div className=\"rounded-3xl border border-slate-800 bg-slate-950/70 p-6 text-center\">\n            <p className=\"text-lg font-bold text-white mb-4\">Sin letra chica</p>\n            <p className=\"text-sm text-slate-400\">Cero sorpresas. Cero costos ocultos. Cero excusas.</p>\n          </div>\n        </div>\n\n        <div className=\"mt-10 rounded-[2rem] border border-slate-800 bg-slate-900/80 p-10 text-center shadow-[0_0_50px_rgba(15,23,42,0.6)]\">\n          <p className=\"text-slate-400 max-w-3xl mx-auto leading-relaxed\">\n            Elegimos con quién trabajamos. Antes de arrancar, evaluamos si podemos generar impacto real en tu negocio. Si después de pagar decidimos que no somos el equipo correcto para tu caso, te devolvemos el 100%. Si no estás conforme con el resultado, te devolvemos el 100%.\n          </p>\n          <a\n            href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(\"Hola Oscar, quiero agendar un Diagnóstico Gratuito para mi negocio.\")}`}\n            target=\"_blank\"\n            rel=\"noopener noreferrer\"\n            className=\"mt-8 inline-flex items-center justify-center rounded-3xl bg-sky-400 px-8 py-4 text-base font-black text-slate-950 shadow-[0_0_30px_rgba(56,189,248,0.25)] transition-all hover:bg-sky-300\"\n          >\n            Agendar Diagnóstico Gratuito\n          </a>\n        </div>\n      </section>\n    </div>\n  );\n}\n'@\nSet-Content -LiteralPath 'c:\\Users\\User\\Documents\\aycweb\\app\\(marketing)\\precios\\PreciosClient.tsx' -Value $content -Encoding utf8"
+			]
+		},
+		{
+			"label": "inspect precios file",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Get-Item 'c:\\Users\\User\\Documents\\aycweb\\app\\(marketing)\\precios\\PreciosClient.tsx' | Select-Object FullName,LastWriteTime | Format-List"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "inspect precios file fixed",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Set-Location 'c:\\Users\\User\\Documents\\aycweb'; Get-Item '.\\app\\(marketing)\\precios\\PreciosClient.tsx' | Select-Object FullName,LastWriteTime | Format-List"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "inspect precios file cmd",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/C",
+				"dir \"c:\\Users\\User\\Documents\\aycweb\\app\\(marketing)\\precios\\PreciosClient.tsx\""
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "git commit precios",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"\"git add app\\(marketing)\\precios\\PreciosClient.tsx; git commit -m \\\"feat(precios): two-tier pricing selector + guarantee section\\\"\""
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "git commit precios fixed",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"\"git add \\\"app/(marketing)/precios/PreciosClient.tsx\\\"; git commit -m \\\"feat(precios): two-tier pricing selector + guarantee section\\\"\""
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "git commit precios cmd",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/C",
+				"git add \"app/(marketing)/precios/PreciosClient.tsx\" && git commit -m \"feat(precios): two-tier pricing selector + guarantee section\""
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "git commit precios powershell path",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"git add 'app/(marketing)/precios/PreciosClient.tsx'; git commit -m 'feat(precios): two-tier pricing selector + guarantee section'"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "git commit precios direct",
+			"type": "shell",
+			"command": "cmd.exe /C git add \"app/(marketing)/precios/PreciosClient.tsx\" && git commit -m \"feat(precios): two-tier pricing selector + guarantee section\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "git commit precios final",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"cmd.exe /C \"git add \\\"app/(marketing)/precios/PreciosClient.tsx\\\" && git commit -m \\\"feat(precios): two-tier pricing selector + guarantee section\\\"\""
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "git commit precios powershell double",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"& { git add \"app/(marketing)/precios/PreciosClient.tsx\"; git commit -m \"feat(precios): two-tier pricing selector + guarantee section\" }"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "git commit precios escape",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"git add app/`(marketing`)/precios/PreciosClient.tsx; git commit -m 'feat(precios): two-tier pricing selector + guarantee section'"
+			],
+			"isBackground": false,
+			"problemMatcher": []
 		}
 	]
 }
