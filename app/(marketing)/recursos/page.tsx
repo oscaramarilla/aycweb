@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { articulos } from "@/lib/data/articulos";
+import { articulos, Articulo } from "@/lib/data/articulos";
 
 export const metadata: Metadata = {
   title: "Recursos e Ingeniería Comercial | AYCweb",
@@ -99,7 +99,7 @@ export default function RecursosPage() {
 
           {/* Cards grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {articulos.map((articulo) => {
+            {articulos.map((articulo: Articulo) => {
               const colors = colorMap[articulo.categoriaColor] ?? colorMap.blue;
               return (
                 <Link

@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { articulos, getArticuloBySlug } from "@/lib/data/articulos";
+import { articulos, getArticuloBySlug, Articulo } from "@/lib/data/articulos";
 
 // ── Static params para SSG ──────────────────────────────────────────────────
 export async function generateStaticParams() {
-  return articulos.map((a) => ({ slug: a.slug }));
+  return articulos.map((a: Articulo) => ({ slug: a.slug }));
 }
 
 // ── Metadata dinámica ───────────────────────────────────────────────────────
@@ -55,7 +55,7 @@ const colorMap: Record<string, { badge: string; dot: string; heading: string; di
 
 // ── Renderer de Markdown simplificado ──────────────────────────────────────
 // Convierte el markdown del contenido en JSX sin dependencias externas.
-function renderContent(raw: string, accentColor: string) {
+  render(raw: string, accentColor: string): React.ReactNode[] {
   const lines = raw.split("\n");
   const elements: React.ReactNode[] = [];
   let i = 0;
@@ -197,7 +197,7 @@ export default async function ArticuloPage({
   const colors = colorMap[articulo.categoriaColor] ?? colorMap.blue;
 
   // Artículos relacionados (los otros 2)
-  const relacionados = articulos.filter((a) => a.slug !== articulo.slug);
+  const relacionados = articulos.filter((a: Articulo) => a.slug !== articulo.slug);
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-50 font-sans">

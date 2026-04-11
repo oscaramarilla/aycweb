@@ -32,7 +32,7 @@ export default function ModularesKingspanLanding() {
       {/* BENEFICIOS Y CARACTERÍSTICAS */}
       <section className="py-16 px-6 bg-zinc-900 border-t border-b border-zinc-800">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-         {benefits?.map((benefit, index) => (
+         {benefits?.map((benefit: string, index: number) => (
             <div key={index} className="p-6 bg-zinc-950 rounded-xl border border-zinc-800 shadow-lg">
               <h3 className="text-2xl font-bold text-white mb-3">{benefit}</h3>
               <p className="text-zinc-400">{benefit}</p>

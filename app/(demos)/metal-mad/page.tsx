@@ -1,15 +1,15 @@
-import React from "react";
 import Link from "next/link";
-import { MascotasPirConfig } from "@/lib/config/mascotasPir";
+import { MetalMadConfig, FeatureItem } from "@/lib/config/client";
 import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
-export default function MascotasPremiumLanding() {
-  const { contact, hero, benefits } = MascotasPirConfig;
-  const whatsappMsg = encodeURIComponent(
-    AYCWEB_CONTACT.clientMessages?.mascotasPir?.quotation || 
-    contact.whatsappMessage || 
-    AYCWEB_CONTACT.globalMessages.generalInquiry
-  );
+export default function MetalMadLanding() {
+  const { hero, features, contact } = MetalMadConfig;
+
+  // Default whatsapp number if not provided in config
+  const whatsappNumber = contact?.whatsappNumber || AYCWEB_CONTACT.whatsappNumber;
+
+  // Use the predefined message from AYCWEB_CONTACT
+  const whatsappMsg = encodeURIComponent(AYCWEB_CONTACT.clientMessages?.metalMad?.b2bClient || AYCWEB_CONTACT.globalMessages.generalInquiry);
 
   return (
     <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans pb-24 md:pb-0">
@@ -19,7 +19,7 @@ export default function MascotasPremiumLanding() {
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-blue-900/50 bg-blue-950/30 text-sm font-semibold text-blue-400 shadow-inner">
             <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-            Casas para Mascotas Premium
+            Mobiliario B2B de Metal Mad E.A.S.
           </div>
           <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-[1.05] text-white">
             {hero.title.split(":")[0]} <br /><span className="text-blue-500">{hero.title.split(":")[1]}</span>
@@ -33,10 +33,10 @@ export default function MascotasPremiumLanding() {
       {/* BENEFICIOS Y CARACTERÍSTICAS */}
       <section className="py-16 px-6 bg-zinc-900 border-t border-b border-zinc-800">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          {benefits.map((benefit, index) => (
+          {features && features.map((feature: FeatureItem, index: number) => (
             <div key={index} className="p-6 bg-zinc-950 rounded-xl border border-zinc-800 shadow-lg">
-              <h3 className="text-2xl font-bold text-white mb-3">{benefit}</h3>
-              <p className="text-zinc-400">Descripción del beneficio {index + 1}.</p>
+              <h3 className="text-2xl font-bold text-white mb-3">{feature.title}</h3>
+              <p className="text-zinc-400">{feature.description}</p>
             </div>
           ))}
         </div>
@@ -45,17 +45,17 @@ export default function MascotasPremiumLanding() {
       {/* CALL TO ACTION SECTION */}
       <section className="py-24 bg-zinc-900 border-t border-zinc-800 text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-6">¿Listo para darle lo mejor a tu mascota?</h2>
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-6">¿Necesitas mobiliario para tu institución?</h2>
           <p className="text-zinc-400 text-lg mb-8 max-w-2xl mx-auto">
-            Contactanos para una cotización personalizada. Diseñamos e implementamos soluciones de lujo para tu compañero.
+            Contactanos para una cotización por volumen. Ofrecemos soluciones a medida para tus proyectos.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
-              href={`https://wa.me/${contact.whatsappNumber}?text=${whatsappMsg}`}
+              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
               target="_blank" rel="noopener noreferrer"
               className="bg-green-600 hover:bg-green-500 text-black font-black py-4 px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(16,185,129,0.3)] active:scale-95"
             >
-              {hero.callToAction}
+              {hero.callToAction.text}
             </a>
             <Link href="/contacto" className="bg-zinc-950 border border-zinc-800 hover:bg-zinc-900 text-white font-bold py-4 px-10 rounded-xl transition-all">
               Ver Otros Servicios
