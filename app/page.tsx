@@ -67,11 +67,11 @@ export default function Home() {
             <div className="aspect-[9/16] w-full rounded-[2rem] border-[6px] border-zinc-900 bg-black p-1 shadow-[0_0_60px_-15px_rgba(37,99,235,0.3)] relative overflow-hidden transform lg:rotate-2 hover:rotate-0 transition-transform duration-500 group">
               <div className="w-full h-full rounded-2xl overflow-hidden bg-zinc-950 relative">
                 <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_20px_rgba(0,0,0,0.5)] z-10"></div>
-                {/* Lazy Load del Iframe Celular */}
+                {/* Lazy Load del Iframe Celular NUEVO VIDEO (vOCqg_zctec) con srcDoc en camelCase para evitar error Vercel */}
                 <iframe 
                   className="absolute top-0 left-0 w-full h-full object-cover scale-[1.02] bg-zinc-900"
-                  src="https://www.youtube.com/embed/NsDqXlJra5g?autoplay=1&mute=1&loop=1&playlist=NsDqXlJra5g&controls=0&modestbranding=1" 
-                  srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/NsDqXlJra5g?autoplay=1><img src=https://img.youtube.com/vi/NsDqXlJra5g/hqdefault.jpg alt='Demo Video'><span>▶</span></a>"
+                  src="https://www.youtube.com/embed/vOCqg_zctec?autoplay=1&mute=1&loop=1&playlist=vOCqg_zctec&controls=0&modestbranding=1" 
+                  srcDoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/vOCqg_zctec?autoplay=1><img src=https://img.youtube.com/vi/vOCqg_zctec/hqdefault.jpg alt='Demo Video'><span>▶</span></a>"
                   title="Demo Sistema AYCweb" 
                   frameBorder="0" 
                   loading="lazy"
@@ -123,7 +123,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BLOQUE 3: MÉTRICAS (Reordenadas: Negocio -> Técnica -> Legal) */}
+      {/* BLOQUE 3: MÉTRICAS */}
       <section className="py-10 bg-zinc-950 border-b border-zinc-900 overflow-hidden">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-center divide-zinc-800 md:divide-x">
@@ -143,7 +143,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BLOQUE 4: DEMO (Rebautizado: Motores operativos en acción) */}
+      {/* BLOQUE 4: DEMO LOGÍSTICA (El Video Viejo con srcDoc arreglado) */}
       <section className="py-24 bg-black border-b border-zinc-900 relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
@@ -162,14 +162,13 @@ export default function Home() {
               </Link>
             </div>
             
-            {/* Lazy Load del Iframe Logístico */}
             <div className="flex-1 w-full max-w-[280px] sm:max-w-[320px] mx-auto relative flex justify-center lg:justify-end">
               <div className="aspect-[9/16] w-full rounded-2xl border border-zinc-800 bg-black p-2 shadow-[0_0_50px_rgba(16,185,129,0.15)] relative overflow-hidden transform md:-rotate-2 hover:rotate-0 transition-transform duration-500">
                 <div className="w-full h-full rounded-xl overflow-hidden bg-zinc-900">
                   <iframe 
                     className="w-full h-full bg-zinc-900"
                     src="https://www.youtube.com/embed/n1xOvGtHsIA?autoplay=1&mute=1&loop=1&playlist=n1xOvGtHsIA&controls=0" 
-                    srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/n1xOvGtHsIA?autoplay=1><img src=https://img.youtube.com/vi/n1xOvGtHsIA/hqdefault.jpg alt='Demo Video'><span>▶</span></a>"
+                    srcDoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/n1xOvGtHsIA?autoplay=1><img src=https://img.youtube.com/vi/n1xOvGtHsIA/hqdefault.jpg alt='Demo Video'><span>▶</span></a>"
                     title="Demo Cotizador AYCweb" 
                     frameBorder="0" 
                     loading="lazy"
@@ -184,7 +183,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BLOQUE 5: ECOSISTEMAS (Renombrados) */}
+      {/* BLOQUE 5: ECOSISTEMAS */}
       <section className="py-24 bg-zinc-950 border-b border-zinc-900">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -208,7 +207,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BLOQUE 6: CASO METAL MAD (Bullets escaneables) */}
+      {/* BLOQUE 6: CASO METAL MAD */}
       <section className="py-24 bg-black border-b border-zinc-900">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -242,7 +241,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BLOQUE 7: HISTORIA (Corta y credencial) */}
+      {/* BLOQUE 7: HISTORIA */}
       <section className="py-20 bg-zinc-950 border-b border-zinc-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <span className="text-blue-500 text-5xl mb-6 block">⚒️</span>
@@ -258,7 +257,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BLOQUE 8: PRECIOS (Renombrados como Puntos de Entrada y Precios Escalados) */}
+      {/* BLOQUE 8: PRECIOS */}
       <section id="precios" className="py-24 bg-zinc-950 border-b border-zinc-900">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -267,7 +266,6 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Nivel 1 */}
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 hover:border-zinc-600 transition-colors flex flex-col">
               <h3 className="text-xl font-bold text-white mb-2">Diagnóstico MVP</h3>
               <p className="text-4xl font-black text-emerald-400 mb-2">$280 <span className="text-lg text-zinc-500 font-medium">USD</span></p>
@@ -280,7 +278,6 @@ export default function Home() {
               <Link href="/precios" className="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-all mt-auto">Ver Entregables</Link>
             </div>
 
-            {/* Nivel 2 */}
             <div className="bg-black border-2 border-blue-600 rounded-3xl p-8 transform md:-translate-y-4 shadow-[0_0_40px_rgba(37,99,235,0.15)] relative flex flex-col">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest whitespace-nowrap">
                 Más Elegido
@@ -296,7 +293,6 @@ export default function Home() {
               <Link href="/precios" className="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-all shadow-lg mt-auto">Elegir y Avanzar</Link>
             </div>
 
-            {/* Nivel 3 */}
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 hover:border-zinc-600 transition-colors flex flex-col">
               <h3 className="text-xl font-bold text-white mb-2">Infraestructura Custom</h3>
               <p className="text-3xl font-black text-violet-400 mb-2">A Medida</p>
@@ -312,7 +308,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BLOQUE 9: CIERRE FINAL DIRECTO AL MARGEN */}
+      {/* BLOQUE 9: CIERRE FINAL */}
       <section className="py-24 bg-black text-center relative overflow-hidden border-t border-zinc-900">
         <div className="max-w-3xl mx-auto px-6 relative z-10">
           <h2 className="text-3xl md:text-5xl font-black text-white mb-6">Si hoy tardás en cotizar o responder, ya sabés dónde se fuga tu margen.</h2>
@@ -334,4 +330,3 @@ export default function Home() {
     </div>
   );
 }
-
