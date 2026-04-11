@@ -94,3 +94,4 @@ export const ModularesKingspanConfig: LandingPageConfig = {
     author: "AYCweb",
   },
 };
+export { MetalMadConfig } from "./metalMad";

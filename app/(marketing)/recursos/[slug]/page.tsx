@@ -55,7 +55,7 @@ const colorMap: Record<string, { badge: string; dot: string; heading: string; di
 
 // ── Renderer de Markdown simplificado ──────────────────────────────────────
 // Convierte el markdown del contenido en JSX sin dependencias externas.
-  render(raw: string, accentColor: string): React.ReactNode[] {
+function render(raw: string, accentColor: string): React.ReactNode[] {
   const lines = raw.split("\n");
   const elements: React.ReactNode[] = [];
   let i = 0;
