@@ -8,74 +8,74 @@ type AccentColor = "emerald" | "blue" | "violet";
 
 const PLANES = [
   {
-    id: "infraestructura-base",
-    badge: "Presencia B2B",
-    nombre: "Infraestructura Base",
-    emoji: "🚀",
+    id: "landing-comercial",
+    badge: "Captación B2B",
+    nombre: "Landing Comercial Base",
+    emoji: "🧲",
     precioUSD: "USD $280",
     precioGs: "Gs. 2.100.000",
     descripcion:
-      "Arquitectura web de alta conversión. Diseño premium, botones estratégicos y copy B2B para captar leads. Operativo en 48hs.",
+      "Para empresas que necesitan dejar de verse como freelancers. Un embudo de captación formal, con copy persuasivo y rutas directas a WhatsApp. Operativo en 48hs.",
     features: [
-      "Landing page profesional VIP (1 página)",
-      "Copywriting orientado a neuroventas",
-      "Rutas preconfiguradas a WhatsApp",
+      "Landing Page Premium (1 página)",
+      "Copywriting orientado a cerrar ventas",
+      "Filtro de leads hacia WhatsApp",
       "Integración de pasarela de pago (QR)",
       "Optimización estricta PageSpeed 99/100",
     ],
     accent: "emerald" as AccentColor,
     featured: false,
-    ctaText: "Solicitar Infraestructura Base",
-    msgValue: "Hola Oscar, me interesa implementar la Infraestructura Base de USD $280 en mi empresa. ¿Podemos coordinar?"
+    ctaText: "Solicitar Landing Base",
+    msgValue: "Hola Oscar, me interesa implementar la Landing Comercial Base de USD $280 para captar mejores clientes. ¿Podemos coordinar?"
   },
   {
-    id: "sistema-comercial",
+    id: "motor-cotizacion",
     badge: "🔥 El Estándar B2B",
-    nombre: "Sistema Comercial",
-    emoji: "⚡",
+    nombre: "Motor de Cotización Base",
+    emoji: "⏱️",
     precioUSD: "USD $600",
     precioGs: "Gs. 4.500.000",
     descripcion:
-      "Ecosistema multi-página completo. Autoridad, casos de estudio, mitigación de objeciones y embudo de cierre directo.",
+      "Para PyMEs industriales y B2B que ya venden, pero cotizan en Excel. Automatizamos tus precios y autogeneramos tus PDFs para cotizar en segundos.",
     features: [
-      "Todo lo de la Infraestructura Base",
-      "Arquitectura Multi-Página (Servicios, Nosotros)",
-      "Sección de casos de éxito y prueba social",
-      "Formularios B2B y precalificación de leads",
-      "SEO técnico avanzado y estructurado",
+      "Todo lo de la Landing Comercial Base",
+      "Calculadora Dinámica de Presupuestos",
+      "Generación de PDFs formales en el acto",
+      "Sección de Casos de Éxito / Prueba Social",
+      "Arquitectura Multi-Página corporativa",
     ],
     accent: "blue" as AccentColor,
     featured: true,
-    ctaText: "Solicitar Sistema Comercial",
-    msgValue: "Hola Oscar, me interesa implementar el Sistema Comercial de USD $600. ¿Podemos agendar el setup?"
+    ctaText: "Solicitar Motor de Cotización",
+    msgValue: "Hola Oscar, quiero implementar el Motor de Cotización Base de USD $600 para dejar de usar Excel. ¿Podemos agendar el setup?"
   },
   {
-    id: "motor-operativo",
+    id: "sistema-operativo",
     badge: "Escalabilidad Total",
-    nombre: "Motor Operativo",
+    nombre: "Sistema Operativo Custom",
     emoji: "⚙️",
-    precioUSD: "USD $1,200",
-    precioGs: "Gs. 9.000.000",
+    precioUSD: "Desde USD $1,200",
+    precioGs: "Desde Gs. 9.000.000",
     descripcion:
-      "Digitalización pura. Cotizadores dinámicos, autogeneración de PDFs y flujos de trabajo que matan al Excel y ahorran horas.",
+      "Para procesos internos complejos. Portales de clientes, flujos de trabajo legales (SOW) o integraciones ERP. Construido a medida de tu operación.",
     features: [
-      "Todo lo del Sistema Comercial",
-      "Calculadora dinámica de Presupuestos a medida",
-      "Generación de PDFs formales en tiempo real",
-      "Automatización de procesos (Ej. Contratos SOW)",
-      "Arquitectura SaaS Ready para escalar",
+      "Todo lo del Motor de Cotización",
+      "Desarrollo de Lógica Operativa a medida",
+      "Portales B2B de acceso restringido",
+      "Automatización de Contratos y Documentos",
+      "Arquitectura SaaS lista para escalar",
     ],
     accent: "violet" as AccentColor,
     featured: false,
-    ctaText: "Solicitar Motor Operativo",
-    msgValue: "Hola Oscar, necesito el Motor Operativo de USD $1,200 para automatizar los procesos de mi empresa. ¿Cuándo empezamos?"
+    ctaText: "Agendar Auditoría Custom",
+    msgValue: "Hola Oscar, necesito un Sistema Operativo Custom (+USD $1,200) para automatizar procesos complejos en mi empresa. ¿Cuándo hacemos la auditoría?"
   },
 ];
 
 export default function PreciosClient() {
   const { t } = useLanguage();
   const wa = "595985864209";
-  const msgGeneral = encodeURIComponent("Hola Oscar, estoy en la página de precios de AYCweb y quiero una auditoría gratuita para elegir la infraestructura correcta para mi empresa.");
+  const msgGeneral = encodeURIComponent("Hola Oscar, necesito que auditen mi operación para saber qué arquitectura web o software necesito exactamente.");
 
   const accentStyles: Record<AccentColor, { border: string; bg: string; text: string; badge: string; glow: string; check: string; btn: string; priceBorder: string; }> = {
     emerald: {
@@ -103,14 +103,14 @@ export default function PreciosClient() {
         
         <div className="max-w-3xl text-center mx-auto">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-zinc-400">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+            <span className="h-2 w-2 animate-pulse rounded-full bg-blue-500" />
             Arquitectura de Precios B2B
           </div>
           <h1 className="mb-6 text-4xl font-black leading-[1.05] tracking-tighter text-white sm:text-5xl lg:text-6xl">
             Inversión clara. <br/><span className="text-blue-400">Retorno operativo medible.</span>
           </h1>
           <p className="mb-10 text-lg leading-relaxed text-zinc-400 sm:text-xl">
-            Sistemas empaquetados sin costos ocultos. Si tu operación requiere una lógica más compleja (ERP/SaaS), agendá una auditoría y cotizamos a medida.
+            Sistemas empaquetados sin costos ocultos. Eligí la herramienta que resuelve tu cuello de botella actual, y escalemos desde ahí.
           </p>
         </div>
       </section>
@@ -153,7 +153,7 @@ export default function PreciosClient() {
 
                   <ul className="mb-8 flex-1 space-y-3">
                     {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3 text-sm">
+                      <li key={f} className="flex items-start gap-3 text-sm font-medium">
                         <span className={`mt-0.5 text-lg font-black leading-none ${s.check}`}>✓</span>
                         <span className="text-zinc-300">{f}</span>
                       </li>
@@ -173,38 +173,42 @@ export default function PreciosClient() {
           })}
         </div>
 
-        <div className="mx-auto mt-12 flex max-w-4xl flex-col items-center gap-8 rounded-3xl border border-zinc-800 bg-zinc-900/50 p-8 text-left md:flex-row">
+        {/* FEE DE MANTENIMIENTO */}
+        <div className="mx-auto mt-16 flex max-w-4xl flex-col items-center gap-8 rounded-3xl border border-blue-900/30 bg-blue-950/10 p-8 text-left md:flex-row shadow-xl">
           <div className="flex-1">
-            <h4 className="mb-2 text-xl font-bold text-white">Mantenimiento y Estabilidad Operativa</h4>
-            <p className="text-sm text-zinc-400">
-              Nos encargamos del hosting enterprise (Vercel), dominio corporativo, copias de seguridad, certificados SSL y soporte técnico continuo para que tu motor no se detenga jamás.
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-800/50 bg-blue-900/20 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-4">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-blue-400" />
+              Soporte Continuo
+            </div>
+            <h4 className="mb-2 text-2xl font-black text-white">Mantenimiento y Estabilidad</h4>
+            <p className="text-sm text-zinc-400 leading-relaxed">
+              Nos encargamos del hosting en servidores de alta velocidad (Vercel), pago de dominio corporativo, copias de seguridad semanales, certificados SSL y soporte técnico directo para que tu motor no se detenga jamás.
             </p>
           </div>
-          <div className="flex-shrink-0 border-l border-zinc-800 pl-8 text-center md:text-right">
-            <p className="mb-1 text-sm font-bold uppercase tracking-widest text-zinc-500">Fee Mensual</p>
-            <p className="text-3xl font-black text-blue-400">$50 USD<span className="text-sm font-medium text-zinc-500">/mes</span></p>
+          <div className="flex-shrink-0 border-l-0 md:border-l border-zinc-800 pt-6 md:pt-0 md:pl-10 text-center md:text-right w-full md:w-auto border-t md:border-t-0 mt-6 md:mt-0">
+            <p className="mb-1 text-sm font-bold uppercase tracking-widest text-zinc-500">Fee Operativo</p>
+            <p className="text-4xl font-black text-white">$50 USD</p>
+            <p className="text-sm font-medium text-zinc-500 mt-1">/ mes</p>
           </div>
         </div>
       </section>
 
+      {/* CTA FINAL DE AUDITORÍA */}
       <section className="py-24 bg-black text-center border-t border-zinc-900 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-blue-600/5 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="max-w-3xl mx-auto px-6 relative z-10">
-          <div className="inline-flex rounded-full border border-blue-900/50 bg-blue-950/30 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-300 shadow-inner mb-6">
-            Auditoría sin cargo
-          </div>
           <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
-            ¿Requerimientos más complejos?
+            No adivines qué software necesitás.
           </h2>
-          <p className="text-zinc-400 text-lg mb-10 leading-relaxed">
-            Si necesitás integraciones con tu ERP actual, portales de clientes o lógicas de cálculo avanzado, agendá una llamada técnica.
+          <p className="text-zinc-400 text-xl mb-10 leading-relaxed">
+            Te decimos exactamente qué arquitectura de software necesitás para destrabar tu operación hoy mismo.
           </p>
           <a
             href={`https://wa.me/${wa}?text=${msgGeneral}`}
             target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 rounded-xl bg-blue-600 hover:bg-blue-500 px-10 py-5 text-lg font-black text-white transition-all active:scale-95 shadow-[0_0_30px_rgba(37,99,235,0.3)]"
+            className="inline-flex items-center gap-3 rounded-2xl bg-blue-600 hover:bg-blue-500 px-12 py-6 text-xl font-black text-white transition-all active:scale-95 shadow-[0_0_40px_rgba(37,99,235,0.4)]"
           >
-            Agendar Auditoría B2B &rarr;
+            Auditar mi Operación &rarr;
           </a>
         </div>
       </section>
