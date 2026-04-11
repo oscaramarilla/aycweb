@@ -96,7 +96,7 @@ export default function Home() {
                 <div className="w-full h-full rounded-xl overflow-hidden bg-zinc-900">
                   <iframe 
                     className="w-full h-full"
-                    src="https://www.youtube.com/embed/n1xOvGtHsIA?autoplay=1&mute=1&loop=1&playlist=n1xOvGtHsIA" 
+                    src="https://youtube.com/shorts/NsDqXlJra5g?si=LKzby3fVZL2qk70z" 
                     title="Demo Cotizador AYCweb" 
                     frameBorder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
