@@ -70,7 +70,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CAPA 2.5: DEMO ESTRELLA (FLETES) ARRIBA DE TODO - CON VIDEO YOUTUBE SHORT */}
+      {/* CAPA 2.5: DEMO ESTRELLA (FLETES) ARRIBA DE TODO - CON NUEVO VIDEO YOUTUBE SHORT */}
       <section className="py-24 bg-zinc-950 border-b border-zinc-900 relative overflow-hidden">
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -90,13 +90,13 @@ export default function Home() {
               </Link>
             </div>
             
-            {/* NUEVO CONTENEDOR DE VIDEO VERTICAL */}
+            {/* NUEVO CONTENEDOR DE VIDEO VERTICAL (VIDEO NUEVO) */}
             <div className="flex-1 w-full relative flex justify-center lg:justify-end">
               <div className="aspect-[9/16] w-full max-w-[320px] rounded-2xl border border-zinc-800 bg-black p-2 shadow-[0_0_50px_rgba(16,185,129,0.15)] relative overflow-hidden transform md:-rotate-2 hover:rotate-0 transition-transform duration-500">
                 <div className="w-full h-full rounded-xl overflow-hidden bg-zinc-900">
                   <iframe 
                     className="w-full h-full"
-                    src="https://youtube.com/shorts/NsDqXlJra5g?si=LKzby3fVZL2qk70z" 
+                    src="https://www.youtube.com/embed/NsDqXlJra5g?autoplay=1&mute=1&loop=1&playlist=NsDqXlJra5g" 
                     title="Demo Cotizador AYCweb" 
                     frameBorder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
