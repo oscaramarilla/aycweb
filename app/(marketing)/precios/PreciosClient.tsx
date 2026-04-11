@@ -12,8 +12,8 @@ const PLANES = [
     badge: "Captación B2B",
     nombre: "Landing Comercial Base",
     emoji: "🧲",
-    precioUSD: "USD $280",
-    precioGs: "Gs. 2.100.000",
+    precioUSD: "Desde USD $350",
+    precioGs: "Desde Gs. 2.625.000",
     descripcion:
       "Para empresas que necesitan dejar de verse como freelancers. Un embudo de captación formal, con copy persuasivo y rutas directas a WhatsApp. Operativo en 48hs.",
     features: [
@@ -26,15 +26,15 @@ const PLANES = [
     accent: "emerald" as AccentColor,
     featured: false,
     ctaText: "Solicitar Landing Base",
-    msgValue: "Hola Oscar, me interesa implementar la Landing Comercial Base de USD $280 para captar mejores clientes. ¿Podemos coordinar?"
+    msgValue: "Hola Oscar, me interesa implementar la Landing Comercial Base a partir de USD $350 para captar mejores clientes. ¿Podemos coordinar?"
   },
   {
     id: "motor-cotizacion",
     badge: "🔥 El Estándar B2B",
     nombre: "Motor de Cotización Base",
     emoji: "⏱️",
-    precioUSD: "USD $600",
-    precioGs: "Gs. 4.500.000",
+    precioUSD: "Desde USD $650",
+    precioGs: "Desde Gs. 4.875.000",
     descripcion:
       "Para PyMEs industriales y B2B que ya venden, pero cotizan en Excel. Automatizamos tus precios y autogeneramos tus PDFs para cotizar en segundos.",
     features: [
@@ -47,28 +47,28 @@ const PLANES = [
     accent: "blue" as AccentColor,
     featured: true,
     ctaText: "Solicitar Motor de Cotización",
-    msgValue: "Hola Oscar, quiero implementar el Motor de Cotización Base de USD $600 para dejar de usar Excel. ¿Podemos agendar el setup?"
+    msgValue: "Hola Oscar, quiero implementar el Motor de Cotización Base a partir de USD $650 para dejar de usar Excel. ¿Podemos agendar el setup?"
   },
   {
     id: "sistema-operativo",
     badge: "Escalabilidad Total",
-    nombre: "Sistema Operativo Custom",
+    nombre: "Sistema Operativo Empresarial",
     emoji: "⚙️",
-    precioUSD: "Desde USD $1,200",
-    precioGs: "Desde Gs. 9.000.000",
+    precioUSD: "Desde USD $900",
+    precioGs: "Desde Gs. 6.750.000",
     descripcion:
-      "Para procesos internos complejos. Portales de clientes, flujos de trabajo legales (SOW) o integraciones ERP. Construido a medida de tu operación.",
+      "Para empresas con procesos operativos complejos. Embudo B2B, Motor Operativo, portales de clientes o integraciones ERP. Construido a medida.",
     features: [
       "Todo lo del Motor de Cotización",
-      "Desarrollo de Lógica Operativa a medida",
-      "Portales B2B de acceso restringido",
+      "Embudo de captación y calificación avanzado",
+      "Portales B2B con acceso restringido",
       "Automatización de Contratos y Documentos",
-      "Arquitectura SaaS lista para escalar",
+      "Arquitectura Empresarial lista para escalar",
     ],
     accent: "violet" as AccentColor,
     featured: false,
-    ctaText: "Agendar Auditoría Custom",
-    msgValue: "Hola Oscar, necesito un Sistema Operativo Custom (+USD $1,200) para automatizar procesos complejos en mi empresa. ¿Cuándo hacemos la auditoría?"
+    ctaText: "Agendar Auditoría Empresarial",
+    msgValue: "Hola Oscar, necesito un Sistema Operativo Empresarial a partir de USD $900 para automatizar procesos complejos. ¿Cuándo hacemos la auditoría?"
   },
 ];
 
@@ -173,22 +173,29 @@ export default function PreciosClient() {
           })}
         </div>
 
-        {/* FEE DE MANTENIMIENTO */}
-        <div className="mx-auto mt-16 flex max-w-4xl flex-col items-center gap-8 rounded-3xl border border-blue-900/30 bg-blue-950/10 p-8 text-left md:flex-row shadow-xl">
-          <div className="flex-1">
+        {/* FEE DE MANTENIMIENTO DIFERENCIADO */}
+        <div className="mx-auto mt-16 max-w-5xl">
+          <div className="rounded-3xl border border-blue-900/30 bg-blue-950/10 p-8 mb-6 shadow-xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-800/50 bg-blue-900/20 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-4">
               <span className="h-2 w-2 animate-pulse rounded-full bg-blue-400" />
-              Soporte Continuo
+              Soporte Continuo Diferenciado
             </div>
-            <h4 className="mb-2 text-2xl font-black text-white">Mantenimiento y Estabilidad</h4>
-            <p className="text-sm text-zinc-400 leading-relaxed">
-              Nos encargamos del hosting en servidores de alta velocidad (Vercel), pago de dominio corporativo, copias de seguridad semanales, certificados SSL y soporte técnico directo para que tu motor no se detenga jamás.
+            <h4 className="mb-4 text-2xl font-black text-white">Hosting, Backups y Soporte Técnico</h4>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+              Nos encargamos del hosting en servidores de alta velocidad (Vercel), dominio corporativo, copias de seguridad semanales, certificados SSL y soporte técnico directo para que tu motor no se detenga jamás.
             </p>
           </div>
-          <div className="flex-shrink-0 border-l-0 md:border-l border-zinc-800 pt-6 md:pt-0 md:pl-10 text-center md:text-right w-full md:w-auto border-t md:border-t-0 mt-6 md:mt-0">
-            <p className="mb-1 text-sm font-bold uppercase tracking-widest text-zinc-500">Fee Operativo</p>
-            <p className="text-4xl font-black text-white">$50 USD</p>
-            <p className="text-sm font-medium text-zinc-500 mt-1">/ mes</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="rounded-2xl border border-emerald-900/40 bg-emerald-950/10 p-6">
+              <p className="text-sm font-bold uppercase tracking-widest text-emerald-400 mb-2">Tier Profesional</p>
+              <p className="text-3xl font-black text-white mb-1">Desde $25</p>
+              <p className="text-sm text-zinc-400">USD/mes • Landing + Motor Base</p>
+            </div>
+            <div className="rounded-2xl border border-violet-900/40 bg-violet-950/10 p-6">
+              <p className="text-sm font-bold uppercase tracking-widest text-violet-400 mb-2">Tier Empresarial</p>
+              <p className="text-3xl font-black text-white mb-1">Desde $80</p>
+              <p className="text-sm text-zinc-400">USD/mes • Sistemas Operativos</p>
+            </div>
           </div>
         </div>
       </section>

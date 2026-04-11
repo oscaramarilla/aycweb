@@ -1,241 +1,286 @@
-// app/servicios/page.tsx
-import { Metadata } from "next";
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Servicios de Ingeniería Digital B2B | AYCweb Paraguay",
-  description:
-    "Landings B2B, cotizadores PDF automáticos, generación de contratos y portales de clientes. Infraestructura digital para empresas en Paraguay.",
-};
-
-export default function ServiciosPage() {
-  const whatsappNumber = "595985864209";
-  const whatsappMsg = encodeURIComponent("¡Hola Oscar! Quiero que auditen mi operación para decirme exactamente qué arquitectura de software necesito para destrabarla hoy.");
+export default function PreciosPage() {
+  // Estado para controlar qué tier se muestra (empresa o profesional)
+  const [tier, setTier] = useState<"empresa" | "profesional">("empresa");
 
   return (
-    <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans pb-24 md:pb-0">
+    <div className="min-h-screen bg-zinc-950 text-zinc-50 font-sans pb-24 pt-12 md:pt-20">
       
-      {/* HERO SECTION */}
-      <section className="relative pt-20 pb-20 md:pt-32 md:pb-28 px-6 text-center overflow-hidden border-b border-zinc-900">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
-        <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-purple-600/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+      {/* HERO & SELECTOR */}
+      <section className="max-w-4xl mx-auto px-6 text-center mb-16 relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
         
-        <div className="max-w-5xl mx-auto relative z-10">
-          <span className="inline-block px-5 py-2 rounded-full bg-blue-900/30 text-blue-400 text-xs font-bold uppercase tracking-widest border border-blue-900/50 mb-8 shadow-inner">
-            Ingeniería Digital B2B
-          </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tighter leading-[1.02] text-white">
-            Dejá de comprar herramientas sueltas. <br className="hidden md:block"/> 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Implementá Ecosistemas.</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
-            No somos una agencia que te hace una web y desaparece. Diseñamos infraestructura digital para que tu equipo deje de hacer tareas manuales y tu empresa empiece a escalar.
+        <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-xs font-bold uppercase tracking-widest text-zinc-300">
+          ◆ Arquitectura de Precios
+        </div>
+        <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-white leading-tight">
+          Inversión clara.<br />Retorno operativo medible.
+        </h1>
+        <p className="text-lg text-zinc-400 max-w-2xl mx-auto mb-12">
+          Sistemas empaquetados sin costos ocultos. Elegí tu perfil y encontrá la infraestructura exacta que necesita tu operación.
+        </p>
+
+        {/* TOGGLE BUTTONS */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-2xl mx-auto">
+          <button 
+            onClick={() => setTier("empresa")}
+            className={`flex-1 p-6 rounded-2xl border-2 transition-all text-left relative overflow-hidden ${
+              tier === "empresa" 
+                ? "border-blue-500 bg-blue-900/10 shadow-[0_0_30px_rgba(37,99,235,0.15)]" 
+                : "border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800"
+            }`}
+          >
+            <span className="text-3xl mb-3 block">🏭</span>
+            <div className="font-bold text-lg text-white mb-1">Empresa / Razón Social</div>
+            <div className="text-xs text-zinc-400">Manufactureras, clínicas, agroindustria, hospitales.</div>
+          </button>
+
+          <button 
+            onClick={() => setTier("profesional")}
+            className={`flex-1 p-6 rounded-2xl border-2 transition-all text-left relative overflow-hidden ${
+              tier === "profesional" 
+                ? "border-emerald-500 bg-emerald-900/10 shadow-[0_0_30px_rgba(16,185,129,0.15)]" 
+                : "border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800"
+            }`}
+          >
+            <span className="text-3xl mb-3 block">🧑‍⚕️</span>
+            <div className="font-bold text-lg text-white mb-1">Profesional Independiente</div>
+            <div className="text-xs text-zinc-400">Médicos, abogados, contadores, consultores.</div>
+          </button>
+        </div>
+      </section>
+
+      {/* ================= TIER EMPRESA ================= */}
+      {tier === "empresa" && (
+        <section className="max-w-6xl mx-auto px-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="text-center mb-12">
+            <span className="text-blue-500 text-xs font-bold tracking-widest uppercase bg-blue-500/10 px-3 py-1 rounded-full mb-4 inline-block">Tier Empresarial</span>
+            <h2 className="text-3xl font-black text-white mb-4">Infraestructura para operaciones complejas</h2>
+            <p className="text-zinc-400">Motores que reemplazan procesos manuales enteros y recuperan horas-hombre cada semana.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1 */}
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 hover:border-zinc-600 transition-colors flex flex-col">
+              <span className="text-3xl mb-4 block">⚡</span>
+              <h3 className="text-xl font-bold text-white mb-2">Motor Comercial Base</h3>
+              <p className="text-zinc-400 text-sm mb-6 h-10">Presencia corporativa con embudo de captación B2B integrado.</p>
+              
+              <div className="mb-8">
+                <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Setup Único</div>
+                <div className="text-4xl font-black text-white mb-1"><span className="text-xl text-zinc-500 mr-1">USD</span>$850</div>
+                <div className="text-xs text-zinc-500">Gs. 6.500.000 aprox.</div>
+              </div>
+
+              <ul className="space-y-3 text-zinc-300 text-sm mb-8 flex-1">
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Web corporativa multi-sección</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Copywriting B2B de conversión</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Embudo B2B con precalificación</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Arquitectura PageSpeed 95+</li>
+              </ul>
+              
+              <div className="text-xs text-zinc-500 italic mb-6 border-t border-zinc-800 pt-4">
+                Ideal para: empresas que necesitan presencia profesional y captar leads de forma ordenada.
+              </div>
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20empresa%20y%20me%20interesa%20el%20Motor%20Comercial%20Base%20de%20USD%20%24850.%20%C2%BFPodemos%20coordinar%3F" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-all mt-auto border border-zinc-700">Solicitar Motor Base</a>
+            </div>
+
+            {/* Card 2 (Featured) */}
+            <div className="bg-black border-2 border-blue-600 rounded-3xl p-8 transform md:-translate-y-4 shadow-[0_0_40px_rgba(37,99,235,0.15)] relative flex flex-col">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest whitespace-nowrap">Más Elegido</div>
+              <span className="text-3xl mb-4 block mt-2">🔧</span>
+              <h3 className="text-xl font-bold text-white mb-2">Infraestructura Operativa</h3>
+              <p className="text-zinc-400 text-sm mb-6 h-10">Automatización de cotizaciones, PDFs y lógica comercial a medida.</p>
+              
+              <div className="mb-8">
+                <div className="text-xs text-blue-400 font-bold uppercase tracking-widest mb-1">Desde</div>
+                <div className="text-4xl font-black text-blue-400 mb-1"><span className="text-xl text-blue-500/50 mr-1">USD</span>$1.500</div>
+                <div className="text-xs text-zinc-500">Gs. 11.500.000 aprox.</div>
+              </div>
+
+              <ul className="space-y-3 text-white font-medium text-sm mb-8 flex-1">
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Todo lo del Motor Base</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Cotizador dinámico interactivo</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Generación automática de PDFs</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Lógica de negocio personalizada</li>
+              </ul>
+              
+              <div className="text-xs text-zinc-400 italic mb-6 border-t border-zinc-800 pt-4">
+                Ideal para: empresas que cotizan en Excel o arman contratos manuales.
+              </div>
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20empresa%20y%20me%20interesa%20la%20Infraestructura%20Operativa%20desde%20USD%20%241.500.%20Quiero%20agendar%20una%20auditor%C3%ADa." target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-all shadow-lg mt-auto">Agendar Auditoría</a>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 hover:border-zinc-600 transition-colors flex flex-col">
+              <span className="text-3xl mb-4 block">🏗️</span>
+              <h3 className="text-xl font-bold text-white mb-2">Custom / Consultoría</h3>
+              <p className="text-zinc-400 text-sm mb-6 h-10">Portales, dashboards, conexión con ERPs y sistemas legados.</p>
+              
+              <div className="mb-8">
+                <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Inversión</div>
+                <div className="text-3xl font-black text-white mb-1">A medida</div>
+                <div className="text-xs text-zinc-500">Cotización tras auditoría</div>
+              </div>
+
+              <ul className="space-y-3 text-zinc-300 text-sm mb-8 flex-1">
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Dashboards de control interno</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Portales de clientes/proveedores</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Conexión con APIs y ERPs</li>
+                <li className="flex gap-3"><span className="text-blue-500 font-bold">✓</span> Soporte y mantenimiento dedicado</li>
+              </ul>
+              
+              <div className="text-xs text-zinc-500 italic mb-6 border-t border-zinc-800 pt-4">
+                Ideal para: operaciones con requerimientos técnicos o integraciones complejas.
+              </div>
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20necesito%20una%20infraestructura%20custom%20para%20mi%20empresa.%20%C2%BFPodemos%20agendar%20una%20consultor%C3%ADa%20t%C3%A9cnica%3F" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-all mt-auto border border-zinc-700">Agendar Consultoría</a>
+            </div>
+          </div>
+
+          <div className="mt-8 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-4xl mx-auto">
+            <p className="text-zinc-400 text-sm">🛡️ <strong className="text-white">Mantenimiento & Estabilidad:</strong> Hosting enterprise, dominio, backups y soporte técnico continuo.</p>
+            <div className="font-black text-white text-xl bg-black px-4 py-2 rounded-xl border border-zinc-800 whitespace-nowrap">$25 USD<span className="text-sm font-normal text-zinc-500">/mes</span></div>
+          </div>
+        </section>
+      )}
+
+      {/* ================= TIER PROFESIONAL ================= */}
+      {tier === "profesional" && (
+        <section className="max-w-6xl mx-auto px-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="text-center mb-12">
+            <span className="text-emerald-500 text-xs font-bold tracking-widest uppercase bg-emerald-500/10 px-3 py-1 rounded-full mb-4 inline-block">Tier Profesional</span>
+            <h2 className="text-3xl font-black text-white mb-4">Tu consultorio trabaja por vos</h2>
+            <p className="text-zinc-400">Sistemas que captan pacientes, clientes y proyectos sin que vos levantes el teléfono.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1 */}
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 hover:border-zinc-600 transition-colors flex flex-col">
+              <span className="text-3xl mb-4 block">🚀</span>
+              <h3 className="text-xl font-bold text-white mb-2">Presencia Pro</h3>
+              <p className="text-zinc-400 text-sm mb-6 h-10">Tu marca profesional online con derivación directa a WhatsApp.</p>
+              
+              <div className="mb-8">
+                <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Setup Único</div>
+                <div className="text-4xl font-black text-white mb-1"><span className="text-xl text-zinc-500 mr-1">USD</span>$75</div>
+                <div className="text-xs text-zinc-500">Gs. 580.000 aprox.</div>
+              </div>
+
+              <ul className="space-y-3 text-zinc-300 text-sm mb-8 flex-1">
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Landing page profesional (1 pág)</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Copywriting para tu servicio</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Rutas directas a tu WhatsApp</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Entrega en 48 horas</li>
+              </ul>
+              
+              <div className="text-xs text-zinc-500 italic mb-6 border-t border-zinc-800 pt-4">
+                Ideal para: profesionales que necesitan presencia online inmediata.
+              </div>
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20profesional%20independiente%20y%20me%20interesa%20Presencia%20Pro%20de%20USD%20%2475.%20%C2%BFPodemos%20coordinar%3F" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-all mt-auto border border-zinc-700">Solicitar Presencia Pro</a>
+            </div>
+
+            {/* Card 2 (Featured) */}
+            <div className="bg-black border-2 border-emerald-600 rounded-3xl p-8 transform md:-translate-y-4 shadow-[0_0_40px_rgba(16,185,129,0.15)] relative flex flex-col">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-emerald-600 text-black text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest whitespace-nowrap">Recomendado</div>
+              <span className="text-3xl mb-4 block mt-2">🎯</span>
+              <h3 className="text-xl font-bold text-white mb-2">Sistema de Captación</h3>
+              <p className="text-zinc-400 text-sm mb-6 h-10">Embudo completo con prueba social y cierre directo.</p>
+              
+              <div className="mb-8">
+                <div className="text-xs text-emerald-500 font-bold uppercase tracking-widest mb-1">Setup Único</div>
+                <div className="text-4xl font-black text-emerald-400 mb-1"><span className="text-xl text-emerald-600/50 mr-1">USD</span>$200</div>
+                <div className="text-xs text-zinc-500">Gs. 1.500.000 aprox.</div>
+              </div>
+
+              <ul className="space-y-3 text-white font-medium text-sm mb-8 flex-1">
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Todo lo de Presencia Pro</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Sección de prueba social y métricas</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> FAQ operativo contra objeciones</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> SEO on-page para tu especialidad</li>
+              </ul>
+              
+              <div className="text-xs text-zinc-400 italic mb-6 border-t border-zinc-800 pt-4">
+                Ideal para: profesionales que quieren captar clientes/pacientes de forma constante.
+              </div>
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20profesional%20independiente%20y%20me%20interesa%20el%20Sistema%20de%20Captaci%C3%B3n%20de%20USD%20%24200.%20Quiero%20saber%20m%C3%A1s." target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-emerald-600 hover:bg-emerald-500 text-black font-bold py-3 rounded-xl transition-all shadow-lg mt-auto">Quiero mi Sistema</a>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 hover:border-zinc-600 transition-colors flex flex-col">
+              <span className="text-3xl mb-4 block">⚙️</span>
+              <h3 className="text-xl font-bold text-white mb-2">Automatización Pro</h3>
+              <p className="text-zinc-400 text-sm mb-6 h-10">Formularios inteligentes y base para CRM.</p>
+              
+              <div className="mb-8">
+                <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Setup Único</div>
+                <div className="text-4xl font-black text-white mb-1"><span className="text-xl text-zinc-500 mr-1">USD</span>$340</div>
+                <div className="text-xs text-zinc-500">Gs. 2.500.000 aprox.</div>
+              </div>
+
+              <ul className="space-y-3 text-zinc-300 text-sm mb-8 flex-1">
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Todo lo de Sistema de Captación</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Formularios de precalificación</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Integración base para CRM futuro</li>
+                <li className="flex gap-3"><span className="text-emerald-500 font-bold">✓</span> Reportes de leads y métricas</li>
+              </ul>
+              
+              <div className="text-xs text-zinc-500 italic mb-6 border-t border-zinc-800 pt-4">
+                Ideal para: profesionales que manejan volumen de consultas y necesitan filtrar.
+              </div>
+              <a href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20soy%20profesional%20independiente%20y%20me%20interesa%20la%20Automatizaci%C3%B3n%20Profesional%20de%20USD%20%24340.%20Quiero%20agendar." target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-all mt-auto border border-zinc-700">Solicitar Automatización</a>
+            </div>
+          </div>
+
+          <div className="mt-8 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-4xl mx-auto">
+            <p className="text-zinc-400 text-sm">🛡️ <strong className="text-white">Mantenimiento & Estabilidad:</strong> Hosting, dominio, backups y soporte técnico continuo.</p>
+            <div className="font-black text-white text-xl bg-black px-4 py-2 rounded-xl border border-zinc-800 whitespace-nowrap">$15 USD<span className="text-sm font-normal text-zinc-500">/mes</span></div>
+          </div>
+        </section>
+      )}
+
+      {/* GARANTÍA UNIVERSAL */}
+      <section className="max-w-4xl mx-auto px-6 mt-24">
+        <div className="bg-gradient-to-br from-blue-900/10 to-emerald-900/10 border border-zinc-800 rounded-[2rem] p-8 md:p-12 text-center">
+          <span className="text-5xl block mb-4">🤝</span>
+          <h3 className="text-2xl md:text-3xl font-black text-white mb-4">Nuestra política es simple.</h3>
+          <p className="text-zinc-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+            Elegimos con quién trabajamos. Antes de arrancar, evaluamos si podemos generar impacto real en tu negocio. Si no estás conforme con el resultado o no somos el equipo correcto, te devolvemos el 100%.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a 
-              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-blue-600 hover:bg-blue-500 text-white font-black py-5 px-12 rounded-xl transition-all shadow-2xl active:scale-95 text-lg"
-            >
-              Diseñar mi Ecosistema
-            </a>
-            <Link 
-              href="/casos"
-              className="border-2 border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-white font-bold py-5 px-12 rounded-xl transition-all text-lg"
-            >
-              Ver Ecosistemas Activos
-            </Link>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-zinc-950/50 border border-zinc-800 p-6 rounded-2xl">
+              <div className="font-bold text-white mb-2">Pagás primero</div>
+              <div className="text-sm text-zinc-500">Reservá tu lugar. El compromiso es mutuo desde el día uno.</div>
+            </div>
+            <div className="bg-zinc-950/50 border border-zinc-800 p-6 rounded-2xl">
+              <div className="font-bold text-white mb-2">30 días de garantía</div>
+              <div className="text-sm text-zinc-500">Si no funciona para ninguna de las dos partes, devolución total.</div>
+            </div>
+            <div className="bg-zinc-950/50 border border-zinc-800 p-6 rounded-2xl">
+              <div className="font-bold text-white mb-2">Sin letra chica</div>
+              <div className="text-sm text-zinc-500">Cero sorpresas. Cero costos ocultos. Cero excusas.</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 6 SERVICIOS PRINCIPALES (Orientados a Resultados) */}
-      <section className="py-28 bg-black border-b border-zinc-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
-              Qué cambia en tu operación el lunes a las 8AM
-            </h2>
-            <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
-              Resultados operativos medibles. Construimos la herramienta exacta que necesitás para matar el trabajo manual.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            {/* Servicio 1: Captación */}
-            <div className="group bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 p-10 rounded-3xl border border-zinc-800 hover:border-blue-700/50 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-900/20">
-              <div className="w-16 h-16 rounded-2xl bg-blue-600/10 border border-blue-600/30 flex items-center justify-center mb-6 group-hover:bg-blue-600/20 transition-all">
-                <span className="text-3xl">🧲</span>
-              </div>
-              <h3 className="text-2xl font-black text-white mb-4 group-hover:text-blue-400 transition-colors">
-                1. Captación y Filtrado B2B
-              </h3>
-              <p className="text-zinc-400 leading-relaxed mb-6">
-                Tu empresa recibe leads mejor calificados. El cliente entra a un embudo que lo educa, resuelve sus dudas y lo envía a tu WhatsApp listo para comprar.
-              </p>
-              <ul className="space-y-3 border-t border-zinc-800 pt-4">
-                <li className="flex gap-3 text-zinc-300 text-sm font-medium">
-                  <span className="text-blue-500 font-black mt-0.5">→</span>
-                  Landings de Alta Fricción (Cero curiosos)
-                </li>
-                <li className="flex gap-3 text-zinc-300 text-sm font-medium">
-                  <span className="text-blue-500 font-black mt-0.5">→</span>
-                  Integración directa con tu fuerza de ventas
-                </li>
-              </ul>
-            </div>
-
-            {/* Servicio 2: Cotización */}
-            <div className="group bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 p-10 rounded-3xl border border-zinc-800 hover:border-emerald-700/50 transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-900/20">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-600/10 border border-emerald-600/30 flex items-center justify-center mb-6 group-hover:bg-emerald-600/20 transition-all">
-                <span className="text-3xl">⏱️</span>
-              </div>
-              <h3 className="text-2xl font-black text-white mb-4 group-hover:text-emerald-400 transition-colors">
-                2. Cotización Automática
-              </h3>
-              <p className="text-zinc-400 leading-relaxed mb-6">
-                Tu equipo deja de pelear con Excel. Un sistema web estandarizado calcula márgenes complejos y genera un presupuesto VIP en menos de un minuto.
-              </p>
-              <ul className="space-y-3 border-t border-zinc-800 pt-4">
-                <li className="flex gap-3 text-zinc-300 text-sm font-medium">
-                  <span className="text-emerald-500 font-black mt-0.5">→</span>
-                  Autogeneración de PDFs formales
-                </li>
-                <li className="flex gap-3 text-zinc-300 text-sm font-medium">
-                  <span className="text-emerald-500 font-black mt-0.5">→</span>
-                  Cero errores de cálculo humano
-                </li>
-              </ul>
-            </div>
-
-            {/* Servicio 3: Operación/Legal */}
-            <div className="group bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 p-10 rounded-3xl border border-zinc-800 hover:border-purple-700/50 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-900/20">
-              <div className="w-16 h-16 rounded-2xl bg-purple-600/10 border border-purple-600/30 flex items-center justify-center mb-6 group-hover:bg-purple-600/20 transition-all">
-                <span className="text-3xl">⚖️</span>
-              </div>
-              <h3 className="text-2xl font-black text-white mb-4 group-hover:text-purple-400 transition-colors">
-                3. Estandarización Legal (SOW)
-              </h3>
-              <p className="text-zinc-400 leading-relaxed mb-6">
-                Basta de "copiar y pegar" en Word. Diseñamos generadores que inyectan los datos del cliente en contratos comerciales blindados, listos para firmar.
-              </p>
-              <ul className="space-y-3 border-t border-zinc-800 pt-4">
-                <li className="flex gap-3 text-zinc-300 text-sm font-medium">
-                  <span className="text-purple-500 font-black mt-0.5">→</span>
-                  Templates legales dinámicos
-                </li>
-                <li className="flex gap-3 text-zinc-300 text-sm font-medium">
-                  <span className="text-purple-500 font-black mt-0.5">→</span>
-                  Contratos emitidos en el acto
-                </li>
-              </ul>
-            </div>
-
-            {/* Servicio 4: Portales */}
-            <div className="group bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 p-10 rounded-3xl border border-zinc-800 hover:border-orange-700/50 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-900/20">
-              <div className="w-16 h-16 rounded-2xl bg-orange-600/10 border border-orange-600/30 flex items-center justify-center mb-6 group-hover:bg-orange-600/20 transition-all">
-                <span className="text-3xl">🏢</span>
-              </div>
-              <h3 className="text-2xl font-black text-white mb-4 group-hover:text-orange-400 transition-colors">
-                4. Portales B2B Corporativos
-              </h3>
-              <p className="text-zinc-400 leading-relaxed mb-6">
-                Tus clientes corporativos acceden a su propia plataforma para ver pedidos, subir documentos o descargar facturas. Reducís el soporte telefónico un 80%.
-              </p>
-              <ul className="space-y-3 border-t border-zinc-800 pt-4">
-                <li className="flex gap-3 text-zinc-300 text-sm font-medium">
-                  <span className="text-orange-500 font-black mt-0.5">→</span>
-                  Acceso seguro con Login propio
-                </li>
-                <li className="flex gap-3 text-zinc-300 text-sm font-medium">
-                  <span className="text-orange-500 font-black mt-0.5">→</span>
-                  Tracking y autogestión de clientes
-                </li>
-              </ul>
-            </div>
-
-            {/* Servicio 5: Dashboards */}
-            <div className="group bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 p-10 rounded-3xl border border-zinc-800 hover:border-cyan-700/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-900/20">
-              <div className="w-16 h-16 rounded-2xl bg-cyan-600/10 border border-cyan-600/30 flex items-center justify-center mb-6 group-hover:bg-cyan-600/20 transition-all">
-                <span className="text-3xl">📊</span>
-              </div>
-              <h3 className="text-2xl font-black text-white mb-4 group-hover:text-cyan-400 transition-colors">
-                5. Paneles de Control (KPIs)
-              </h3>
-              <p className="text-zinc-400 leading-relaxed mb-6">
-                Dejás de volar a ciegas. Unificamos la data de tu operación comercial en tableros visuales en tiempo real para que tomes decisiones informadas.
-              </p>
-              <ul className="space-y-3 border-t border-zinc-800 pt-4">
-                <li className="flex gap-3 text-zinc-300 text-sm font-medium">
-                  <span className="text-cyan-500 font-black mt-0.5">→</span>
-                  Métricas de ventas en tiempo real
-                </li>
-                <li className="flex gap-3 text-zinc-300 text-sm font-medium">
-                  <span className="text-cyan-500 font-black mt-0.5">→</span>
-                  Integración con tu ERP existente
-                </li>
-              </ul>
-            </div>
-
-            {/* Servicio 6: Custom */}
-            <div className="group bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 p-10 rounded-3xl border border-zinc-800 hover:border-pink-700/50 transition-all duration-300 hover:shadow-2xl hover:shadow-pink-900/20">
-              <div className="w-16 h-16 rounded-2xl bg-pink-600/10 border border-pink-600/30 flex items-center justify-center mb-6 group-hover:bg-pink-600/20 transition-all">
-                <span className="text-3xl">🧠</span>
-              </div>
-              <h3 className="text-2xl font-black text-white mb-4 group-hover:text-pink-400 transition-colors">
-                6. Sistemas SaaS a Medida
-              </h3>
-              <p className="text-zinc-400 leading-relaxed mb-6">
-                Ingeniería pura. Si tu proceso de manufactura, logística o ventas es único, programamos el software desde cero para que se adapte a tu operación, no al revés.
-              </p>
-              <ul className="space-y-3 border-t border-zinc-800 pt-4">
-                <li className="flex gap-3 text-zinc-300 text-sm font-medium">
-                  <span className="text-pink-500 font-black mt-0.5">→</span>
-                  Arquitectura Next.js estricta
-                </li>
-                <li className="flex gap-3 text-zinc-300 text-sm font-medium">
-                  <span className="text-pink-500 font-black mt-0.5">→</span>
-                  Servidores dedicados (Vercel)
-                </li>
-              </ul>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* CTA FINAL DE AUTORIDAD */}
-      <section className="py-32 bg-gradient-to-br from-zinc-950 via-black to-zinc-950 text-center relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none"></div>
-        
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <div className="mb-8">
-            <span className="inline-block px-5 py-2 rounded-full bg-blue-900/30 text-blue-400 text-xs font-bold uppercase tracking-widest border border-blue-900/50 shadow-inner">
-              Análisis Gratuito de Viabilidad
-            </span>
-          </div>
-          
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-8 tracking-tight leading-[1.05]">
-            No adivines qué software necesitás. <br/><span className="text-blue-500">Nosotros te lo decimos.</span>
-          </h2>
-          
-          <p className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Agendá una llamada técnica con nuestro equipo. Analizamos tu cuello de botella actual y te diseñamos la arquitectura exacta para destrabar tu operación hoy mismo.
-          </p>
-
-          <div className="flex justify-center mb-12">
-            <a 
-              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-blue-600 hover:bg-blue-500 text-white font-black py-6 px-12 rounded-2xl transition-all shadow-[0_0_40px_rgba(37,99,235,0.5)] active:scale-95 text-xl"
-            >
-              Auditar mi Operación &rarr;
-            </a>
-          </div>
-        </div>
+      {/* CTA FINAL */}
+      <section className="text-center mt-24 px-6">
+        <h2 className="text-2xl md:text-4xl font-black text-white mb-6">¿No sabés qué plan necesitás?</h2>
+        <p className="text-zinc-400 text-lg max-w-xl mx-auto mb-8">
+          Hablemos 10 minutos. Nos contás dónde se traba tu operación y te decimos exactamente qué arquitectura te conviene.
+        </p>
+        <Link 
+          href="https://wa.me/595985864209?text=%C2%A1Hola%20Oscar!%20Estoy%20en%20la%20p%C3%A1gina%20de%20precios%20y%20quiero%20asesor%C3%ADa%20para%20elegir%20la%20infraestructura%20correcta."
+          target="_blank"
+          className="inline-block bg-white text-black font-black py-4 px-8 rounded-xl hover:bg-zinc-200 transition-all active:scale-95"
+        >
+          Agendar Diagnóstico Gratuito &rarr;
+        </Link>
       </section>
 
     </div>

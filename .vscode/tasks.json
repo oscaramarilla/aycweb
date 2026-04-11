@@ -85,6 +85,68 @@
 				"Set-Location 'c:\\Users\\User\\Documents\\aycweb'; $p = Join-Path (Get-Location) 'app' '(marketing)' 'layout.tsx'; Remove-Item -LiteralPath $p -Force"
 			],
 			"isBackground": false
+		},
+		{
+			"label": "delete app os page",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Remove-Item -LiteralPath 'c:\\Users\\User\\Documents\\aycweb\\app\\os\\page.tsx' -Force"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "delete app os page cmd",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/C",
+				"del",
+				"/F",
+				"/Q",
+				"c:\\Users\\User\\Documents\\aycweb\\app\\os\\page.tsx"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "list app dirs",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/C",
+				"dir",
+				"/b",
+				"/ad",
+				"\"c:\\Users\\User\\Documents\\aycweb\\app\""
+			],
+			"isBackground": false
+		},
+		{
+			"label": "search os files",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/C",
+				"dir",
+				"/b",
+				"\"c:\\Users\\User\\Documents\\aycweb\\app\\*os*\""
+			],
+			"isBackground": false
+		},
+		{
+			"label": "search deep os path",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/C",
+				"dir",
+				"/b",
+				"/s",
+				"\"c:\\Users\\User\\Documents\\aycweb\\app\\*os*\""
+			],
+			"isBackground": false
 		}
 	]
 }

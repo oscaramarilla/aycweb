@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import "./globals.css";
 import { AYCWEB_CONTACT } from "@/lib/config/contact";
 import Navbar from "@/components/Navbar"; // Tu nueva cabecera premium
 import { LanguageProvider } from "@/context/LanguageContext"; // El Cerebro Global de Idiomas

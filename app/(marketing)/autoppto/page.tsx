@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { buildAndExportPdf } from "../../lib/services/pdfBuilderService";
+import { buildAndExportPdf } from "@/lib/services/pdfBuilderService";
 
 export default function CotizadorPage() {
   const [cliente, setCliente] = useState("");
