@@ -1,3 +1,68 @@
+README para devs nuevos
+1. Documento principal
+En este repo usamos COMO-TRABAJAMOS.md como documento maestro.
+Ahí se define arquitectura, reglas, flujo de trabajo y cómo se organiza el equipo; cualquier duda conceptual se revisa primero ahí.
+
+2. Arquitectura del repo
+El proyecto está dividido en 4 capas:
+
+config
+Configuración de negocio: textos, teléfonos de WhatsApp, precios, promesas, datos específicos por cliente/vertical.
+Es la única fuente de verdad para información variable. No se hardcodea en componentes algo que ya exista acá.
+
+domain
+Lógica de negocio pura: cálculos, reglas comerciales, validaciones, transformaciones de datos.
+No sabe nada de UI ni de rutas; recibe datos y devuelve datos.
+
+services
+Funciones reutilizables: armado de URLs de WhatsApp, generación de PDFs, formateos y helpers.
+Conectan config/domain con la capa de presentación.
+
+app y components
+Capa visual (Next.js).
+Solo leen datos de config/domain/services y dibujan la interfaz.
+No deben contener lógica de negocio ni datos de cliente fijos.
+
+3. Reglas clave
+No hardcodear datos variables en page.tsx ni en componentes.
+
+Si un dato se usa más de una vez, debe salir de config.
+
+app es para mostrar, no para decidir.
+
+domain es para calcular, no para dibujar.
+
+services es para operaciones reutilizables que apoyan al dominio y a la UI.
+
+Antes de codear: definir estructura y flujo; después recién escribir código.
+
+4. Flujo para trabajar en una tarea nueva
+Leer aycweb-maestro.md y COMO-TRABAJAMOS.md.
+
+Ubicar el brief o la configuración del módulo/vertical que vas a tocar.
+
+Revisar qué datos ya existen en config y reutilizarlos.
+
+Si creás una landing nueva:
+
+Crear o actualizar config en config/.
+
+Crear la página en app/.
+
+Usar componentes compartidos y servicios existentes.
+
+Ejecutar npm run build y probar que el CTA/WhatsApp funcione bien.
+
+5. Qué hay en este proyecto
+Proyecto Next.js con enfoque B2B.
+
+Varias landings/verticales (por ejemplo: flete, oscar, modulares-kingspan, etc.).
+
+Cada vertical debe apoyarse en config, no en textos duros en la UI.
+
+6. Explicación rápida para onboarding
+“Este repo es una fábrica de sistemas B2B. Tiene una capa de datos/configuración, una capa de lógica de negocio, una capa de servicios reutilizables y una capa visual. COMO-TRABAJAMOS.md define el estilo y el workflow: no se codifica sin plan, no se repite información y la UI solo muestra lo que decide el dominio/configuración.”
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
