@@ -8,74 +8,74 @@ type AccentColor = "emerald" | "blue" | "violet";
 
 const PLANES = [
   {
-    id: "mvp-starter",
-    badge: "Validación Rápida",
-    nombre: "MVP Starter",
+    id: "infraestructura-base",
+    badge: "Presencia B2B",
+    nombre: "Infraestructura Base",
     emoji: "🚀",
-    precioUSD: "USD $75",
-    precioGs: "Gs. 580.000",
+    precioUSD: "USD $280",
+    precioGs: "Gs. 2.100.000",
     descripcion:
-      "Arquitectura web base con enfoque transaccional. Presencia real, botones estratégicos y copy B2B. Operativo en 48hs.",
+      "Arquitectura web de alta conversión. Diseño premium, botones estratégicos y copy B2B para captar leads. Operativo en 48hs.",
     features: [
-      "Landing page profesional (1 página)",
-      "Copywriting orientado a conversión",
+      "Landing page profesional VIP (1 página)",
+      "Copywriting orientado a neuroventas",
       "Rutas preconfiguradas a WhatsApp",
       "Integración de pasarela de pago (QR)",
-      "Optimizado para PageSpeed",
+      "Optimización estricta PageSpeed 99/100",
     ],
     accent: "emerald" as AccentColor,
     featured: false,
-    ctaText: "Solicitar MVP Starter",
-    msgValue: "Hola, me interesa implementar el plan MVP Starter de USD $75 en mi empresa. ¿Podemos coordinar?"
+    ctaText: "Solicitar Infraestructura Base",
+    msgValue: "Hola Oscar, me interesa implementar la Infraestructura Base de USD $280 en mi empresa. ¿Podemos coordinar?"
   },
   {
-    id: "landing-flash",
-    badge: "🔥 Estándar B2B",
-    nombre: "Infraestructura Flash",
+    id: "sistema-comercial",
+    badge: "🔥 El Estándar B2B",
+    nombre: "Sistema Comercial",
     emoji: "⚡",
-    precioUSD: "USD $200",
-    precioGs: "Gs. 1.500.000",
+    precioUSD: "USD $600",
+    precioGs: "Gs. 4.500.000",
     descripcion:
-      "Sistema comercial completo. Autoridad, prueba social, mitigación de objeciones y embudo de cierre directo.",
+      "Ecosistema multi-página completo. Autoridad, casos de estudio, mitigación de objeciones y embudo de cierre directo.",
     features: [
-      "Todo lo del MVP Starter",
-      "Copy B2B de alto impacto",
-      "Sección de prueba social y métricas",
-      "FAQ operativo para objeciones",
-      "Arquitectura web para PageSpeed 95+",
+      "Todo lo de la Infraestructura Base",
+      "Arquitectura Multi-Página (Servicios, Nosotros)",
+      "Sección de casos de éxito y prueba social",
+      "Formularios B2B y precalificación de leads",
+      "SEO técnico avanzado y estructurado",
     ],
     accent: "blue" as AccentColor,
     featured: true,
-    ctaText: "Solicitar Infraestructura",
-    msgValue: "Hola, me interesa implementar la Infraestructura Flash de USD $200. ¿Podemos agendar el setup?"
+    ctaText: "Solicitar Sistema Comercial",
+    msgValue: "Hola Oscar, me interesa implementar el Sistema Comercial de USD $600. ¿Podemos agendar el setup?"
   },
   {
-    id: "automatizacion-inicial",
+    id: "motor-operativo",
     badge: "Escalabilidad Total",
     nombre: "Motor Operativo",
     emoji: "⚙️",
-    precioUSD: "USD $340",
-    precioGs: "Gs. 2.500.000",
+    precioUSD: "USD $1,200",
+    precioGs: "Gs. 9.000.000",
     descripcion:
-      "Digitalización de procesos manuales. Capta, precalifica y cotiza en automático para escalar tu operación.",
+      "Digitalización pura. Cotizadores dinámicos, autogeneración de PDFs y flujos de trabajo que matan al Excel y ahorran horas.",
     features: [
-      "Todo lo de la Infraestructura Flash",
-      "Formularios B2B inteligentes",
-      "Flujo de precalificación de leads",
-      "SEO técnico avanzado",
-      "Integración base para futuros CRMs",
+      "Todo lo del Sistema Comercial",
+      "Calculadora dinámica de Presupuestos a medida",
+      "Generación de PDFs formales en tiempo real",
+      "Automatización de procesos (Ej. Contratos SOW)",
+      "Arquitectura SaaS Ready para escalar",
     ],
     accent: "violet" as AccentColor,
     featured: false,
     ctaText: "Solicitar Motor Operativo",
-    msgValue: "Hola, necesito el Motor Operativo de USD $340 para automatizar mi empresa. ¿Cuándo empezamos?"
+    msgValue: "Hola Oscar, necesito el Motor Operativo de USD $1,200 para automatizar los procesos de mi empresa. ¿Cuándo empezamos?"
   },
 ];
 
 export default function PreciosClient() {
   const { t } = useLanguage();
   const wa = "595985864209";
-  const msgGeneral = encodeURIComponent("Hola, estoy en la página de precios de AYCweb y quiero asesoría para elegir la infraestructura correcta para mi empresa.");
+  const msgGeneral = encodeURIComponent("Hola Oscar, estoy en la página de precios de AYCweb y quiero una auditoría gratuita para elegir la infraestructura correcta para mi empresa.");
 
   const accentStyles: Record<AccentColor, { border: string; bg: string; text: string; badge: string; glow: string; check: string; btn: string; priceBorder: string; }> = {
     emerald: {
@@ -110,7 +110,7 @@ export default function PreciosClient() {
             Inversión clara. <br/><span className="text-blue-400">Retorno operativo medible.</span>
           </h1>
           <p className="mb-10 text-lg leading-relaxed text-zinc-400 sm:text-xl">
-            Sistemas empaquetados sin costos ocultos. Si tu operación requiere una lógica más compleja, agendá una auditoría y cotizamos a medida.
+            Sistemas empaquetados sin costos ocultos. Si tu operación requiere una lógica más compleja (ERP/SaaS), agendá una auditoría y cotizamos a medida.
           </p>
         </div>
       </section>
@@ -177,12 +177,12 @@ export default function PreciosClient() {
           <div className="flex-1">
             <h4 className="mb-2 text-xl font-bold text-white">Mantenimiento y Estabilidad Operativa</h4>
             <p className="text-sm text-zinc-400">
-              Nos encargamos del hosting enterprise, dominio corporativo, copias de seguridad y soporte técnico continuo para que tu motor no se detenga.
+              Nos encargamos del hosting enterprise (Vercel), dominio corporativo, copias de seguridad, certificados SSL y soporte técnico continuo para que tu motor no se detenga jamás.
             </p>
           </div>
           <div className="flex-shrink-0 border-l border-zinc-800 pl-8 text-center md:text-right">
             <p className="mb-1 text-sm font-bold uppercase tracking-widest text-zinc-500">Fee Mensual</p>
-            <p className="text-3xl font-black text-blue-400">$15 USD<span className="text-sm font-medium text-zinc-500">/mes</span></p>
+            <p className="text-3xl font-black text-blue-400">$50 USD<span className="text-sm font-medium text-zinc-500">/mes</span></p>
           </div>
         </div>
       </section>

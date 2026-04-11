@@ -29,17 +29,17 @@ export default function CasosPage() {
         </div>
       </section>
 
-      {/* CASO 1: METAL MAD (Industria) - AHORA CON VIDEO Y COMPARATIVA */}
-      <section id="metal-mad" className="py-24 bg-black border-b border-zinc-900 scroll-mt-24">
+      {/* CASO 1: METAL MAD Y ORIPLAST (Industria) */}
+      <section id="industria" className="py-24 bg-black border-b border-zinc-900 scroll-mt-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row gap-12 items-start">
             <div className="flex-1 space-y-8">
               <div>
                 <div className="inline-flex items-center gap-2 bg-emerald-950/30 border border-emerald-900/50 px-3 py-1 rounded-full text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-4">
-                  <span className="text-emerald-500">✓</span> Sector Industrial
+                  <span className="text-emerald-500">✓</span> Sector Industrial & Manufactura
                 </div>
                 <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">
-                  Caso: Automatización Logística
+                  Automatización de Cotizaciones y Logística
                 </h2>
               </div>
               
@@ -62,7 +62,7 @@ export default function CasosPage() {
                   </h4>
                   <ul className="text-zinc-400 text-sm space-y-2">
                     <li>• Motor web 100% estandarizado</li>
-                    <li>• Combustible calculado vía API</li>
+                    <li>• Embudo de ventas automatizado</li>
                     <li>• Cotización exacta en 45 segundos</li>
                     <li>• PDF formal autogenerado</li>
                   </ul>
@@ -75,18 +75,25 @@ export default function CasosPage() {
                 <div className="aspect-video w-full max-w-lg rounded-2xl border border-zinc-800 overflow-hidden shadow-2xl bg-black">
                   <iframe 
                     className="w-full h-full"
-                    src="https://www.youtube.com/embed/n1xOvGtHsIA" 
-                    title="Demo Motor Logístico" 
+                    src="https://www.youtube.com/embed/vOCqg_zctec?autoplay=0&rel=0&modestbranding=1" 
+                    title="Demo Máquina del Tiempo" 
                     frameBorder="0" 
                     allowFullScreen
                   ></iframe>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Link href="/flete" className="bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 px-6 rounded-xl transition-all text-center">
-                  Probar el Motor tú mismo &rarr;
-                </Link>
+              {/* ENLACES A PROYECTOS REALES */}
+              <div className="pt-6">
+                 <h4 className="text-white font-bold mb-3">Infraestructuras Activas:</h4>
+                 <div className="flex flex-wrap gap-4">
+                    <a href="https://metalmadeas.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-zinc-900 border border-zinc-800 hover:border-emerald-500 text-zinc-300 px-4 py-2 rounded-lg text-sm transition-colors">
+                       🔗 metalmadeas.com
+                    </a>
+                    <a href="https://oriplastpy.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-zinc-900 border border-zinc-800 hover:border-emerald-500 text-zinc-300 px-4 py-2 rounded-lg text-sm transition-colors">
+                       🔗 oriplastpy.com
+                    </a>
+                 </div>
               </div>
             </div>
 
@@ -99,79 +106,102 @@ export default function CasosPage() {
         </div>
       </section>
 
-      {/* CASO 2: AYC S.R.L. (Legal/SOW) */}
-      <section id="legal" className="py-24 bg-zinc-950 border-b border-zinc-900 scroll-mt-24">
+      {/* CASO 2: DR. BIANCA & DR. LAHAYE (Salud) */}
+      <section id="salud" className="py-24 bg-zinc-950 border-b border-zinc-900 scroll-mt-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row-reverse gap-12 items-start">
-            <div className="flex-1 space-y-6">
-              <div className="inline-flex items-center gap-2 bg-blue-950/30 border border-blue-900/50 px-3 py-1 rounded-full text-[10px] font-bold text-blue-400 uppercase tracking-widest">
-                <span className="text-blue-500">✓</span> Sector Corporativo
-              </div>
-              <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">
-                Generador de Contratos (SOW)
-              </h2>
-              
-              <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl">
-                <h4 className="text-white font-bold mb-2">El Cuello de Botella:</h4>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  Redactar un "Statement of Work" (Acuerdo de Trabajo) para cada nuevo cliente requería buscar plantillas viejas, copiar, pegar y rezar para no dejar el nombre del cliente anterior. Cero escalabilidad legal.
-                </p>
-              </div>
-
-              <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl">
-                <h4 className="text-white font-bold mb-2">La Infraestructura:</h4>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  Programamos un Generador de Contratos Dinámico. A través de un formulario guiado, el gerente comercial completa los datos clave (cliente, precio, alcance) y el sistema inyecta la información en un documento legal blindado y listo para firmar.
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                 <Link href="/sos" className="bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 px-6 rounded-xl transition-all text-center">
-                  Ver demo del Generador &rarr;
-                </Link>
-              </div>
-            </div>
-
-            <div className="w-full lg:w-1/3 bg-black border border-blue-900/50 rounded-3xl p-8 flex flex-col justify-center text-center shadow-[0_0_40px_rgba(37,99,235,0.15)] sticky top-32">
-               <p className="text-6xl font-black text-blue-500 mb-4">100%</p>
-               <p className="text-white font-bold text-lg mb-2">Estandarización Legal</p>
-               <p className="text-zinc-500 text-sm">Contratos comerciales emitidos al instante, sin dependencias de abogados externos para tareas repetitivas.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CASO 3: DRA. BIANCA (Salud) */}
-      <section id="clinica" className="py-24 bg-black border-b border-zinc-900 scroll-mt-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-12 items-start">
             <div className="flex-1 space-y-6">
               <div className="inline-flex items-center gap-2 bg-purple-950/30 border border-purple-900/50 px-3 py-1 rounded-full text-[10px] font-bold text-purple-400 uppercase tracking-widest">
                 <span className="text-purple-500">✓</span> Sector Salud
               </div>
               <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">
-                Infraestructura Clínica
+                Embudos Clínicos de Alta Fricción
               </h2>
               
               <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl">
                 <h4 className="text-white font-bold mb-2">El Cuello de Botella:</h4>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  La captación de pacientes dependía exclusivamente del boca en boca o de responder manualmente cientos de mensajes de WhatsApp pidiendo turnos y precios, saturando a la recepción.
+                  La captación de pacientes dependía exclusivamente del boca a boca o de responder manualmente cientos de mensajes de WhatsApp pidiendo turnos y precios, saturando la recepción. Las consultas de alto valor se perdían en el ruido.
                 </p>
               </div>
 
               <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl">
                 <h4 className="text-white font-bold mb-2">La Infraestructura:</h4>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  Desplegamos un embudo clínico completo. Una landing page persuasiva que filtra pacientes por especialidad, resuelve FAQs comunes y deriva al paciente directamente al flujo de agenda estructurado.
+                  Desplegamos embudos clínicos completos (Webs Optimizadas). Actúan como filtros digitales que educan al paciente, posicionan la autoridad médica, resuelven FAQs y derivan pacientes precalificados directamente al flujo de agenda.
                 </p>
+              </div>
+
+               {/* ENLACES A PROYECTOS REALES */}
+               <div className="pt-6">
+                 <h4 className="text-white font-bold mb-3">Infraestructuras Activas:</h4>
+                 <div className="flex flex-wrap gap-4">
+                    <a href="https://drabiancapy.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-black border border-zinc-800 hover:border-purple-500 text-zinc-300 px-4 py-2 rounded-lg text-sm transition-colors">
+                       🔗 drabiancapy.com
+                    </a>
+                    <a href="https://drjoselahaye.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-black border border-zinc-800 hover:border-purple-500 text-zinc-300 px-4 py-2 rounded-lg text-sm transition-colors">
+                       🔗 drjoselahaye.com
+                    </a>
+                 </div>
+              </div>
+            </div>
+
+            <div className="w-full lg:w-1/3 bg-black border border-purple-900/50 rounded-3xl p-8 flex flex-col justify-center text-center shadow-[0_0_40px_rgba(168,85,247,0.15)] sticky top-32">
+               <p className="text-6xl font-black text-purple-500 mb-4">24/7</p>
+               <p className="text-white font-bold text-lg mb-2">Captación Activa</p>
+               <p className="text-zinc-500 text-sm">El consultorio genera leads y precalifica pacientes de telemedicina e intervenciones incluso fuera de horario.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CASO 3: SERVICIOS Y CORPORATIVO (La Roca, La Tableta, AYC) */}
+      <section id="servicios" className="py-24 bg-black border-b border-zinc-900 scroll-mt-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-12 items-start">
+            <div className="flex-1 space-y-6">
+              <div className="inline-flex items-center gap-2 bg-blue-950/30 border border-blue-900/50 px-3 py-1 rounded-full text-[10px] font-bold text-blue-400 uppercase tracking-widest">
+                <span className="text-blue-500">✓</span> Sector Servicios & B2B
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">
+                Posicionamiento Corporativo y Generación de Leads
+              </h2>
+              
+              <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl">
+                <h4 className="text-white font-bold mb-2">El Cuello de Botella:</h4>
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  Empresas con excelente calidad de servicio pero que parecían "freelancers" en internet debido a sitios web desactualizados, lentos o inexistentes. Dificultad para justificar precios premium.
+                </p>
+              </div>
+
+              <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl">
+                <h4 className="text-white font-bold mb-2">La Infraestructura:</h4>
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  Creamos presencia digital robusta (Sistemas SaaS, Landings de Autoridad). Esto eleva la percepción de valor instantáneamente, facilitando el cierre de contratos corporativos y licitaciones (B2G).
+                </p>
+              </div>
+
+               {/* ENLACES A PROYECTOS REALES */}
+               <div className="pt-6">
+                 <h4 className="text-white font-bold mb-3">Infraestructuras Activas:</h4>
+                 <div className="flex flex-wrap gap-4">
+                    <a href="https://larocaemprendimientos.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-zinc-900 border border-zinc-800 hover:border-blue-500 text-zinc-300 px-4 py-2 rounded-lg text-sm transition-colors">
+                       🔗 larocaemprendimientos.com
+                    </a>
+                    <a href="https://latabletapy.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-zinc-900 border border-zinc-800 hover:border-blue-500 text-zinc-300 px-4 py-2 rounded-lg text-sm transition-colors">
+                       🔗 latabletapy.com
+                    </a>
+                     <a href="https://ayc.com.py" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-zinc-900 border border-zinc-800 hover:border-blue-500 text-zinc-300 px-4 py-2 rounded-lg text-sm transition-colors">
+                       🔗 ayc.com.py
+                    </a>
+                 </div>
               </div>
             </div>
 
             <div className="w-full lg:w-1/3 bg-zinc-900 border border-zinc-800 rounded-3xl p-8 flex flex-col justify-center text-center shadow-2xl sticky top-32">
-               <p className="text-6xl font-black text-purple-500 mb-4">24/7</p>
-               <p className="text-white font-bold text-lg mb-2">Captación Activa</p>
-               <p className="text-zinc-500 text-sm">El consultorio genera leads y precalifica pacientes incluso fuera del horario de atención.</p>
+               <p className="text-6xl font-black text-blue-500 mb-4">99/100</p>
+               <p className="text-white font-bold text-lg mb-2">Performance Impecable</p>
+               <p className="text-zinc-500 text-sm">Arquitectura Next.js que garantiza velocidades de carga milisegundas, crucial para el SEO y la retención de clientes B2B.</p>
             </div>
           </div>
         </div>
