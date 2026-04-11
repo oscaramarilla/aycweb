@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#18181b", // Coincide con zinc-900 (gris plateado profundo)
+  themeColor: "#020617", // Slate 950 (Gris plateado oscuro futurista)
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -29,9 +29,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="es" className={`${inter.variable} scroll-smooth`}>
-      <body className="antialiased bg-zinc-900 text-zinc-50 min-h-screen flex flex-col font-sans relative">
+      {/* Cambiamos bg-zinc-950 a bg-slate-950 para el tono gris/azul metálico */}
+      <body className="antialiased bg-slate-950 text-slate-50 min-h-screen flex flex-col font-sans relative selection:bg-blue-500/30">
         
-        {/* EL CEREBRO DE IDIOMAS ENVUELVE TODA LA WEB */}
+        {/* Grilla sutil futurista de fondo (Opcional, le da un toque muy tech) */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0"></div>
+
         <LanguageProvider>
           {children}
         </LanguageProvider>
