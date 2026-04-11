@@ -9,20 +9,16 @@ export default function Navbar() {
   const whatsappNumber = AYCWEB_CONTACT.whatsappNumber;
   const whatsappMsg = encodeURIComponent(AYCWEB_CONTACT.globalMessages.diagnosis);
 
-  const toggleMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
-  // Prevenir scroll cuando el menú está abierto
+  // Bloquea el scroll del fondo cuando el menú móvil está abierto (Ultra Premium UX)
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
+    return () => { document.body.style.overflow = 'unset'; };
   }, [isMobileMenuOpen]);
 
   return (
@@ -30,7 +26,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 w-full flex items-center justify-between">
         
         {/* LOGO */}
-        <Link href="/" className="text-2xl font-black tracking-tighter text-white z-[60]">
+        <Link href="/" className="text-2xl font-black tracking-tighter text-white z-50" onClick={() => setIsMobileMenuOpen(false)}>
           AYC<span className="text-blue-500">web</span>
         </Link>
 
@@ -55,7 +51,7 @@ export default function Navbar() {
 
         {/* MOBILE MENU BUTTON */}
         <button 
-          className="md:hidden text-white z-[60] p-2"
+          className="md:hidden text-white z-50 p-2"
           onClick={toggleMenu}
           aria-label="Toggle Menu"
         >
@@ -68,52 +64,24 @@ export default function Navbar() {
 
       </div>
 
-      {/* MOBILE MENU OVERLAY - DISEÑO PLATA/CINZA */}
-      <div 
-        className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-b from-[#2a2d34] to-[#1e2025] transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
-        }`}
-      >
-        <div className="flex flex-col items-center gap-8 w-full px-6">
-          <Link 
-            href="/soluciones" 
-            onClick={toggleMenu} 
-            className="text-3xl font-black text-zinc-100 hover:text-white tracking-tight"
-          >
-            Soluciones
-          </Link>
-          <Link 
-            href="/productos" 
-            onClick={toggleMenu} 
-            className="text-3xl font-black text-zinc-100 hover:text-white tracking-tight"
-          >
-            Productos
-          </Link>
-          <Link 
-            href="/nosotros" 
-            onClick={toggleMenu} 
-            className="text-3xl font-black text-zinc-100 hover:text-white tracking-tight"
-          >
-            Nosotros
-          </Link>
-          <Link 
-            href="/pago" 
-            onClick={toggleMenu} 
-            className="text-3xl font-black text-emerald-400 hover:text-emerald-300 tracking-tight mt-4 flex items-center gap-2"
-          >
-             <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
-             Fast-Track Pago
-          </Link>
-          
-          <a 
-            href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
-            target="_blank" rel="noopener noreferrer"
-            className="mt-8 bg-white text-black font-black text-xl px-10 py-5 rounded-2xl active:scale-95 shadow-xl w-full max-w-sm text-center"
-            onClick={toggleMenu}
-          >
-            Auditar mi proceso
-          </a>
-        </div>
+      {/* MOBILE MENU OVERLAY */}
+      <div className={`fixed inset-0 bg-zinc-950 z-40 flex flex-col items-center justify-start pt-32 gap-8 transition-all duration-300 md:hidden ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
+        <Link href="/soluciones" onClick={toggleMenu} className="text-3xl font-bold text-zinc-300 hover:text-white">Soluciones</Link>
+        <Link href="/productos" onClick={toggleMenu} className="text-3xl font-bold text-zinc-300 hover:text-white">Productos</Link>
+        <Link href="/nosotros" onClick={toggleMenu} className="text-3xl font-bold text-zinc-300 hover:text-white">Nosotros</Link>
+        <Link href="/pago" onClick={toggleMenu} className="text-3xl font-black text-emerald-500 hover:text-emerald-400 flex items-center gap-3">
+          <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+          Fast-Track Pago
+        </Link>
+        
+        <a 
+          href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
+          target="_blank" rel="noopener noreferrer"
+          className="mt-6 bg-white text-black font-black text-xl px-10 py-4 rounded-xl active:scale-95"
+          onClick={toggleMenu}
+        >
+          Auditar mi proceso
+        </a>
       </div>
     </nav>
   );
