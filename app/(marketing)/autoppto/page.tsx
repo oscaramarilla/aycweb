@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { buildAndExportPdf } from "@/lib/services/pdfBuilderService";
+import { generarPdfPresupuesto } from "@/lib/services/pdfBuilderService";
 
 export default function CotizadorPage() {
   const [cliente, setCliente] = useState("");
@@ -27,13 +27,28 @@ export default function CotizadorPage() {
 
   const handleGenerarPDF = async (e: React.FormEvent) => {
     e.preventDefault();
-    // AQUÍ DEBES LLAMAR AL SERVICIO EXTERNO pdfBuilderService
-    const data = {
-      cliente,
-      productos,
-      imagenUrl,
-    };
-    await buildAndExportPdf(data);
+
+    const items = productos.map((producto) => ({
+      descripcion: producto.descripcion,
+      cantidad: producto.cantidad,
+      precioUnitario: producto.precio,
+      subtotal: producto.cantidad * producto.precio,
+    }));
+
+    const total = items.reduce((sum, item) => sum + item.subtotal, 0);
+
+    await generarPdfPresupuesto({
+      empresa: {
+        nombre: cliente,
+        ruc: "",
+        direccion: "",
+        telefono: "",
+        logo: imagenUrl,
+      },
+      titulo: `Presupuesto de ${cliente}`,
+      items,
+      total,
+    });
   };
 
   return (
@@ -84,7 +99,7 @@ export default function CotizadorPage() {
                       type="number" 
                       placeholder="Cant."
                       value={producto.cantidad}
-                      onChange={(e) => actualizarProducto(index, "cantidad", e.target.value)}
+                      onChange={(e) => actualizarProducto(index, "cantidad", Number(e.target.value))}
                       className="w-24 border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-600 outline-none text-black"
                       required
                     />
@@ -92,7 +107,7 @@ export default function CotizadorPage() {
                       type="number" 
                       placeholder="Precio Unitario"
                       value={producto.precio}
-                      onChange={(e) => actualizarProducto(index, "precio", e.target.value)}
+                      onChange={(e) => actualizarProducto(index, "precio", Number(e.target.value))}
                       className="flex-grow border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-600 outline-none text-black"
                       required
                     />

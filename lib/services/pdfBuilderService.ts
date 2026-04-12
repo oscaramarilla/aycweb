@@ -10,59 +10,107 @@ interface JsPDFWithAutoTable extends jsPDF {
   autoTable: AutoTableFn;
 }
 
-export async function buildAndExportPdf(data: {
-  cliente: string;
-  productos: { descripcion: string; cantidad: number; precio: number }[];
-  imagenUrl?: string;
-}) {
-  const { cliente, productos, imagenUrl } = data;
-  const total = productos.reduce((sum, p) => sum + p.cantidad * p.precio, 0);
+interface Empresa {
+  nombre: string;
+  ruc: string;
+  direccion: string;
+  telefono: string;
+  logo?: string;
+}
 
+interface PdfItem {
+  descripcion: string;
+  cantidad: number;
+  precioUnitario: number;
+  subtotal: number;
+}
+
+interface GenerarPdfPresupuestoParams {
+  empresa: Empresa;
+  titulo: string;
+  items: PdfItem[];
+  total: number;
+  notas?: string;
+}
+
+const formatCurrency = (value: number) => value.toLocaleString("es-PY", {
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
+
+const loadImageAsDataUrl = async (url: string) => {
+  const response = await fetch(url);
+  const blob = await response.blob();
+  return await new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      if (typeof reader.result === "string") {
+        resolve(reader.result);
+      } else {
+        reject(new Error("Failed to convert image to data URL"));
+      }
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+};
+
+export async function generarPdfPresupuesto(params: GenerarPdfPresupuestoParams) {
+  const { empresa, titulo, items, total, notas } = params;
   const doc = new jsPDF();
 
-  // Header y Título (adaptado a la nueva estructura)
-  doc.setFontSize(18);
-  doc.text("Presupuesto de ", 10, 20);
   doc.setFont("helvetica", "bold");
-  doc.text(cliente, 60, 20);
-  doc.setFont("helvetica", "normal");
+  doc.setFontSize(18);
+  doc.text(titulo, 10, 20);
 
-  // Imagen del producto
-  if (imagenUrl) {
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.text(`Empresa: ${empresa.nombre}`, 10, 30);
+
+  if (empresa.ruc) {
+    doc.text(`RUC: ${empresa.ruc}`, 10, 36);
+  }
+
+  if (empresa.direccion) {
+    doc.text(`Dirección: ${empresa.direccion}`, 10, 42);
+  }
+
+  if (empresa.telefono) {
+    doc.text(`Teléfono: ${empresa.telefono}`, 10, 48);
+  }
+
+  if (empresa.logo) {
     try {
-      const response = await fetch(imagenUrl);
-      const blob = await response.blob();
-      const reader = new FileReader();
-      reader.readAsDataURL(blob);
-      await new Promise<void>((resolve) => {
-        reader.onloadend = () => {
-          doc.addImage(reader.result as string, "JPEG", 150, 10, 50, 40);
-          resolve();
-        };
-      });
+      const imageDataUrl = await loadImageAsDataUrl(empresa.logo);
+      const imageType = empresa.logo.toLowerCase().endsWith(".png") ? "PNG" : "JPEG";
+      doc.addImage(imageDataUrl, imageType, 150, 10, 50, 40);
     } catch (error) {
-      console.error("Error loading image:", error);
+      console.error("Error loading logo image:", error);
     }
   }
 
-  // Información de los items (adaptado a la nueva estructura)
   (doc as JsPDFWithAutoTable).autoTable({
     startY: 60,
     head: [["Descripción", "Cantidad", "Precio Unitario", "Subtotal"]],
-    body: productos.map((p) => [
-      p.descripcion,
-      p.cantidad,
-      p.precio.toLocaleString("es-PY"),
-      (p.cantidad * p.precio).toLocaleString("es-PY"),
+    body: items.map((item) => [
+      item.descripcion,
+      item.cantidad,
+      formatCurrency(item.precioUnitario),
+      formatCurrency(item.subtotal),
     ]),
     theme: "striped",
     headStyles: { fillColor: [20, 20, 20] },
   });
 
-  // Total
   const finalY = (doc as JsPDFWithAutoTable).autoTable.previous.finalY;
   doc.setFontSize(12);
-  doc.text(`Total: Gs. ${total.toLocaleString("es-PY")}`, 140, finalY + 10);
+  doc.text(`Total: Gs. ${formatCurrency(total)}`, 140, finalY + 10);
+
+  if (notas) {
+    doc.setFontSize(10);
+    doc.text("Notas:", 10, finalY + 22);
+    doc.text(notas, 10, finalY + 28, { maxWidth: 180 });
+  }
 
   doc.save("presupuesto.pdf");
 }
