@@ -1,141 +1,168 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Soluciones por Industria | AYCweb",
+  title: "Productos | AYCweb",
   description:
-    "Infraestructura digital adaptada a manufactura, logística, salud, corporativo y otros sectores en Paraguay.",
+    "Planes de infraestructura digital para empresas y profesionales. Elegí la arquitectura que mejor se adapta a tu operación.",
 };
 
-const whatsappNumber = "595985864209";
-const whatsappMsg = encodeURIComponent(
-  "Hola Oscar. Quiero una auditoría para analizar cómo automatizar mi operación."
-);
+export default function ProductosPage() {
+  const whatsappNumber = "595985864209";
 
-const sectors = [
-  {
-    icon: "🏭",
-    title: "Industria & Logística",
-    pain:
-      "Cotizaciones lentas en Excel, cálculo de fletes a ojo, pérdida de margen y seguimiento disperso.",
-    solution:
-      "Motores logísticos, cotizadores dinámicos, contratos automáticos y flujos claros para ventas industriales.",
-    result:
-      "Pasar de improvisar precios a emitir propuestas formales con velocidad y criterio.",
-    accent: "blue",
-    href: "/casos#empresas",
-    cta: "Ver casos empresariales",
-  },
-  {
-    icon: "🏥",
-    title: "Salud & Clínicas",
-    pain:
-      "Recepción saturada, consultas fuera de horario, precios repetidos por WhatsApp y pacientes que se enfrían.",
-    solution:
-      "Embudos clínicos, pre-filtro, captación calificada y derivación más ordenada a agenda o WhatsApp.",
-    result:
-      "Más orden en la atención y menos desgaste en recepción.",
-    accent: "emerald",
-    href: "/casos#profesionales",
-    cta: "Ver casos del sector salud",
-  },
-  {
-    icon: "💼",
-    title: "Corporativo & Legal",
-    pain:
-      "Documentos repetitivos, errores por copiar y pegar, tiempos muertos en propuestas y contratos.",
-    solution:
-      "Formularios condicionales, generadores automáticos de documentos y flujos de emisión más seguros.",
-    result:
-      "Menos tiempo administrativo y más velocidad comercial.",
-    accent: "purple",
-    href: "/casos#empresas",
-    cta: "Ver automatización documental",
-  },
-];
+  const empresaMsg = encodeURIComponent(
+    "Hola Oscar. Quiero agendar un diagnóstico gratuito para evaluar la arquitectura de mi empresa."
+  );
 
-export default function SectoresPage() {
+  const profesionalMsg = encodeURIComponent(
+    "Hola Oscar. Quiero agendar un diagnóstico gratuito para evaluar la arquitectura de mi servicio profesional."
+  );
+
   return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-50">
-      <div className="pointer-events-none absolute inset-0 z-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+    <div className="min-h-screen bg-slate-950 text-slate-50 md:hidden">
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay" />
 
-      <section className="relative z-10 border-b border-white/[0.06] px-6 pb-16 pt-28 text-center md:pb-24 md:pt-40">
-        <div className="absolute left-1/2 top-0 -z-10 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-blue-600/10 blur-[120px]" />
-        <div className="mx-auto max-w-4xl">
-          <h1 className="mb-6 text-4xl font-black leading-[1.04] tracking-tight text-white md:text-6xl">
-            Soluciones por{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              industria
-            </span>
+      {/* HERO */}
+      <section className="relative z-10 px-5 pt-24 pb-10 border-b border-white/[0.06]">
+        <div className="max-w-md mx-auto text-center">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300 text-[11px] font-bold uppercase tracking-[0.2em] mb-5">
+            Productos AYCweb
+          </span>
+
+          <h1 className="text-4xl font-black leading-[1.02] tracking-tight text-white mb-4">
+            Elegí tu camino.
           </h1>
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-400 md:text-xl">
-            No aplicamos la misma plantilla a todos. Diseñamos la arquitectura
-            según la lógica operativa de tu negocio.
+
+          <p className="text-slate-400 text-base leading-relaxed">
+            Dos líneas claras. Una para <strong className="text-white">empresas</strong> y otra para{" "}
+            <strong className="text-white">profesionales</strong>.
           </p>
         </div>
       </section>
 
-      <section className="relative z-10 px-6 py-24">
-        <div className="mx-auto max-w-6xl space-y-10">
-          {sectors.map((sector) => (
-            <div
-              key={sector.title}
-              className="grid grid-cols-1 gap-8 rounded-[2rem] border border-slate-800 bg-slate-900/50 p-8 md:grid-cols-2 md:p-10"
-            >
-              <div>
-                <div className="mb-4 text-5xl">{sector.icon}</div>
-                <h2 className="mb-6 text-3xl font-black text-white">{sector.title}</h2>
+      {/* EMPRESAS */}
+      <section className="relative z-10 px-5 py-8">
+        <div className="max-w-md mx-auto rounded-[2rem] border border-blue-900/30 bg-slate-900/60 p-6 shadow-2xl">
+          <div className="text-4xl mb-4">🏭</div>
+          <h2 className="text-2xl font-black text-white mb-2">Para Empresas</h2>
+          <p className="text-slate-400 text-sm leading-relaxed mb-6">
+            Arquitecturas para operaciones que necesitan captar, cotizar, ordenar procesos y vender con más control.
+          </p>
 
-                <div className="mb-4 rounded-2xl border border-slate-800 bg-slate-950/70 p-5">
-                  <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-red-400">
-                    Cuello de botella típico
-                  </p>
-                  <p className="text-sm leading-relaxed text-slate-300">{sector.pain}</p>
-                </div>
-
-                <div className="mb-4 rounded-2xl border border-slate-800 bg-slate-950/70 p-5">
-                  <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-blue-400">
-                    Infraestructura AYCweb
-                  </p>
-                  <p className="text-sm leading-relaxed text-slate-300">
-                    {sector.solution}
-                  </p>
-                </div>
-
-                <Link
-                  href={sector.href}
-                  className="inline-flex items-center gap-2 text-lg font-bold text-blue-400 transition hover:text-blue-300"
-                >
-                  {sector.cta} →
-                </Link>
-              </div>
-
-              <div className="flex min-h-[260px] items-center justify-center rounded-3xl border border-white/[0.05] bg-[#070810] p-8 text-center">
-                <p className="text-xl font-bold leading-relaxed text-slate-300 md:text-2xl">
-                  {sector.result}
-                </p>
-              </div>
+          <div className="space-y-4 mb-7">
+            <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5">
+              <div className="text-xs uppercase tracking-[0.2em] text-blue-400 font-bold mb-2">Starter Empresa</div>
+              <div className="text-3xl font-black text-white mb-2">$900</div>
+              <p className="text-sm text-slate-400">
+                Base sólida para empezar a sistematizar captación, presentación y primer flujo comercial.
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
 
-      <section className="relative z-10 border-t border-white/[0.06] px-6 py-24 text-center">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="mb-6 text-3xl font-black text-white md:text-5xl">
-            ¿Tu sector no aparece?
-          </h2>
-          <p className="mb-10 text-lg text-slate-400">
-            Si tenés un cuello de botella manual repetitivo, podemos auditar tu
-            operación y decirte qué conviene automatizar primero.
-          </p>
+            <div className="rounded-2xl border border-blue-500/30 bg-blue-950/10 p-5">
+              <div className="text-xs uppercase tracking-[0.2em] text-blue-300 font-bold mb-2">Sistema Empresa</div>
+              <div className="text-3xl font-black text-white mb-2">$1800</div>
+              <p className="text-sm text-slate-400">
+                Infraestructura más completa para empresas que ya necesitan automatización y una operación más fina.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5">
+              <div className="text-xs uppercase tracking-[0.2em] text-purple-400 font-bold mb-2">Arquitectura a Medida</div>
+              <div className="text-2xl font-black text-white mb-2">Cotización a medida</div>
+              <p className="text-sm text-slate-400">
+                Para operaciones con lógica propia, integraciones especiales o cuellos de botella más complejos.
+              </p>
+            </div>
+          </div>
+
           <a
-            href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
+            href={`https://wa.me/${whatsappNumber}?text=${empresaMsg}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block rounded-xl bg-blue-600 px-8 py-4 font-black text-white shadow-[0_0_30px_rgba(37,99,235,0.35)] transition hover:bg-blue-500"
+            className="block w-full text-center rounded-xl bg-blue-600 py-4 font-black text-white shadow-[0_0_30px_rgba(37,99,235,0.35)] transition hover:bg-blue-500"
           >
-            Agendar diagnóstico operativo
+            Agenda diagnóstico gratuito
+          </a>
+        </div>
+      </section>
+
+      {/* PROFESIONALES */}
+      <section className="relative z-10 px-5 py-2">
+        <div className="max-w-md mx-auto rounded-[2rem] border border-emerald-900/30 bg-slate-900/60 p-6 shadow-2xl">
+          <div className="text-4xl mb-4">🧑‍⚕️</div>
+          <h2 className="text-2xl font-black text-white mb-2">Para Profesionales</h2>
+          <p className="text-slate-400 text-sm leading-relaxed mb-6">
+            Sistemas para captar mejor, mostrar autoridad, filtrar consultas y ordenar tu canal comercial.
+          </p>
+
+          <div className="space-y-4 mb-7">
+            <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5">
+              <div className="text-xs uppercase tracking-[0.2em] text-emerald-400 font-bold mb-2">Profesional Base</div>
+              <div className="text-3xl font-black text-white mb-2">$350</div>
+              <p className="text-sm text-slate-400">
+                Presencia digital clara, enfoque directo y estructura inicial para convertir consultas en oportunidades.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-emerald-500/30 bg-emerald-950/10 p-5">
+              <div className="text-xs uppercase tracking-[0.2em] text-emerald-300 font-bold mb-2">Profesional Pro</div>
+              <div className="text-3xl font-black text-white mb-2">$650</div>
+              <p className="text-sm text-slate-400">
+                Sistema más fuerte de captación y posicionamiento para profesionales que quieren subir nivel y cerrar mejor.
+              </p>
+            </div>
+          </div>
+
+          <a
+            href={`https://wa.me/${whatsappNumber}?text=${profesionalMsg}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full text-center rounded-xl bg-emerald-600 py-4 font-black text-white shadow-[0_0_30px_rgba(16,185,129,0.30)] transition hover:bg-emerald-500"
+          >
+            Agenda diagnóstico gratuito
+          </a>
+        </div>
+      </section>
+
+      {/* BLOQUE DE CONFIANZA */}
+      <section className="relative z-10 px-5 py-8 pb-12">
+        <div className="max-w-md mx-auto rounded-[2rem] border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6">
+          <div className="text-4xl mb-4 text-center">🛡️</div>
+          <h3 className="text-2xl font-black text-white text-center mb-5">
+            Compromiso mutuo desde el día uno
+          </h3>
+
+          <div className="space-y-4 mb-7">
+            <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+              <div className="font-bold text-white mb-1">Reserva tu lugar</div>
+              <p className="text-sm text-slate-400">
+                La posición se asegura con compromiso mutuo desde el día uno.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+              <div className="font-bold text-white mb-1">30 días de garantía</div>
+              <p className="text-sm text-slate-400">
+                Si no funciona para ninguna de las partes, devolución total.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+              <div className="font-bold text-white mb-1">Sin letras chicas</div>
+              <p className="text-sm text-slate-400">
+                Cero sorpresas. Cero costos ocultos. Todo claro desde el inicio.
+              </p>
+            </div>
+          </div>
+
+          <a
+            href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+              "Hola Oscar. Quiero agendar un diagnóstico gratuito con AYCweb."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full text-center rounded-xl bg-white py-4 font-black text-slate-950 transition hover:bg-slate-200"
+          >
+            Agenda diagnóstico gratuito
           </a>
         </div>
       </section>
