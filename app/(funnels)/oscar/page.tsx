@@ -193,8 +193,8 @@ const PLANES = [
     badge: "Ideal para empezar",
     nombre: "MVP Starter",
     emoji: "🚀",
-    precioUSD: "USD $75",
-    precioGs: "Gs. 580.000",
+    precioUSD: "USD $350",
+    precioGs: "Gs. 2.261.000",
     descripcion:
       "El sistema mínimo que ya vende. Presencia real, pago visible y WhatsApp directo. Listo en 48hs.",
     features: [
@@ -214,8 +214,8 @@ const PLANES = [
     badge: "🔥 Más Elegido",
     nombre: "Landing Flash",
     emoji: "⚡",
-    precioUSD: "USD $200",
-    precioGs: "Gs. 1.500.000",
+    precioUSD: "USD $650",
+    precioGs: "Gs. 4.199.000",
     descripcion:
       "Sistema comercial completo. Autoridad, prueba social, objeciones resueltas y cierre por WhatsApp.",
     features: [
@@ -235,8 +235,8 @@ const PLANES = [
     badge: "Máxima potencia",
     nombre: "Automatización",
     emoji: "⚙️",
-    precioUSD: "USD $340",
-    precioGs: "Gs. 2.500.000",
+    precioUSD: "USD $900-1800",
+    precioGs: "Gs. 5.815.000 - 11.630.000",
     descripcion:
       "Infraestructura digital que elimina procesos manuales. Capta, precalifica y escala.",
     features: [
