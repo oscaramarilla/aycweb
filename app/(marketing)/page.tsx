@@ -1,275 +1,169 @@
-// app/page.tsx
+"use client";
+
 import Link from "next/link";
 
-export default function Home() {
-  const whatsappNumber = "595985864209";
-  const whatsappMsg = encodeURIComponent(
-    "Hola, quiero agendar una auditoría operativa sin costo para mi empresa B2B."
-  );
-
+export default function CasosPage() {
   return (
-    <main className="flex min-h-screen flex-col bg-zinc-950 font-sans text-zinc-50">
-      
-      {/* 1) Hero */}
-      <section className="relative w-full pt-24 pb-20 px-6 border-b border-zinc-900 overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-72 bg-blue-600/10 blur-[120px] pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto grid gap-12 lg:grid-cols-2 items-center">
-          <div className="space-y-6">
-            <p className="text-sm uppercase tracking-[0.32em] text-blue-400 font-bold">
-              Infraestructura digital B2B para empresas de Paraguay
-            </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
-              Automatizamos cotizaciones, contratos y captura de leads para que tu operación venda 24/7 sin caos.
-            </h1>
-            <p className="text-lg text-zinc-300 max-w-2xl leading-relaxed">
-              Cotizadores, contratos y captación de leads para industrias, clínicas y empresas B2B en Paraguay.
-            </p>
-            <p className="text-lg text-zinc-400 max-w-2xl leading-relaxed">
-              Caso real: de 2 horas a 45 segundos por cotización.
-            </p>
+    <div className="min-h-screen bg-slate-950 text-slate-50 font-sans pb-24 pt-24 relative overflow-hidden">
+      {/* Fondo y texturas */}
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <a
-                href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-3xl bg-blue-600 px-8 py-4 text-base font-black text-white transition hover:bg-blue-500 active:scale-[0.98]"
-              >
-                Agendar auditoría operativa sin costo
-              </a>
-              <Link
-                href="/casos"
-                className="inline-flex items-center justify-center rounded-3xl border border-zinc-800 bg-zinc-900 px-8 py-4 text-base font-bold text-white transition hover:border-zinc-700"
-              >
-                Ver casos reales
-              </Link>
-            </div>
-          </div>
-
-          <div className="rounded-[2rem] border border-zinc-900 bg-zinc-900/40 p-8 text-center">
-            <div className="mx-auto flex h-56 w-full max-w-md items-center justify-center rounded-[1.75rem] bg-blue-950/30 shadow-[0_30px_90px_-50px_rgba(56,189,248,0.8)]">
-              <p className="px-6 text-center text-white text-xl font-bold leading-snug">
-                Plataforma operativa B2B para cotizaciones, contratos y leads.
-              </p>
-            </div>
-          </div>
-
-        </div>
+      {/* HERO CASOS */}
+      <section className="max-w-4xl mx-auto px-6 text-center mb-20 relative z-10">
+        <span className="inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full border border-slate-800 bg-slate-900/50 text-xs font-bold uppercase tracking-widest text-slate-300 shadow-md">
+          <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+          Pruebas Reales
+        </span>
+        <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-white leading-tight">
+          No vendemos humo.<br />Construimos motores.
+        </h1>
+        <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          Explorá cómo nuestras infraestructuras digitales están automatizando ventas, ordenando la logística y captando pacientes 24/7 en Paraguay y la región.
+        </p>
       </section>
 
-      {/* 2) Caso real */}
-      <section className="w-full py-24 px-6 bg-zinc-950 border-b border-zinc-900">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-10 text-center">
-            <p className="text-sm uppercase tracking-[0.32em] text-blue-400 font-bold mb-4">Caso real</p>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">Industria plástica · Paraguay</h2>
-            <p className="text-zinc-400 max-w-2xl mx-auto mt-4">
-              Problema: cotizaciones manuales tardaban 2 horas, con errores de margen.
-            </p>
-          </div>
-
-          <div className="grid gap-6 lg:grid-cols-3">
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-900/80 p-8">
-              <p className="text-sm uppercase tracking-[0.24em] text-blue-400 font-bold mb-3">Problema</p>
-              <p className="text-zinc-300">Cotizaciones manuales en Excel demoraban 2 horas y generaban errores de margen.</p>
-            </div>
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-900/80 p-8">
-              <p className="text-sm uppercase tracking-[0.24em] text-blue-400 font-bold mb-3">Sistema</p>
-              <p className="text-zinc-300">Cotizador web con reglas de precio por volumen y generación automática de PDF.</p>
-            </div>
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-900/80 p-8">
-              <p className="text-sm uppercase tracking-[0.24em] text-blue-400 font-bold mb-3">Resultado</p>
-              <p className="text-zinc-300">45 segundos por cotización. 0 errores de cálculo.</p>
-            </div>
-          </div>
-
-          <div className="mt-10 rounded-3xl border border-zinc-800 bg-zinc-900/80 p-8 text-center">
-            <p className="text-xl font-bold text-white">“Antes mandábamos Excel a mano. Ahora el cliente recibe el presupuesto en segundos.”</p>
-            <p className="mt-3 text-zinc-400">— Encargado comercial, empresa de distribución, Asunción</p>
-          </div>
-        </div>
-      </section>
-
-      {/* 4) Qué resolvemos */}
-      <section className="w-full py-24 px-6 bg-black border-b border-zinc-900">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12 text-center">
-            <p className="text-sm uppercase tracking-[0.32em] text-blue-400 font-bold mb-4">
-              Qué resolvemos
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Si ves estos problemas, podemos ayudarte.
+      {/* ================= SECCIÓN EMPRESAS ================= */}
+      <section id="empresas" className="max-w-6xl mx-auto px-6 mb-32 scroll-mt-32 relative z-10">
+        <div className="mb-12 border-b border-slate-800 pb-6 flex items-center justify-between">
+          <div>
+            <h2 className="text-3xl font-black text-white flex items-center gap-3">
+              <span className="text-4xl">🏭</span> Operaciones Empresariales
             </h2>
+            <p className="text-slate-400 mt-2">Casos de automatización industrial, logística y comercial B2B.</p>
           </div>
+        </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950/80 p-8">
-              <p className="text-xl font-bold text-white mb-4">Cotizaciones que tardan horas o días.</p>
-              <p className="text-zinc-400">Duplicamos tu velocidad sin perder control de precio ni margen.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* CASO 1: Motor Logístico */}
+          <article className="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 hover:border-slate-600 transition-colors group">
+            <div className="bg-slate-950 rounded-2xl h-48 mb-6 flex items-center justify-center border border-slate-800 relative overflow-hidden">
+              <span className="text-6xl group-hover:scale-110 transition-transform">🚚</span>
             </div>
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950/80 p-8">
-              <p className="text-xl font-bold text-white mb-4">Vendedores saturados respondiendo siempre lo mismo.</p>
-              <p className="text-zinc-400">Construimos flujos que automatizan respuestas comerciales y liberan tiempo de cierre.</p>
-            </div>
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950/80 p-8">
-              <p className="text-xl font-bold text-white mb-4">Formularios o planillas que nadie completa bien.</p>
-              <p className="text-zinc-400">Reemplazamos entradas manuales por formularios inteligentes que captan datos útiles en tiempo real.</p>
-            </div>
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950/80 p-8">
-              <p className="text-xl font-bold text-white mb-4">Pérdida de oportunidades por no responder fuera del horario laboral.</p>
-              <p className="text-zinc-400">Conectamos tus leads a sistemas y WhatsApp que trabajan cuando tu equipo no está disponible.</p>
-            </div>
-          </div>
-
-          <div className="mt-10 rounded-3xl border border-zinc-800 bg-zinc-900/80 p-8 text-center">
-            <p className="text-xl text-zinc-200 max-w-3xl mx-auto leading-relaxed">
-              Diseñamos sistemas a medida que reemplazan procesos manuales por flujos claros, medibles y automatizados.
+            <span className="text-blue-400 text-xs font-bold tracking-widest uppercase mb-2 block">Dashboard & Control</span>
+            <h3 className="text-xl font-bold text-white mb-3">Motor Logístico</h3>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6">
+              Sistema centralizado para trazabilidad de despachos. Elimina la pérdida de información en WhatsApp y sincroniza las entregas con el equipo de ventas.
             </p>
-          </div>
+          </article>
+
+          {/* CASO 2: Cálculo de Plásticos (VIDEO) */}
+          <article className="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 hover:border-slate-600 transition-colors group">
+            <div className="bg-slate-950 rounded-2xl h-48 mb-6 flex items-center justify-center border border-slate-800 relative overflow-hidden">
+              <div className="absolute inset-0 bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors"></div>
+              {/* Ícono de Play simulando YouTube */}
+              <div className="w-16 h-12 bg-red-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[14px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
+              </div>
+            </div>
+            <span className="text-blue-400 text-xs font-bold tracking-widest uppercase mb-2 block">Demo YouTube</span>
+            <h3 className="text-xl font-bold text-white mb-3">Calculadora de Plásticos Industriales</h3>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6">
+              Herramienta interactiva que permite a las industrias calcular volúmenes, densidades y costos de materia prima en tiempo real, sin requerir intervención de un operador humano.
+            </p>
+          </article>
+
+          {/* CASO 3: Presupuestos PDFs (VIDEO) */}
+          <article className="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 hover:border-slate-600 transition-colors group">
+            <div className="bg-slate-950 rounded-2xl h-48 mb-6 flex items-center justify-center border border-slate-800 relative overflow-hidden">
+              <div className="absolute inset-0 bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors"></div>
+              <div className="w-16 h-12 bg-red-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[14px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
+              </div>
+            </div>
+            <span className="text-blue-400 text-xs font-bold tracking-widest uppercase mb-2 block">Demo YouTube</span>
+            <h3 className="text-xl font-bold text-white mb-3">Generador de Presupuestos y PDFs</h3>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6">
+              El fin de las cotizaciones manuales en Excel. Este motor toma los inputs del cliente B2B y emite un presupuesto formalizado en PDF con cálculos exactos, listo para cerrar la venta.
+            </p>
+          </article>
+
+          {/* CASO 4: Generador de Contratos */}
+          <article className="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 hover:border-slate-600 transition-colors group">
+            <div className="bg-slate-950 rounded-2xl h-48 mb-6 flex items-center justify-center border border-slate-800 relative overflow-hidden">
+              <span className="text-6xl group-hover:scale-110 transition-transform">📝</span>
+            </div>
+            <span className="text-blue-400 text-xs font-bold tracking-widest uppercase mb-2 block">Automatización Legal</span>
+            <h3 className="text-xl font-bold text-white mb-3">Generador de Contratos B2B</h3>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6">
+              Lógica condicional que redacta automáticamente acuerdos comerciales y de prestación de servicios basándose en las variables de cada cierre. Riesgo de error humano reducido a cero.
+            </p>
+          </article>
+
         </div>
       </section>
 
-      {/* 5) Cómo trabajamos */}
-      <section className="w-full py-24 px-6 bg-zinc-950 border-b border-zinc-900">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12 text-center">
-            <p className="text-sm uppercase tracking-[0.32em] text-blue-400 font-bold mb-4">Cómo trabajamos</p>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">Proceso en 3 pasos.</h2>
-          </div>
+      {/* ================= SECCIÓN PROFESIONALES ================= */}
+      <section id="profesionales" className="max-w-6xl mx-auto px-6 mb-20 scroll-mt-32 relative z-10">
+        <div className="mb-12 border-b border-slate-800 pb-6">
+          <h2 className="text-3xl font-black text-white flex items-center gap-3">
+            <span className="text-4xl">🧑‍⚕️</span> Firmas Profesionales
+          </h2>
+          <p className="text-slate-400 mt-2">Sistemas de captación y autoridad para especialistas independientes.</p>
+        </div>
 
-          <div className="grid gap-6 lg:grid-cols-3">
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-8">
-              <p className="text-3xl font-black text-blue-400 mb-4">1</p>
-              <h3 className="text-xl font-bold text-white mb-3">Diagnóstico B2B</h3>
-              <p className="text-zinc-400">Revisamos tus procesos, tiempos y errores frecuentes.</p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          {/* CASO: La Roca */}
+          <article className="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 hover:border-slate-600 transition-colors flex flex-col group">
+            <div className="bg-slate-950 rounded-2xl h-40 mb-6 flex items-center justify-center border border-slate-800 overflow-hidden relative">
+              <span className="text-5xl group-hover:scale-110 transition-transform">💎</span>
             </div>
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-8">
-              <p className="text-3xl font-black text-blue-400 mb-4">2</p>
-              <h3 className="text-xl font-bold text-white mb-3">Diseño del sistema</h3>
-              <p className="text-zinc-400">Definimos flujos, permisos, integraciones y entregables.</p>
-            </div>
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-8">
-              <p className="text-3xl font-black text-blue-400 mb-4">3</p>
-              <h3 className="text-xl font-bold text-white mb-3">Implementación y soporte</h3>
-              <p className="text-zinc-400">Ponemos el sistema a producir y ajustamos según métricas reales.</p>
-            </div>
-          </div>
+            <span className="text-emerald-400 text-xs font-bold tracking-widest uppercase mb-2 block">Bienes Raíces & Inversión</span>
+            <h3 className="text-xl font-bold text-white mb-3">La Roca Emprendimientos</h3>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+              Embudo de captación diseñado para proyectar solidez y filtrar inversores cualificados antes de llegar al cierre comercial.
+            </p>
+          </article>
 
-          <div className="mt-10 text-center">
-            <a
-              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-3xl bg-blue-600 px-8 py-4 text-base font-black text-white transition hover:bg-blue-500"
-            >
-              Quiero un diagnóstico de mi operación
-            </a>
-          </div>
+          {/* CASO: Dra Bianca */}
+          <article className="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 hover:border-slate-600 transition-colors flex flex-col group">
+            <div className="bg-slate-950 rounded-2xl h-40 mb-6 flex flex-col items-center justify-center border border-slate-800 overflow-hidden relative">
+               <span className="text-5xl group-hover:scale-110 transition-transform mb-2">🦷</span>
+               <span className="text-xs text-slate-500 font-mono">drabiancapy.com</span>
+            </div>
+            <span className="text-emerald-400 text-xs font-bold tracking-widest uppercase mb-2 block">Odontología Especializada</span>
+            <h3 className="text-xl font-bold text-white mb-3">Dra. Bianca Amarilla</h3>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+              Consultorio digital completo. El sistema posiciona su autoridad médica, agenda turnos y precalifica los motivos de consulta directamente hacia su WhatsApp operativo.
+            </p>
+          </article>
+
+          {/* CASO: Dr Jose */}
+          <article className="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 hover:border-slate-600 transition-colors flex flex-col group">
+            <div className="bg-slate-950 rounded-2xl h-40 mb-6 flex flex-col items-center justify-center border border-slate-800 overflow-hidden relative">
+              <span className="text-5xl group-hover:scale-110 transition-transform mb-2">🩺</span>
+              <span className="text-xs text-slate-500 font-mono">drjoselahaye.com</span>
+            </div>
+            <span className="text-emerald-400 text-xs font-bold tracking-widest uppercase mb-2 block">Medicina</span>
+            <h3 className="text-xl font-bold text-white mb-3">Dr. José Lahaye</h3>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+              Plataforma médica para captación de pacientes. Diseñada con un flujo limpio, rápido y optimizado para generar confianza inmediata en el entorno digital.
+            </p>
+          </article>
+
         </div>
       </section>
 
-      {/* 4) Sistemas que hacemos */}
-      <section className="w-full py-24 px-6 bg-black border-b border-zinc-900">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12 text-center">
-            <p className="text-sm uppercase tracking-[0.32em] text-blue-400 font-bold mb-4">Sistemas que hacemos</p>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">Ejemplos de sistemas que ya están vendiendo.</h2>
-          </div>
-
-          <div className="grid gap-6 lg:grid-cols-2">
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950/80 p-8">
-              <h3 className="text-xl font-bold text-white mb-3">Portal de cotización para distribuidores industriales.</h3>
-              <p className="text-zinc-400">Cotiza materiales, logística y descuentos comerciales en un solo flujo.</p>
-            </div>
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950/80 p-8">
-              <h3 className="text-xl font-bold text-white mb-3">Formulario inteligente para admisión de pacientes en clínicas.</h3>
-              <p className="text-zinc-400">Captura datos estructurados y reduce rechazos por información incompleta.</p>
-            </div>
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950/80 p-8">
-              <h3 className="text-xl font-bold text-white mb-3">Generador automático de presupuestos y contratos PDF.</h3>
-              <p className="text-zinc-400">Un solo clic para obtener documento formal con precios y legales listos.</p>
-            </div>
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950/80 p-8">
-              <h3 className="text-xl font-bold text-white mb-3">Sistema de pedidos internos entre sucursales.</h3>
-              <p className="text-zinc-400">Controla stock, rutas y autorizaciones sin depender de llamadas ni planillas.</p>
-            </div>
-          </div>
-
-          <p className="mt-10 text-center text-xl text-zinc-400 max-w-3xl mx-auto leading-relaxed">
-            Todos conectados a tus herramientas actuales (WhatsApp, correo, planillas) cuando es necesario.
+      {/* CALL TO ACTION PARA PRECIOS */}
+      <section className="max-w-3xl mx-auto px-6 text-center mt-20 relative z-10">
+        <div className="bg-gradient-to-r from-blue-900/20 to-emerald-900/20 border border-slate-800 rounded-[2rem] p-10 backdrop-blur-md">
+          <h3 className="text-2xl md:text-3xl font-black text-white mb-4">¿Querés tu propio sistema?</h3>
+          <p className="text-slate-400 mb-8 max-w-xl mx-auto">
+            Viste la lógica, viste la estructura. Ahora mirá exactamente cuánto cuesta implementar uno de estos motores en tu negocio.
           </p>
-        </div>
-      </section>
-
-      {/* 5) Casos y prueba social */}
-      <section className="w-full py-24 px-6 bg-zinc-950 border-b border-zinc-900">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12 text-center">
-            <p className="text-sm uppercase tracking-[0.32em] text-blue-400 font-bold mb-4">Resultados reales</p>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">Resultados reales en empresas reales.</h2>
-          </div>
-
-          <div className="grid gap-6 lg:grid-cols-2">
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-900/80 p-8">
-              <p className="text-sm uppercase tracking-[0.3em] text-blue-400 font-bold mb-4">Industria metalmecánica – 15 vendedores</p>
-              <div className="space-y-4 text-zinc-300">
-                <div>
-                  <p className="font-bold text-white">Problema</p>
-                  <p>Cotizaciones manuales en Excel, demoras de hasta 2 horas.</p>
-                </div>
-                <div>
-                  <p className="font-bold text-white">Solución</p>
-                  <p>Portal de cotización con reglas de precio y plantillas automáticas.</p>
-                </div>
-                <div>
-                  <p className="font-bold text-white">Resultado</p>
-                  <p>Tiempo por cotización 2h → 45s; menos errores y más cierres.</p>
-                </div>
-              </div>
-            </div>
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-900/80 p-8 flex flex-col justify-between">
-              <div>
-                <p className="text-xl font-bold text-white mb-4">“Hoy nuestro equipo puede atender más clientes sin trabajar horas extra.”</p>
-                <p className="text-zinc-400">– Gerente comercial, industria</p>
-              </div>
-              <div className="mt-8 rounded-3xl bg-zinc-950/60 p-6">
-                <p className="text-sm uppercase tracking-[0.24em] text-blue-400 font-bold mb-3">Confianza</p>
-                <p className="text-zinc-300">RUC 4499507-5 · Asunción, Paraguay · contacto@aycweb.com</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6) Confianza y contacto */}
-      <section className="w-full py-24 px-6 bg-black">
-        <div className="max-w-6xl mx-auto grid gap-10 lg:grid-cols-2 items-center">
-          <div className="space-y-6">
-            <p className="text-sm uppercase tracking-[0.32em] text-blue-400 font-bold">Confianza y contacto</p>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">Atendemos empresas en todo Paraguay.</h2>
-            <p className="text-zinc-400 max-w-2xl leading-relaxed">
-              RUC 4499507-5 · Asunción · contacto@aycweb.com · WhatsApp directo para auditoría operativa.
-            </p>
-            <p className="text-zinc-400 max-w-2xl leading-relaxed">
-              Horario de atención: lunes a viernes, 9:00 a 18:00. También respondemos en WhatsApp fuera de hora para casos urgentes.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-900/80 p-10 text-center">
-            <p className="text-sm uppercase tracking-[0.32em] text-blue-400 font-bold mb-6">Contacto directo</p>
-            <p className="text-2xl font-black text-white mb-6">WhatsApp: +595 985 864 209</p>
-            <a
-              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-3xl bg-blue-600 px-8 py-4 text-base font-black text-white transition hover:bg-blue-500"
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href="/precios" 
+              className="bg-white text-slate-950 font-black py-4 px-8 rounded-xl hover:bg-slate-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] active:scale-95"
             >
-              Agendar auditoría operativa sin costo
-            </a>
+              Ver Arquitectura de Precios
+            </Link>
           </div>
         </div>
       </section>
-    </main>
+
+    </div>
   );
 }
-
