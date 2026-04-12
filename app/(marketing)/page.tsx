@@ -72,7 +72,7 @@ export default function HomePage() {
     <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-50">
       <div className="pointer-events-none absolute inset-0 z-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
 
-      <section className="relative z-10 border-b border-white/[0.06] px-6 pb-24 pt-28 md:pb-32 md:pt-40">
+      <section className="relative z-10 border-b border-white/[0.06] px-6 pb-12 pt-28 md:pb-24 md:pt-40">
         <div className="absolute left-1/2 top-0 -z-10 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-blue-600/10 blur-[120px]" />
 
         <div className="mx-auto max-w-6xl text-center">
@@ -109,7 +109,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {stats.map((item) => (
               <div
                 key={item.label}
@@ -123,7 +123,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative z-10 bg-[#05070d] px-6 py-24">
+      <section className="relative z-10 bg-[#05070d] px-6 py-16 md:py-24">
         <div className="mx-auto max-w-6xl">
           <div className="mb-14 text-center">
             <h2 className="mb-4 text-3xl font-black text-white md:text-5xl">
@@ -135,7 +135,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2">
             {paths.map((path) => (
               <div
                 key={path.title}
@@ -168,7 +168,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative z-10 border-y border-white/[0.06] px-6 py-24">
+      <section className="relative z-10 border-y border-white/[0.06] px-6 py-16 md:py-24">
         <div className="absolute right-0 top-1/2 -z-10 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-blue-600/5 blur-[120px]" />
 
         <div className="mx-auto max-w-6xl">
@@ -198,8 +198,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative z-10 bg-[#05070d] px-6 py-24">
-        <div className="mx-auto max-w-5xl rounded-[2rem] border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-10 text-center shadow-2xl md:p-14">
+      <section className="relative z-10 bg-[#05070d] px-6 py-16 md:py-24">
+        <div className="mx-auto max-w-5xl rounded-[2rem] border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-8 text-center shadow-2xl md:p-14">
           <span className="mb-5 block text-5xl">🛡️</span>
           <h2 className="mb-5 text-3xl font-black text-white md:text-5xl">
             Trabajamos con filtro, no por volumen.

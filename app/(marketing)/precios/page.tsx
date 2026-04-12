@@ -60,7 +60,7 @@ const TIERS = {
       {
         name: "Presencia & Captación",
         price: "$350",
-        subtitle: "Entrega en 5 días",
+        subtitle: "Base clara para captar mejor y convertir consultas en oportunidades.",
         features: [
           "Landing page profesional de una sola página",
           "Copywriting orientado a conversión",
@@ -73,7 +73,7 @@ const TIERS = {
       {
         name: "Consultorio Digital",
         price: "$650",
-        subtitle: "Entrega en 10-15 días",
+        subtitle: "Sistemas para captar mejor, filtrar consultas y cerrar con más orden.",
         badge: "RECOMENDADO",
         features: [
           "Todo lo anterior",
@@ -154,41 +154,58 @@ export default function PreciosPage() {
           <p className="text-slate-400 max-w-3xl mx-auto">{currentTier.description}</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
           {currentTier.plans.map((plan: PlanType) => (
-            <article key={plan.name} className="rounded-[2rem] border border-slate-800 bg-slate-900/90 p-8 shadow-xl">
-              <div className="flex items-center justify-between gap-4 mb-6">
-                <div>
-                  <p className="text-zinc-300 text-xs uppercase tracking-[0.2em] font-bold mb-3">{plan.subtitle}</p>
-                  <h3 className="text-2xl font-black text-white leading-tight">{plan.name}</h3>
+            <article key={plan.name} className="bg-[#12141a] border border-white/[0.06] rounded-[1.5rem] p-6 flex flex-col relative transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)]">
+              {plan.badge && (
+                <span className="absolute top-4 right-4 rounded-full bg-slate-800 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-slate-200 font-bold">
+                  {plan.badge}
+                </span>
+              )}
+
+              <h3 className="font-bold text-[17px] md:text-lg text-white mb-2 leading-tight">
+                {plan.name}
+              </h3>
+
+              <p className="text-[#8a8f9c] text-[14px] leading-[1.6] mb-6">
+                {plan.subtitle}
+              </p>
+
+              <div className="mb-6">
+                <div className="text-[11px] text-[#555a66] uppercase tracking-widest font-bold mb-1">Desde</div>
+                <div className="text-3xl font-bold tracking-tight text-white flex items-baseline gap-1">
+                  {plan.price !== "A medida" && <span className="text-lg text-white/50 font-normal">USD</span>}
+                  {plan.price}
                 </div>
-                {plan.badge ? <span className="rounded-full bg-slate-800 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-slate-200">{plan.badge}</span> : null}
               </div>
 
-              <div className="mb-8">
-                <p className="text-xs uppercase tracking-[0.25em] text-slate-500 mb-2">Desde</p>
-                <p className="text-4xl font-black text-white">{plan.price}</p>
-              </div>
-
-              <ul className="space-y-3 mb-8 text-sm text-slate-300">
+              <ul className="list-none space-y-3 mb-8 flex-1">
                 {plan.features.map((feature: string) => (
-                  <li key={feature} className="flex gap-3">
-                    <span className={`mt-1 h-5 w-5 rounded-full ${tier === "empresa" ? "bg-lime-300" : "bg-sky-300"} flex items-center justify-center text-xs font-black text-slate-950`}>✓</span>
-                    <span>{feature}</span>
+                  <li key={feature} className="text-[13px] text-[#8a8f9c] flex items-start gap-2.5 leading-relaxed">
+                    <span className={`text-[11px] font-black mt-[3px] ${tier === "empresa" ? "text-lime-300" : "text-sky-300"}`}>✓</span>
+                    {feature}
                   </li>
                 ))}
               </ul>
 
-              <div className="rounded-3xl border border-slate-800 bg-slate-950/70 p-5 mb-8 text-sm text-slate-300">
-                <p className="font-bold text-white mb-2">Ideal para:</p>
-                <p>{plan.ideal}</p>
+              <div className="rounded-2xl border border-white/[0.04] bg-slate-950/50 p-4 mb-6 text-[13px] text-[#8a8f9c]">
+                <p className="font-bold text-white mb-1.5 text-[14px]">Ideal para:</p>
+                <p className="leading-relaxed">{plan.ideal}</p>
               </div>
 
               <a
                 href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hola Oscar, soy ${tier} y me interesa ${plan.name} de ${plan.price}.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex w-full items-center justify-center rounded-3xl px-5 py-4 text-sm font-black transition-all ${tier === "empresa" ? "bg-lime-300 text-slate-950 hover:bg-lime-200" : "bg-sky-300 text-slate-950 hover:bg-sky-200"}`}
+                className={`block w-full text-center py-3.5 rounded-xl font-bold text-[14px] transition-all ${
+                  plan.badge 
+                    ? tier === "empresa" 
+                      ? "bg-lime-300 text-slate-950 hover:bg-lime-200" 
+                      : "bg-sky-300 text-slate-950 hover:bg-sky-200"
+                    : tier === "empresa"
+                      ? "bg-transparent text-lime-300 border border-lime-300/30 hover:border-lime-300/50 hover:bg-lime-300/5"
+                      : "bg-transparent text-sky-300 border border-sky-300/30 hover:border-sky-300/50 hover:bg-sky-300/5"
+                }`}
               >
                 Contactar por WhatsApp
               </a>
@@ -196,18 +213,18 @@ export default function PreciosPage() {
           ))}
         </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          <div className="rounded-3xl border border-slate-800 bg-slate-950/70 p-6 text-center">
-            <p className="text-lg font-bold text-white mb-4">Pagás primero</p>
-            <p className="text-sm text-slate-400">Reservá tu lugar. El compromiso es mutuo desde el día uno.</p>
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4 text-center">
+            <p className="text-[15px] font-bold text-white mb-2">Pagás primero</p>
+            <p className="text-[13px] text-slate-400 leading-relaxed">Reservá tu lugar. El compromiso es mutuo desde el día uno.</p>
           </div>
-          <div className="rounded-3xl border border-slate-800 bg-slate-950/70 p-6 text-center">
-            <p className="text-lg font-bold text-white mb-4">30 días de garantía</p>
-            <p className="text-sm text-slate-400">Si no funciona para ninguna de las partes, devolución total.</p>
+          <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4 text-center">
+            <p className="text-[15px] font-bold text-white mb-2">30 días de garantía</p>
+            <p className="text-[13px] text-slate-400 leading-relaxed">Si no funciona para ninguna de las partes, devolución total.</p>
           </div>
-          <div className="rounded-3xl border border-slate-800 bg-slate-950/70 p-6 text-center">
-            <p className="text-lg font-bold text-white mb-4">Sin letra chica</p>
-            <p className="text-sm text-slate-400">Cero sorpresas. Cero costos ocultos. Cero excusas.</p>
+          <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4 text-center">
+            <p className="text-[15px] font-bold text-white mb-2">Sin letra chica</p>
+            <p className="text-[13px] text-slate-400 leading-relaxed">Cero sorpresas. Cero costos ocultos. Cero excusas.</p>
           </div>
         </div>
 
