@@ -1,212 +1,175 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Soluciones | AYCweb Paraguay",
+  title: "Servicios de Ingeniería Digital B2B | AYCweb Paraguay",
   description:
-    "Soluciones separadas para empresas y profesionales. Infraestructura digital pensada según el tipo de operación y cierre.",
+    "Landings B2B, cotizadores PDF automáticos, generación de contratos y portales de clientes. Infraestructura digital para empresas en Paraguay.",
 };
 
 export default function SolucionesPage() {
   const whatsappNumber = "595985864209";
-
-  const empresaMsg = encodeURIComponent(
-    "Hola Oscar. Vi las soluciones para empresas y quiero agendar un diagnóstico."
-  );
-
-  const profesionalMsg = encodeURIComponent(
-    "Hola Oscar. Vi las soluciones para profesionales y quiero agendar un diagnóstico."
-  );
+  const whatsappMsg = encodeURIComponent("¡Hola! Vi sus soluciones en AYCweb y quiero agendar un diagnóstico técnico.");
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-50">
-      <div className="absolute inset-0 z-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay" />
+    <div className="flex flex-col min-h-screen bg-slate-950 text-slate-50 font-sans relative overflow-hidden">
+      
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0"></div>
 
-      {/* HERO */}
-      <section className="relative z-10 border-b border-white/[0.06] px-6 pb-16 pt-28 text-center md:pb-24 md:pt-40">
-        <div className="absolute top-0 left-1/2 -z-10 h-[900px] w-[900px] -translate-x-1/2 rounded-full bg-blue-600/10 blur-[140px] pointer-events-none" />
-
-        <div className="mx-auto max-w-5xl">
-          <span className="mb-6 inline-block rounded-full border border-slate-800 bg-slate-900 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-300">
-            Soluciones AYCweb
+      {/* ================= HERO ================= */}
+      {/* Ajuste: pt-28 pb-12 en móvil */}
+      <section className="relative pt-28 pb-12 md:pt-40 md:pb-24 px-6 text-center border-b border-white/[0.05] z-10">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+        <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-purple-600/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+        
+        <div className="max-w-5xl mx-auto relative z-10">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-900/20 text-blue-400 text-[11px] md:text-xs font-bold uppercase tracking-widest border border-blue-500/20 mb-6 md:mb-8 shadow-inner">
+            Ingeniería Digital B2B
           </span>
-
-          <h1 className="mb-6 text-5xl font-black leading-[1.02] tracking-tight text-white md:text-7xl">
-            Dos grandes líneas de solución.
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[1.05] text-white">
+            Dejá de comprar herramientas sueltas. <br className="hidden md:block"/> 
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Implementá Ecosistemas.</span>
           </h1>
-
-          <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-400 md:text-2xl">
-            Separamos nuestra ingeniería en dos grandes rubros:{" "}
-            <strong className="text-white">empresas</strong> y{" "}
-            <strong className="text-white">profesionales</strong>.
+          <p className="text-base md:text-2xl text-slate-400 mb-8 md:mb-12 max-w-3xl mx-auto font-light leading-relaxed">
+            No somos una agencia tradicional. Desarrollamos la infraestructura digital que tu empresa necesita para captar, cotizar y operar en automático.
           </p>
-        </div>
-      </section>
-
-      {/* EMPRESAS */}
-      <section className="relative z-10 px-6 py-24">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 lg:grid-cols-2">
-          <div>
-            <span className="mb-5 block text-5xl">🏭</span>
-            <h2 className="mb-5 text-4xl font-black text-white md:text-5xl">
-              Soluciones para Empresas
-            </h2>
-
-            <p className="mb-8 text-lg leading-relaxed text-slate-400">
-              Para manufactureras, distribuidoras, agroindustria, clínicas,
-              corporativos y operaciones que necesitan vender, cotizar y ordenar
-              procesos con más estructura.
-            </p>
-
-            <div className="mb-8 space-y-4">
-              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-                <h3 className="mb-2 font-bold text-white">
-                  Captación y presentación comercial
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Landings B2B, páginas corporativas y estructuras pensadas para
-                  decisores y cierres más serios.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-                <h3 className="mb-2 font-bold text-white">
-                  Cotización y documentación
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Cotizadores dinámicos, PDFs automáticos, contratos, formularios
-                  y flujos documentales más finos.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-                <h3 className="mb-2 font-bold text-white">Operación y control</h3>
-                <p className="text-sm text-slate-400">
-                  Portales, dashboards y sistemas internos para reducir carga
-                  manual y mejorar visibilidad operativa.
-                </p>
-              </div>
-            </div>
-
-            <a
-              href={`https://wa.me/${whatsappNumber}?text=${empresaMsg}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block rounded-xl bg-blue-600 px-8 py-4 font-black text-white shadow-[0_0_30px_rgba(37,99,235,0.35)] transition hover:bg-blue-500"
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
+            <a 
+              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
+              target="_blank" rel="noopener noreferrer"
+              className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-black py-3.5 md:py-4 px-8 md:px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] active:scale-95 text-[15px] md:text-lg"
             >
-              Diagnóstico para empresas
+              Agendar Diagnóstico
             </a>
-          </div>
-
-          <div className="rounded-[2rem] border border-blue-900/30 bg-slate-900/50 p-8 md:p-10">
-            <div className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-blue-400">
-              En qué ayuda
-            </div>
-
-            <ul className="space-y-4 text-slate-300">
-              <li className="flex gap-3">
-                <span className="text-blue-400">✓</span>
-                <span>Reducir tiempos muertos en ventas y cotización</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-blue-400">✓</span>
-                <span>Eliminar tareas repetitivas y errores manuales</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-blue-400">✓</span>
-                <span>Ordenar mejor la experiencia comercial del cliente</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-blue-400">✓</span>
-                <span>Crear una estructura más lista para escalar</span>
-              </li>
-            </ul>
+            <Link 
+              href="/casos"
+              className="w-full sm:w-auto bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-200 hover:text-white font-bold py-3.5 md:py-4 px-8 md:px-10 rounded-xl transition-all text-[15px] md:text-lg"
+            >
+              Ver Casos de Éxito
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* PROFESIONALES */}
-      <section className="relative z-10 border-y border-white/[0.06] bg-[#05070d] px-6 py-24">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 lg:grid-cols-2">
-          <div className="order-2 rounded-[2rem] border border-emerald-900/30 bg-slate-900/50 p-8 md:p-10 lg:order-1">
-            <div className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-emerald-400">
-              En qué ayuda
-            </div>
-
-            <ul className="space-y-4 text-slate-300">
-              <li className="flex gap-3">
-                <span className="text-emerald-400">✓</span>
-                <span>Captar mejor desde el primer impacto</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-emerald-400">✓</span>
-                <span>Filtrar consultas y ordenar la demanda</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-emerald-400">✓</span>
-                <span>Mostrar más autoridad y claridad comercial</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-emerald-400">✓</span>
-                <span>Cerrar mejor sin depender del caos del día a día</span>
-              </li>
-            </ul>
+      {/* ================= SERVICIOS ================= */}
+      {/* Ajuste: py-16 en móvil, cards con p-6, gap-4 */}
+      <section className="py-16 md:py-28 relative z-10">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-3xl md:text-6xl font-black text-white mb-4 md:mb-6 tracking-tight">
+              Soluciones de Ingeniería
+            </h2>
+            <p className="text-base md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              Piezas técnicas diseñadas para empresas que necesitan escalar sus operaciones comerciales de verdad.
+            </p>
           </div>
 
-          <div className="order-1 lg:order-2">
-            <span className="mb-5 block text-5xl">🧑‍⚕️</span>
-            <h2 className="mb-5 text-4xl font-black text-white md:text-5xl">
-              Soluciones para Profesionales
-            </h2>
-
-            <p className="mb-8 text-lg leading-relaxed text-slate-400">
-              Para médicos, abogados, contadores, arquitectos y especialistas que
-              necesitan posicionarse mejor, captar consultas de calidad y dar una
-              experiencia más ordenada.
-            </p>
-
-            <div className="mb-8 space-y-4">
-              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-                <h3 className="mb-2 font-bold text-white">
-                  Presencia y posicionamiento
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Páginas, estructura y mensaje pensados para transmitir más
-                  confianza, criterio y valor percibido.
-                </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+            
+            <div className="group bg-slate-900/40 backdrop-blur-sm p-6 md:p-10 rounded-[1.5rem] md:rounded-3xl border border-slate-800 hover:border-blue-700/50 transition-all duration-300 hover:bg-slate-900/80">
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-blue-600/10 border border-blue-600/30 flex items-center justify-center mb-4 md:mb-6 group-hover:bg-blue-600/20 transition-all">
+                <span className="text-xl md:text-2xl">⚡</span>
               </div>
-
-              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-                <h3 className="mb-2 font-bold text-white">
-                  Captación y filtro comercial
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Sistemas para ordenar consultas, dirigir mejor al usuario y
-                  reducir pérdida de oportunidades.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-                <h3 className="mb-2 font-bold text-white">
-                  Cierre y seguimiento
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Flujos conectados a WhatsApp y estructura pensada para convertir
-                  más sin saturarte manualmente.
-                </p>
-              </div>
+              <h3 className="text-xl md:text-2xl font-black text-white mb-2 md:mb-4 group-hover:text-blue-400 transition-colors">
+                Landings B2B
+              </h3>
+              <p className="text-slate-400 leading-relaxed mb-5 md:mb-6 text-[14px] md:text-sm">
+                Páginas de aterrizaje diseñadas para convertir tráfico calificado en leads comerciales. Optimizadas para decisores.
+              </p>
+              <ul className="space-y-2.5 md:space-y-3">
+                <li className="flex gap-2.5 text-slate-300 text-[13px] md:text-sm"><span className="text-blue-500 font-bold">✓</span> Diseño a conversión</li>
+                <li className="flex gap-2.5 text-slate-300 text-[13px] md:text-sm"><span className="text-blue-500 font-bold">✓</span> Link directo a WhatsApp</li>
+              </ul>
             </div>
 
-            <a
-              href={`https://wa.me/${whatsappNumber}?text=${profesionalMsg}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block rounded-xl bg-emerald-600 px-8 py-4 font-black text-white shadow-[0_0_30px_rgba(16,185,129,0.30)] transition hover:bg-emerald-500"
+            <div className="group bg-slate-900/40 backdrop-blur-sm p-6 md:p-10 rounded-[1.5rem] md:rounded-3xl border border-slate-800 hover:border-emerald-700/50 transition-all duration-300 hover:bg-slate-900/80">
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-emerald-600/10 border border-emerald-600/30 flex items-center justify-center mb-4 md:mb-6 group-hover:bg-emerald-600/20 transition-all">
+                <span className="text-xl md:text-2xl">🎯</span>
+              </div>
+              <h3 className="text-xl md:text-2xl font-black text-white mb-2 md:mb-4 group-hover:text-emerald-400 transition-colors">
+                Cotizadores Automáticos
+              </h3>
+              <p className="text-slate-400 leading-relaxed mb-5 md:mb-6 text-[14px] md:text-sm">
+                Sistemas inteligentes que calculan presupuestos en segundos. Eliminan errores humanos y aceleran el ciclo de ventas.
+              </p>
+              <ul className="space-y-2.5 md:space-y-3">
+                <li className="flex gap-2.5 text-slate-300 text-[13px] md:text-sm"><span className="text-emerald-500 font-bold">✓</span> Lógica de cálculo compleja</li>
+                <li className="flex gap-2.5 text-slate-300 text-[13px] md:text-sm"><span className="text-emerald-500 font-bold">✓</span> Generación de PDFs formales</li>
+              </ul>
+            </div>
+
+            <div className="group bg-slate-900/40 backdrop-blur-sm p-6 md:p-10 rounded-[1.5rem] md:rounded-3xl border border-slate-800 hover:border-purple-700/50 transition-all duration-300 hover:bg-slate-900/80">
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-purple-600/10 border border-purple-600/30 flex items-center justify-center mb-4 md:mb-6 group-hover:bg-purple-600/20 transition-all">
+                <span className="text-xl md:text-2xl">📝</span>
+              </div>
+              <h3 className="text-xl md:text-2xl font-black text-white mb-2 md:mb-4 group-hover:text-purple-400 transition-colors">
+                Generador de Contratos
+              </h3>
+              <p className="text-slate-400 leading-relaxed mb-5 md:mb-6 text-[14px] md:text-sm">
+                Automatización legal. Redactamos Acuerdos dinámicamente inyectando datos de formularios sin tocar Microsoft Word.
+              </p>
+              <ul className="space-y-2.5 md:space-y-3">
+                <li className="flex gap-2.5 text-slate-300 text-[13px] md:text-sm"><span className="text-purple-500 font-bold">✓</span> Templates legales a medida</li>
+                <li className="flex gap-2.5 text-slate-300 text-[13px] md:text-sm"><span className="text-purple-500 font-bold">✓</span> Listos para firma digital</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ================= BENEFICIOS Y CTA ================= */}
+      <section className="py-16 md:py-28 bg-[#04050a] border-y border-white/[0.05] relative overflow-hidden z-10">
+        <div className="absolute top-1/2 right-0 w-[800px] h-[800px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+        
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 md:mb-6 tracking-tight">
+              ¿Por qué las empresas nos eligen?
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-16 md:mb-24">
+            <div className="bg-slate-900/50 border border-slate-800 rounded-2xl md:rounded-3xl p-4 md:p-8 text-center">
+              <span className="text-3xl md:text-4xl font-black text-blue-400 block mb-2 md:mb-4">10x</span>
+              <h3 className="font-bold text-white mb-1 md:mb-2 text-[14px] md:text-base">Velocidad</h3>
+              <p className="text-slate-400 text-[12px] md:text-sm leading-relaxed">Cotizaciones en segundos, no horas.</p>
+            </div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-2xl md:rounded-3xl p-4 md:p-8 text-center">
+              <span className="text-3xl md:text-4xl font-black text-emerald-400 block mb-2 md:mb-4">0</span>
+              <h3 className="font-bold text-white mb-1 md:mb-2 text-[14px] md:text-base">Errores</h3>
+              <p className="text-slate-400 text-[12px] md:text-sm leading-relaxed">Eliminá el factor humano en cálculos.</p>
+            </div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-2xl md:rounded-3xl p-4 md:p-8 text-center">
+              <span className="text-3xl md:text-4xl font-black text-purple-400 block mb-2 md:mb-4">24/7</span>
+              <h3 className="font-bold text-white mb-1 md:mb-2 text-[14px] md:text-base">Operación</h3>
+              <p className="text-slate-400 text-[12px] md:text-sm leading-relaxed">Trabajan mientras vos dormís.</p>
+            </div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-2xl md:rounded-3xl p-4 md:p-8 text-center">
+              <span className="text-3xl md:text-4xl font-black text-orange-400 block mb-2 md:mb-4">∞</span>
+              <h3 className="font-bold text-white mb-1 md:mb-2 text-[14px] md:text-base">Escala</h3>
+              <p className="text-slate-400 text-[12px] md:text-sm leading-relaxed">Crecé en volumen sin más personal.</p>
+            </div>
+          </div>
+
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl md:text-4xl font-black text-white mb-4 md:mb-6">
+              ¿Listo para construir tu sistema?
+            </h2>
+            <p className="text-slate-400 text-[15px] md:text-lg mb-8 md:mb-10 max-w-xl mx-auto leading-relaxed">
+              Hablemos 15 minutos sin compromiso. Te decimos exactamente cómo podemos automatizar tu proceso.
+            </p>
+            <a 
+              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
+              target="_blank" rel="noopener noreferrer"
+              className="block sm:inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-3.5 md:py-4 px-8 md:px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] active:scale-95 text-[15px] md:text-base"
             >
-              Diagnóstico para profesionales
+              Agendar Diagnóstico Técnico
             </a>
           </div>
         </div>
       </section>
+
     </div>
   );
 }
