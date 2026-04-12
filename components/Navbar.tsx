@@ -44,16 +44,16 @@ export default function Navbar() {
 
           {/* DESKTOP NAV */}
           <div className="hidden md:flex items-center gap-7">
-            {/* Bifurcación principal — cada perfil tiene su propia ruta */}
+            {/* Rutas actualizadas a /empresas y /profesionales */}
             <Link
-              href="/productos"
+              href="/empresas"
               className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors flex items-center gap-2"
             >
               <span className="text-base">🏭</span>
               Empresas
             </Link>
             <Link
-              href="/soluciones"
+              href="/profesionales"
               className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors flex items-center gap-2"
             >
               <span className="text-base">🧑‍⚕️</span>
@@ -126,13 +126,12 @@ export default function Navbar() {
         }`}
       >
         <div className="flex flex-col h-full overflow-y-auto px-6 pt-24 pb-24">
-          {/* SECCIÓN BIFURCACIÓN PRINCIPAL */}
           <div className="text-[11px] uppercase tracking-[0.25em] text-slate-500 font-bold mb-3">
             Elegí tu camino
           </div>
 
           <Link
-            href="/productos"
+            href="/empresas"
             onClick={toggleMenu}
             className="rounded-2xl border border-blue-900/40 bg-blue-950/20 p-5 mb-3 active:scale-[0.98] transition-transform"
           >
@@ -146,7 +145,7 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="/soluciones"
+            href="/profesionales"
             onClick={toggleMenu}
             className="rounded-2xl border border-emerald-900/40 bg-emerald-950/20 p-5 mb-6 active:scale-[0.98] transition-transform"
           >
@@ -159,7 +158,6 @@ export default function Navbar() {
             </p>
           </Link>
 
-          {/* RESTO DEL MENÚ */}
           <Link
             href="/nosotros"
             onClick={toggleMenu}
