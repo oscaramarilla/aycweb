@@ -1,178 +1,233 @@
 import Link from "next/link";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "AYCweb Paraguay | Firma de Infraestructura Digital B2B",
-  description: "Construimos ecosistemas digitales que automatizan ventas y operaciones para empresas y profesionales. No somos para todos, postulá a una auditoría.",
+  title: "AYCweb Paraguay | Infraestructura Digital B2B",
+  description:
+    "Convertimos procesos manuales en sistemas de captación, cotización y cierre para empresas y profesionales en Paraguay.",
 };
 
+const whatsappNumber = "595985864209";
+const whatsappAuditMsg = encodeURIComponent(
+  "Hola Oscar. Quiero postular mi negocio para una auditoría técnica con AYCweb."
+);
+
+const stats = [
+  { value: "24/7", label: "captación y respuesta" },
+  { value: "10x", label: "más velocidad operativa" },
+  { value: "0", label: "tolerancia a errores manuales repetitivos" },
+];
+
+const paths = [
+  {
+    icon: "🏭",
+    title: "Para Empresas",
+    description:
+      "Manufactureras, agroindustria, distribuidoras, clínicas y estructuras corporativas que necesitan ordenar ventas, cotización y operación.",
+    bullets: [
+      "Cotizadores dinámicos",
+      "Contratos automáticos",
+      "Portales y dashboards",
+    ],
+    href: "/sectores",
+    cta: "Ver soluciones corporativas",
+    accent: "blue",
+  },
+  {
+    icon: "🧑‍⚕️",
+    title: "Para Profesionales",
+    description:
+      "Médicos, abogados, contadores, arquitectos y especialistas que necesitan captar mejor, filtrar consultas y cerrar con más orden.",
+    bullets: [
+      "Captación calificada",
+      "Agenda y pre-filtro",
+      "WhatsApp como canal de cierre",
+    ],
+    href: "/sectores",
+    cta: "Ver sistemas para profesionales",
+    accent: "emerald",
+  },
+];
+
+const process = [
+  {
+    step: "01",
+    title: "Auditoría",
+    text: "Detectamos cuellos de botella reales en ventas, cotización o atención.",
+  },
+  {
+    step: "02",
+    title: "Arquitectura",
+    text: "Diseñamos el sistema exacto que necesita tu operación, sin plantillas genéricas.",
+  },
+  {
+    step: "03",
+    title: "Implementación",
+    text: "Lo dejamos funcionando en producción con una ruta clara de adopción y cierre.",
+  },
+];
+
 export default function HomePage() {
-  const whatsappNumber = "595985864209";
-  const whatsappMsg = encodeURIComponent("Hola Oscar. Quiero postular mi negocio para una auditoría técnica con AYCweb.");
-
   return (
-    <div className="flex flex-col min-h-screen bg-slate-950 text-slate-50 font-sans relative overflow-hidden">
-      
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0"></div>
+    <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-50">
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
 
-      {/* ================= HERO: POSICIONAMIENTO ================= */}
-      <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 px-6 text-center z-10 border-b border-white/[0.05]">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-        
-        <div className="max-w-5xl mx-auto">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 text-xs font-bold uppercase tracking-widest mb-8 shadow-sm">
-            No somos una agencia. Somos una Firma.
+      <section className="relative z-10 border-b border-white/[0.06] px-6 pb-24 pt-28 md:pb-32 md:pt-40">
+        <div className="absolute left-1/2 top-0 -z-10 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-blue-600/10 blur-[120px]" />
+
+        <div className="mx-auto max-w-6xl text-center">
+          <span className="mb-6 inline-flex rounded-full border border-slate-800 bg-slate-900 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-300">
+            No vendemos páginas sueltas. Construimos sistemas.
           </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tighter leading-[1.05] text-white">
-            Tu negocio no necesita una página linda. <br className="hidden md:block"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Necesita un motor.</span>
+
+          <h1 className="mx-auto mb-6 max-w-5xl text-5xl font-black leading-[1.02] tracking-tight text-white md:text-7xl lg:text-8xl">
+            Convertimos procesos manuales en{" "}
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              sistemas de captación, cotización y cierre.
+            </span>
           </h1>
-          <p className="text-xl md:text-2xl text-slate-400 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
-            Reemplazamos el caos de cotizar en Excel y responder WhatsApps manuales por <strong className="text-slate-200">infraestructura digital</strong> que capta, filtra y vende 24/7.
+
+          <p className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed text-slate-400 md:text-2xl">
+            Reemplazamos Excel roto, WhatsApps dispersos y respuestas lentas por
+            infraestructura digital que ordena tu operación y trabaja 24/7.
           </p>
-          <div className="flex justify-center">
-            <a 
-              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
-              target="_blank" rel="noopener noreferrer"
-              className="bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] active:scale-95 text-lg"
+
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href={`https://wa.me/${whatsappNumber}?text=${whatsappAuditMsg}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl bg-blue-600 px-8 py-4 text-base font-black text-white shadow-[0_0_30px_rgba(37,99,235,0.35)] transition hover:bg-blue-500 active:scale-[0.98]"
             >
-              Postular a Auditoría
+              Postular a auditoría
             </a>
+            <Link
+              href="/soluciones"
+              className="rounded-xl border border-slate-700 bg-slate-900 px-8 py-4 text-base font-bold text-slate-100 transition hover:border-slate-500 hover:bg-slate-800"
+            >
+              Ver soluciones
+            </Link>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {stats.map((item) => (
+              <div
+                key={item.label}
+                className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6"
+              >
+                <div className="mb-2 text-3xl font-black text-white">{item.value}</div>
+                <div className="text-sm text-slate-400">{item.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ================= PRINCIPIO 1: DOS CAMINOS SEPARADOS ================= */}
-      <section className="py-24 relative z-10 bg-[#04050a]">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-6">Infraestructura especializada.</h2>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              Hablamos tu idioma. Elegí tu sector para ver la arquitectura, los precios y la propuesta de valor que te corresponde.
+      <section className="relative z-10 bg-[#05070d] px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-14 text-center">
+            <h2 className="mb-4 text-3xl font-black text-white md:text-5xl">
+              Dos caminos. Una misma tesis.
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-slate-400">
+              No todos compran igual. Por eso diferenciamos la arquitectura para
+              empresas y para profesionales.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Camino Empresas */}
-            <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-10 hover:border-blue-500/50 transition-all group flex flex-col">
-              <span className="text-5xl mb-6 block">🏭</span>
-              <h3 className="text-3xl font-black text-white mb-4 group-hover:text-blue-400 transition-colors">Para Empresas</h3>
-              <p className="text-slate-400 leading-relaxed mb-8 flex-1 text-lg">
-                Manufactureras, agroindustria, distribuidoras y clínicas. Diseñamos cotizadores dinámicos, generadores de contratos y embudos B2B que eliminan horas-hombre de procesos repetitivos.
-              </p>
-              <div className="space-y-4">
-                <Link href="/precios" className="block w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 rounded-xl transition-all border border-slate-700">
-                  Ver Arquitectura Corporativa &rarr;
-                </Link>
-              </div>
-            </div>
-
-            {/* Camino Profesionales */}
-            <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-10 hover:border-emerald-500/50 transition-all group flex flex-col">
-              <span className="text-5xl mb-6 block">🧑‍⚕️</span>
-              <h3 className="text-3xl font-black text-white mb-4 group-hover:text-emerald-400 transition-colors">Para Profesionales</h3>
-              <p className="text-slate-400 leading-relaxed mb-8 flex-1 text-lg">
-                Médicos, abogados, contadores, arquitectos. Sistemas optimizados para captar pacientes/clientes cualificados, precalificar consultas y gestionar agendas en automático.
-              </p>
-              <div className="space-y-4">
-                <Link href="/precios" className="block w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 rounded-xl transition-all border border-slate-700">
-                  Ver Sistemas de Captación &rarr;
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= PRINCIPIO 2: NOSOTROS ELEGIMOS ================= */}
-      <section className="py-32 relative z-10 border-y border-white/[0.05] overflow-hidden">
-        <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-red-600/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="text-blue-500 font-bold tracking-widest uppercase text-sm mb-4 block">Nuestro Manifiesto</span>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
-                No vendemos. <br/> Evaluamos y construimos.
-              </h2>
-              <div className="space-y-6 text-slate-400 text-lg leading-relaxed">
-                <p>
-                  No aceptamos a todos los clientes. Si tu modelo de negocio no está listo para escalar, o si sentimos que nuestra infraestructura no te va a generar un ROI claro, <strong className="text-white">te lo vamos a decir en los primeros 10 minutos y no te vamos a cobrar un guaraní.</strong>
-                </p>
-                <p>
-                  Trabajamos exclusivamente con empresas serias y profesionales independientes que entienden que el software es una inversión operativa, no un gasto de diseño.
-                </p>
-              </div>
-            </div>
-            <div className="bg-slate-950 border border-slate-800 rounded-3xl p-8 shadow-2xl relative">
-               <div className="absolute -left-4 -top-4 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-black text-xl shadow-lg border-4 border-slate-950">!</div>
-               <h3 className="text-xl font-bold text-white mb-6">El proceso de admisión:</h3>
-               <ul className="space-y-6">
-                 <li className="flex gap-4">
-                   <div className="w-8 h-8 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center text-sm font-bold text-slate-400 shrink-0">1</div>
-                   <div>
-                     <h4 className="text-white font-bold mb-1">Postulación</h4>
-                     <p className="text-slate-500 text-sm">Nos contás cómo funciona tu operativa hoy.</p>
-                   </div>
-                 </li>
-                 <li className="flex gap-4">
-                   <div className="w-8 h-8 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center text-sm font-bold text-slate-400 shrink-0">2</div>
-                   <div>
-                     <h4 className="text-white font-bold mb-1">Auditoría Técnica</h4>
-                     <p className="text-slate-500 text-sm">Evaluamos si hay cuellos de botella reales que podamos automatizar.</p>
-                   </div>
-                 </li>
-                 <li className="flex gap-4">
-                   <div className="w-8 h-8 rounded-full bg-blue-900/30 border border-blue-500/30 flex items-center justify-center text-sm font-bold text-blue-400 shrink-0">3</div>
-                   <div>
-                     <h4 className="text-white font-bold mb-1">Match & Propuesta</h4>
-                     <p className="text-slate-500 text-sm">Si pasás el filtro, te presentamos la arquitectura exacta y empezamos.</p>
-                   </div>
-                 </li>
-               </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= PRINCIPIO 3: GARANTÍA DE HIERRO ================= */}
-      <section className="py-24 relative z-10 bg-[#04050a]">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-gradient-to-br from-slate-900/80 to-slate-950 border border-slate-800 rounded-[3rem] p-10 md:p-16 text-center shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-blue-500/5 backdrop-blur-3xl z-0"></div>
-            <div className="relative z-10">
-              <span className="text-6xl block mb-8">🛡️</span>
-              <h2 className="text-3xl md:text-5xl font-black text-white mb-6">Garantía Inquebrantable</h2>
-              <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-                Nos obligamos a elegir bien a nuestros clientes. Si después de pagar decidimos que no somos el equipo correcto para tu caso, <strong className="text-white">te devolvemos el 100%</strong>. Si no estás conforme con el resultado en los primeros 30 días, <strong className="text-white">te devolvemos el 100%</strong>. Sin letra chica.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-                <div className="bg-slate-950/80 border border-slate-800 p-6 rounded-2xl">
-                  <div className="font-bold text-white mb-2">Pagás primero</div>
-                  <div className="text-sm text-slate-500">Filtramos curiosos. Compromiso desde el día uno.</div>
-                </div>
-                <div className="bg-slate-950/80 border border-slate-800 p-6 rounded-2xl">
-                  <div className="font-bold text-white mb-2">30 Días Libres</div>
-                  <div className="text-sm text-slate-500">Riesgo cero para tu negocio. Lo asumimos nosotros.</div>
-                </div>
-                <div className="bg-slate-950/80 border border-slate-800 p-6 rounded-2xl">
-                  <div className="font-bold text-white mb-2">Sin excusas</div>
-                  <div className="text-sm text-slate-500">Cero costos ocultos. Operamos con total transparencia.</div>
-                </div>
-              </div>
-
-              <a 
-                href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
-                target="_blank" rel="noopener noreferrer"
-                className="inline-block bg-white text-slate-950 font-black py-4 px-10 rounded-xl transition-all shadow-lg hover:bg-slate-200 active:scale-95"
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            {paths.map((path) => (
+              <div
+                key={path.title}
+                className="flex flex-col rounded-3xl border border-slate-800 bg-slate-900/60 p-8 transition hover:-translate-y-1 hover:border-slate-600"
               >
-                Aplicar para trabajar juntos
-              </a>
-            </div>
+                <span className="mb-5 text-5xl">{path.icon}</span>
+                <h3 className="mb-3 text-3xl font-black text-white">{path.title}</h3>
+                <p className="mb-6 flex-1 text-lg leading-relaxed text-slate-400">
+                  {path.description}
+                </p>
+
+                <ul className="mb-8 space-y-3">
+                  {path.bullets.map((bullet) => (
+                    <li key={bullet} className="flex items-center gap-3 text-slate-300">
+                      <span className="text-blue-400">✓</span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  href={path.href}
+                  className="rounded-xl border border-slate-700 bg-slate-800 px-6 py-4 text-center font-bold text-white transition hover:bg-slate-700"
+                >
+                  {path.cta} →
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
+      <section className="relative z-10 border-y border-white/[0.06] px-6 py-24">
+        <div className="absolute right-0 top-1/2 -z-10 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-blue-600/5 blur-[120px]" />
+
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-14 text-center">
+            <span className="mb-3 block text-sm font-bold uppercase tracking-[0.2em] text-blue-400">
+              Cómo trabajamos
+            </span>
+            <h2 className="text-3xl font-black text-white md:text-5xl">
+              No improvisamos. Evaluamos y construimos.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {process.map((item) => (
+              <div
+                key={item.step}
+                className="rounded-3xl border border-slate-800 bg-slate-900/50 p-8"
+              >
+                <div className="mb-5 text-sm font-black tracking-[0.25em] text-blue-400">
+                  {item.step}
+                </div>
+                <h3 className="mb-3 text-2xl font-black text-white">{item.title}</h3>
+                <p className="leading-relaxed text-slate-400">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative z-10 bg-[#05070d] px-6 py-24">
+        <div className="mx-auto max-w-5xl rounded-[2rem] border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-10 text-center shadow-2xl md:p-14">
+          <span className="mb-5 block text-5xl">🛡️</span>
+          <h2 className="mb-5 text-3xl font-black text-white md:text-5xl">
+            Trabajamos con filtro, no por volumen.
+          </h2>
+          <p className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed text-slate-400">
+            Si detectamos que tu negocio todavía no está listo para una solución
+            de este nivel, te lo decimos de frente. Nuestra prioridad es construir
+            sistemas donde exista ROI real y una operación que valga la pena escalar.
+          </p>
+
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href={`https://wa.me/${whatsappNumber}?text=${whatsappAuditMsg}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl bg-white px-8 py-4 font-black text-slate-950 transition hover:bg-slate-200"
+            >
+              Aplicar para trabajar juntos
+            </a>
+            <Link
+              href="/nosotros"
+              className="rounded-xl border border-slate-700 px-8 py-4 font-bold text-slate-100 transition hover:border-slate-500 hover:bg-slate-800"
+            >
+              Conocer nuestra historia
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
