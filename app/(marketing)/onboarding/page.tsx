@@ -52,7 +52,8 @@ export default function OnboardingPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-950 text-slate-50 font-sans relative overflow-hidden pb-24">
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0"></div>
+      {/* LCP FIX: Ruta Local SVG */}
+      <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0"></div>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-emerald-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
 
       <section className="relative pt-28 pb-12 md:pt-40 md:pb-16 px-6 text-center z-10">
@@ -79,10 +80,10 @@ export default function OnboardingPage() {
               <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 bg-slate-950 px-3 py-1 rounded-full border border-slate-800">PYG</span>
             </div>
 
-            {/* QR FIAT */}
+            {/* LCP FIX: Quitado el 'priority' de las imagenes abajo del fold */}
             <div className="flex justify-center mb-5">
               <div className="relative h-40 w-40 rounded-xl border-4 border-emerald-500/30 bg-white p-2">
-                <Image src="/qr-fiat.webp" alt="QR Transferencia PYG" fill className="rounded-lg object-contain p-1" priority />
+                <Image src="/qr-fiat.webp" alt="QR Transferencia PYG" fill className="rounded-lg object-contain p-1" />
               </div>
             </div>
 
@@ -151,7 +152,8 @@ export default function OnboardingPage() {
               
               <div className="flex justify-center mb-4">
                 <div className="relative h-40 w-40 rounded-xl border-4 border-teal-500/30 bg-white p-2">
-                   <Image src="/qr-crypto.webp" alt="QR USDT TRC20" fill className="rounded-lg object-contain p-1" priority />
+                   {/* LCP FIX: Quitado el 'priority' */}
+                   <Image src="/qr-crypto.webp" alt="QR USDT TRC20" fill className="rounded-lg object-contain p-1" />
                 </div>
               </div>
 

@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  compress: true,
   typescript: {
     // Permite que Vercel compile aunque haya errores rojos en VS Code
     ignoreBuildErrors: true,

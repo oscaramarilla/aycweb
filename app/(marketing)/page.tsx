@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { Metadata } from "next";
 
+// 1. CACHÉ ULTRARRÁPIDO: Guarda la página en los servidores globales de Vercel por 1 hora
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "AYCweb Paraguay | Firma de Infraestructura Digital B2B",
   description: "Construimos ecosistemas digitales que automatizan ventas y operaciones para empresas y profesionales. No somos para todos, postulá a una auditoría.",
@@ -13,7 +16,8 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-slate-950 text-slate-50 font-sans relative overflow-hidden">
       
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0"></div>
+      {/* 2. LCP FIX: Ruta local para el noise.svg */}
+      <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0"></div>
 
       {/* ================= 1) HERO POSICIONADO ================= */}
       <section className="relative pt-28 pb-12 md:pt-48 md:pb-32 px-6 text-center z-10 border-b border-white/[0.05]">
