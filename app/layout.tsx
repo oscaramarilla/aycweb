@@ -10,6 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://aycweb.com"),
   title: {
     default: "AYCweb Paraguay | Firma de Infraestructura Digital B2B",
     template: "%s | AYCweb",
@@ -17,6 +18,25 @@ export const metadata: Metadata = {
   description: "Elegimos potenciar empresas y profesionales con sistemas operativos y comerciales de alto rendimiento en Paraguay.",
   keywords: ["desarrollo web paraguay high ticket", "automatización B2B paraguay", "sistemas operativos", "cotizadores dinámicos"],
   authors: [{ name: "Oscar Amarilla Cáceres", url: "https://aycweb.com" }],
+  alternates: {
+    canonical: "/", // Esto le dice a Google que esta es la URL oficial
+  },
+  openGraph: {
+    title: "AYCweb | Firma de Infraestructura Digital B2B",
+    description: "Sistemas operativos y comerciales de alto rendimiento para escalar en Paraguay.",
+    url: "https://aycweb.com",
+    siteName: "AYCweb",
+    images: [
+      {
+        url: "/og-image.jpg", // Cambié a JPG por compatibilidad con WhatsApp
+        width: 1200,
+        height: 630,
+        alt: "AYCweb - Infraestructura Digital B2B",
+      },
+    ],
+    locale: "es_PY",
+    type: "website",
+  },
 };
 
 export const viewport: Viewport = {
