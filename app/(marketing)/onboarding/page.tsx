@@ -1,12 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Metadata } from "next";
 import Image from "next/image";
-
-// Desactivamos la metadata porque estamos usando "use client" en este archivo
-// Para mantener el SEO en Next.js App Router con use client, tendríamos que 
-// separar el componente interactivo. Pero para Onboarding está perfecto así.
 
 type CampoCopiaProps = {
   etiqueta: string;
@@ -83,6 +78,14 @@ export default function OnboardingPage() {
               <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-xl">🇵🇾</div>
               <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 bg-slate-950 px-3 py-1 rounded-full border border-slate-800">PYG</span>
             </div>
+
+            {/* QR FIAT */}
+            <div className="flex justify-center mb-5">
+              <div className="relative h-40 w-40 rounded-xl border-4 border-emerald-500/30 bg-white p-2">
+                <Image src="/qr-fiat.webp" alt="QR Transferencia PYG" fill className="rounded-lg object-contain p-1" priority />
+              </div>
+            </div>
+
             <h3 className="font-bold text-xl text-white mb-2">Transferencia Local</h3>
             <p className="text-slate-400 text-[13px] mb-6 border-b border-slate-800 pb-6">
               Ideal para empresas y profesionales radicados en Paraguay operando con banca local.
@@ -96,11 +99,11 @@ export default function OnboardingPage() {
                 </div>
                 
                 {/* UENO (Prioridad 1) */}
-                <p className="mt-4 mb-2 text-[10px] font-bold uppercase tracking-widest text-emerald-400">Opción 1: Ueno (Recomendado)</p>
+                <p className="mt-4 mb-2 text-[10px] font-bold uppercase tracking-widest text-emerald-400">Opción 1: Alias CI Ueno</p>
                 <CampoCopia etiqueta="CI / Documento" valor="4499507" />
                 
                 {/* ITAÚ (Prioridad 2) */}
-                <p className="mt-5 mb-2 text-[10px] font-bold uppercase tracking-widest text-zinc-400">Opción 2: Banco Itaú</p>
+                <p className="mt-5 mb-2 text-[10px] font-bold uppercase tracking-widest text-zinc-400">Opción 2: Alias Cel Itaú</p>
                 <CampoCopia etiqueta="Celular / Alias" valor="0985864209" />
                 <CampoCopia etiqueta="N° Cuenta C.A." valor="720601573" />
               </div>
@@ -122,7 +125,7 @@ export default function OnboardingPage() {
             </div>
             <h3 className="font-bold text-xl text-white mb-2">Banca Internacional</h3>
             <p className="text-slate-400 text-[13px] mb-6 border-b border-slate-800 pb-6 flex-1">
-              Ideal para clientes de Argentina, Uruguay, Chile o empresas con cuentas en dólares.
+              Ideal para clientes fuera de Paraguay o empresas que quieran activar con cuentas en dólares.
             </p>
             <div className="bg-blue-950/20 p-5 rounded-xl border border-blue-900/50 mb-6 text-center">
               <p className="text-[13px] text-blue-300 leading-relaxed">
