@@ -1,13 +1,59 @@
-import { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Onboarding y Alta de Servicio | AYCweb",
-  description: "Iniciá la construcción de tu infraestructura digital. Plataformas de pago en PYG, USD y USDT para clientes locales y regionales.",
+import { useState } from "react";
+import { Metadata } from "next";
+import Image from "next/image";
+
+// Desactivamos la metadata porque estamos usando "use client" en este archivo
+// Para mantener el SEO en Next.js App Router con use client, tendríamos que 
+// separar el componente interactivo. Pero para Onboarding está perfecto así.
+
+type CampoCopiaProps = {
+  etiqueta: string;
+  valor: string;
+};
+
+// --- COMPONENTE: CAMPO DE COPIA RÁPIDA ---
+const CampoCopia = ({ etiqueta, valor }: CampoCopiaProps) => {
+  const [copiado, setCopiado] = useState(false);
+
+  const ejecutarCopia = async () => {
+    try {
+      await navigator.clipboard.writeText(valor);
+      setCopiado(true);
+      setTimeout(() => setCopiado(false), 2000);
+    } catch (error) {
+      console.error("No se pudo copiar:", error);
+    }
+  };
+
+  return (
+    <div className="mt-2 flex items-center justify-between gap-2 rounded-xl border border-zinc-800 bg-zinc-950/70 p-3 text-sm group">
+      <div className="flex min-w-0 flex-col gap-1 overflow-hidden sm:flex-row sm:items-center">
+        <span className="flex-shrink-0 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+          {etiqueta}
+        </span>
+        <span className="truncate font-mono text-sm text-zinc-200">{valor}</span>
+      </div>
+
+      <button
+        onClick={ejecutarCopia}
+        className={`flex-shrink-0 rounded-lg px-3 py-1.5 text-xs font-bold transition-all active:scale-95 ${
+          copiado
+            ? "bg-emerald-500 text-zinc-950 shadow-[0_0_12px_rgba(16,185,129,0.4)]"
+            : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
+        }`}
+      >
+        {copiado ? "¡Copiado!" : "Copiar"}
+      </button>
+    </div>
+  );
 };
 
 export default function OnboardingPage() {
   const whatsappNumber = "595985864209";
   const whatsappUsdMsg = encodeURIComponent("Hola Oscar. Quiero los datos de la cuenta USD para activar el onboarding internacional.");
+  const whatsappPygMsg = encodeURIComponent("Hola Oscar. Acabo de hacer la transferencia inicial para arrancar el Onboarding. Te envío el comprobante:");
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-950 text-slate-50 font-sans relative overflow-hidden pb-24">
@@ -41,20 +87,28 @@ export default function OnboardingPage() {
             <p className="text-slate-400 text-[13px] mb-6 border-b border-slate-800 pb-6">
               Ideal para empresas y profesionales radicados en Paraguay operando con banca local.
             </p>
-            <div className="space-y-3 mb-8 flex-1">
+            <div className="space-y-4 mb-8 flex-1">
+              
               <div className="bg-slate-950/50 p-4 rounded-xl border border-slate-800/50">
-                <p className="text-[11px] text-slate-500 uppercase tracking-widest mb-1">Banco</p>
-                <p className="font-mono text-sm text-slate-300">Itaú Paraguay</p>
+                <div className="mb-3 border-b border-zinc-800 pb-3">
+                  <p className="mb-0.5 text-[10px] font-bold uppercase tracking-widest text-zinc-500">Titular de cuenta</p>
+                  <p className="font-bold text-white">Oscar Emigdio Amarilla Caceres</p>
+                </div>
+                
+                {/* UENO (Prioridad 1) */}
+                <p className="mt-4 mb-2 text-[10px] font-bold uppercase tracking-widest text-emerald-400">Opción 1: Ueno (Recomendado)</p>
+                <CampoCopia etiqueta="CI / Documento" valor="4499507" />
+                
+                {/* ITAÚ (Prioridad 2) */}
+                <p className="mt-5 mb-2 text-[10px] font-bold uppercase tracking-widest text-zinc-400">Opción 2: Banco Itaú</p>
+                <CampoCopia etiqueta="Celular / Alias" valor="0985864209" />
+                <CampoCopia etiqueta="N° Cuenta C.A." valor="720601573" />
               </div>
-              <div className="bg-slate-950/50 p-4 rounded-xl border border-slate-800/50">
-                <p className="text-[11px] text-slate-500 uppercase tracking-widest mb-1">Titular</p>
-                <p className="font-mono text-sm text-slate-300">Oscar Amarilla</p>
-              </div>
-              <div className="bg-slate-950/50 p-4 rounded-xl border border-slate-800/50">
-                <p className="text-[11px] text-slate-500 uppercase tracking-widest mb-1">Cuenta C.A.</p>
-                <p className="font-mono text-sm text-emerald-400 font-bold">520779774</p>
-              </div>
+
             </div>
+            <a href={`https://wa.me/${whatsappNumber}?text=${whatsappPygMsg}`} target="_blank" rel="noopener noreferrer" className="block w-full text-center py-3.5 rounded-xl font-bold text-[14px] bg-[#25D366] hover:bg-[#1DA851] text-zinc-950 transition-all shadow-[0_0_20px_-5px_rgba(37,211,102,0.4)]">
+              Ya transferí — Enviar comprobante
+            </a>
           </div>
 
           {/* RIEL 2: USD (Regional) */}
@@ -91,12 +145,19 @@ export default function OnboardingPage() {
               Ideal para pagos inmediatos, sin fricción burocrática bancaria ni demoras transfronterizas.
             </p>
             <div className="bg-slate-950/50 p-4 rounded-xl border border-slate-800/50 mb-8 flex-1 flex flex-col justify-center">
-              <p className="text-[11px] text-slate-500 uppercase tracking-widest mb-3 text-center">Wallet Address (Red Tron)</p>
-              <p className="font-mono text-[11px] md:text-xs text-teal-400 text-center break-all bg-slate-900 p-3 rounded-lg border border-slate-800">
-                TA1Vj... (Tu Billetera Acá)
-              </p>
+              
+              <div className="flex justify-center mb-4">
+                <div className="relative h-40 w-40 rounded-xl border-4 border-teal-500/30 bg-white p-2">
+                   <Image src="/qr-crypto.webp" alt="QR USDT TRC20" fill className="rounded-lg object-contain p-1" priority />
+                </div>
+              </div>
+
+              <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-1 text-center font-bold mt-2">Red Tron (TRC20)</p>
+              <CampoCopia etiqueta="Wallet" valor="TLUzuQDLjVwp4UDFAEFuypw5LmFf1K1PRQ" />
             </div>
-            <p className="text-center text-[11px] text-slate-500 mt-auto">Confirmación en 5 minutos.</p>
+            <a href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hola Oscar. Acabo de transferir USDT. Te paso el Hash para confirmar:")}`} target="_blank" rel="noopener noreferrer" className="block w-full text-center py-3.5 rounded-xl font-bold text-[14px] bg-zinc-800 hover:bg-zinc-700 text-white transition-all border border-zinc-700">
+              Enviar Hash (TXID)
+            </a>
           </div>
 
         </div>
