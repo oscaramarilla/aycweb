@@ -49,17 +49,16 @@ export default function ObrasPage() {
               Caso Destacado
             </div>
             
-            <div className="w-full aspect-[9/16] relative rounded-xl overflow-hidden bg-black border border-slate-800">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full relative z-0"
-                src={`https://www.youtube.com/embed/${mainVideo.id}?autoplay=0&loop=0&controls=1&rel=0`}
-                title={mainVideo.title}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-              ></iframe>
-            </div>
+           <div className="relative w-full aspect-[9/16] overflow-hidden rounded-xl border border-slate-800 bg-black shadow-lg">
+  <iframe
+    className="absolute inset-0 h-full w-full"
+    src="https://www.youtube.com/embed/o_g3MCKesB0?autoplay=0&controls=1&rel=0&modestbranding=1"
+    title="YouTube Short"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+    loading="lazy"
+  />
+</div>
 
             <div className="mt-6 text-center px-2">
               <h3 className="text-lg font-bold text-white mb-2">{mainVideo.title}</h3>
