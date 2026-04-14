@@ -8,11 +8,11 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         // Herramientas internas — no deben indexarse ni aparecer en SERPs
         disallow: [
-          '/controlroom',
+          '/admin/controlroom',
           '/autoppto',
-          '/contrato',
+          '/admin/contrato',
           '/legales',
-          '/costos',
+          '/admin/costos',
         ],
       },
     ],

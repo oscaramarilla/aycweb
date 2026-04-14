@@ -13,7 +13,7 @@ const waLink = (msg: string) =>
 
 const PLANES = [
   {
-    nombre: "Profesional Base",
+    nombre: "Profesional Starter",
     precio: "$350",
     entrega: "Entrega en 1 semana",
     tagline:
@@ -37,7 +37,7 @@ const PLANES = [
     tagline:
       "Sistema completo de captación, autoridad y filtro de consultas para subir nivel.",
     features: [
-      "Todo lo de Profesional Base",
+      "Todo lo de Profesional Starter, más:",
       "Agenda Calendly / Google Calendar integrada",
       "Formularios de precalificación de pacientes/clientes",
       "Blog de autoridad y SEO on-page",
@@ -51,7 +51,7 @@ const PLANES = [
 ] as const;
 
 const PROFESIONES = [
-  { icon: "🩺", nombre: "Médicos", desc: "Especialistas y consulta general" },
+  { icon: "🩺", nombre: "Ingenieros y Médicos", desc: "Especialistas y consulta general" },
   { icon: "🦷", nombre: "Odontólogos", desc: "Consultorios y clínicas dentales" },
   { icon: "⚖️", nombre: "Abogados", desc: "Estudios y profesionales independientes" },
   { icon: "📊", nombre: "Contadores", desc: "Estudios contables y asesores" },

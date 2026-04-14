@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { MetalMadConfig, FeatureItem } from "@/lib/config/metalMad";
+import { MetalMadConfig } from "@/lib/config/metalMad";
+import type { FeatureItem } from "@/lib/config/client";
 import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
 export default function MetalMadLanding() {

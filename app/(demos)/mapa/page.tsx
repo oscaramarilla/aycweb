@@ -61,9 +61,9 @@ const secciones = [
     title: "Privado (Admin)",
     color: "red" as ColorKey,
     links: [
-      { name: "Generador de Contratos", path: "/contrato" },
+      { name: "Generador de Contratos", path: "/admin/contrato" },
       { name: "Auto Presupuesto", path: "/autoppto" },
-      { name: "Control Room", path: "/controlroom" },
+      { name: "Control Room", path: "/admin/controlroom" },
       { name: "Documentos Legales", path: "/legales" },
     ]
   }
