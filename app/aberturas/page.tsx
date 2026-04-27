@@ -1,8 +1,7 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
 
 type ProductoKey =
   | "puerta_2h_incolor"
@@ -265,20 +264,44 @@ function calcularCotizacion(params: {
   if (incluirPremarco && (producto === "puerta_2h_incolor" || producto === "puerta_4h_incolor")) {
     subtotalPremarco += agregarItem(items, "Premarco", "Premarco de aluminio", undefined, "(ancho × 2 + alto × 2) / 550", (ancho * 2 + alto * 2) / 550, PRECIOS.premarco);
     subtotalPremarco += agregarItem(items, "Premarco", "Conector", undefined, "2 unidades", 2, PRECIOS.conector);
-    subtotalPremarco += agregarItem(items, "Premarco", "Patita chumbador", undefined, producto === "puerta_4h_incolor" ? "16 unidades" : "8 unidades", producto === "puerta_4h_incolor" ? 16 : 8, PRECIOS.patitaChumbador);
+    subtotalPremarco += agregarItem(
+      items,
+      "Premarco",
+      "Patita chumbador",
+      undefined,
+      producto === "puerta_4h_incolor" ? "16 unidades" : "8 unidades",
+      producto === "puerta_4h_incolor" ? 16 : 8,
+      PRECIOS.patitaChumbador
+    );
     subtotalPremarco += agregarItem(items, "Premarco", "Escuadra", undefined, "2 unidades", 2, PRECIOS.escuadra);
   }
 
   if (incluirColocacion) {
     const factorVidrio = producto === "puerta_2h_incolor" || producto === "puerta_4h_incolor" ? 0.8 : 1;
 
-    subtotalColocacion += agregarItem(items, "Colocación", "Vidrio incolor 8mm", undefined, factorVidrio === 0.8 ? "m² × 80%" : "m²", m2 * factorVidrio, PRECIOS.vidrioIncolor8mm);
+    subtotalColocacion += agregarItem(
+      items,
+      "Colocación",
+      "Vidrio incolor 8mm",
+      undefined,
+      factorVidrio === 0.8 ? "m² × 80%" : "m²",
+      m2 * factorVidrio,
+      PRECIOS.vidrioIncolor8mm
+    );
     subtotalColocacion += agregarItem(items, "Colocación", "Ferretería", undefined, "1 unidad", 1, PRECIOS.ferreteria);
     subtotalColocacion += agregarItem(items, "Colocación", "Silicona", undefined, "m² / 1.6", m2 / 1.6, PRECIOS.silicona);
 
     if (producto === "puerta_2h_incolor" || producto === "puerta_4h_incolor") {
       subtotalColocacion += agregarItem(items, "Colocación", "Contramarco", undefined, "(ancho + alto + alto) / 550", (ancho + alto + alto) / 550, PRECIOS.contraMarco);
-      subtotalColocacion += agregarItem(items, "Colocación", "Penil", undefined, producto === "puerta_4h_incolor" ? "15 unidades" : "10 unidades", producto === "puerta_4h_incolor" ? 15 : 10, PRECIOS.penil);
+      subtotalColocacion += agregarItem(
+        items,
+        "Colocación",
+        "Penil",
+        undefined,
+        producto === "puerta_4h_incolor" ? "15 unidades" : "10 unidades",
+        producto === "puerta_4h_incolor" ? 15 : 10,
+        PRECIOS.penil
+      );
       subtotalColocacion += agregarItem(items, "Colocación", "Terminación de piso", undefined, "ancho × 2 / 550", (ancho * 2) / 550, PRECIOS.terminacionPiso);
       subtotalColocacion += agregarItem(items, "Colocación", "Mano de obra colocación", undefined, "m²", m2, PRECIOS.manoObraColocacion);
     } else {
@@ -312,7 +335,6 @@ function calcularCotizacion(params: {
 }
 
 export default function PresupuestoAberturasPage() {
-  const pdfRef = useRef<HTMLDivElement>(null);
   const [cargando, setCargando] = useState(false);
 
   const [cliente, setCliente] = useState<Cliente>({
@@ -377,27 +399,251 @@ export default function PresupuestoAberturasPage() {
   };
 
   const generarPDF = async () => {
-    if (!pdfRef.current || !formularioValido) return;
+    if (!formularioValido) return;
 
     setCargando(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      const pdf = new jsPDF("p", "mm", "a4");
 
-      const canvas = await html2canvas(pdfRef.current, {
-        scale: 2,
-        useCORS: true,
-        logging: false,
-        backgroundColor: "#ffffff",
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const margin = 14;
+      const contentWidth = pageWidth - margin * 2;
+
+      let y = 16;
+
+      const addPageIfNeeded = (neededSpace = 20) => {
+        if (y + neededSpace > pageHeight - 18) {
+          pdf.addPage();
+          y = 16;
+        }
+      };
+
+      const money = (value: number) => `Gs. ${gs(value)}`;
+
+      pdf.setFillColor(17, 24, 39);
+      pdf.roundedRect(margin, y, contentWidth, 28, 3, 3, "F");
+
+      pdf.setTextColor(255, 255, 255);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(20);
+      pdf.text("AYCweb", margin + 6, y + 11);
+
+      pdf.setFontSize(9);
+      pdf.setFont("helvetica", "normal");
+      pdf.text("Sistema de Cotización para Aberturas", margin + 6, y + 18);
+      pdf.text("Asunción, Paraguay - Automatización comercial B2B", margin + 6, y + 23);
+
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(16);
+      pdf.text("PRESUPUESTO", pageWidth - margin - 6, y + 12, { align: "right" });
+
+      pdf.setFontSize(9);
+      pdf.setFont("helvetica", "normal");
+      pdf.text(`Fecha: ${cliente.fecha}`, pageWidth - margin - 6, y + 20, { align: "right" });
+
+      y += 38;
+
+      pdf.setTextColor(17, 24, 39);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(11);
+      pdf.text("Preparado para:", margin, y);
+
+      y += 6;
+
+      pdf.setDrawColor(229, 231, 235);
+      pdf.setFillColor(249, 250, 251);
+      pdf.roundedRect(margin, y, contentWidth, 30, 3, 3, "FD");
+
+      pdf.setFontSize(9);
+      pdf.setFont("helvetica", "normal");
+      pdf.text(`Cliente: ${cliente.nombre || "___________________"}`, margin + 5, y + 8);
+      pdf.text(`RUC/CI: ${cliente.ruc || "___________________"}`, margin + 105, y + 8);
+      pdf.text(`Contacto: ${cliente.contacto || "___________________"}`, margin + 5, y + 17);
+      pdf.text(`Telefono: ${cliente.telefono || "___________________"}`, margin + 105, y + 17);
+      pdf.text(`Ubicacion/obra: ${cliente.ubicacion || "___________________"}`, margin + 5, y + 26);
+
+      y += 42;
+
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(11);
+      pdf.text("Detalle del trabajo:", margin, y);
+
+      y += 6;
+
+      pdf.setFillColor(255, 255, 255);
+      pdf.roundedRect(margin, y, contentWidth, 34, 3, 3, "D");
+
+      pdf.setFontSize(9);
+      pdf.setFont("helvetica", "normal");
+      pdf.text(`Producto: ${resultado.productoNombre}`, margin + 5, y + 8);
+      pdf.text(`Cantidad: ${resultado.cantidad}`, margin + 105, y + 8);
+      pdf.text(`Medidas: ${resultado.ancho} x ${resultado.alto} cm`, margin + 5, y + 17);
+      pdf.text(`Superficie: ${resultado.m2.toFixed(2)} m2`, margin + 105, y + 17);
+      pdf.text(`Premarco: ${incluirPremarco ? "Incluido" : "No incluido"}`, margin + 5, y + 26);
+      pdf.text(`Colocacion: ${incluirColocacion ? "Incluida" : "No incluida"}`, margin + 105, y + 26);
+
+      y += 46;
+
+      pdf.setFillColor(17, 24, 39);
+      pdf.rect(margin, y, contentWidth, 9, "F");
+
+      pdf.setTextColor(255, 255, 255);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(9);
+      pdf.text("Concepto", margin + 4, y + 6);
+      pdf.text("Subtotal", pageWidth - margin - 4, y + 6, { align: "right" });
+
+      y += 9;
+
+      const filas: [string, number][] = [
+        ["Fabricacion de abertura", resultado.subtotalFabricacion],
+        ["Premarco", resultado.subtotalPremarco],
+        ["Vidrio, terminaciones y colocacion", resultado.subtotalColocacion],
+      ];
+
+      pdf.setTextColor(17, 24, 39);
+      pdf.setFont("helvetica", "normal");
+
+      filas.forEach(([label, value]) => {
+        pdf.setDrawColor(229, 231, 235);
+        pdf.line(margin, y + 8, pageWidth - margin, y + 8);
+
+        pdf.text(label, margin + 4, y + 6);
+        pdf.setFont("helvetica", "bold");
+        pdf.text(money(value), pageWidth - margin - 4, y + 6, { align: "right" });
+        pdf.setFont("helvetica", "normal");
+
+        y += 9;
       });
 
-      const imgData = canvas.toDataURL("image/jpeg", 1.0);
-      const pdf = new jsPDF("p", "mm", "a4");
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+      y += 8;
 
-      pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight);
-      pdf.save(`Presupuesto_Aberturas_${cliente.nombre || "Cliente"}.pdf`);
+      pdf.setFillColor(249, 250, 251);
+      pdf.roundedRect(pageWidth - margin - 80, y, 80, 34, 3, 3, "FD");
+
+      pdf.setTextColor(107, 114, 128);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(9);
+      pdf.text("Precio unitario", pageWidth - margin - 5, y + 8, { align: "right" });
+
+      pdf.setTextColor(17, 24, 39);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(14);
+      pdf.text(money(resultado.precioVentaRedondeado), pageWidth - margin - 5, y + 16, {
+        align: "right",
+      });
+
+      pdf.setTextColor(107, 114, 128);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(9);
+      pdf.text("Total general", pageWidth - margin - 5, y + 25, { align: "right" });
+
+      pdf.setTextColor(17, 24, 39);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(18);
+      pdf.text(money(resultado.totalGeneral), pageWidth - margin - 5, y + 32, {
+        align: "right",
+      });
+
+      y += 46;
+
+      if (mostrarDesglose) {
+        addPageIfNeeded(40);
+
+        pdf.setTextColor(17, 24, 39);
+        pdf.setFont("helvetica", "bold");
+        pdf.setFontSize(11);
+        pdf.text("Desglose tecnico interno", margin, y);
+
+        y += 8;
+
+        pdf.setFillColor(229, 231, 235);
+        pdf.rect(margin, y, contentWidth, 8, "F");
+
+        pdf.setFontSize(7);
+        pdf.text("Cat.", margin + 2, y + 5);
+        pdf.text("Item", margin + 22, y + 5);
+        pdf.text("Cant.", margin + 115, y + 5, { align: "right" });
+        pdf.text("Unit.", margin + 145, y + 5, { align: "right" });
+        pdf.text("Total", pageWidth - margin - 2, y + 5, { align: "right" });
+
+        y += 8;
+
+        resultado.items.forEach((item) => {
+          addPageIfNeeded(8);
+
+          pdf.setFont("helvetica", "normal");
+          pdf.setFontSize(7);
+          pdf.setTextColor(17, 24, 39);
+
+          const itemName = item.nombre.length > 40 ? item.nombre.slice(0, 40) + "..." : item.nombre;
+
+          pdf.text(item.categoria, margin + 2, y + 5);
+          pdf.text(itemName, margin + 22, y + 5);
+          pdf.text(item.cantidad.toFixed(2), margin + 115, y + 5, { align: "right" });
+          pdf.text(gs(item.precioUnitario), margin + 145, y + 5, { align: "right" });
+
+          pdf.setFont("helvetica", "bold");
+          pdf.text(gs(item.total), pageWidth - margin - 2, y + 5, { align: "right" });
+
+          pdf.setDrawColor(243, 244, 246);
+          pdf.line(margin, y + 7, pageWidth - margin, y + 7);
+
+          y += 8;
+        });
+
+        y += 6;
+      }
+
+      addPageIfNeeded(42);
+
+      pdf.setTextColor(17, 24, 39);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(11);
+      pdf.text("Condiciones comerciales", margin, y);
+
+      y += 8;
+
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(8);
+      pdf.setTextColor(75, 85, 99);
+
+      const condiciones =
+        "Forma de pago: 50% de anticipo para confirmacion de orden. Saldo contra entrega o instalacion. " +
+        "Precio sujeto a verificacion final de medidas en obra, disponibilidad de materiales y condiciones de instalacion. " +
+        "Validez del presupuesto: 7 dias.";
+
+      const condicionesLines = pdf.splitTextToSize(condiciones, contentWidth);
+      pdf.text(condicionesLines, margin, y);
+
+      y += condicionesLines.length * 4 + 18;
+
+      addPageIfNeeded(25);
+
+      pdf.setDrawColor(156, 163, 175);
+      pdf.line(pageWidth / 2 - 35, y, pageWidth / 2 + 35, y);
+
+      y += 5;
+
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(9);
+      pdf.setTextColor(17, 24, 39);
+      pdf.text("Dpto. Comercial", pageWidth / 2, y, { align: "center" });
+
+      y += 5;
+
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(8);
+      pdf.setTextColor(107, 114, 128);
+      pdf.text("Sistema generado por AYCweb", pageWidth / 2, y, { align: "center" });
+
+      const nombreArchivo = `Presupuesto_Aberturas_${cliente.nombre || "Cliente"}.pdf`
+        .replace(/\s+/g, "_")
+        .replace(/[^\w.-]/g, "");
+
+      pdf.save(nombreArchivo);
 
       console.log("Cotizacion_Aberturas_Generada", {
         producto: resultado.productoNombre,
@@ -446,143 +692,6 @@ export default function PresupuestoAberturasPage() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-zinc-100 font-sans">
-      <div className="absolute left-0 top-0 z-0 flex w-full justify-center pointer-events-none">
-        <div
-          ref={pdfRef}
-          className="relative shrink-0 bg-[#ffffff] text-[#000000]"
-          style={{ width: "210mm", minHeight: "297mm", padding: "14mm" }}
-        >
-          <div className="mb-6 flex items-start justify-between border-b-2 border-[#111827] pb-5">
-            <div className="flex items-center gap-4">
-              <div className="flex h-20 w-20 items-center justify-center rounded-xl border border-[#d1d5db] bg-[#f9fafb]">
-                <span className="text-3xl font-black italic tracking-tighter text-[#111827]">AYC</span>
-              </div>
-              <div>
-                <h1 className="text-3xl font-black tracking-tighter text-[#111827]">AYCweb</h1>
-                <p className="text-xs font-bold text-[#374151]">Sistema de Cotización para Aberturas</p>
-                <p className="text-[10px] text-[#6b7280]">Asunción, Paraguay · Automatización comercial B2B</p>
-              </div>
-            </div>
-
-            <div className="text-right">
-              <h2 className="text-2xl font-black uppercase tracking-widest text-[#d1d5db]">Presupuesto</h2>
-              <p className="mt-1 text-sm font-bold text-[#111827]">Fecha: {cliente.fecha}</p>
-              <p className="text-xs text-[#6b7280]">Validez: 7 días</p>
-            </div>
-          </div>
-
-          <div className="mb-6 rounded-xl border border-[#e5e7eb] bg-[#f9fafb] p-4">
-            <h3 className="mb-2 text-xs font-black uppercase text-[#111827]">Preparado para:</h3>
-            <div className="grid grid-cols-2 gap-2 text-sm">
-              <p><span className="font-bold">Cliente:</span> {cliente.nombre || "___________________"}</p>
-              <p><span className="font-bold">RUC/CI:</span> {cliente.ruc || "___________________"}</p>
-              <p><span className="font-bold">Contacto:</span> {cliente.contacto || "___________________"}</p>
-              <p><span className="font-bold">Teléfono:</span> {cliente.telefono || "___________________"}</p>
-              <p className="col-span-2"><span className="font-bold">Ubicación/obra:</span> {cliente.ubicacion || "___________________"}</p>
-            </div>
-          </div>
-
-          <div className="mb-6 rounded-xl border border-[#e5e7eb] p-4">
-            <h3 className="mb-2 text-xs font-black uppercase text-[#111827]">Detalle del trabajo:</h3>
-            <div className="grid grid-cols-2 gap-2 text-sm">
-              <p><span className="font-bold">Producto:</span> {resultado.productoNombre}</p>
-              <p><span className="font-bold">Cantidad:</span> {resultado.cantidad}</p>
-              <p><span className="font-bold">Medidas:</span> {resultado.ancho} x {resultado.alto} cm</p>
-              <p><span className="font-bold">Superficie:</span> {resultado.m2.toFixed(2)} m²</p>
-              <p><span className="font-bold">Premarco:</span> {incluirPremarco ? "Incluido" : "No incluido"}</p>
-              <p><span className="font-bold">Colocación:</span> {incluirColocacion ? "Incluida" : "No incluida"}</p>
-            </div>
-          </div>
-
-          <table className="mb-6 w-full text-sm">
-            <thead>
-              <tr className="bg-[#111827] text-left text-[#ffffff]">
-                <th className="rounded-tl-lg p-3">Concepto</th>
-                <th className="rounded-tr-lg p-3 text-right">Subtotal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-[#e5e7eb]">
-                <td className="p-3 font-medium">Fabricación de abertura</td>
-                <td className="p-3 text-right font-bold">{moneda(resultado.subtotalFabricacion)}</td>
-              </tr>
-              <tr className="border-b border-[#e5e7eb]">
-                <td className="p-3 font-medium">Premarco</td>
-                <td className="p-3 text-right font-bold">{moneda(resultado.subtotalPremarco)}</td>
-              </tr>
-              <tr className="border-b border-[#e5e7eb]">
-                <td className="p-3 font-medium">Vidrio, terminaciones y colocación</td>
-                <td className="p-3 text-right font-bold">{moneda(resultado.subtotalColocacion)}</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div className="mb-8 flex justify-end">
-            <div className="w-1/2 rounded-xl border border-[#e5e7eb] bg-[#f9fafb] p-4 text-right">
-              <p className="mb-1 text-sm text-[#6b7280]">Precio unitario</p>
-              <p className="text-xl font-black text-[#111827]">{moneda(resultado.precioVentaRedondeado)}</p>
-              <p className="mt-3 text-sm text-[#6b7280]">Total general</p>
-              <p className="text-3xl font-black text-[#111827]">{moneda(resultado.totalGeneral)}</p>
-            </div>
-          </div>
-
-          {mostrarDesglose && (
-            <div className="mb-8">
-              <h3 className="mb-3 text-sm font-black uppercase tracking-widest text-[#111827]">
-                Desglose técnico interno
-              </h3>
-              <table className="w-full text-[10px]">
-                <thead>
-                  <tr className="bg-[#e5e7eb] text-left">
-                    <th className="p-2">Cat.</th>
-                    <th className="p-2">Item</th>
-                    <th className="p-2">Fórmula</th>
-                    <th className="p-2 text-right">Cant.</th>
-                    <th className="p-2 text-right">Unit.</th>
-                    <th className="p-2 text-right">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {resultado.items.map((item, index) => (
-                    <tr key={index} className="border-b border-[#f3f4f6]">
-                      <td className="p-2">{item.categoria}</td>
-                      <td className="p-2 font-medium">{item.nombre}</td>
-                      <td className="p-2 text-[#6b7280]">{item.formula}</td>
-                      <td className="p-2 text-right">{item.cantidad.toFixed(2)}</td>
-                      <td className="p-2 text-right">{gs(item.precioUnitario)}</td>
-                      <td className="p-2 text-right font-bold">{gs(item.total)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-
-          <div className="mt-auto border-t border-[#e5e7eb] pt-6">
-            <h3 className="mb-3 text-sm font-black uppercase tracking-widest text-[#111827]">
-              Condiciones comerciales
-            </h3>
-            <div className="grid grid-cols-2 gap-6 text-[11px] leading-relaxed text-[#4b5563]">
-              <div>
-                <p className="mb-1 font-bold text-[#111827]">Forma de pago:</p>
-                <p>50% de anticipo para confirmación de orden. Saldo contra entrega o instalación.</p>
-              </div>
-              <div>
-                <p className="mb-1 font-bold text-[#111827]">Observaciones:</p>
-                <p>Precio sujeto a verificación final de medidas en obra, disponibilidad de materiales y condiciones de instalación.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-14 flex justify-center">
-            <div className="w-64 border-t border-[#9ca3af] pt-2 text-center">
-              <p className="text-sm font-bold text-[#111827]">Dpto. Comercial</p>
-              <p className="text-xs text-[#6b7280]">Sistema generado por AYCweb</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="relative z-10 flex min-h-screen w-full justify-center bg-zinc-100 p-4 pb-32 md:p-8">
         <div className="flex h-fit w-full max-w-xl flex-col gap-6 rounded-3xl border border-zinc-200 bg-white p-6 shadow-xl">
           <div className="text-center">
@@ -655,31 +764,34 @@ export default function PresupuestoAberturasPage() {
           <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
             <h3 className="mb-1 font-black text-zinc-900">2. Elegí el tipo de abertura</h3>
             <p className="mb-3 text-xs text-zinc-500">
-              Seleccioná el modelo, cargá las medidas del vano y el sistema calcula materiales, vidrio, colocación y margen.
+              Seleccioná el modelo, cargá las medidas del vano y el sistema calcula materiales, vidrio,
+              colocación y margen.
             </p>
 
             <div className="grid grid-cols-2 gap-2">
-              {(Object.entries(PRODUCTOS) as [ProductoKey, (typeof PRODUCTOS)[ProductoKey]][]).map(([key, item]) => {
-                const activo = producto === key;
+              {(Object.entries(PRODUCTOS) as [ProductoKey, (typeof PRODUCTOS)[ProductoKey]][]).map(
+                ([key, item]) => {
+                  const activo = producto === key;
 
-                return (
-                  <button
-                    key={key}
-                    type="button"
-                    onClick={() => cambiarProducto(key)}
-                    className={`rounded-2xl border p-3 text-left transition active:scale-[0.98] ${
-                      activo
-                        ? "border-zinc-950 bg-zinc-950 text-white shadow-lg"
-                        : "border-zinc-200 bg-white text-zinc-800 hover:border-zinc-400"
-                    }`}
-                  >
-                    <p className="text-sm font-black">{item.nombreCorto}</p>
-                    <p className={`mt-1 text-[11px] ${activo ? "text-zinc-300" : "text-zinc-500"}`}>
-                      {item.anchoDefault} x {item.altoDefault} cm
-                    </p>
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={() => cambiarProducto(key)}
+                      className={`rounded-2xl border p-3 text-left transition active:scale-[0.98] ${
+                        activo
+                          ? "border-zinc-950 bg-zinc-950 text-white shadow-lg"
+                          : "border-zinc-200 bg-white text-zinc-800 hover:border-zinc-400"
+                      }`}
+                    >
+                      <p className="text-sm font-black">{item.nombreCorto}</p>
+                      <p className={`mt-1 text-[11px] ${activo ? "text-zinc-300" : "text-zinc-500"}`}>
+                        {item.anchoDefault} x {item.altoDefault} cm
+                      </p>
+                    </button>
+                  );
+                }
+              )}
             </div>
 
             <div className="mt-4 grid grid-cols-3 gap-2">
