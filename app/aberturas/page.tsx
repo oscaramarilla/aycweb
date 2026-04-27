@@ -356,6 +356,15 @@ export default function PresupuestoAberturasPage() {
   const [incluirColocacion, setIncluirColocacion] = useState(true);
   const [descuentoGs, setDescuentoGs] = useState(0);
   const [adicionalGs, setAdicionalGs] = useState(0);
+  const inputClass =
+    "w-full rounded-lg border border-zinc-300 bg-white p-2 text-sm font-semibold text-zinc-950 placeholder:text-zinc-500 caret-zinc-950 shadow-sm outline-none transition focus:border-zinc-950 focus:ring-2 focus:ring-zinc-200";
+
+  const inputHalfClass =
+    "w-1/2 rounded-lg border border-zinc-300 bg-white p-2 text-sm font-semibold text-zinc-950 placeholder:text-zinc-500 caret-zinc-950 shadow-sm outline-none transition focus:border-zinc-950 focus:ring-2 focus:ring-zinc-200";
+
+  const inputMeasureClass =
+    "w-full rounded-lg border border-zinc-300 bg-white p-2 text-sm font-black text-zinc-950 placeholder:text-zinc-500 caret-zinc-950 shadow-sm outline-none transition focus:border-zinc-950 focus:ring-2 focus:ring-zinc-200";
+
   const [mostrarDesglose, setMostrarDesglose] = useState(false);
 
   const resultado = useMemo(() => {
@@ -719,16 +728,16 @@ export default function PresupuestoAberturasPage() {
             <div className="space-y-3">
               <input
                 type="text"
-                placeholder="Cliente / Empresa"
-                className="w-full rounded-lg border bg-white p-2 text-sm"
+                placeholder="Ej: Vidriería San Miguel / Juan Pérez"
+                className={inputClass}
                 value={cliente.nombre}
                 onChange={(e) => setCliente({ ...cliente, nombre: e.target.value })}
               />
 
               <input
                 type="text"
-                placeholder="Nombre del contacto"
-                className="w-full rounded-lg border bg-white p-2 text-sm"
+                placeholder="Ej: Carlos González"
+                className={inputClass}
                 value={cliente.contacto}
                 onChange={(e) => setCliente({ ...cliente, contacto: e.target.value })}
               />
@@ -736,16 +745,16 @@ export default function PresupuestoAberturasPage() {
               <div className="flex gap-2">
                 <input
                   type="text"
-                  placeholder="RUC / CI"
-                  className="w-1/2 rounded-lg border bg-white p-2 text-sm"
+                  placeholder="Ej: 80123456-7"
+                  className={inputHalfClass}
                   value={cliente.ruc}
                   onChange={(e) => setCliente({ ...cliente, ruc: e.target.value })}
                 />
 
                 <input
                   type="text"
-                  placeholder="WhatsApp"
-                  className="w-1/2 rounded-lg border bg-white p-2 text-sm"
+                  placeholder="Ej: 0981 123 456"
+                  className={inputHalfClass}
                   value={cliente.telefono}
                   onChange={(e) => setCliente({ ...cliente, telefono: e.target.value })}
                 />
@@ -753,8 +762,8 @@ export default function PresupuestoAberturasPage() {
 
               <input
                 type="text"
-                placeholder="Ubicación / obra"
-                className="w-full rounded-lg border bg-white p-2 text-sm"
+                placeholder="Ej: Obra en San Lorenzo / Asunción"
+                className={inputClass}
                 value={cliente.ubicacion}
                 onChange={(e) => setCliente({ ...cliente, ubicacion: e.target.value })}
               />
@@ -799,7 +808,7 @@ export default function PresupuestoAberturasPage() {
                 <label className="mb-1 block text-xs font-bold text-zinc-500">Ancho cm</label>
                 <input
                   type="number"
-                  className="w-full rounded-lg border bg-white p-2 text-sm"
+                  className={inputMeasureClass}
                   value={ancho}
                   onChange={(e) => setAncho(Number(e.target.value))}
                 />
@@ -809,7 +818,7 @@ export default function PresupuestoAberturasPage() {
                 <label className="mb-1 block text-xs font-bold text-zinc-500">Alto cm</label>
                 <input
                   type="number"
-                  className="w-full rounded-lg border bg-white p-2 text-sm"
+                  className={inputMeasureClass}
                   value={alto}
                   onChange={(e) => setAlto(Number(e.target.value))}
                 />
@@ -820,7 +829,7 @@ export default function PresupuestoAberturasPage() {
                 <input
                   type="number"
                   min={1}
-                  className="w-full rounded-lg border bg-white p-2 text-sm"
+                  className={inputMeasureClass}
                   value={cantidad}
                   onChange={(e) => setCantidad(Number(e.target.value))}
                 />
@@ -875,7 +884,7 @@ export default function PresupuestoAberturasPage() {
                 <label className="mb-1 block text-xs font-bold text-zinc-500">Margen %</label>
                 <input
                   type="number"
-                  className="w-full rounded-lg border bg-white p-2 text-sm"
+                  className={inputMeasureClass}
                   value={margenPorcentaje}
                   onChange={(e) => setMargenPorcentaje(Number(e.target.value))}
                 />
@@ -885,7 +894,7 @@ export default function PresupuestoAberturasPage() {
                 <label className="mb-1 block text-xs font-bold text-zinc-500">Redondeo Gs.</label>
                 <input
                   type="number"
-                  className="w-full rounded-lg border bg-white p-2 text-sm"
+                  className={inputMeasureClass}
                   value={redondeo}
                   onChange={(e) => setRedondeo(Number(e.target.value))}
                 />
@@ -895,7 +904,7 @@ export default function PresupuestoAberturasPage() {
                 <label className="mb-1 block text-xs font-bold text-zinc-500">Adicional Gs.</label>
                 <input
                   type="number"
-                  className="w-full rounded-lg border bg-white p-2 text-sm"
+                  className={inputMeasureClass}
                   value={adicionalGs}
                   onChange={(e) => setAdicionalGs(Number(e.target.value))}
                 />
@@ -905,7 +914,7 @@ export default function PresupuestoAberturasPage() {
                 <label className="mb-1 block text-xs font-bold text-zinc-500">Descuento Gs.</label>
                 <input
                   type="number"
-                  className="w-full rounded-lg border bg-white p-2 text-sm"
+                  className={inputMeasureClass}
                   value={descuentoGs}
                   onChange={(e) => setDescuentoGs(Number(e.target.value))}
                 />
