@@ -3,7 +3,6 @@
 import { useMemo, useRef, useState } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import { track } from "@vercel/analytics";
 
 type ProductoKey =
   | "puerta_2h_incolor"
@@ -51,6 +50,7 @@ const PRODUCTOS: Record<
   ProductoKey,
   {
     nombre: string;
+    nombreCorto: string;
     anchoDefault: number;
     altoDefault: number;
     descripcion: string;
@@ -58,24 +58,28 @@ const PRODUCTOS: Record<
 > = {
   puerta_2h_incolor: {
     nombre: "Puerta corrediza 2 hojas incolor",
+    nombreCorto: "Puerta 2 hojas",
     anchoDefault: 170,
     altoDefault: 210,
     descripcion: "Sistema corredizo de aluminio con vidrio incolor.",
   },
   puerta_4h_incolor: {
     nombre: "Puerta corrediza 4 hojas incolor",
+    nombreCorto: "Puerta 4 hojas",
     anchoDefault: 400,
     altoDefault: 210,
-    descripcion: "Sistema corredizo de aluminio de mayor apertura con vidrio incolor.",
+    descripcion: "Sistema corredizo de mayor apertura con vidrio incolor.",
   },
   guia_desplazada_1h: {
     nombre: "Puerta guía desplazada 1 hoja",
+    nombreCorto: "Guía 1 hoja",
     anchoDefault: 100,
     altoDefault: 210,
     descripcion: "Sistema de puerta con guía desplazada de una hoja.",
   },
   guia_desplazada_2h: {
     nombre: "Puerta guía desplazada 2 hojas",
+    nombreCorto: "Guía 2 hojas",
     anchoDefault: 200,
     altoDefault: 210,
     descripcion: "Sistema de puerta con guía desplazada de dos hojas.",
@@ -268,7 +272,7 @@ function calcularCotizacion(params: {
   if (incluirColocacion) {
     const factorVidrio = producto === "puerta_2h_incolor" || producto === "puerta_4h_incolor" ? 0.8 : 1;
 
-    subtotalColocacion += agregarItem(items, "Colocación", "Vidrio incolor 8mm", undefined, producto.includes("puerta") ? "m² × 80%" : "m²", m2 * factorVidrio, PRECIOS.vidrioIncolor8mm);
+    subtotalColocacion += agregarItem(items, "Colocación", "Vidrio incolor 8mm", undefined, factorVidrio === 0.8 ? "m² × 80%" : "m²", m2 * factorVidrio, PRECIOS.vidrioIncolor8mm);
     subtotalColocacion += agregarItem(items, "Colocación", "Ferretería", undefined, "1 unidad", 1, PRECIOS.ferreteria);
     subtotalColocacion += agregarItem(items, "Colocación", "Silicona", undefined, "m² / 1.6", m2 / 1.6, PRECIOS.silicona);
 
@@ -283,7 +287,7 @@ function calcularCotizacion(params: {
     }
   }
 
-  const costoUnitario = subtotalFabricacion + subtotalPremarco + subtotalColocacion + adicionalGs - descuentoGs;
+  const costoUnitario = Math.max(0, subtotalFabricacion + subtotalPremarco + subtotalColocacion + adicionalGs - descuentoGs);
   const margenGs = costoUnitario * (margenPorcentaje / 100);
   const precioVentaUnitario = costoUnitario + margenGs;
   const precioVentaRedondeado = redondear(precioVentaUnitario, redondeo);
@@ -330,7 +334,7 @@ export default function PresupuestoAberturasPage() {
   const [incluirColocacion, setIncluirColocacion] = useState(true);
   const [descuentoGs, setDescuentoGs] = useState(0);
   const [adicionalGs, setAdicionalGs] = useState(0);
-  const [mostrarDesglose, setMostrarDesglose] = useState(true);
+  const [mostrarDesglose, setMostrarDesglose] = useState(false);
 
   const resultado = useMemo(() => {
     return calcularCotizacion({
@@ -358,6 +362,8 @@ export default function PresupuestoAberturasPage() {
     adicionalGs,
   ]);
 
+  const formularioValido = ancho > 0 && alto > 0 && cantidad > 0;
+
   const cambiarProducto = (nuevoProducto: ProductoKey) => {
     setProducto(nuevoProducto);
     setAncho(PRODUCTOS[nuevoProducto].anchoDefault);
@@ -371,7 +377,7 @@ export default function PresupuestoAberturasPage() {
   };
 
   const generarPDF = async () => {
-    if (!pdfRef.current) return;
+    if (!pdfRef.current || !formularioValido) return;
 
     setCargando(true);
 
@@ -393,7 +399,7 @@ export default function PresupuestoAberturasPage() {
       pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight);
       pdf.save(`Presupuesto_Aberturas_${cliente.nombre || "Cliente"}.pdf`);
 
-      track("Cotizacion_Aberturas_Generada", {
+      console.log("Cotizacion_Aberturas_Generada", {
         producto: resultado.productoNombre,
         total_gs: resultado.totalGeneral,
         m2: resultado.m2,
@@ -408,6 +414,8 @@ export default function PresupuestoAberturasPage() {
   };
 
   const abrirWhatsApp = () => {
+    if (!formularioValido) return;
+
     const telefono = cliente.telefono.replace(/\D/g, "");
 
     const mensaje = encodeURIComponent(
@@ -429,15 +437,15 @@ export default function PresupuestoAberturasPage() {
     window.open(url, "_blank");
   };
 
-  const itemsPorCategoria = {
-    Fabricación: resultado.items.filter((item) => item.categoria === "Fabricación"),
-    Premarco: resultado.items.filter((item) => item.categoria === "Premarco"),
-    Colocación: resultado.items.filter((item) => item.categoria === "Colocación"),
-  };
+  const medidasRapidas = [
+    { label: "170 x 210", ancho: 170, alto: 210 },
+    { label: "200 x 210", ancho: 200, alto: 210 },
+    { label: "300 x 210", ancho: 300, alto: 210 },
+    { label: "400 x 210", ancho: 400, alto: 210 },
+  ];
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-zinc-100 font-sans">
-      {/* DOCUMENTO A4 PARA PDF */}
       <div className="absolute left-0 top-0 z-0 flex w-full justify-center pointer-events-none">
         <div
           ref={pdfRef}
@@ -466,45 +474,23 @@ export default function PresupuestoAberturasPage() {
           <div className="mb-6 rounded-xl border border-[#e5e7eb] bg-[#f9fafb] p-4">
             <h3 className="mb-2 text-xs font-black uppercase text-[#111827]">Preparado para:</h3>
             <div className="grid grid-cols-2 gap-2 text-sm">
-              <p>
-                <span className="font-bold">Cliente:</span> {cliente.nombre || "___________________"}
-              </p>
-              <p>
-                <span className="font-bold">RUC/CI:</span> {cliente.ruc || "___________________"}
-              </p>
-              <p>
-                <span className="font-bold">Contacto:</span> {cliente.contacto || "___________________"}
-              </p>
-              <p>
-                <span className="font-bold">Teléfono:</span> {cliente.telefono || "___________________"}
-              </p>
-              <p className="col-span-2">
-                <span className="font-bold">Ubicación/obra:</span> {cliente.ubicacion || "___________________"}
-              </p>
+              <p><span className="font-bold">Cliente:</span> {cliente.nombre || "___________________"}</p>
+              <p><span className="font-bold">RUC/CI:</span> {cliente.ruc || "___________________"}</p>
+              <p><span className="font-bold">Contacto:</span> {cliente.contacto || "___________________"}</p>
+              <p><span className="font-bold">Teléfono:</span> {cliente.telefono || "___________________"}</p>
+              <p className="col-span-2"><span className="font-bold">Ubicación/obra:</span> {cliente.ubicacion || "___________________"}</p>
             </div>
           </div>
 
           <div className="mb-6 rounded-xl border border-[#e5e7eb] p-4">
             <h3 className="mb-2 text-xs font-black uppercase text-[#111827]">Detalle del trabajo:</h3>
             <div className="grid grid-cols-2 gap-2 text-sm">
-              <p>
-                <span className="font-bold">Producto:</span> {resultado.productoNombre}
-              </p>
-              <p>
-                <span className="font-bold">Cantidad:</span> {resultado.cantidad}
-              </p>
-              <p>
-                <span className="font-bold">Medidas:</span> {resultado.ancho} x {resultado.alto} cm
-              </p>
-              <p>
-                <span className="font-bold">Superficie:</span> {resultado.m2.toFixed(2)} m²
-              </p>
-              <p>
-                <span className="font-bold">Premarco:</span> {incluirPremarco ? "Incluido" : "No incluido"}
-              </p>
-              <p>
-                <span className="font-bold">Colocación:</span> {incluirColocacion ? "Incluida" : "No incluida"}
-              </p>
+              <p><span className="font-bold">Producto:</span> {resultado.productoNombre}</p>
+              <p><span className="font-bold">Cantidad:</span> {resultado.cantidad}</p>
+              <p><span className="font-bold">Medidas:</span> {resultado.ancho} x {resultado.alto} cm</p>
+              <p><span className="font-bold">Superficie:</span> {resultado.m2.toFixed(2)} m²</p>
+              <p><span className="font-bold">Premarco:</span> {incluirPremarco ? "Incluido" : "No incluido"}</p>
+              <p><span className="font-bold">Colocación:</span> {incluirColocacion ? "Incluida" : "No incluida"}</p>
             </div>
           </div>
 
@@ -512,7 +498,7 @@ export default function PresupuestoAberturasPage() {
             <thead>
               <tr className="bg-[#111827] text-left text-[#ffffff]">
                 <th className="rounded-tl-lg p-3">Concepto</th>
-                <th className="p-3 text-right">Subtotal</th>
+                <th className="rounded-tr-lg p-3 text-right">Subtotal</th>
               </tr>
             </thead>
             <tbody>
@@ -542,7 +528,9 @@ export default function PresupuestoAberturasPage() {
 
           {mostrarDesglose && (
             <div className="mb-8">
-              <h3 className="mb-3 text-sm font-black uppercase tracking-widest text-[#111827]">Desglose técnico interno</h3>
+              <h3 className="mb-3 text-sm font-black uppercase tracking-widest text-[#111827]">
+                Desglose técnico interno
+              </h3>
               <table className="w-full text-[10px]">
                 <thead>
                   <tr className="bg-[#e5e7eb] text-left">
@@ -595,12 +583,25 @@ export default function PresupuestoAberturasPage() {
         </div>
       </div>
 
-      {/* PANEL DE CONTROL */}
       <div className="relative z-10 flex min-h-screen w-full justify-center bg-zinc-100 p-4 pb-32 md:p-8">
         <div className="flex h-fit w-full max-w-xl flex-col gap-6 rounded-3xl border border-zinc-200 bg-white p-6 shadow-xl">
           <div className="text-center">
-            <h2 className="text-2xl font-black text-zinc-950">Cotizador de Aberturas</h2>
-            <p className="text-sm text-zinc-500">Motor interno AYCweb · Puertas corredizas y guía desplazada</p>
+            <p className="mb-2 text-xs font-black uppercase tracking-[0.25em] text-zinc-400">
+              Terminal de ventas B2B
+            </p>
+            <h2 className="text-3xl font-black tracking-tight text-zinc-950">
+              Cotizador Automático de Aberturas
+            </h2>
+            <p className="mt-2 text-sm text-zinc-500">
+              Cargá medidas, calculá el precio y generá el presupuesto en PDF en menos de 1 minuto.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-4 gap-2 rounded-2xl bg-zinc-950 p-3 text-center text-[10px] font-black uppercase tracking-wide text-zinc-400">
+            <div className="rounded-xl bg-white px-2 py-2 text-zinc-950">1 Cliente</div>
+            <div className="rounded-xl bg-zinc-800 px-2 py-2">2 Producto</div>
+            <div className="rounded-xl bg-zinc-800 px-2 py-2">3 Medidas</div>
+            <div className="rounded-xl bg-zinc-800 px-2 py-2">4 PDF</div>
           </div>
 
           <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
@@ -652,73 +653,105 @@ export default function PresupuestoAberturasPage() {
           </div>
 
           <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-            <h3 className="mb-3 border-b pb-2 font-bold text-zinc-800">2. Producto y medidas</h3>
+            <h3 className="mb-1 font-black text-zinc-900">2. Elegí el tipo de abertura</h3>
+            <p className="mb-3 text-xs text-zinc-500">
+              Seleccioná el modelo, cargá las medidas del vano y el sistema calcula materiales, vidrio, colocación y margen.
+            </p>
 
-            <div className="space-y-3">
-              <select
-                value={producto}
-                onChange={(e) => cambiarProducto(e.target.value as ProductoKey)}
-                className="w-full rounded-lg border bg-white p-2 text-sm font-semibold"
-              >
-                {Object.entries(PRODUCTOS).map(([key, item]) => (
-                  <option key={key} value={key}>
-                    {item.nombre}
-                  </option>
-                ))}
-              </select>
+            <div className="grid grid-cols-2 gap-2">
+              {(Object.entries(PRODUCTOS) as [ProductoKey, (typeof PRODUCTOS)[ProductoKey]][]).map(([key, item]) => {
+                const activo = producto === key;
 
-              <div className="grid grid-cols-3 gap-2">
-                <div>
-                  <label className="mb-1 block text-xs font-bold text-zinc-500">Ancho cm</label>
-                  <input
-                    type="number"
-                    className="w-full rounded-lg border bg-white p-2 text-sm"
-                    value={ancho}
-                    onChange={(e) => setAncho(Number(e.target.value))}
-                  />
-                </div>
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => cambiarProducto(key)}
+                    className={`rounded-2xl border p-3 text-left transition active:scale-[0.98] ${
+                      activo
+                        ? "border-zinc-950 bg-zinc-950 text-white shadow-lg"
+                        : "border-zinc-200 bg-white text-zinc-800 hover:border-zinc-400"
+                    }`}
+                  >
+                    <p className="text-sm font-black">{item.nombreCorto}</p>
+                    <p className={`mt-1 text-[11px] ${activo ? "text-zinc-300" : "text-zinc-500"}`}>
+                      {item.anchoDefault} x {item.altoDefault} cm
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
 
-                <div>
-                  <label className="mb-1 block text-xs font-bold text-zinc-500">Alto cm</label>
-                  <input
-                    type="number"
-                    className="w-full rounded-lg border bg-white p-2 text-sm"
-                    value={alto}
-                    onChange={(e) => setAlto(Number(e.target.value))}
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-1 block text-xs font-bold text-zinc-500">Cant.</label>
-                  <input
-                    type="number"
-                    min={1}
-                    className="w-full rounded-lg border bg-white p-2 text-sm"
-                    value={cantidad}
-                    onChange={(e) => setCantidad(Number(e.target.value))}
-                  />
-                </div>
+            <div className="mt-4 grid grid-cols-3 gap-2">
+              <div>
+                <label className="mb-1 block text-xs font-bold text-zinc-500">Ancho cm</label>
+                <input
+                  type="number"
+                  className="w-full rounded-lg border bg-white p-2 text-sm"
+                  value={ancho}
+                  onChange={(e) => setAncho(Number(e.target.value))}
+                />
               </div>
 
+              <div>
+                <label className="mb-1 block text-xs font-bold text-zinc-500">Alto cm</label>
+                <input
+                  type="number"
+                  className="w-full rounded-lg border bg-white p-2 text-sm"
+                  value={alto}
+                  onChange={(e) => setAlto(Number(e.target.value))}
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-bold text-zinc-500">Cant.</label>
+                <input
+                  type="number"
+                  min={1}
+                  className="w-full rounded-lg border bg-white p-2 text-sm"
+                  value={cantidad}
+                  onChange={(e) => setCantidad(Number(e.target.value))}
+                />
+              </div>
+            </div>
+
+            <div className="mt-3">
+              <p className="mb-2 text-xs font-bold uppercase text-zinc-500">Medidas rápidas</p>
               <div className="grid grid-cols-2 gap-2">
-                <label className="flex items-center justify-between rounded-xl border bg-white p-3 text-sm font-semibold">
-                  Incluir premarco
-                  <input
-                    type="checkbox"
-                    checked={incluirPremarco}
-                    onChange={(e) => setIncluirPremarco(e.target.checked)}
-                  />
-                </label>
-
-                <label className="flex items-center justify-between rounded-xl border bg-white p-3 text-sm font-semibold">
-                  Incluir colocación
-                  <input
-                    type="checkbox"
-                    checked={incluirColocacion}
-                    onChange={(e) => setIncluirColocacion(e.target.checked)}
-                  />
-                </label>
+                {medidasRapidas.map((medida) => (
+                  <button
+                    key={medida.label}
+                    type="button"
+                    onClick={() => {
+                      setAncho(medida.ancho);
+                      setAlto(medida.alto);
+                    }}
+                    className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm font-bold text-zinc-700 hover:border-zinc-900 hover:bg-zinc-100"
+                  >
+                    {medida.label}
+                  </button>
+                ))}
               </div>
+            </div>
+
+            <div className="mt-4 grid grid-cols-2 gap-2">
+              <label className="flex items-center justify-between rounded-xl border bg-white p-3 text-sm font-semibold">
+                Incluir premarco
+                <input
+                  type="checkbox"
+                  checked={incluirPremarco}
+                  onChange={(e) => setIncluirPremarco(e.target.checked)}
+                />
+              </label>
+
+              <label className="flex items-center justify-between rounded-xl border bg-white p-3 text-sm font-semibold">
+                Incluir colocación
+                <input
+                  type="checkbox"
+                  checked={incluirColocacion}
+                  onChange={(e) => setIncluirColocacion(e.target.checked)}
+                />
+              </label>
             </div>
           </div>
 
@@ -777,6 +810,12 @@ export default function PresupuestoAberturasPage() {
             </label>
           </div>
 
+          {!formularioValido && (
+            <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm font-bold text-red-700">
+              Revisá las medidas y la cantidad. No pueden estar en cero.
+            </div>
+          )}
+
           <div className="rounded-2xl border border-zinc-200 bg-zinc-950 p-4 text-white">
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div>
@@ -803,18 +842,19 @@ export default function PresupuestoAberturasPage() {
 
           <div className="flex gap-3">
             <button
-              onClick={abrirWhatsApp}
-              className="w-1/2 rounded-xl bg-emerald-600 py-4 font-black text-white shadow-lg transition hover:bg-emerald-700 active:scale-95"
+              onClick={generarPDF}
+              disabled={cargando || !formularioValido}
+              className="w-1/2 rounded-xl bg-zinc-950 py-4 font-black text-white shadow-lg transition hover:bg-zinc-800 disabled:bg-zinc-400 active:scale-95"
             >
-              WhatsApp
+              {cargando ? "Generando..." : "Descargar PDF"}
             </button>
 
             <button
-              onClick={generarPDF}
-              disabled={cargando}
-              className="w-1/2 rounded-xl bg-red-600 py-4 font-black text-white shadow-lg transition hover:bg-red-700 disabled:bg-zinc-400 active:scale-95"
+              onClick={abrirWhatsApp}
+              disabled={!formularioValido}
+              className="w-1/2 rounded-xl bg-emerald-600 py-4 font-black text-white shadow-lg transition hover:bg-emerald-700 disabled:bg-zinc-400 active:scale-95"
             >
-              {cargando ? "Generando..." : "Descargar PDF"}
+              Enviar WhatsApp
             </button>
           </div>
 
@@ -822,7 +862,7 @@ export default function PresupuestoAberturasPage() {
             <h3 className="mb-3 font-bold text-zinc-800">Resumen técnico rápido</h3>
 
             {(["Fabricación", "Premarco", "Colocación"] as const).map((categoria) => {
-              const items = itemsPorCategoria[categoria];
+              const items = resultado.items.filter((item) => item.categoria === categoria);
 
               if (!items.length) return null;
 
@@ -846,6 +886,31 @@ export default function PresupuestoAberturasPage() {
               );
             })}
           </div>
+        </div>
+      </div>
+
+      <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-zinc-200 bg-white/95 p-3 shadow-2xl backdrop-blur md:hidden">
+        <div className="mx-auto flex max-w-xl items-center gap-3">
+          <div className="flex-1">
+            <p className="text-xs font-bold uppercase text-zinc-500">Total</p>
+            <p className="text-xl font-black text-zinc-950">{moneda(resultado.totalGeneral)}</p>
+          </div>
+
+          <button
+            onClick={generarPDF}
+            disabled={cargando || !formularioValido}
+            className="rounded-xl bg-zinc-950 px-4 py-3 text-sm font-black text-white disabled:bg-zinc-400"
+          >
+            PDF
+          </button>
+
+          <button
+            onClick={abrirWhatsApp}
+            disabled={!formularioValido}
+            className="rounded-xl bg-emerald-600 px-4 py-3 text-sm font-black text-white disabled:bg-zinc-400"
+          >
+            WhatsApp
+          </button>
         </div>
       </div>
     </div>
