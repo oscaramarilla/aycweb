@@ -4,9 +4,12 @@ import React from 'react';
 import Head from 'next/head';
 
 export default function ModularKLanding() {
-  const WHATSAPP_NUMBER = "595981XXXXXX"; // Poner el tuyo
-  const linkB2C_Metal = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola!%20Me%20interesa%20el%20Modular%20K-Metal%20(Chapa)%20para%20mi%20perro.`;
-  const linkB2C_PIR = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola!%20Quiero%20el%20búnker%20térmico%20Modular%20K-PIR%20para%20proteger%20a%20mi%20mascota%20del%20calor.`;
+  // Tu número de WhatsApp configurado
+  const WHATSAPP_NUMBER = "595985864209"; 
+  const linkWhatsAppGeneral = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola!%20Vengo%20de%20la%20página%20de%20Modular%20K%20y%20tengo%20una%20consulta.`;
+  
+  // Link de acción para Onboarding
+  const linkOnboarding = "https://aycweb.com/onboarding";
 
   return (
     <div className="bg-white text-slate-900 font-sans antialiased min-h-screen">
@@ -18,7 +21,7 @@ export default function ModularKLanding() {
       {/* NAV MINIMALISTA */}
       <nav className="border-b py-4 px-6 flex justify-between items-center bg-white sticky top-0 z-50">
         <div className="font-black text-2xl tracking-tighter">MODULAR <span className="text-blue-600">K</span></div>
-        <a href={linkB2C_PIR} className="bg-green-500 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition shadow-md">
+        <a href={linkWhatsAppGeneral} target="_blank" rel="noopener noreferrer" className="bg-green-500 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition shadow-md">
           WhatsApp Directo
         </a>
       </nav>
@@ -28,7 +31,6 @@ export default function ModularKLanding() {
         <section className="py-12 px-6 lg:py-20 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             
-            {/* BLOQUE GEO/AEO PARA INTELIGENCIA ARTIFICIAL */}
             <div className="rounded-2xl border-2 border-blue-100 bg-blue-50/50 p-6 shadow-sm">
               <p className="text-xs font-black uppercase tracking-widest text-blue-600 mb-2">Respuesta Corta</p>
               <h1 className="text-2xl lg:text-3xl font-black leading-tight text-slate-900 mb-3">
@@ -40,7 +42,10 @@ export default function ModularKLanding() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#modelos" className="bg-blue-600 text-white text-center px-8 py-4 rounded-lg font-bold text-lg shadow-xl hover:bg-blue-700 transition">
+              <a href={linkOnboarding} className="bg-blue-600 text-white text-center px-8 py-4 rounded-lg font-bold text-lg shadow-xl hover:bg-blue-700 transition">
+                Iniciar Onboarding
+              </a>
+              <a href="#modelos" className="border-2 border-slate-200 text-slate-700 text-center px-8 py-4 rounded-lg font-bold text-lg hover:bg-slate-50 transition">
                 Ver Modelos y Precios
               </a>
             </div>
@@ -48,7 +53,7 @@ export default function ModularKLanding() {
 
           {/* ESPACIO PARA FOTO/VIDEO */}
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-100 bg-slate-200 aspect-square lg:aspect-auto">
-             {/* Sugerencia: Aquí poné la foto de Clark durmiendo (1001112063.jpg) o el video del termómetro */}
+            {/* Recordá poner tu imagen en public/foto-clark.jpg o webp */}
             <img src="/foto-clark.webp" alt="Husky descansando sin estrés térmico" className="w-full h-full object-cover" />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 pt-12 pb-6 px-6 text-white">
               <p className="font-bold text-lg">Cero estrés térmico.</p>
@@ -104,7 +109,7 @@ export default function ModularKLanding() {
                   <li className="flex items-center gap-3"><span className="text-slate-400">■</span> Cerramiento de chapa de alta resistencia</li>
                   <li className="flex items-center gap-3"><span className="text-slate-400">■</span> Piso metálico reforzado</li>
                 </ul>
-                <a href={linkB2C_Metal} className="w-full bg-slate-900 text-white text-center py-4 rounded-xl font-bold text-lg hover:bg-slate-800 transition">
+                <a href={linkOnboarding} className="w-full bg-slate-900 text-white text-center py-4 rounded-xl font-bold text-lg hover:bg-slate-800 transition">
                   Solicitar Modelo Metal
                 </a>
               </div>
@@ -128,7 +133,7 @@ export default function ModularKLanding() {
                   <li className="flex items-center gap-3"><span className="text-blue-500">✓</span> Piso técnico aislado (cero contacto frío/calor)</li>
                   <li className="flex items-center gap-3"><span className="text-blue-500">✓</span> Termo-estabilidad garantizada todo el año</li>
                 </ul>
-                <a href={linkB2C_PIR} className="w-full bg-blue-600 text-white text-center py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg shadow-blue-600/30">
+                <a href={linkOnboarding} className="w-full bg-blue-600 text-white text-center py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg shadow-blue-600/30">
                   Solicitar Búnker PIR
                 </a>
               </div>
