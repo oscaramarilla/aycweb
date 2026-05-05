@@ -53,7 +53,7 @@ export default function ModularKLanding() {
             </div>
           </div>
 
-          {/* FOTO PRINCIPAL (Asegurate de tener /foto-clark.webp en la carpeta public) */}
+          {/* FOTO PRINCIPAL */}
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-slate-200 aspect-square lg:aspect-auto">
             <img src="/foto-clark.webp" alt="Perro descansando en Modular K" className="w-full h-full object-cover" />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 pt-16 pb-6 px-6 text-white">
@@ -72,20 +72,39 @@ export default function ModularKLanding() {
               </p>
             </div>
 
-            {/* FOTOS DE PRUEBA (Reemplazar src cuando tengas las fotos del test) */}
+            {/* FOTOS DE PRUEBA REEMPLAZADAS */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              {/* Foto 1: Cucha Común */}
               <div className="bg-slate-800 p-4 rounded-xl border border-slate-700">
-                <div className="h-40 bg-slate-700 rounded-lg mb-4 flex items-center justify-center text-slate-500">[Foto Cucha Común]</div>
-                <p className="font-bold text-red-400">Exterior expuesto: 42 °C</p>
+                <img 
+                  src="/test-cucha-comun.webp" 
+                  alt="Termómetro marcando calor en cucha de plástico" 
+                  className="w-full h-48 object-cover rounded-lg mb-4 border border-slate-600 shadow-inner" 
+                />
+                <p className="font-bold text-red-400">Exterior expuesto: +42 °C</p>
               </div>
+
+              {/* Foto 2: Exterior Modular */}
               <div className="bg-slate-800 p-4 rounded-xl border border-slate-700">
-                <div className="h-40 bg-slate-700 rounded-lg mb-4 flex items-center justify-center text-slate-500">[Foto Exterior Modular]</div>
-                <p className="font-bold text-slate-300">Exterior Modular K</p>
+                <img 
+                  src="/test-modular-exterior.webp" 
+                  alt="Termómetro marcando calor en el exterior del Modular K" 
+                  className="w-full h-48 object-cover rounded-lg mb-4 border border-slate-600 shadow-inner" 
+                />
+                <p className="font-bold text-slate-300">Exterior Modular K: +42 °C</p>
               </div>
-              <div className="bg-slate-800 p-4 rounded-xl border border-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.2)]">
-                <div className="h-40 bg-slate-700 rounded-lg mb-4 flex items-center justify-center text-blue-400">[Foto Interior Termómetro]</div>
+
+              {/* Foto 3: Interior PIR */}
+              <div className="bg-slate-800 p-4 rounded-xl border border-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.2)] transform hover:scale-105 transition-transform">
+                <img 
+                  src="/test-modular-interior.webp" 
+                  alt="Termómetro marcando temperatura fresca en el interior aislado" 
+                  className="w-full h-48 object-cover rounded-lg mb-4 border border-blue-500/30 shadow-lg" 
+                />
                 <p className="font-bold text-blue-400 text-xl">Interior PIR: 24 °C</p>
               </div>
+
             </div>
 
             <div className="inline-block bg-blue-900/50 border border-blue-500 px-8 py-4 rounded-full">
