@@ -168,10 +168,10 @@ export default function InvestorArbitrageDashboard() {
   const whatsappText = encodeURIComponent(
     `Hola AYCweb, quiero analizar la ventaja energética de Paraguay para una operación de ${formatKwh(
       monthlyKwh
-    )} kWh/mes comparada contra ${selectedBenchmark.label}.`
+    )} kWh/mes comparada contra ${selectedBenchmark.label}. Vi esto en la calculadora de aycweb.com/kwhcoin.`
   );
 
-  const whatsappUrl = `https://wa.me/595981000000?text=${whatsappText}`;
+  const whatsappUrl = `https://wa.me/595985864209?text=${whatsappText}`;
 
   return (
     <main className="min-h-screen bg-stone-950 text-stone-100">
