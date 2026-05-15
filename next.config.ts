@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: 'export', // <-- Agregamos esto
   compress: true,
+  
+  // COMENTAMOS LOS REDIRECTS para poder exportar a Android
+  /*
   async redirects() {
     return [
       { source: '/productos', destination: '/empresas', permanent: true },
@@ -14,6 +18,7 @@ const nextConfig: NextConfig = {
       { source: '/contrato', destination: '/admin/contrato', permanent: true },
     ];
   },
+  */
 };
 
 export default nextConfig;

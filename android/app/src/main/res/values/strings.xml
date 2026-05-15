@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">aycweb</string>
+    <string name="title_activity_main">aycweb</string>
+    <string name="package_name">com.aycweb.app</string>
+    <string name="custom_url_scheme">com.aycweb.app</string>
+</resources>
