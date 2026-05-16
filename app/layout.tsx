@@ -18,27 +18,58 @@ export const metadata: Metadata = {
     default: "AYCweb Paraguay | Firma de Infraestructura Digital B2B",
     template: "%s | AYCweb",
   },
-  description: "Elegimos potenciar empresas y profesionales con sistemas operativos y comerciales de alto rendimiento en Paraguay.",
-  keywords: ["desarrollo web paraguay high ticket", "automatización B2B paraguay", "sistemas operativos", "cotizadores dinámicos"],
+  description:
+    "Construimos ecosistemas digitales que automatizan ventas y operaciones para empresas y profesionales en Paraguay. Cotizadores dinámicos, generación de PDFs y motores operativos B2B.",
+  keywords: [
+    "desarrollo web paraguay",
+    "automatización B2B paraguay",
+    "sistemas operativos empresas",
+    "cotizadores dinámicos paraguay",
+    "infraestructura digital B2B",
+    "software empresarial paraguay",
+    "AYC SRL",
+    "AYCweb",
+  ],
   authors: [{ name: "Oscar Amarilla Cáceres", url: "https://aycweb.com" }],
+  creator: "AYCweb - Oscar Amarilla Cáceres",
+  publisher: "AYCweb",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   alternates: {
-    canonical: "/", // Esto le dice a Google que esta es la URL oficial
+    canonical: "https://aycweb.com",
   },
   openGraph: {
     title: "AYCweb | Firma de Infraestructura Digital B2B",
-    description: "Sistemas operativos y comerciales de alto rendimiento para escalar en Paraguay.",
+    description:
+      "Sistemas operativos y comerciales de alto rendimiento para empresas y profesionales en Paraguay. Automatizamos ventas, cotizaciones y operaciones.",
     url: "https://aycweb.com",
     siteName: "AYCweb",
     images: [
       {
-        url: "/og-image.jpg", // Cambié a JPG por compatibilidad con WhatsApp
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "AYCweb - Infraestructura Digital B2B",
+        alt: "AYCweb - Infraestructura Digital B2B Paraguay",
       },
     ],
     locale: "es_PY",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AYCweb | Infraestructura Digital B2B Paraguay",
+    description:
+      "Cotizadores dinámicos, generación de PDFs y motores operativos para empresas en Paraguay.",
+    images: ["/og-image.jpg"],
   },
 };
 

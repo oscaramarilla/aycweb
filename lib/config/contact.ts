@@ -1,53 +1,75 @@
+// ============================================================
+// FUENTE ÚNICA DE VERDAD: Datos de contacto de AYCweb
+// Importar desde aquí en lugar de hardcodear en cada archivo.
+// ============================================================
+
 export interface ContactInfo {
   whatsappNumber: string;
+  waBaseUrl: string;
+  email: string;
   globalMessages: {
     diagnosis: string;
     generalInquiry: string;
-    // Add more global messages as needed
+    auditB2B: string;
   };
   clientMessages?: {
     [key: string]: {
-      // Specific messages for each client/vertical
       [messageKey: string]: string;
     };
   };
 }
 
 export const AYCWEB_CONTACT: ContactInfo = {
-  whatsappNumber: "595985864209", // Main AYCweb WhatsApp number
+  whatsappNumber: "595985864209",
+  waBaseUrl: "https://wa.me/595985864209",
+  email: "hola@aycweb.com",
   globalMessages: {
-    diagnosis: "¡Hola Oscar! Quiero mostrarles el cuello de botella actual de mi empresa para ver qué sistema operativo me recomiendan construir.",
-    generalInquiry: "¡Hola! Estoy en la web de AYC y busco agendar un diagnóstico para sistematizar mi negocio.",
-    // Add more global messages here
+    diagnosis:
+      "¡Hola Oscar! Quiero mostrarles el cuello de botella actual de mi empresa para ver qué sistema operativo me recomiendan construir.",
+    generalInquiry:
+      "¡Hola! Estoy en la web de AYC y busco agendar un diagnóstico para sistematizar mi negocio.",
+    auditB2B:
+      "Hola Oscar, quiero agendar una Auditoría B2B.",
   },
   clientMessages: {
-    "aycweb": { // Example for AYCweb specific messages
-        "enterprisePlan": "Hola! Busco un sistema a medida (Plan Enterprise)."
+    aycweb: {
+      enterprisePlan: "Hola! Busco un sistema a medida (Plan Enterprise).",
     },
-    "mascotasPir": {
-      "premiumClient": "¡Hola Oscar! Me interesa el servicio premium de MascotasPir.",
-      "quotation": "¡Hola! Me interesa cotizar una Casa para Mascotas Premium con Paneles PIR.",
-      // ... other messages for MascotasPir
+    mascotasPir: {
+      premiumClient: "¡Hola Oscar! Me interesa el servicio premium de MascotasPir.",
+      quotation: "¡Hola! Me interesa cotizar una Casa para Mascotas Premium con Paneles PIR.",
     },
-    "metalMad": {
-        "b2bClient": "¡Hola! Soy un cliente B2B de MetalMad y quiero cotizar un proyecto."
+    metalMad: {
+      b2bClient: "¡Hola! Soy un cliente B2B de MetalMad y quiero cotizar un proyecto.",
     },
-    "modularesKingspan": {
-        "b2bClient": "¡Hola! Soy un cliente B2B de Modulares Kingspan y quiero una cotización.",
-        "quotation": "¡Hola! Quiero solicitar un presupuesto por m2 para Oficinas Modulares Kingspan."
+    modularesKingspan: {
+      b2bClient: "¡Hola! Soy un cliente B2B de Modulares Kingspan y quiero una cotización.",
+      quotation: "¡Hola! Quiero solicitar un presupuesto por m2 para Oficinas Modulares Kingspan.",
     },
-    "motorLogistico": {
-        "internationalLogistics": "¡Hola! Me interesa el Motor Logístico Internacional."
+    motorLogistico: {
+      internationalLogistics: "¡Hola! Me interesa el Motor Logístico Internacional.",
     },
-    "motorSaas": {
-        "saasClient": "¡Hola! Me interesa el Motor SaaS para mi empresa."
+    motorSaas: {
+      saasClient: "¡Hola! Me interesa el Motor SaaS para mi empresa.",
     },
-    "sos": {
-        "basicPlan": "¡Hola Oscar! Quiero suscribirme al plan AYCweb OS Básico (USD $50/mes) para sistematizar mi empresa.",
-        "proPlan": "¡Hola Oscar! Quiero el plan AYCweb OS Pro (USD $100/mes) con dashboard y automatizaciones avanzadas."
+    sos: {
+      basicPlan:
+        "¡Hola Oscar! Quiero suscribirme al plan AYCweb OS Básico (USD $50/mes) para sistematizar mi empresa.",
+      proPlan:
+        "¡Hola Oscar! Quiero el plan AYCweb OS Pro (USD $100/mes) con dashboard y automatizaciones avanzadas.",
     },
-    "os": {
-        "planInquiry": "Hola Oscar. Estoy en aycweb.com/os y quiero que me asesores sobre cuál plan me conviene."
-    }
-  }
+    os: {
+      planInquiry:
+        "Hola Oscar. Estoy en aycweb.com/os y quiero que me asesores sobre cuál plan me conviene.",
+    },
+  },
 };
+
+/**
+ * Genera un link de WhatsApp con mensaje pre-armado.
+ * @param message - Texto del mensaje (sin encodear)
+ * @returns URL completa de wa.me
+ */
+export function buildWaLink(message: string): string {
+  return `${AYCWEB_CONTACT.waBaseUrl}?text=${encodeURIComponent(message)}`;
+}

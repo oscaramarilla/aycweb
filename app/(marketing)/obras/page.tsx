@@ -1,23 +1,34 @@
-"use client";
+import type { Metadata } from "next";
+import { AYCWEB_CONTACT } from "@/lib/config/contact";
+
+export const metadata: Metadata = {
+  title: "Obras en Producción | Automatización B2B Real | AYCweb",
+  description:
+    "Mirá nuestros sistemas operando en la industria real: cotizadores automáticos, generación de PDFs, embudos B2B y motores operativos para empresas en Paraguay.",
+};
+
+const whatsappNumber = AYCWEB_CONTACT.whatsappNumber;
+const whatsappMsg = encodeURIComponent(
+  "Hola Oscar. Estuve viendo las obras de AYCweb y quiero ese nivel de automatización en mi negocio."
+);
+
+// Tu video principal (El ecosistema completo)
+const mainVideo = {
+  id: "bltpfwxpwoQ",
+  title: "El Ecosistema Operativo B2B en Acción",
+  description:
+    "Trazabilidad total: desde la captación del lead hasta la firma del documento, 100% automatizado.",
+};
+
+// Los 4 videos secundarios
+const secondaryVideos = [
+  { id: "vOCqg_zctec", title: "Motor Cotizador B2B", tag: "Logística & B2B" },
+  { id: "nuOeyANqlH8", title: "Contratos B2C", tag: "Legal & Automático" },
+  { id: "JBvZd0uXbzQ", title: "Cálculo de Plásticos", tag: "Manufactura" },
+  { id: "hcZL2UUKGsU", title: "Sistemas Desplegados", tag: "Portafolio Real" },
+];
 
 export default function ObrasPage() {
-  const whatsappNumber = "595985864209";
-  const whatsappMsg = encodeURIComponent("Hola Oscar. Estuve viendo las obras de AYCweb y quiero ese nivel de automatización en mi negocio.");
-
-  // Tu video principal (El ecosistema completo)
-  const mainVideo = { 
-    id: "bltpfwxpwoQ", 
-    title: "El Ecosistema Operativo B2B en Acción",
-    description: "Trazabilidad total: desde la captación del lead hasta la firma del documento, 100% automatizado."
-  };
-
-  // Los 4 videos secundarios
-  const secondaryVideos = [
-    { id: "vOCqg_zctec", title: "Motor Cotizador B2B", tag: "Logística & B2B" },
-    { id: "nuOeyANqlH8", title: "Contratos B2C", tag: "Legal & Automático" },
-    { id: "JBvZd0uXbzQ", title: "Cálculo de Plásticos", tag: "Manufactura" },
-    { id: "hcZL2UUKGsU", title: "Sistemas Desplegados", tag: "Portafolio Real" },
-  ];
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-950 text-slate-50 font-sans relative overflow-hidden pb-24">

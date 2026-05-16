@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { buildWaLink, AYCWEB_CONTACT } from "@/lib/config/contact";
 
-const WA_CTA = "https://wa.me/595985864209?text=Hola%20Oscar,%20quiero%20agendar%20una%20Auditor%C3%ADa%20B2B.";
+const WA_CTA = buildWaLink(AYCWEB_CONTACT.globalMessages.auditB2B);
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
