@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claves, certificados y archivos sensibles — NUNCA subir al repositorio
+llave-aycweb
+*.pfx
+*.p12
+*.key
+*.crt
+*.cer
