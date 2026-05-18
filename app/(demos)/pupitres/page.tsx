@@ -1,339 +1,868 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
-import { 
-  ShieldCheck, TrendingDown, BookOpen, CheckCircle2, 
-  MessageCircle, Download, Wrench, ArrowRight, XCircle, Hammer
-} from 'lucide-react';
+import React, { useMemo, useState } from "react";
+import Image from "next/image";
+import {
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  Download,
+  Factory,
+  Hammer,
+  MessageCircle,
+  Minus,
+  Plus,
+  RotateCcw,
+  ShieldCheck,
+  TrendingDown,
+  Truck,
+  Wrench,
+  XCircle,
+} from "lucide-react";
+
+type ProductId = "ciclo1" | "ciclo2" | "ciclo3";
+
+type Product = {
+  id: ProductId;
+  title: string;
+  model: string;
+  price: number;
+  image: string;
+  alt: string;
+  description: string;
+};
+
+type Quantities = Record<ProductId, number>;
+
+const WHATSAPP_NUMBER = "595982855219";
+
+const BULK_PRICE = 530000;
+const BULK_THRESHOLD = 30;
+
+const PRODUCTS: Product[] = [
+  {
+    id: "ciclo1",
+    title: "1er Ciclo",
+    model: "CJA-03/04",
+    price: 760000,
+    image: "/images/pupitres/pupitre-primer-ciclo-cja-0304.webp",
+    alt: "Pupitre escolar para primer ciclo modelo CJA-03/04 fabricado en Paraguay",
+    description: "Altura adaptada para los primeros años escolares.",
+  },
+  {
+    id: "ciclo2",
+    title: "2do Ciclo",
+    model: "CJA-04/05",
+    price: 790000,
+    image: "/images/pupitres/pupitre-segundo-ciclo-cja-0405.webp",
+    alt: "Pupitre escolar para segundo ciclo modelo CJA-04/05 fabricado en Paraguay",
+    description: "Diseñado para aulas de educación escolar básica.",
+  },
+  {
+    id: "ciclo3",
+    title: "3er Ciclo y Nivel Medio",
+    model: "CJA-05",
+    price: 810000,
+    image: "/images/pupitres/pupitre-tercer-ciclo-nivel-medio.webp",
+    alt: "Pupitre escolar para tercer ciclo y nivel medio fabricado en Paraguay",
+    description: "Formato robusto para estudiantes mayores y uso intensivo.",
+  },
+];
+
+const INITIAL_QUANTITIES: Quantities = {
+  ciclo1: 0,
+  ciclo2: 0,
+  ciclo3: 0,
+};
+
+const PRESETS: Array<{
+  label: string;
+  description: string;
+  quantities: Quantities;
+}> = [
+  {
+    label: "Aula chica",
+    description: "20 conjuntos",
+    quantities: {
+      ciclo1: 8,
+      ciclo2: 8,
+      ciclo3: 4,
+    },
+  },
+  {
+    label: "Aula estándar",
+    description: "30 conjuntos",
+    quantities: {
+      ciclo1: 10,
+      ciclo2: 10,
+      ciclo3: 10,
+    },
+  },
+  {
+    label: "Institución",
+    description: "100 conjuntos",
+    quantities: {
+      ciclo1: 35,
+      ciclo2: 35,
+      ciclo3: 30,
+    },
+  },
+];
+
+function formatGs(value: number) {
+  return new Intl.NumberFormat("es-PY", {
+    style: "currency",
+    currency: "PYG",
+    maximumFractionDigits: 0,
+  }).format(value);
+}
+
+function safeQuantity(value: number) {
+  if (!Number.isFinite(value)) return 0;
+  return Math.max(0, Math.floor(value));
+}
 
 export default function MobiliarioEscolarFunnel() {
-  // Estados para la calculadora
-  const [qtyCiclo1, setQtyCiclo1] = useState(0); 
-  const [qtyCiclo2, setQtyCiclo2] = useState(0); 
-  const [qtyCiclo3, setQtyCiclo3] = useState(0); 
+  const [quantities, setQuantities] = useState<Quantities>(INITIAL_QUANTITIES);
 
-  // Precios base y Mayorista (Lógica B2B)
-  const PRICE_CICLO_1 = 760000;
-  const PRICE_CICLO_2 = 790000;
-  const PRICE_CICLO_3 = 810000;
-  const BULK_PRICE = 530000;
-  const BULK_THRESHOLD = 30;
-
-  // Motor de Cálculo Automatizado
   const calculations = useMemo(() => {
-    const totalQty = qtyCiclo1 + qtyCiclo2 + qtyCiclo3;
+    const totalQty = PRODUCTS.reduce((sum, product) => {
+      return sum + quantities[product.id];
+    }, 0);
+
+    const standardTotal = PRODUCTS.reduce((sum, product) => {
+      return sum + quantities[product.id] * product.price;
+    }, 0);
+
     const isBulk = totalQty >= BULK_THRESHOLD;
-    
-    const standardTotal = (qtyCiclo1 * PRICE_CICLO_1) + (qtyCiclo2 * PRICE_CICLO_2) + (qtyCiclo3 * PRICE_CICLO_3);
-    const finalTotal = isBulk ? (totalQty * BULK_PRICE) : standardTotal;
-    const savings = standardTotal - finalTotal;
+    const finalTotal = isBulk ? totalQty * BULK_PRICE : standardTotal;
+    const savings = Math.max(0, standardTotal - finalTotal);
     const unitsToDiscount = isBulk ? 0 : BULK_THRESHOLD - totalQty;
+    const averageUnitPrice = totalQty > 0 ? Math.round(finalTotal / totalQty) : 0;
 
-    return { totalQty, isBulk, standardTotal, finalTotal, savings, unitsToDiscount };
-  }, [qtyCiclo1, qtyCiclo2, qtyCiclo3]);
+    return {
+      totalQty,
+      standardTotal,
+      isBulk,
+      finalTotal,
+      savings,
+      unitsToDiscount,
+      averageUnitPrice,
+    };
+  }, [quantities]);
 
-  // Redirección a WhatsApp con formato exacto
+  const updateQuantity = (id: ProductId, value: number) => {
+    setQuantities((current) => ({
+      ...current,
+      [id]: safeQuantity(value),
+    }));
+  };
+
+  const adjustQuantity = (id: ProductId, delta: number) => {
+    setQuantities((current) => ({
+      ...current,
+      [id]: safeQuantity(current[id] + delta),
+    }));
+  };
+
+  const applyPreset = (preset: Quantities) => {
+    setQuantities(preset);
+  };
+
+  const clearCalculator = () => {
+    setQuantities(INITIAL_QUANTITIES);
+  };
+
   const handleWhatsApp = () => {
-    const text = `Hola Oscar. Vengo de la web. Quiero equipar mi institución con mobiliario escolar. \n\nCantidades:\n- 1er Ciclo: ${qtyCiclo1}\n- 2do Ciclo: ${qtyCiclo2}\n- 3er Ciclo/Medio: ${qtyCiclo3}\n\nTotal unidades: ${calculations.totalQty}\nCotización estimada: Gs. ${calculations.finalTotal.toLocaleString('es-PY')}`;
-    window.open(`https://wa.me/595982855219?text=${encodeURIComponent(text)}`, '_blank');
+    if (calculations.totalQty === 0) return;
+
+    const lines = PRODUCTS.map((product) => {
+      return `- ${product.title} ${product.model}: ${quantities[product.id]}`;
+    }).join("\n");
+
+    const text = `
+Hola, vengo de AYCweb / Metal Mad.
+
+Quiero solicitar un presupuesto formal de mobiliario escolar para una institución.
+
+Cantidades estimadas:
+${lines}
+
+Total de conjuntos: ${calculations.totalQty}
+Inversión estimada: ${formatGs(calculations.finalTotal)}
+Precio promedio por conjunto: ${formatGs(calculations.averageUnitPrice)}
+
+${
+  calculations.isBulk
+    ? `Tarifa institucional aplicada: ${formatGs(BULK_PRICE)} por conjunto.`
+    : `Faltan ${calculations.unitsToDiscount} conjuntos para acceder a la tarifa institucional desde ${BULK_THRESHOLD} unidades.`
+}
+
+Necesito confirmar disponibilidad, plazo de entrega, condiciones de pago y logística.
+    `.trim();
+
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-800">
-      
-      {/* 1. HERO SECTION - Primer Impacto SEO */}
-      <section className="relative bg-slate-900 text-white pt-24 pb-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <img 
-            src="/images/pupitres-escolares-paraguay-aulas-asuncion.jpg" 
-            alt="Aulas equipadas con pupitres escolares en Asunción Paraguay" 
-            className="w-full h-full object-cover"
+    <main className="min-h-screen bg-white font-sans text-slate-800">
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-slate-950 px-4 pb-28 pt-24 text-white md:pb-36">
+        <div className="absolute inset-0 opacity-35">
+          <Image
+            src="/images/pupitres/hero-aula-equipada-pupitres-escolares-paraguay.webp"
+            alt="Aula equipada con pupitres escolares fabricados en Paraguay"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-900/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-950/30" />
         </div>
-        
-        <div className="relative max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <span className="inline-block bg-amber-500 text-slate-900 font-bold px-3 py-1 rounded-full text-xs uppercase tracking-wider shadow-lg">
-              Fábrica Directa en Paraguay
+
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1.1fr_0.9fr]">
+          <div className="space-y-7">
+            <span className="inline-flex rounded-full bg-amber-400 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-slate-950 shadow-lg shadow-amber-500/20">
+              Fábrica directa en Paraguay
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
-              Mobiliario Escolar <span className="text-amber-400">de Alto Rendimiento</span> para Instituciones Exigentes.
-            </h1>
-            <p className="text-lg md:text-xl text-slate-300">
-              Conjuntos ergonómicos con acero reforzado, diseñados para resistir generaciones. Precio directo de fábrica, desde Lambaré a todo el país.
+
+            <div className="space-y-5">
+              <h1 className="text-4xl font-black leading-tight md:text-6xl">
+                Mobiliario escolar{" "}
+                <span className="text-amber-400">de alto rendimiento</span>{" "}
+                para instituciones exigentes.
+              </h1>
+
+              <p className="max-w-2xl text-lg leading-relaxed text-slate-300 md:text-xl">
+                Conjuntos ergonómicos con estructura metálica reforzada,
+                diseñados para resistir años de uso escolar intensivo. Precio
+                directo de fábrica, desde Lambaré para todo Paraguay.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-4 sm:flex-row">
+              <a
+                href="#cotizador"
+                className="rounded-xl bg-amber-400 px-8 py-4 text-center text-lg font-black text-slate-950 shadow-lg shadow-amber-500/20 transition hover:bg-amber-300"
+              >
+                Cotizar equipamiento
+              </a>
+
+              <a
+                href="/docs/pupitres/ficha-tecnica-mobiliario-escolar-metal-mad.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/10 px-8 py-4 text-center font-bold text-white backdrop-blur transition hover:bg-white/15"
+              >
+                <Download size={20} />
+                Ver ficha técnica
+              </a>
+            </div>
+
+            <div className="grid gap-3 pt-4 text-sm text-slate-300 sm:grid-cols-3">
+              <TrustPill icon={<Factory size={18} />} text="Fabricación nacional" />
+              <TrustPill icon={<ShieldCheck size={18} />} text="Garantía directa" />
+              <TrustPill icon={<Truck size={18} />} text="Entrega coordinada" />
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-white/10 p-6 shadow-2xl backdrop-blur">
+            <p className="mb-4 text-sm font-black uppercase tracking-[0.22em] text-amber-300">
+              Compra institucional
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <a href="#cotizador" className="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-4 px-8 rounded-xl text-center transition-colors text-lg shadow-lg shadow-amber-500/20">
-                Cotizar Equipamiento
-              </a>
-              <a href="/manual-tecnico.pdf" target="_blank" className="bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 font-semibold py-4 px-8 rounded-xl text-center flex items-center justify-center gap-2 transition-colors">
-                <Download size={20} /> Ficha Técnica
-              </a>
+
+            <div className="space-y-4">
+              <HeroMetric label="Desde 30 unidades" value={formatGs(BULK_PRICE)} />
+              <HeroMetric label="Presupuesto formal" value="WhatsApp directo" />
+              <HeroMetric label="Aplicación ideal" value="Aulas completas" />
+            </div>
+
+            <div className="mt-6 rounded-2xl bg-slate-950/70 p-5 text-sm leading-relaxed text-slate-300">
+              El objetivo no es vender un pupitre aislado. El objetivo es
+              equipar aulas completas con una solución durable, clara y fácil de
+              presupuestar.
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. PRUEBA SOCIAL - Logos de Colegios */}
-      <section className="border-b bg-slate-50 py-12 relative -mt-10 z-10">
-        <div className="max-w-6xl mx-auto px-4 bg-white rounded-2xl shadow-lg py-8 border border-slate-100 text-center">
-          <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Infraestructura elegida por instituciones de alto nivel</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale font-bold text-xl text-slate-300">
-            {/* Reemplazar estos textos por imágenes de logos <img src="..." className="h-12 object-contain" /> */}
-            <span>COLEGIO CLIENTE 1</span>
-            <span>COLEGIO CLIENTE 2</span>
-            <span>COLEGIO CLIENTE 3</span>
-            <span>+20 AULAS EQUIPADAS</span>
+      {/* BLOQUE DE CONFIANZA */}
+      <section className="relative z-10 -mt-12 border-b bg-slate-50 px-4 pb-12">
+        <div className="mx-auto max-w-6xl rounded-3xl border border-slate-100 bg-white p-8 text-center shadow-xl">
+          <p className="mb-6 text-sm font-black uppercase tracking-[0.22em] text-slate-400">
+            Infraestructura pensada para instituciones educativas
+          </p>
+
+          <div className="grid gap-4 text-sm font-black uppercase tracking-wide text-slate-500 md:grid-cols-4">
+            <span className="rounded-2xl bg-slate-50 p-4">
+              Fabricación nacional
+            </span>
+            <span className="rounded-2xl bg-slate-50 p-4">
+              Proyectos por aula completa
+            </span>
+            <span className="rounded-2xl bg-slate-50 p-4">
+              Presupuesto formal
+            </span>
+            <span className="rounded-2xl bg-slate-50 p-4">
+              Entrega institucional
+            </span>
           </div>
         </div>
       </section>
 
-      {/* 3. EL DOLOR DEL CLIENTE - Contraste */}
-      <section className="py-24 px-4 max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Como dueños de colegios, sabemos que el mobiliario sufre.</h2>
-          <p className="text-slate-600 max-w-3xl mx-auto text-lg">Invertir en conjuntos endebles significa recomprar cada año. Nuestra ingeniería elimina el recambio anual resolviendo los problemas críticos de la infraestructura educativa.</p>
+      {/* DOLOR */}
+      <section className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-24 md:grid-cols-2">
+        <div className="relative overflow-hidden rounded-3xl border border-slate-200 shadow-2xl">
+          <Image
+            src="/images/pupitres/comparativa-pupitre-economico-vs-reforzado.webp"
+            alt="Comparativa entre pupitre económico y pupitre escolar reforzado"
+            width={1200}
+            height={850}
+            className="h-full w-full object-cover"
+          />
+
+          <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-red-500 px-3 py-1 text-xs font-black uppercase text-white shadow-md">
+            <XCircle size={14} />
+            Recambio constante
+          </div>
+
+          <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full bg-emerald-500 px-3 py-1 text-xs font-black uppercase text-white shadow-md">
+            <CheckCircle2 size={14} />
+            Inversión durable
+          </div>
         </div>
-        
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative">
-            <img 
-              src="/images/comparativa-calidad-pupitres-escolares-paraguay.jpg" 
-              alt="Comparativa de pupitres de mala calidad vs acero reforzado AYC" 
-              className="w-full rounded-2xl shadow-2xl border border-slate-200"
+
+        <div>
+          <span className="mb-4 inline-flex rounded-full bg-amber-100 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-amber-700">
+            El problema real
+          </span>
+
+          <h2 className="mb-5 text-3xl font-black leading-tight text-slate-950 md:text-5xl">
+            El mobiliario escolar barato termina saliendo caro.
+          </h2>
+
+          <p className="mb-10 text-lg leading-relaxed text-slate-600">
+            Cuando una institución compra conjuntos endebles, el costo no
+            termina en la primera factura: aparecen reparaciones, reposiciones,
+            reclamos, aulas incompletas y pérdida de imagen frente a los padres.
+          </p>
+
+          <div className="space-y-6">
+            <FeatureItem
+              icon={<ShieldCheck size={28} />}
+              iconClassName="bg-amber-100 text-amber-700"
+              title="Garantía directa"
+              text="Respondemos como fabricantes. Sin capas innecesarias entre la institución y el proveedor."
             />
-            {/* Etiquetas sobre la imagen para enfatizar el contraste */}
-            <div className="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-md">
-              <XCircle size={14}/> Estándar
-            </div>
-            <div className="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-md">
-              <CheckCircle2 size={14}/> Calidad AYC
-            </div>
-          </div>
-          
-          <div className="space-y-8">
-            <div className="flex gap-4 items-start">
-              <div className="bg-amber-100 p-4 rounded-xl text-amber-700 shrink-0">
-                <ShieldCheck size={28} />
-              </div>
-              <div>
-                <h3 className="font-bold text-xl mb-1">2 Años de Garantía Real</h3>
-                <p className="text-slate-600">Respondemos directamente nosotros. Sin intermediarios, asegurando que tu inversión inicial esté protegida legalmente.</p>
-              </div>
-            </div>
-            <div className="flex gap-4 items-start">
-              <div className="bg-slate-100 p-4 rounded-xl text-slate-700 shrink-0">
-                <Hammer size={28} />
-              </div>
-              <div>
-                <h3 className="font-bold text-xl mb-1">Acero Reforzado</h3>
-                <p className="text-slate-600">Chasis tubular que no se dobla, no se agrieta y mantiene su estabilidad frente al balanceo diario de los estudiantes.</p>
-              </div>
-            </div>
-            <div className="flex gap-4 items-start">
-              <div className="bg-blue-100 p-4 rounded-xl text-blue-700 shrink-0">
-                <BookOpen size={28} />
-              </div>
-              <div>
-                <h3 className="font-bold text-xl mb-1">Inclusión y Ergonomía</h3>
-                <p className="text-slate-600">Alturas adaptadas por ciclo escolar y cumplimiento estricto con las normativas de Mesas Accesibles (MA-02).</p>
-              </div>
-            </div>
+
+            <FeatureItem
+              icon={<Hammer size={28} />}
+              iconClassName="bg-slate-100 text-slate-700"
+              title="Estructura metálica reforzada"
+              text="Chasis tubular pensado para reducir deformaciones, fisuras y pérdida de estabilidad frente al uso diario."
+            />
+
+            <FeatureItem
+              icon={<BookOpen size={28} />}
+              iconClassName="bg-blue-100 text-blue-700"
+              title="Ergonomía por ciclo"
+              text="Modelos adaptados para diferentes niveles educativos, con opción de mesas accesibles para inclusión."
+            />
           </div>
         </div>
       </section>
 
-      {/* 4. EL COTIZADOR INTERACTIVO (El Motor de Ventas B2B) */}
-      <section id="cotizador" className="py-24 px-4 bg-slate-900 text-white">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Simulador de Inversión Institucional</h2>
-            <p className="text-lg text-slate-400">Calcula tu presupuesto al instante. Los precios bajan drásticamente al equipar aulas completas.</p>
+      {/* COTIZADOR */}
+      <section id="cotizador" className="bg-slate-950 px-4 py-24 text-white">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-12 text-center">
+            <span className="mb-4 inline-flex rounded-full bg-amber-400 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-slate-950">
+              Simulador institucional
+            </span>
+
+            <h2 className="mb-4 text-3xl font-black md:text-5xl">
+              Calculá la inversión para equipar tus aulas.
+            </h2>
+
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-400">
+              Cargá las cantidades por nivel. Al llegar a 30 unidades, se aplica
+              automáticamente la tarifa institucional para todos los conjuntos.
+            </p>
           </div>
 
-          <div className="bg-white p-6 md:p-10 rounded-2xl shadow-2xl border border-slate-700 text-slate-900">
-            
-            <div className="space-y-4 mb-8">
-              {/* Input Ciclo 1 */}
-              <div className="flex flex-col sm:flex-row justify-between sm:items-center bg-slate-50 p-4 rounded-xl border border-slate-200">
-                <div className="flex items-center gap-4 mb-4 sm:mb-0">
-                  <img src="/images/sillas-mesas-escolares-primer-ciclo-paraguay.jpg" alt="Pupitre 1er Ciclo" className="w-16 h-16 rounded-lg object-cover border border-slate-300 bg-white" />
-                  <div>
-                    <h3 className="font-bold text-slate-800 text-lg">1er Ciclo (CJA-03/04)</h3>
-                    <p className="text-sm text-slate-500 font-medium">Tarifa Minorista: Gs. 760.000 c/u</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-bold text-slate-400 uppercase">Cant:</span>
-                  <input type="number" min="0" value={qtyCiclo1 || ''} onChange={(e) => setQtyCiclo1(Number(e.target.value))} placeholder="0" className="w-24 p-3 border-2 border-slate-300 rounded-lg text-center font-bold text-xl focus:border-amber-500 focus:ring-0 outline-none" />
-                </div>
-              </div>
+          <div className="rounded-3xl border border-slate-700 bg-white p-5 text-slate-950 shadow-2xl md:p-10">
+            <div className="mb-8 grid gap-3 md:grid-cols-4">
+              {PRESETS.map((preset) => (
+                <button
+                  key={preset.label}
+                  type="button"
+                  onClick={() => applyPreset(preset.quantities)}
+                  className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition hover:border-amber-300 hover:bg-amber-50"
+                >
+                  <span className="block font-black text-slate-900">
+                    {preset.label}
+                  </span>
+                  <span className="text-sm font-semibold text-slate-500">
+                    {preset.description}
+                  </span>
+                </button>
+              ))}
 
-              {/* Input Ciclo 2 */}
-              <div className="flex flex-col sm:flex-row justify-between sm:items-center bg-slate-50 p-4 rounded-xl border border-slate-200">
-                <div className="flex items-center gap-4 mb-4 sm:mb-0">
-                  <img src="/images/pupitre-mediano-educacion-basica-fabricante.jpg" alt="Pupitre 2do Ciclo" className="w-16 h-16 rounded-lg object-cover border border-slate-300 bg-white" />
-                  <div>
-                    <h3 className="font-bold text-slate-800 text-lg">2do Ciclo (CJA-04/05)</h3>
-                    <p className="text-sm text-slate-500 font-medium">Tarifa Minorista: Gs. 790.000 c/u</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-bold text-slate-400 uppercase">Cant:</span>
-                  <input type="number" min="0" value={qtyCiclo2 || ''} onChange={(e) => setQtyCiclo2(Number(e.target.value))} placeholder="0" className="w-24 p-3 border-2 border-slate-300 rounded-lg text-center font-bold text-xl focus:border-amber-500 focus:ring-0 outline-none" />
-                </div>
-              </div>
-
-              {/* Input Ciclo 3 */}
-              <div className="flex flex-col sm:flex-row justify-between sm:items-center bg-slate-50 p-4 rounded-xl border border-slate-200">
-                <div className="flex items-center gap-4 mb-4 sm:mb-0">
-                  <img src="/images/pupitre-universitario-colegios-paraguay-cja05.jpg" alt="Pupitre 3er Ciclo y Medio" className="w-16 h-16 rounded-lg object-cover border border-slate-300 bg-white" />
-                  <div>
-                    <h3 className="font-bold text-slate-800 text-lg">3er Ciclo y Nivel Medio</h3>
-                    <p className="text-sm text-slate-500 font-medium">Tarifa Minorista: Gs. 810.000 c/u</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-bold text-slate-400 uppercase">Cant:</span>
-                  <input type="number" min="0" value={qtyCiclo3 || ''} onChange={(e) => setQtyCiclo3(Number(e.target.value))} placeholder="0" className="w-24 p-3 border-2 border-slate-300 rounded-lg text-center font-bold text-xl focus:border-amber-500 focus:ring-0 outline-none" />
-                </div>
-              </div>
+              <button
+                type="button"
+                onClick={clearCalculator}
+                className="flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white p-4 font-black text-slate-500 transition hover:border-slate-300 hover:bg-slate-50"
+              >
+                <RotateCcw size={18} />
+                Limpiar
+              </button>
             </div>
 
-            {/* BARRA DE UPSELLING PSICOLÓGICO */}
+            <div className="mb-8 space-y-4">
+              {PRODUCTS.map((product) => (
+                <ProductRow
+                  key={product.id}
+                  product={product}
+                  quantity={quantities[product.id]}
+                  onChange={(value) => updateQuantity(product.id, value)}
+                  onAdjust={(delta) => adjustQuantity(product.id, delta)}
+                />
+              ))}
+            </div>
+
             <div className="mb-8">
               {calculations.totalQty === 0 ? (
-                <div className="bg-slate-100 border border-slate-200 text-slate-500 p-4 rounded-xl text-center flex items-center justify-center gap-2">
-                  <Wrench size={20} /> Ingresa la cantidad de alumnos para iniciar la simulación.
+                <div className="flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-slate-100 p-5 text-center font-semibold text-slate-500">
+                  <Wrench size={20} />
+                  Ingresá la cantidad de conjuntos para iniciar la simulación.
                 </div>
               ) : !calculations.isBulk ? (
-                <div className="bg-amber-50 border border-amber-300 text-amber-900 p-4 rounded-xl flex items-start gap-4 shadow-inner">
-                  <div className="bg-amber-200 p-2 rounded-full shrink-0"><TrendingDown size={20} className="text-amber-800"/></div>
+                <div className="flex items-start gap-4 rounded-2xl border border-amber-300 bg-amber-50 p-5 text-amber-950 shadow-inner">
+                  <div className="shrink-0 rounded-full bg-amber-200 p-2">
+                    <TrendingDown size={22} />
+                  </div>
+
                   <div>
-                    <h4 className="font-bold text-lg">¡Estás perdiendo el descuento mayorista!</h4>
-                    <p className="text-sm mt-1 text-amber-800">
-                      Te faltan solo <strong>{calculations.unitsToDiscount} conjuntos</strong> para llegar a 30 unidades. 
-                      Alcanzando la meta, el precio de TODOS los conjuntos se desploma a <strong>Gs. 530.000 c/u</strong>.
+                    <h4 className="text-lg font-black">
+                      Estás cerca de la tarifa institucional.
+                    </h4>
+
+                    <p className="mt-1 text-sm leading-relaxed text-amber-900">
+                      Te faltan{" "}
+                      <strong>{calculations.unitsToDiscount} conjuntos</strong>{" "}
+                      para llegar a {BULK_THRESHOLD} unidades. Al alcanzar ese
+                      volumen, todos los conjuntos pasan a{" "}
+                      <strong>{formatGs(BULK_PRICE)} c/u</strong>.
                     </p>
                   </div>
                 </div>
               ) : (
-                <div className="bg-emerald-50 border border-emerald-300 text-emerald-900 p-4 rounded-xl flex items-start gap-4 shadow-inner">
-                  <div className="bg-emerald-200 p-2 rounded-full shrink-0"><CheckCircle2 size={24} className="text-emerald-700"/></div>
+                <div className="flex items-start gap-4 rounded-2xl border border-emerald-300 bg-emerald-50 p-5 text-emerald-950 shadow-inner">
+                  <div className="shrink-0 rounded-full bg-emerald-200 p-2">
+                    <CheckCircle2 size={24} />
+                  </div>
+
                   <div>
-                    <h4 className="font-bold text-lg">¡Tarifa Institucional Desbloqueada!</h4>
-                    <p className="text-sm mt-1">Has superado las 30 unidades. Todos tus conjuntos aplican al costo de fábrica de <strong>Gs. 530.000</strong>.</p>
+                    <h4 className="text-lg font-black">
+                      Tarifa institucional desbloqueada.
+                    </h4>
+
+                    <p className="mt-1 text-sm leading-relaxed text-emerald-900">
+                      Superaste las {BULK_THRESHOLD} unidades. La simulación ya
+                      aplica el precio institucional de{" "}
+                      <strong>{formatGs(BULK_PRICE)} por conjunto</strong>.
+                    </p>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* TOTALES Y CTA WHATSAPP */}
             <div className="border-t-2 border-slate-100 pt-8">
-              <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+              <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center">
                 <div>
-                  <span className="block text-slate-500 font-bold mb-1 uppercase tracking-wider text-sm">Inversión Total Estimada</span>
-                  <div className="text-4xl md:text-5xl font-black text-slate-900">
-                    Gs. {calculations.finalTotal.toLocaleString('es-PY')}
+                  <span className="mb-1 block text-sm font-black uppercase tracking-[0.18em] text-slate-500">
+                    Inversión total estimada
+                  </span>
+
+                  <div className="text-4xl font-black text-slate-950 md:text-5xl">
+                    {formatGs(calculations.finalTotal)}
                   </div>
+
+                  {calculations.totalQty > 0 && (
+                    <div className="mt-3 text-sm font-bold text-slate-500">
+                      Total: {calculations.totalQty} conjuntos · Promedio:{" "}
+                      {formatGs(calculations.averageUnitPrice)} c/u
+                    </div>
+                  )}
+
                   {calculations.savings > 0 && (
-                    <div className="text-emerald-600 font-bold text-md mt-2 flex items-center gap-1 bg-emerald-50 px-3 py-1 rounded-full inline-flex border border-emerald-200">
-                      <TrendingDown size={18} /> Has ahorrado Gs. {calculations.savings.toLocaleString('es-PY')}
+                    <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-black text-emerald-700">
+                      <TrendingDown size={18} />
+                      Ahorro estimado: {formatGs(calculations.savings)}
                     </div>
                   )}
                 </div>
-                
-                <button 
+
+                <button
+                  type="button"
                   onClick={handleWhatsApp}
                   disabled={calculations.totalQty === 0}
-                  className="w-full md:w-auto bg-[#25D366] hover:bg-[#20bd5a] disabled:bg-slate-200 disabled:text-slate-400 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg flex items-center justify-center gap-3 text-lg"
+                  className="flex w-full items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-8 py-5 text-lg font-black text-white shadow-lg transition hover:bg-[#20bd5a] disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400 md:w-auto"
                 >
                   <MessageCircle size={24} />
-                  Solicitar Presupuesto Formal
+                  Solicitar presupuesto formal
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* 5. ESPECIFICACIONES TÉCNICAS */}
-      <section className="py-24 px-4 bg-slate-50">
-        <div className="max-w-6xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Fabricación: Materiales que marcan la diferencia.</h2>
-          <p className="text-slate-600 max-w-2xl mx-auto text-lg">No somos revendedores, somos industriales. Nuestro mobiliario no requiere recambio anual porque está fabricado con especificaciones técnicas superiores.</p>
+      {/* ESPECIFICACIONES */}
+      <section className="bg-slate-50 px-4 py-24">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="mb-4 inline-flex rounded-full bg-amber-100 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-amber-700">
+            Fabricación
+          </span>
+
+          <h2 className="mb-4 text-3xl font-black text-slate-950 md:text-5xl">
+            Materiales que marcan la diferencia.
+          </h2>
+
+          <p className="text-lg leading-relaxed text-slate-600">
+            No somos revendedores: fabricamos mobiliario pensado para uso
+            institucional, con estructura metálica, terminación resistente y
+            posibilidad de adaptar lotes por necesidad del proyecto.
+          </p>
         </div>
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-          <div className="bg-white rounded-2xl shadow-md overflow-hidden border border-slate-200">
-            <img src="/images/estructura-acero-pupitres-reforzados-metal-mad.jpg" alt="Soldadura MIG en estructuras de acero" className="w-full h-48 object-cover bg-slate-200" />
-            <div className="p-6">
-              <h3 className="font-bold text-xl mb-2 flex items-center gap-2"><CheckCircle2 className="text-amber-500" size={20}/> Soldadura MIG Continua</h3>
-              <p className="text-slate-600 text-sm">Chasis tubular ensamblado sin puntos débiles. Evita fisuras estructurales en las bases de apoyo críticas.</p>
-            </div>
+        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
+          <SpecCard
+            image="/images/pupitres/soldadura-mig-estructura-pupitre.webp"
+            alt="Soldadura MIG en estructura de pupitre escolar"
+            title="Soldadura MIG continua"
+            text="Chasis tubular ensamblado para reducir puntos débiles en zonas críticas de apoyo y movimiento."
+          />
+
+          <SpecCard
+            image="/images/pupitres/pintura-epoxi-horneada-pupitre.webp"
+            alt="Pintura epoxi horneada en mobiliario escolar"
+            title="Pintura epoxi horneada"
+            text="Terminación electrostática pensada para mejorar la resistencia frente a limpieza frecuente, roce y desgaste diario."
+          />
+
+          <SpecCard
+            image="/images/pupitres/mesa-accesible-ma02.webp"
+            alt="Mesa accesible para institución educativa"
+            title="Opción de mesa accesible"
+            text="Disponibilidad de modelos accesibles para instituciones que necesitan contemplar inclusión y movilidad."
+          />
+        </div>
+      </section>
+
+      {/* PROCESO */}
+      <section className="bg-white px-4 py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-14 text-center">
+            <span className="mb-4 inline-flex rounded-full bg-slate-100 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-slate-600">
+              Proceso de compra
+            </span>
+
+            <h2 className="text-3xl font-black text-slate-950 md:text-5xl">
+              De la cotización a la entrega, sin vueltas.
+            </h2>
           </div>
-          <div className="bg-white rounded-2xl shadow-md overflow-hidden border border-slate-200">
-            <img src="/images/fabrica-mobiliario-escolar-pintura-epoxi-lambare.jpg" alt="Pintura electroestática epoxi horneada" className="w-full h-48 object-cover bg-slate-200" />
-            <div className="p-6">
-              <h3 className="font-bold text-xl mb-2 flex items-center gap-2"><CheckCircle2 className="text-amber-500" size={20}/> Pintura Epoxi a 180°C</h3>
-              <p className="text-slate-600 text-sm">Recubrimiento electroestático horneado que resiste rayones profundos, solventes de limpieza y nunca se descascara.</p>
-            </div>
-          </div>
-          <div className="bg-white rounded-2xl shadow-md overflow-hidden border border-slate-200">
-            {/* Si no tienes una 3ra imagen, este diseño sin foto también funciona perfecto para balancear */}
-            <div className="h-48 bg-slate-900 flex items-center justify-center text-white p-6 text-center flex-col gap-4">
-               <BookOpen size={48} className="text-amber-500" />
-               <span className="font-bold text-lg">Cumplimiento MA-02</span>
-            </div>
-            <div className="p-6">
-              <h3 className="font-bold text-xl mb-2 flex items-center gap-2"><CheckCircle2 className="text-amber-500" size={20}/> Normas de Inclusión</h3>
-              <p className="text-slate-600 text-sm">Cada lote de producción garantiza la disponibilidad de Mesas Accesibles (MA-02) para usuarios en silla de ruedas.</p>
-            </div>
+
+          <div className="grid gap-6 md:grid-cols-4">
+            <ProcessStep
+              number="01"
+              title="Cotización"
+              text="Calculás el volumen estimado y enviás la solicitud por WhatsApp."
+            />
+            <ProcessStep
+              number="02"
+              title="Confirmación técnica"
+              text="Validamos modelos, cantidades, colores, medidas y destino."
+            />
+            <ProcessStep
+              number="03"
+              title="Producción"
+              text="Se programa el lote según volumen y condiciones acordadas."
+            />
+            <ProcessStep
+              number="04"
+              title="Entrega"
+              text="Coordinamos logística para que el mobiliario llegue a la institución."
+            />
           </div>
         </div>
       </section>
 
-      {/* 6. PREGUNTAS FRECUENTES (SEO Long-Tail) */}
-      <section className="py-24 px-4 bg-white border-t border-slate-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-900">Preguntas Frecuentes Institucionales</h2>
-          
-          <div className="space-y-6">
-            <div className="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200 hover:border-amber-300 transition-colors">
-              <h4 className="font-bold text-xl flex items-center gap-3 mb-3 text-slate-800">
-                <ArrowRight size={20} className="text-amber-500 shrink-0"/> 
-                ¿Hacen entregas de pupitres escolares en todo Paraguay?
-              </h4>
-              <p className="text-slate-600 pl-8 leading-relaxed">
-                Sí, coordinamos logística directamente desde nuestra fábrica en Lambaré para proveer a colegios privados, universidades e institutos en todo el territorio nacional, asegurando que el producto llegue intacto a su institución.
-              </p>
-            </div>
+      {/* FAQ */}
+      <section className="border-t border-slate-100 bg-white px-4 py-24">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="mb-12 text-center text-3xl font-black text-slate-950 md:text-5xl">
+            Preguntas frecuentes institucionales
+          </h2>
 
-            <div className="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200 hover:border-amber-300 transition-colors">
-              <h4 className="font-bold text-xl flex items-center gap-3 mb-3 text-slate-800">
-                <ArrowRight size={20} className="text-amber-500 shrink-0"/> 
-                ¿Qué incluye exactamente la garantía de 2 años?
-              </h4>
-              <p className="text-slate-600 pl-8 leading-relaxed">
-                Cubre fallas crónicas de manufactura: desprendimientos de soldadura, piezas flojas de origen o pintura que presente defectos. Al ser industria nacional, no dependes de importadores; nosotros respondemos de manera directa e inmediata.
-              </p>
-            </div>
+          <div className="space-y-5">
+            <FaqItem
+              question="¿Hacen entregas de pupitres escolares en todo Paraguay?"
+              answer="Sí. Coordinamos la entrega desde fábrica para instituciones educativas, colegios privados, universidades e institutos dentro del territorio nacional."
+            />
 
-            <div className="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200 hover:border-amber-300 transition-colors">
-              <h4 className="font-bold text-xl flex items-center gap-3 mb-3 text-slate-800">
-                <ArrowRight size={20} className="text-amber-500 shrink-0"/> 
-                ¿Cómo aplico a la tarifa institucional mayorista?
-              </h4>
-              <p className="text-slate-600 pl-8 leading-relaxed">
-                El precio mayorista de Gs. 530.000 se activa de forma automática en el cotizador al alcanzar o superar los 30 conjuntos. Lo mejor es que puedes combinar diferentes tamaños (por ejemplo, 15 conjuntos del ciclo primario y 15 conjuntos del nivel medio) para llegar al cupo.
-              </p>
-            </div>
+            <FaqItem
+              question="¿Desde cuántas unidades aplica la tarifa institucional?"
+              answer={`La tarifa institucional se activa desde ${BULK_THRESHOLD} unidades. A partir de ese volumen, el simulador aplica ${formatGs(BULK_PRICE)} por conjunto.`}
+            />
+
+            <FaqItem
+              question="¿Pueden preparar presupuesto formal para administración o dirección?"
+              answer="Sí. La solicitud por WhatsApp ya llega con cantidades, modelos y total estimado para acelerar la preparación del presupuesto formal."
+            />
+
+            <FaqItem
+              question="¿Tienen modelos por nivel educativo?"
+              answer="Sí. La página separa modelos para 1er ciclo, 2do ciclo, 3er ciclo y nivel medio, con alturas y formatos adecuados para cada etapa."
+            />
+
+            <FaqItem
+              question="¿Se puede ajustar color, cantidad o tipo de lote?"
+              answer="Sí. En pedidos institucionales se pueden revisar condiciones del lote, colores, cantidades, plazos y detalles técnicos antes de confirmar producción."
+            />
           </div>
         </div>
       </section>
 
+      {/* CTA FINAL */}
+      <section className="bg-slate-950 px-4 py-20 text-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 rounded-3xl border border-white/10 bg-white/10 p-8 shadow-2xl backdrop-blur md:flex-row md:items-center md:p-12">
+          <div>
+            <h2 className="mb-3 text-3xl font-black md:text-4xl">
+              Equipá aulas completas con precio institucional.
+            </h2>
+
+            <p className="max-w-2xl text-lg leading-relaxed text-slate-300">
+              Usá el simulador, definí cantidades estimadas y solicitá un
+              presupuesto formal para tu institución.
+            </p>
+          </div>
+
+          <a
+            href="#cotizador"
+            className="rounded-2xl bg-amber-400 px-8 py-5 text-center text-lg font-black text-slate-950 shadow-lg shadow-amber-500/20 transition hover:bg-amber-300"
+          >
+            Ir al cotizador
+          </a>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function ProductRow({
+  product,
+  quantity,
+  onChange,
+  onAdjust,
+}: {
+  product: Product;
+  quantity: number;
+  onChange: (value: number) => void;
+  onAdjust: (delta: number) => void;
+}) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-4">
+          <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+            <Image
+              src={product.image}
+              alt={product.alt}
+              width={160}
+              height={160}
+              className="h-full w-full object-cover"
+            />
+          </div>
+
+          <div>
+            <h3 className="text-lg font-black text-slate-900">
+              {product.title}{" "}
+              <span className="text-slate-500">({product.model})</span>
+            </h3>
+
+            <p className="text-sm font-semibold text-slate-500">
+              {product.description}
+            </p>
+
+            <p className="mt-1 text-sm font-black text-slate-700">
+              Tarifa individual: {formatGs(product.price)} c/u
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between gap-3 sm:justify-end">
+          <button
+            type="button"
+            onClick={() => onAdjust(-1)}
+            className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-300 bg-white text-slate-700 transition hover:bg-slate-100"
+            aria-label={`Restar un conjunto de ${product.title}`}
+          >
+            <Minus size={18} />
+          </button>
+
+          <input
+            type="number"
+            inputMode="numeric"
+            min={0}
+            step={1}
+            value={quantity === 0 ? "" : quantity}
+            onChange={(event) => onChange(Number(event.target.value))}
+            placeholder="0"
+            className="h-12 w-24 rounded-xl border-2 border-slate-300 bg-white text-center text-xl font-black text-slate-950 outline-none transition focus:border-amber-400"
+            aria-label={`Cantidad de ${product.title}`}
+          />
+
+          <button
+            type="button"
+            onClick={() => onAdjust(1)}
+            className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-300 bg-white text-slate-700 transition hover:bg-slate-100"
+            aria-label={`Sumar un conjunto de ${product.title}`}
+          >
+            <Plus size={18} />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => onAdjust(10)}
+            className="hidden rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm font-black text-amber-800 transition hover:bg-amber-100 sm:block"
+          >
+            +10
+          </button>
+        </div>
+      </div>
     </div>
+  );
+}
+
+function TrustPill({
+  icon,
+  text,
+}: {
+  icon: React.ReactNode;
+  text: string;
+}) {
+  return (
+    <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 backdrop-blur">
+      <span className="text-amber-300">{icon}</span>
+      <span className="font-bold">{text}</span>
+    </div>
+  );
+}
+
+function HeroMetric({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/10 p-5">
+      <span className="block text-xs font-black uppercase tracking-[0.18em] text-slate-400">
+        {label}
+      </span>
+      <span className="mt-1 block text-2xl font-black text-white">{value}</span>
+    </div>
+  );
+}
+
+function FeatureItem({
+  icon,
+  iconClassName,
+  title,
+  text,
+}: {
+  icon: React.ReactNode;
+  iconClassName: string;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="flex gap-4">
+      <div className={`shrink-0 rounded-2xl p-4 ${iconClassName}`}>{icon}</div>
+      <div>
+        <h3 className="mb-1 text-xl font-black text-slate-950">{title}</h3>
+        <p className="leading-relaxed text-slate-600">{text}</p>
+      </div>
+    </div>
+  );
+}
+
+function SpecCard({
+  image,
+  alt,
+  title,
+  text,
+}: {
+  image: string;
+  alt: string;
+  title: string;
+  text: string;
+}) {
+  return (
+    <article className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-md">
+      <div className="relative h-56 w-full bg-slate-200">
+        <Image
+          src={image}
+          alt={alt}
+          fill
+          sizes="(min-width: 768px) 33vw, 100vw"
+          className="object-cover"
+        />
+      </div>
+
+      <div className="p-6">
+        <h3 className="mb-2 flex items-center gap-2 text-xl font-black text-slate-950">
+          <CheckCircle2 className="text-amber-500" size={21} />
+          {title}
+        </h3>
+
+        <p className="text-sm leading-relaxed text-slate-600">{text}</p>
+      </div>
+    </article>
+  );
+}
+
+function ProcessStep({
+  number,
+  title,
+  text,
+}: {
+  number: string;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+      <span className="mb-5 inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-black text-white">
+        {number}
+      </span>
+
+      <h3 className="mb-2 text-xl font-black text-slate-950">{title}</h3>
+
+      <p className="text-sm leading-relaxed text-slate-600">{text}</p>
+    </div>
+  );
+}
+
+function FaqItem({ question, answer }: { question: string; answer: string }) {
+  return (
+    <article className="rounded-3xl border border-slate-200 bg-slate-50 p-6 transition hover:border-amber-300 md:p-8">
+      <h3 className="mb-3 flex items-start gap-3 text-xl font-black text-slate-900">
+        <ArrowRight className="mt-1 shrink-0 text-amber-500" size={21} />
+        {question}
+      </h3>
+
+      <p className="pl-8 leading-relaxed text-slate-600">{answer}</p>
+    </article>
   );
 }
