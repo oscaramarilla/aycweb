@@ -17,6 +17,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { locales, getBestLocale } from "./lib/i18n";
 
 const ADMIN_USER = process.env.ADMIN_USER || "admin";
 const ADMIN_PASS = process.env.ADMIN_PASS || "admin";
@@ -80,17 +81,50 @@ function checkCredentials(authorization: string | null): boolean {
 }
 
 export function proxy(req: NextRequest) {
-  // En producción, las variables de entorno son obligatorias
-  if (isProduction && (!process.env.ADMIN_USER || !process.env.ADMIN_PASS)) {
-    return serverErrorResponse(
-      "Protección administrativa no configurada. Establecé ADMIN_USER y ADMIN_PASS en las variables de entorno."
-    );
+  const { pathname } = req.nextUrl;
+
+  // Si la ruta es administrativa, aplicamos autenticación HTTP Basic
+  if (
+    pathname.startsWith("/controlroom") ||
+    pathname.startsWith("/panel") ||
+    pathname.startsWith("/autoppto") ||
+    pathname.startsWith("/legales") ||
+    pathname.startsWith("/admin")
+  ) {
+    // En producción, las variables de entorno son obligatorias
+    if (isProduction && (!process.env.ADMIN_USER || !process.env.ADMIN_PASS)) {
+      return serverErrorResponse(
+        "Protección administrativa no configurada. Establecé ADMIN_USER y ADMIN_PASS en las variables de entorno."
+      );
+    }
+
+    const auth = req.headers.get("authorization");
+
+    if (!checkCredentials(auth)) {
+      return unauthorizedResponse();
+    }
+
+    return NextResponse.next();
   }
 
-  const auth = req.headers.get("authorization");
+  // Lógica i18n: evita rutas estáticas y de Next/_next/api
+  const isIgnored =
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    pathname === "/favicon.ico" ||
+    /\.(?:svg|png|jpg|jpeg|gif|webp|ico)$/.test(pathname);
 
-  if (!checkCredentials(auth)) {
-    return unauthorizedResponse();
+  if (!isIgnored) {
+    const pathnameHasLocale = locales.some(
+      (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+    );
+
+    if (!pathnameHasLocale) {
+      const acceptLanguage = req.headers.get("accept-language");
+      const best = getBestLocale(acceptLanguage);
+      req.nextUrl.pathname = `/${best}${pathname}`;
+      return NextResponse.redirect(req.nextUrl);
+    }
   }
 
   return NextResponse.next();
@@ -103,5 +137,6 @@ export const config = {
     "/autoppto/:path*",
     "/legales/:path*",
     "/admin/:path*",
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
   ],
 };
