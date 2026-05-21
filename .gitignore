@@ -47,3 +47,10 @@ llave-aycweb
 *.key
 *.crt
 *.cer
+
+# Internal/private app
+/aycweb-panel/
+.env
+.env.local
+.env*.local
+.supabase/
