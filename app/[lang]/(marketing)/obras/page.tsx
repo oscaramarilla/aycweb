@@ -2,83 +2,79 @@ import type { Metadata } from "next";
 import { AYCWEB_CONTACT, buildWaLink } from "@/lib/config/contact";
 
 export const metadata: Metadata = {
-  title: "Casos de Estudio B2B | Sistemas Implementados | AYCweb",
+  title: "Casos en Producción | Sistemas Operando | AYCweb",
   description:
-    "Resultados operativos reales: cotizadores automáticos, generación de PDFs, agendamiento con WhatsApp y motores B2B para empresas en Paraguay.",
+    "Sistemas B2B reales operando en empresas de Paraguay: cotizadores automáticos, agendamiento con WhatsApp y calculadoras paramétricas con generación de PDF.",
 };
 
-// ─── DATOS DE CASOS DE ESTUDIO ───────────────────────────────────────────────
+// ─── DATOS DE CASOS EN PRODUCCIÓN ────────────────────────────────────────────
 
 interface CaseStudy {
   id: string;
   tag: string;
   tagColor: string;
-  industry: string;
   client: string;
+  industry: string;
   problem: string;
-  stack: string[];
-  valueFlow: string[];
+  solution: string[];
   result: string;
-  resultMetric?: string;
   ctaMessage: string;
 }
 
 const CASES: CaseStudy[] = [
   {
-    id: "logistica-constructora",
-    tag: "Logística & Construcción",
+    id: "oriplast-mobiliario-escolar",
+    tag: "Mobiliario Escolar B2B",
     tagColor: "blue",
-    industry: "Constructora / Proveedor de materiales",
-    client: "Empresa de materiales de construcción y logística",
+    client: "Oriplast",
+    industry: "Fabricante de pupitres y mesas escolares",
     problem:
-      "El equipo comercial tardaba entre 2 y 4 horas en armar cada cotización manualmente en Excel. Los errores de cálculo eran frecuentes, los PDFs no tenían identidad corporativa y el seguimiento de cada presupuesto dependía de la memoria del vendedor.",
-    stack: [
-      "Next.js (motor de cotización web)",
-      "Generación dinámica de PDF (React-PDF / Puppeteer)",
-      "Lógica de precios por m², etapa y proveedor",
-      "WhatsApp API para envío automático",
-      "Panel interno de historial de cotizaciones",
-    ],
-    valueFlow: [
-      "Lead ingresa datos del proyecto",
-      "Motor calcula precio por etapa y material",
-      "PDF con identidad corporativa generado al instante",
-      "Enviado automáticamente por WhatsApp",
-      "Vendedor recibe alerta y cierra",
+      "El equipo comercial cotizaba lotes de pupitres y mesas de forma manual: planillas Excel, cálculos a mano y respuestas que tardaban horas. Cada error de precio o cantidad generaba retrabajo y pérdida de oportunidades.",
+    solution: [
+      "Cotizador B2B dinámico con lógica de precios por volumen y modelo",
+      "Integración directa con WhatsApp para envío inmediato de la cotización",
+      "Interfaz pensada para el cliente mayorista: rápida y sin fricción",
     ],
     result:
-      "De 3 horas a menos de 4 minutos por cotización. Cero errores de cálculo. El equipo comercial pasó de hacer planillas a cerrar ventas.",
-    resultMetric: "−97% tiempo de cotización",
+      "Respuesta comercial inmediata desde el primer contacto. Cero errores de cálculo. El equipo dejó de hacer planillas y empezó a cerrar ventas.",
     ctaMessage:
-      "Hola Oscar. Vi el caso de la constructora en AYCweb y quiero un sistema de cotización automática con PDF para mi empresa.",
+      "Hola Oscar. Vi el caso de Oriplast en AYCweb y quiero un cotizador B2B dinámico para mi empresa.",
   },
   {
-    id: "clinica-odontologica",
+    id: "dra-bianca-odontologia",
     tag: "Salud & Profesionales",
     tagColor: "emerald",
-    industry: "Clínica Odontológica",
-    client: "Clínica dental con múltiples especialidades",
+    client: "Dra. Bianca",
+    industry: "Odontología",
     problem:
-      "La recepcionista gestionaba turnos por WhatsApp de forma manual, sin filtro previo. Muchos pacientes llegaban sin saber el costo estimado, generando cancelaciones de último momento y tiempo perdido en consultas no calificadas.",
-    stack: [
-      "Formulario de precalificación web (Next.js)",
-      "Lógica de triaje por tipo de tratamiento",
-      "Integración con Google Calendar",
-      "WhatsApp automático de confirmación y recordatorio",
-      "Panel de agenda para la recepcionista",
-    ],
-    valueFlow: [
-      "Paciente completa formulario de precalificación",
-      "Sistema filtra por tipo de tratamiento y urgencia",
-      "Paciente recibe horarios disponibles por WhatsApp",
-      "Confirma turno → entra al calendario automáticamente",
-      "Recordatorio automático 24h antes",
+      "Los turnos y la captación de pacientes estaban dispersos: WhatsApp sin filtro, pacientes que llegaban sin saber el costo estimado y cancelaciones de último momento que dejaban huecos en la agenda.",
+    solution: [
+      "Landing especializada orientada a conversión de pacientes",
+      "Formulario de precalificación que filtra por tipo de tratamiento",
+      "Integración con WhatsApp para confirmación y recordatorio automático",
     ],
     result:
-      "Reducción del 60% en cancelaciones de último momento. La recepcionista dejó de gestionar WhatsApp manualmente y la clínica pasó a recibir solo pacientes precalificados.",
-    resultMetric: "−60% cancelaciones",
+      "Flujo ordenado de pacientes en la agenda. Solo ingresan pacientes precalificados, con expectativas claras y menor tasa de cancelación.",
     ctaMessage:
-      "Hola Oscar. Vi el caso de la clínica odontológica en AYCweb y quiero un sistema de agendamiento con precalificación y WhatsApp para mi consultorio.",
+      "Hola Oscar. Vi el caso de la Dra. Bianca en AYCweb y quiero un sistema de agendamiento con precalificación para mi consultorio.",
+  },
+  {
+    id: "metal-mad-modular-k",
+    tag: "Industria & Construcción",
+    tagColor: "amber",
+    client: "Metal Mad / Modular K",
+    industry: "Estructuras metálicas y cabinas PIR modulares",
+    problem:
+      "Los presupuestos técnicos de estructuras metálicas y cabinas PIR son complejos: múltiples variables, medidas personalizadas y especificaciones difíciles de explicar al cliente sin soporte visual ni documentación clara.",
+    solution: [
+      "Calculadora paramétrica que procesa dimensiones, materiales y configuraciones",
+      "Generación automática de PDF con detalle técnico y presentación comercial",
+      "Flujo de venta corporativa trazable desde la consulta hasta el cierre",
+    ],
+    result:
+      "Venta corporativa más profesional y trazable. El cliente recibe un documento claro, el equipo técnico ahorra horas de armado y el cierre es más rápido.",
+    ctaMessage:
+      "Hola Oscar. Vi el caso de Metal Mad / Modular K en AYCweb y quiero una calculadora paramétrica con generación de PDF para mi empresa.",
   },
 ];
 
@@ -87,27 +83,39 @@ const CASES: CaseStudy[] = [
 const tagStyles: Record<string, string> = {
   blue: "bg-blue-600/10 text-blue-400 border-blue-500/30",
   emerald: "bg-emerald-600/10 text-emerald-400 border-emerald-500/30",
+  amber: "bg-amber-600/10 text-amber-400 border-amber-500/30",
 };
 
 const accentStyles: Record<string, string> = {
   blue: "text-blue-400",
   emerald: "text-emerald-400",
+  amber: "text-amber-400",
 };
 
 const borderHoverStyles: Record<string, string> = {
   blue: "hover:border-blue-500/40",
   emerald: "hover:border-emerald-500/40",
+  amber: "hover:border-amber-500/40",
 };
 
 const ctaStyles: Record<string, string> = {
   blue: "bg-blue-600 hover:bg-blue-500 shadow-[0_0_30px_rgba(37,99,235,0.35)]",
   emerald:
     "bg-emerald-600 hover:bg-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.35)]",
+  amber:
+    "bg-amber-600 hover:bg-amber-500 shadow-[0_0_30px_rgba(217,119,6,0.35)]",
 };
 
 const flowDotStyles: Record<string, string> = {
   blue: "bg-blue-500",
   emerald: "bg-emerald-500",
+  amber: "bg-amber-500",
+};
+
+const resultBorderStyles: Record<string, string> = {
+  blue: "border-blue-500/20",
+  emerald: "border-emerald-500/20",
+  amber: "border-amber-500/20",
 };
 
 // ─── COMPONENTE PRINCIPAL ─────────────────────────────────────────────────────
@@ -125,23 +133,23 @@ export default function ObrasPage() {
       <section className="relative pt-28 pb-12 md:pt-40 md:pb-16 px-6 text-center z-10">
         <div className="max-w-4xl mx-auto">
           <span className="inline-block px-4 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 text-[11px] md:text-xs font-bold uppercase tracking-widest mb-6 shadow-sm">
-            Casos de Estudio B2B
+            Casos en Producción
           </span>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-[1.05] text-white">
-            Sistemas implementados.{" "}
+            Sistemas operando.{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-              Operaciones transformadas.
+              Resultados reales.
             </span>
           </h1>
           <p className="text-base md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
-            No mostramos renders ni promesas genéricas. Acá están los sistemas
-            que construimos, el problema que resolvieron y el resultado
-            comprobable que dejaron.
+            No mostramos renders ni promesas genéricas. Estos son los sistemas
+            que construimos, el problema que resolvieron y el resultado que
+            dejaron en cada empresa.
           </p>
         </div>
       </section>
 
-      {/* ── CASOS DE ESTUDIO ── */}
+      {/* ── CASOS EN PRODUCCIÓN ── */}
       <section className="relative z-10 px-6 mb-20">
         <div className="max-w-5xl mx-auto space-y-12">
           {CASES.map((c, idx) => (
@@ -161,84 +169,59 @@ export default function ObrasPage() {
                     Caso #{String(idx + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <h2 className="text-xl md:text-2xl font-black text-white mb-1">
-                  {c.industry}
+                <h2 className={`text-2xl md:text-3xl font-black mb-1 ${accentStyles[c.tagColor]}`}>
+                  {c.client}
                 </h2>
-                <p className="text-sm text-slate-500">{c.client}</p>
+                <p className="text-sm text-slate-500">{c.industry}</p>
               </div>
 
-              {/* Cuerpo del caso */}
-              <div className="px-6 md:px-10 py-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Columna izquierda */}
-                <div className="space-y-6">
-                  {/* Problema */}
-                  <div>
-                    <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-2">
-                      🔴 El caos anterior
-                    </h3>
-                    <p className="text-slate-300 text-[15px] leading-relaxed">
-                      {c.problem}
-                    </p>
-                  </div>
+              {/* Cuerpo del caso: Problema → Solución → Resultado */}
+              <div className="px-6 md:px-10 py-8 grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                  {/* Stack */}
-                  <div>
-                    <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-3">
-                      ⚙️ Sistema implementado
-                    </h3>
-                    <ul className="space-y-2">
-                      {c.stack.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span
-                            className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${flowDotStyles[c.tagColor]}`}
-                          />
-                          <span className="text-slate-300 text-[14px]">
-                            {item}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                {/* Problema */}
+                <div className="space-y-3">
+                  <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
+                    Problema
+                  </h3>
+                  <p className="text-slate-300 text-[14px] leading-relaxed">
+                    {c.problem}
+                  </p>
                 </div>
 
-                {/* Columna derecha */}
-                <div className="space-y-6">
-                  {/* Flujo de valor */}
-                  <div>
-                    <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-3">
-                      🔄 Flujo de valor
-                    </h3>
-                    <ol className="space-y-2">
-                      {c.valueFlow.map((step, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <span className="shrink-0 w-5 h-5 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-[10px] font-bold text-slate-400">
-                            {i + 1}
-                          </span>
-                          <span className="text-slate-300 text-[14px] leading-snug pt-0.5">
-                            {step}
-                          </span>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
+                {/* Solución */}
+                <div className="space-y-3">
+                  <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
+                    <span className={`w-2 h-2 rounded-full inline-block ${flowDotStyles[c.tagColor]}`} />
+                    Solución
+                  </h3>
+                  <ul className="space-y-2">
+                    {c.solution.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span
+                          className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${flowDotStyles[c.tagColor]}`}
+                        />
+                        <span className="text-slate-300 text-[14px] leading-snug">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-                  {/* Resultado */}
-                  <div className="bg-slate-950/60 rounded-xl border border-slate-800 p-5">
-                    <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-2">
-                      ✅ Resultado visible
-                    </h3>
-                    <p className="text-slate-200 text-[14px] leading-relaxed mb-3">
+                {/* Resultado */}
+                <div className="space-y-3">
+                  <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-green-500 inline-block" />
+                    Resultado
+                  </h3>
+                  <div className={`bg-slate-950/60 rounded-xl border p-4 ${resultBorderStyles[c.tagColor]}`}>
+                    <p className="text-slate-200 text-[14px] leading-relaxed">
                       {c.result}
                     </p>
-                    {c.resultMetric && (
-                      <span
-                        className={`text-2xl font-black ${accentStyles[c.tagColor]}`}
-                      >
-                        {c.resultMetric}
-                      </span>
-                    )}
                   </div>
                 </div>
+
               </div>
 
               {/* CTA por caso */}
