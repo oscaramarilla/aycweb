@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildWaLink } from "@/lib/config/contact";
 
 export const metadata: Metadata = {
   title: "Nuestra Historia | AYCweb",
@@ -6,8 +7,7 @@ export const metadata: Metadata = {
     "AYCweb nació operando en industria, logística y B2B real. Construimos sistemas porque primero sufrimos el caos manual.",
 };
 
-const whatsappNumber = "595985864209";
-const whatsappMsg = encodeURIComponent(
+const waLinkNosotros = buildWaLink(
   "Hola Oscar. Leí la historia de AYCweb y quiero agendar una auditoría operativa."
 );
 
@@ -159,7 +159,7 @@ export default function NosotrosPage() {
             podemos ayudarte a diseñar la infraestructura correcta.
           </p>
           <a
-            href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
+            href={waLinkNosotros}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block rounded-xl bg-blue-600 px-8 py-4 font-black text-white shadow-[0_0_30px_rgba(37,99,235,0.35)] transition hover:bg-blue-500"

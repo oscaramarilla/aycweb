@@ -1,7 +1,9 @@
 "use client";
 
+import { buildWaLink } from "@/lib/config/contact";
+
 export default function LandingAYC() {
-  const whatsappLink = "https://wa.me/595985864209?text=Hola%20Oscar,%20estoy%20en%20AYCweb.%20Me%20interesa%20una%20auditoría%20gratuita%20para%20automatizar%20los%20procesos%20de%20mi%20empresa.";
+  const whatsappLink = buildWaLink("Hola Oscar, estoy en AYCweb. Me interesa una auditoría gratuita para automatizar los procesos de mi empresa.");
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white font-sans selection:bg-blue-500/30">

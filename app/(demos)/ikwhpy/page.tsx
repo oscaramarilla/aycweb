@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import { buildWaLink } from "@/lib/config/contact";
 
 type BenchmarkKey =
   | "worldBusiness"
@@ -171,7 +172,7 @@ export default function InvestorArbitrageDashboard() {
     )} kWh/mes comparada contra ${selectedBenchmark.label}. Vi esto en la calculadora de aycweb.com/kwhcoin.`
   );
 
-  const whatsappUrl = `https://wa.me/595985864209?text=${whatsappText}`;
+  const whatsappUrl = buildWaLink(decodeURIComponent(whatsappText));
 
   return (
     <main className="min-h-screen bg-stone-950 text-stone-100">

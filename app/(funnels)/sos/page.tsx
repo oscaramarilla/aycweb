@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import { buildWaLink } from "@/lib/config/contact";
 
 export const metadata: Metadata = {
   title: "AYCweb OS | El Sistema Operativo para PyMEs",
@@ -7,9 +8,8 @@ export const metadata: Metadata = {
 };
 
 export default function OSLanding() {
-  const whatsappNumber = "595985864209";
-  const whatsappMsgBasic = encodeURIComponent("¡Hola Oscar! Quiero suscribirme al plan AYCweb OS Básico (USD $50/mes) para sistematizar mi empresa.");
-  const whatsappMsgPro = encodeURIComponent("¡Hola Oscar! Quiero el plan AYCweb OS Pro (USD $100/mes) con dashboard y automatizaciones avanzadas.");
+  const whatsappMsgBasic = buildWaLink("¡Hola Oscar! Quiero suscribirme al plan AYCweb OS Básico (USD $50/mes) para sistematizar mi empresa.");
+  const whatsappMsgPro = buildWaLink("¡Hola Oscar! Quiero el plan AYCweb OS Pro (USD $100/mes) con dashboard y automatizaciones avanzadas.");
 
   return (
     <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans pb-24 md:pb-0">
@@ -125,7 +125,7 @@ export default function OSLanding() {
                 <li className="flex items-center gap-3">✅ <span>Derivación de pedidos por WhatsApp (Deep Link)</span></li>
                 <li className="flex items-center gap-3">✅ <span>Soporte técnico directo por WhatsApp</span></li>
               </ul>
-              <a href={`https://wa.me/${whatsappNumber}?text=${whatsappMsgBasic}`} target="_blank" rel="noopener noreferrer" className="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-4 rounded-xl transition-all border border-zinc-700">
+              <a href={whatsappMsgBasic} target="_blank" rel="noopener noreferrer" className="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-4 rounded-xl transition-all border border-zinc-700">
                 Suscribirse al Básico
               </a>
             </div>
@@ -147,7 +147,7 @@ export default function OSLanding() {
                 <li className="flex items-center gap-3">✅ <span>Hasta 3 Cotizadores o Formularios Complejos</span></li>
                 <li className="flex items-center gap-3">✅ <span>Sistema de Agendamiento Automático (Ej. Turnos)</span></li>
               </ul>
-              <a href={`https://wa.me/${whatsappNumber}?text=${whatsappMsgPro}`} target="_blank" rel="noopener noreferrer" className="w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all shadow-lg active:scale-95">
+              <a href={whatsappMsgPro} target="_blank" rel="noopener noreferrer" className="w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all shadow-lg active:scale-95">
                 Suscribirse al Pro
               </a>
             </div>
@@ -157,7 +157,7 @@ export default function OSLanding() {
           <div className="text-center mt-12">
             <p className="text-zinc-500 text-sm">
               ¿Necesitás integraciones con ERP, bases de datos complejas o múltiples usuarios? <br/>
-              <a href={`https://wa.me/${whatsappNumber}?text=Hola! Busco un sistema a medida (Plan Enterprise).`} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Hablemos del Plan Enterprise (A medida)</a>.
+              <a href={buildWaLink("Hola! Busco un sistema a medida (Plan Enterprise).")} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Hablemos del Plan Enterprise (A medida)</a>.
             </p>
           </div>
         </div>

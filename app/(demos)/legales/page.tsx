@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { buildWaLink } from "@/lib/config/contact";
 
 export default function GeneradorContrato() {
   const [datos, setDatos] = useState({
@@ -78,7 +79,7 @@ export default function GeneradorContrato() {
   };
 
   const empresaNombre = datos.empresa || 'mi empresa';
-  const whatsappLink = "https://wa.me/595985864209?text=" + encodeURIComponent("Hola Oscar, ya generé el contrato por el " + datos.servicio + " para " + empresaNombre + ". Te paso el comprobante del anticipo para agendar el inicio del proyecto.");
+  const whatsappLink = buildWaLink("Hola Oscar, ya generé el contrato por el " + datos.servicio + " para " + empresaNombre + ". Te paso el comprobante del anticipo para agendar el inicio del proyecto.");
 
   return (
     <main className="min-h-screen bg-zinc-950 text-zinc-300 font-sans selection:bg-blue-500/30 overflow-x-hidden">

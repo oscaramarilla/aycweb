@@ -28,8 +28,9 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           <span className="inline-block px-4 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 text-[11px] md:text-xs font-bold uppercase tracking-widest mb-6 md:mb-8 shadow-sm">
             Infraestructura Digital para Empresas y Profesionales
           </span>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[1.05] text-white">
-            Tu operación ya no necesita más improvisación. <br className="hidden md:block"/>
+          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-tight md:leading-[1.05] text-white">
+            Tu operación no necesita más improvisación.{" "}
+            <br className="hidden md:block"/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Necesita un sistema.</span>
           </h1>
           <p className="text-base md:text-2xl text-slate-400 mb-8 md:mb-10 max-w-3xl mx-auto font-light leading-relaxed">
@@ -54,6 +55,10 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                 Soy profesional <span className="text-emerald-500">→</span>
               </Link>
             </div>
+
+            <p className="text-xs text-stone-400 mt-4 tracking-wide uppercase font-semibold">
+              Cotizadores · PDFs · WhatsApp · Paneles internos
+            </p>
           </div>
         </div>
       </section>
@@ -81,7 +86,10 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             ))}
             <div className="bg-gradient-to-br from-blue-600/20 to-transparent p-8 rounded-2xl border border-blue-500/20 flex flex-col justify-center items-center text-center">
               <p className="text-white font-bold text-lg mb-2">¿Querés verlo en vivo?</p>
-              <Link href={`/${lang}/obras`} className="text-blue-400 font-bold hover:underline">Ver nuestras obras en producción →</Link>
+              <Link href={`/${lang}/demo-cotizador`} className="text-blue-400 font-bold hover:underline mb-3">
+                Probá el Motor Cotizador B2B →
+              </Link>
+              <Link href={`/${lang}/obras`} className="text-slate-400 text-sm hover:text-slate-200 hover:underline transition-colors">Ver obras en producción →</Link>
             </div>
           </div>
         </div>

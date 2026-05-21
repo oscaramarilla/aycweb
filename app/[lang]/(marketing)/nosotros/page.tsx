@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { buildWaLink } from "@/lib/config/contact";
 
 export default function NosotrosPage() {
   return (
@@ -39,9 +40,7 @@ export default function NosotrosPage() {
           <h2 className="text-2xl font-black mb-3">Hablemos</h2>
           <p className="text-slate-400 mb-6">Si querés entender cómo podemos ayudar tu operación, agendá una llamada.</p>
           <a
-            href={`https://wa.me/595985864209?text=${encodeURIComponent(
-              "Hola Oscar, me interesa conocer al equipo y coordinar una llamada."
-            )}`}
+            href={buildWaLink("Hola Oscar, me interesa conocer al equipo y coordinar una llamada.")}
             className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-3 px-8 rounded-xl"
             target="_blank"
             rel="noopener noreferrer"

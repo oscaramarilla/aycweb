@@ -7,9 +7,8 @@ export const metadata: Metadata = {
     "Cotizadores dinámicos, generación de PDFs y motores operativos para manufactureras, clínicas, agroindustria y distribuidoras en Paraguay.",
 };
 
-const WHATSAPP = "595985864209";
-const waLink = (msg: string) =>
-  `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+import { buildWaLink } from "@/lib/config/contact";
+const waLink = buildWaLink;
 
 const PLANES = [
   {

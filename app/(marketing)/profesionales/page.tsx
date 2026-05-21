@@ -7,9 +7,8 @@ export const metadata: Metadata = {
     "Sistemas de captación, agenda online y posicionamiento para médicos, dentistas, abogados, contadores, arquitectos y profesionales independientes en Paraguay.",
 };
 
-const WHATSAPP = "595985864209";
-const waLink = (msg: string) =>
-  `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+import { buildWaLink } from "@/lib/config/contact";
+const waLink = buildWaLink;
 
 const PLANES = [
   {

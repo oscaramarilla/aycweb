@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { articulos, Articulo } from "@/lib/data/articulos";
+import { buildWaLink } from "@/lib/config/contact";
 
 export const metadata: Metadata = {
   title: "Recursos e Ingeniería Comercial | AYCweb",
@@ -185,7 +186,7 @@ export default function RecursosPage() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
-              href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20le%C3%AD%20los%20recursos%20de%20AYCweb%20y%20quiero%20un%20diagn%C3%B3stico%20de%20mi%20operaci%C3%B3n."
+              href={buildWaLink("Hola Oscar, leí los recursos de AYCweb y quiero un diagnóstico de mi operación.")}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.35)] active:scale-95"
