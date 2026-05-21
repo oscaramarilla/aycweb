@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 import { articulos } from '@/lib/data/articulos';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://aycweb.com';
+  const baseUrl = 'https://www.aycweb.com';
   const defaultLocale = 'es';
   const base = `${baseUrl}/${defaultLocale}`;
 

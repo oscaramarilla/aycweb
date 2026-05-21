@@ -17,6 +17,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: 'https://aycweb.com/sitemap.xml',
+    sitemap: 'https://www.aycweb.com/sitemap.xml',
   };
 }

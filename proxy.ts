@@ -17,7 +17,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { locales, getBestLocale } from "./lib/i18n";
+import { locales } from "./lib/i18n";
 
 const ADMIN_USER = process.env.ADMIN_USER || "admin";
 const ADMIN_PASS = process.env.ADMIN_PASS || "admin";
@@ -120,8 +120,8 @@ export function proxy(req: NextRequest) {
     );
 
     if (!pathnameHasLocale) {
-      const acceptLanguage = req.headers.get("accept-language");
-      const best = getBestLocale(acceptLanguage);
+      // Forzamos siempre el idioma por defecto (es) para evitar canibalización SEO
+      const best = 'es';
       req.nextUrl.pathname = `/${best}${pathname}`;
       return NextResponse.redirect(req.nextUrl);
     }
