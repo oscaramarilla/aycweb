@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { buildWaLink } from "../../../../lib/config/contact";
 
 export const metadata: Metadata = {

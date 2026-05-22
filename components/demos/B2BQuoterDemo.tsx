@@ -449,6 +449,28 @@ export default function B2BQuoterDemo() {
       `• Precio referencia: ${fmtUsd(result.precioSugerido)}\n\n` +
       `Quiero agendar una Auditoría B2B para ver si hay encaje.`;
 
+    // ── Fire-and-forget: notifica al pipeline n8n en segundo plano.
+    // El try/catch garantiza que un fallo o demora del webhook
+    // nunca bloquee la redirección a WhatsApp.
+    try {
+      fetch("/api/webhook/cotizacion", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          servicio: servicio.label,
+          total: result.precioSugerido,
+          inversion: result.costoEscalado,
+          ahorroMensual: result.ahorroEstimadoMes,
+          roiMeses: result.roiMeses,
+          volumenOps,
+          cantidadUsuarios,
+          margenEsperado,
+        }),
+      });
+    } catch {
+      // Silencioso: el usuario ya está siendo redirigido a WhatsApp
+    }
+
     const url = buildWaLink(mensaje);
     window.open(url, "_blank");
   };
