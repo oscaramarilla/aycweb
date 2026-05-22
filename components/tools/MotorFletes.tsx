@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
+import { buildWaLink } from "@/lib/config/contact";
 
 type VehicleKey = "canter" | "n300";
 
@@ -139,6 +140,61 @@ export default function MotorFletes() {
       : 0;
 
   const ganancia = precioVenta - costoOperativo;
+
+  const handleWhatsApp = () => {
+    const vehiculoNombre = VEHICULOS_BASE[vehiculo].nombre;
+    const mensaje =
+      `¡Hola! Acabo de usar el Motor de Fletes de AYCweb y quiero consultar por una cotización.\n\n` +
+      `🚚 *Resumen del flete calculado:*\n` +
+      `• Vehículo: ${vehiculoNombre}\n` +
+      `• Distancia: ${typeof distancia === "number" ? distancia : 0} km (${idaYVuelta ? "ida y vuelta" : "tramo único"}) → ${totalKm} km totales\n` +
+      `• Personal: Chofer${llevaAyudante ? " + Peón/Ayudante" : ""}\n` +
+      `• Duración estimada: ${diasOperativos} ${diasOperativos === 1 ? "día" : "días"}\n\n` +
+      `💰 *Desglose de costos:*\n` +
+      `• Combustible: ${gs(costoCombustible)}\n` +
+      `• Peajes: ${gs(costoPeajes)} (${cantidadPeajes} casetas)\n` +
+      `• Desgaste de flota: ${gs(costoMantenimiento)}\n` +
+      `• Recursos humanos: ${gs(costoPersonal)}\n\n` +
+      `📊 *Resultado:*\n` +
+      `• Costo operativo base: ${gs(costoOperativo)}\n` +
+      `• Utilidad neta (${margen}%): ${gs(ganancia)}\n` +
+      `• *Cotización final sugerida: ${gs(precioVenta)}*\n\n` +
+      `Quiero coordinar el servicio de flete.`;
+
+    // ── Fire-and-forget: notifica al pipeline n8n en segundo plano.
+    // El try/catch garantiza que un fallo o demora del webhook
+    // nunca bloquee la redirección a WhatsApp.
+    try {
+      fetch("/api/webhook/cotizacion", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          herramienta: "motor-fletes",
+          vehiculo: vehiculoNombre,
+          distanciaBase: typeof distancia === "number" ? distancia : 0,
+          totalKm,
+          idaYVuelta,
+          llevaAyudante,
+          diasOperativos,
+          costoCombustible,
+          costoPeajes,
+          cantidadPeajes,
+          costoMantenimiento,
+          costoPersonal,
+          costoOperativoBase: costoOperativo,
+          utilidadNeta: ganancia,
+          margenPorcentaje: margen,
+          cotizacionFinalSugerida: precioVenta,
+          fuentePrecios: preciosPetropar.fuente,
+        }),
+      });
+    } catch {
+      // Silencioso: el usuario ya está siendo redirigido a WhatsApp
+    }
+
+    const url = buildWaLink(mensaje);
+    window.open(url, "_blank");
+  };
 
   return (
     <div className="w-full max-w-6xl mx-auto bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl text-zinc-100">
@@ -435,6 +491,26 @@ export default function MotorFletes() {
                 </p>
                 <p className="text-4xl sm:text-5xl font-black text-white">
                   {gs(precioVenta)}
+                </p>
+              </div>
+
+              <div className="pt-4">
+                <button
+                  onClick={handleWhatsApp}
+                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 rounded-2xl transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:shadow-[0_0_30px_rgba(16,185,129,0.35)] active:scale-[0.98] flex items-center justify-center gap-2 text-[15px]"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  </svg>
+                  Coordinar este flete por WhatsApp
+                </button>
+                <p className="text-[11px] text-zinc-600 text-center mt-2">
+                  El mensaje incluye el desglose completo de costos y la cotización
                 </p>
               </div>
             </div>
