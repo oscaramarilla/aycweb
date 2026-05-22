@@ -2,13 +2,14 @@
 
 import React from 'react';
 import Head from 'next/head';
+import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
 export default function ModularKLanding() {
-  // Configuración de Enlaces
+  // Configuración de Enlaces — número y base URL provienen de lib/config/contact.ts
+  // que a su vez lee WHATSAPP_NUMBER y WHATSAPP_API_URL desde variables de entorno.
   const linkOnboarding = "https://aycweb.com/onboarding";
-  const WHATSAPP_NUMBER = "595985864209"; 
   const wsText = encodeURIComponent("Hola, quiero cotizar un Modular K para mi perro.\nRaza:\nPeso aproximado:\n¿Va a estar al sol o bajo techo?:\nCiudad:");
-  const linkWhatsAppGeneral = `https://wa.me/${WHATSAPP_NUMBER}?text=${wsText}`;
+  const linkWhatsAppGeneral = `${AYCWEB_CONTACT.waBaseUrl}?text=${wsText}`;
 
   return (
     <div className="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen">

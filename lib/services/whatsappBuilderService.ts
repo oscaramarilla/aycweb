@@ -13,5 +13,5 @@ export function buildWhatsappUrl(clientName: string, service: string, amount: nu
   }
 
   const encodedMessage = encodeURIComponent(message);
-  return `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+  return `${AYCWEB_CONTACT.waBaseUrl}?text=${encodedMessage}`;
 }

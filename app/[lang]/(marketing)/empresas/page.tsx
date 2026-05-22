@@ -2,9 +2,46 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Para Empresas | Infraestructura Digital B2B | AYCweb",
+  title: "Sistemas Operativos B2B para Empresas | AYCweb Paraguay",
   description:
-    "Cotizadores dinámicos, generación de PDFs y motores operativos para manufactureras, clínicas, agroindustria y distribuidoras en Paraguay.",
+    "Infraestructura digital B2B para empresas en Paraguay: cotizadores dinámicos, generación automática de PDFs y motores operativos para manufactureras, clínicas, agroindustria y distribuidoras. Dejá de cotizar a mano.",
+  keywords: [
+    "sistemas B2B empresas paraguay",
+    "cotizador dinámico empresas paraguay",
+    "infraestructura digital B2B paraguay",
+    "automatización operativa empresas",
+    "generación PDF automática paraguay",
+    "software empresarial paraguay",
+    "motor operativo B2B",
+    "AYCweb empresas",
+  ],
+  alternates: {
+    canonical: "https://aycweb.com/es/empresas",
+  },
+  openGraph: {
+    title: "Sistemas Operativos B2B para Empresas | AYCweb Paraguay",
+    description:
+      "Cotizadores dinámicos, generación de PDFs y motores operativos para manufactureras, clínicas, agroindustria y distribuidoras en Paraguay. Tu operación ya no cabe en Excel.",
+    url: "https://aycweb.com/es/empresas",
+    siteName: "AYCweb",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Sistemas B2B para Empresas - AYCweb Paraguay",
+      },
+    ],
+    locale: "es_PY",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sistemas Operativos B2B para Empresas | AYCweb Paraguay",
+    description:
+      "Cotizadores dinámicos, PDFs automáticos y motores operativos para empresas en Paraguay. Dejá de cotizar a mano.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 const WHATSAPP = "595985864209";

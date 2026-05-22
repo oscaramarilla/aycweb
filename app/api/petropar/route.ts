@@ -7,6 +7,9 @@ import path from "path";
 const CACHE_FILE_NAME = "aycweb-petropar-cache.json";
 const CACHE_FILE_PATH = path.join(os.tmpdir(), CACHE_FILE_NAME);
 const DEFAULT_PRICES = { dieselPora: 6700, naftaOikoite93: 6140 };
+const PETROPAR_URL =
+  process.env.PETROPAR_PRICES_URL ??
+  "https://www.petropar.gov.py/wp-content/price/index.html";
 
 function extractPrice(html: string, label: string): number | null {
   const normalized = html.replace(/\s+/g, " ");
@@ -45,7 +48,7 @@ async function readCache() {
 
 export async function GET() {
   try {
-    const res = await fetch("https://www.petropar.gov.py/wp-content/price/index.html", {
+    const res = await fetch(PETROPAR_URL, {
       next: { revalidate: 60 * 60 * 6 }, // 6 horas
       headers: {
         "User-Agent": "Mozilla/5.0 AYCweb Fuel Bot",

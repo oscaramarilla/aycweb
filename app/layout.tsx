@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import { Inter, Geist } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           {/* ACÁ YA NO VA EL NAVBAR */}
           {children}
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );

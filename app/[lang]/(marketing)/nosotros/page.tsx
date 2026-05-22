@@ -1,5 +1,48 @@
+import type { Metadata } from "next";
 import Image from "next/image";
-import { buildWaLink } from "@/lib/config/contact";
+import { buildWaLink } from "../../../../lib/config/contact";
+
+export const metadata: Metadata = {
+  title: "Quiénes Somos | Equipo de Infraestructura Digital B2B | AYCweb Paraguay",
+  description:
+    "Conocé al equipo detrás de AYCweb: ingeniería, producto y operaciones que construyen sistemas digitales para empresas y profesionales en Paraguay. Más de 3 años automatizando operaciones reales.",
+  keywords: [
+    "quiénes somos AYCweb",
+    "equipo desarrollo web paraguay",
+    "firma infraestructura digital paraguay",
+    "AYC SRL paraguay",
+    "Oscar Amarilla Cáceres",
+    "desarrollo B2B paraguay",
+    "automatización empresas paraguay",
+  ],
+  alternates: {
+    canonical: "https://aycweb.com/es/nosotros",
+  },
+  openGraph: {
+    title: "Quiénes Somos | Equipo de Infraestructura Digital B2B | AYCweb Paraguay",
+    description:
+      "Equipo técnico y de producto que construye herramientas para operaciones que necesitan escala. Ingeniería, producto y operaciones al servicio de empresas en Paraguay.",
+    url: "https://aycweb.com/es/nosotros",
+    siteName: "AYCweb",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Equipo AYCweb - Infraestructura Digital B2B Paraguay",
+      },
+    ],
+    locale: "es_PY",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Quiénes Somos | AYCweb Paraguay",
+    description:
+      "Equipo técnico que construye sistemas digitales para empresas y profesionales en Paraguay. Ingeniería, producto y operaciones.",
+    images: ["/og-image.jpg"],
+  },
+};
 
 export default function NosotrosPage() {
   return (

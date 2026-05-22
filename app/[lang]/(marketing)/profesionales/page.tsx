@@ -2,9 +2,45 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Para Profesionales | Captación y Autoridad Digital | AYCweb",
+  title: "Sistemas de Captación Digital para Profesionales | AYCweb Paraguay",
   description:
-    "Sistemas de captación, agenda online y posicionamiento para médicos, dentistas, abogados, contadores, arquitectos y profesionales independientes en Paraguay.",
+    "Agenda online, captación automatizada y autoridad digital para médicos, odontólogos, abogados, contadores y arquitectos en Paraguay. Dejá de depender del boca a boca y llenás tu agenda con clientes precalificados.",
+  keywords: [
+    "captación digital profesionales paraguay",
+    "agenda online profesionales paraguay",
+    "sistema captación médicos paraguay",
+    "autoridad digital profesionales",
+    "landing page profesional paraguay",
+    "marketing digital profesionales independientes",
+    "AYCweb profesionales",
+  ],
+  alternates: {
+    canonical: "https://aycweb.com/es/profesionales",
+  },
+  openGraph: {
+    title: "Sistemas de Captación Digital para Profesionales | AYCweb Paraguay",
+    description:
+      "Agenda online, captación automatizada y autoridad digital para médicos, odontólogos, abogados, contadores y arquitectos en Paraguay. Tu consultorio trabaja por vos.",
+    url: "https://aycweb.com/es/profesionales",
+    siteName: "AYCweb",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Sistemas de Captación para Profesionales - AYCweb Paraguay",
+      },
+    ],
+    locale: "es_PY",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sistemas de Captación Digital para Profesionales | AYCweb Paraguay",
+    description:
+      "Agenda online y captación automatizada para médicos, abogados, contadores y arquitectos en Paraguay. Llenás tu agenda con clientes precalificados.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 const WHATSAPP = "595985864209";

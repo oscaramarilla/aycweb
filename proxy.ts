@@ -19,8 +19,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { locales } from "./lib/i18n";
 
-const ADMIN_USER = process.env.ADMIN_USER || "admin";
-const ADMIN_PASS = process.env.ADMIN_PASS || "admin";
+const ADMIN_USER = process.env.ADMIN_USER;
+const ADMIN_PASS = process.env.ADMIN_PASS;
 const isProduction = process.env.NODE_ENV === "production";
 
 /** Respuesta 401 con cabecera WWW-Authenticate para disparar el diálogo del navegador */

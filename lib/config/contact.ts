@@ -19,9 +19,12 @@ export interface ContactInfo {
   };
 }
 
+const _waNumber = process.env.WHATSAPP_NUMBER ?? "595985864209";
+const _waBaseUrl = process.env.WHATSAPP_API_URL ?? `https://wa.me/${_waNumber}`;
+
 export const AYCWEB_CONTACT: ContactInfo = {
-  whatsappNumber: "595985864209",
-  waBaseUrl: "https://wa.me/595985864209",
+  whatsappNumber: _waNumber,
+  waBaseUrl: _waBaseUrl,
   email: "hola@aycweb.com",
   globalMessages: {
     diagnosis:
