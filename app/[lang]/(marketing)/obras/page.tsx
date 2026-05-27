@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AYCWEB_CONTACT, buildWaLink } from "../../../../lib/config/contact";
 import { CASOS_OBRAS } from "../../../../lib/config/obras";
+import { MetricasImpactoCard } from "../../../../components/obras/MetricasImpactoCard";
 
 export const metadata: Metadata = {
   title: "Casos de Éxito y Sistemas Implementados | AYCweb Paraguay",
@@ -84,6 +85,13 @@ const resultBorderStyles: Record<string, string> = {
   amber: "border-amber-500/20",
 };
 
+/** Estilos del badge de métrica destacada en el encabezado de la card */
+const metricBadgeStyles: Record<string, string> = {
+  blue: "bg-blue-500/10 text-blue-300 border-blue-500/25",
+  emerald: "bg-emerald-500/10 text-emerald-300 border-emerald-500/25",
+  amber: "bg-amber-500/10 text-amber-300 border-amber-500/25",
+};
+
 // ─── COMPONENTE PRINCIPAL ─────────────────────────────────────────────────────
 
 export default function ObrasPage() {
@@ -118,104 +126,142 @@ export default function ObrasPage() {
       {/* ── CASOS EN PRODUCCIÓN ── */}
       <section className="relative z-10 px-6 mb-20">
         <div className="max-w-5xl mx-auto space-y-12">
-          {CASOS_OBRAS.map((c, idx) => (
-            <article
-              key={c.id}
-              className={`rounded-[2rem] border border-slate-800 bg-slate-900/50 overflow-hidden transition-colors duration-300 ${borderHoverStyles[c.tagColor]}`}
-            >
-              {/* Cabecera del caso */}
-              <div className="px-6 md:px-10 pt-8 pb-6 border-b border-slate-800/60">
-                <div className="flex flex-wrap items-center gap-3 mb-4">
-                  <span
-                    className={`text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border ${tagStyles[c.tagColor]}`}
-                  >
-                    {c.tag}
-                  </span>
-                  <span className="text-[11px] text-slate-500 font-medium">
-                    Caso #{String(idx + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <h2 className={`text-2xl md:text-3xl font-black mb-1 ${accentStyles[c.tagColor]}`}>
-                  {c.client}
-                </h2>
-                <p className="text-sm text-slate-500">{c.industry}</p>
-              </div>
+          {CASOS_OBRAS.map((c, idx) => {
+            // Métrica destacada: primera métrica disponible para el badge del encabezado
+            const metricaDestacada = c.metricasImpacto?.[0];
 
-              {/* Cuerpo del caso: Problema → Solución → Resultado */}
-              <div className="px-6 md:px-10 py-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            return (
+              <article
+                key={c.id}
+                id={c.id}
+                className={`rounded-[2rem] border border-slate-800 bg-slate-900/50 overflow-hidden transition-colors duration-300 ${borderHoverStyles[c.tagColor]}`}
+              >
+                {/* Cabecera del caso */}
+                <div className="px-6 md:px-10 pt-8 pb-6 border-b border-slate-800/60">
+                  <div className="flex flex-wrap items-center gap-3 mb-4">
+                    <span
+                      className={`text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border ${tagStyles[c.tagColor]}`}
+                    >
+                      {c.tag}
+                    </span>
+                    <span className="text-[11px] text-slate-500 font-medium">
+                      Caso #{String(idx + 1).padStart(2, "0")}
+                    </span>
 
-                {/* Problema */}
-                <div className="space-y-3">
-                  <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
-                    Problema
-                  </h3>
-                  <p className="text-slate-300 text-[14px] leading-relaxed">
-                    {c.problem}
-                  </p>
-                </div>
-
-                {/* Solución */}
-                <div className="space-y-3">
-                  <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
-                    <span className={`w-2 h-2 rounded-full inline-block ${flowDotStyles[c.tagColor]}`} />
-                    Solución
-                  </h3>
-                  <ul className="space-y-2">
-                    {c.solution.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span
-                          className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${flowDotStyles[c.tagColor]}`}
-                        />
-                        <span className="text-slate-300 text-[14px] leading-snug">
-                          {item}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                    {/* ── Badge de métrica destacada (sólo si hay métricas) ── */}
+                    {metricaDestacada && (
+                      <span
+                        className={`inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full border ${metricBadgeStyles[c.tagColor]}`}
+                        title={`${metricaDestacada.label}: ${metricaDestacada.antes} → ${metricaDestacada.despues}`}
+                      >
+                        <svg
+                          className="w-3 h-3"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2.5"
+                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                          />
+                        </svg>
+                        {metricaDestacada.label}: {metricaDestacada.antes} → {metricaDestacada.despues}
+                      </span>
+                    )}
+                  </div>
+                  <h2 className={`text-2xl md:text-3xl font-black mb-1 ${accentStyles[c.tagColor]}`}>
+                    {c.client}
+                  </h2>
+                  <p className="text-sm text-slate-500">{c.industry}</p>
                 </div>
 
-                {/* Resultado */}
-                <div className="space-y-3">
-                  <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-green-500 inline-block" />
-                    Resultado
-                  </h3>
-                  <div className={`bg-slate-950/60 rounded-xl border p-4 ${resultBorderStyles[c.tagColor]}`}>
-                    <p className="text-slate-200 text-[14px] leading-relaxed">
-                      {c.result}
+                {/* Cuerpo del caso: Problema → Solución → Resultado */}
+                <div className="px-6 md:px-10 py-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                  {/* Problema */}
+                  <div className="space-y-3">
+                    <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
+                      Problema
+                    </h3>
+                    <p className="text-slate-300 text-[14px] leading-relaxed">
+                      {c.problem}
                     </p>
                   </div>
+
+                  {/* Solución */}
+                  <div className="space-y-3">
+                    <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
+                      <span className={`w-2 h-2 rounded-full inline-block ${flowDotStyles[c.tagColor]}`} />
+                      Solución
+                    </h3>
+                    <ul className="space-y-2">
+                      {c.solution.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span
+                            className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${flowDotStyles[c.tagColor]}`}
+                          />
+                          <span className="text-slate-300 text-[14px] leading-snug">
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Resultado */}
+                  <div className="space-y-3">
+                    <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-green-500 inline-block" />
+                      Resultado
+                    </h3>
+                    <div className={`bg-slate-950/60 rounded-xl border p-4 ${resultBorderStyles[c.tagColor]}`}>
+                      <p className="text-slate-200 text-[14px] leading-relaxed">
+                        {c.result}
+                      </p>
+                    </div>
+                  </div>
+
                 </div>
 
-              </div>
+                {/* ── Métricas de impacto cuantificado (sólo si existen) ── */}
+                {c.metricasImpacto && c.metricasImpacto.length > 0 && (
+                  <MetricasImpactoCard
+                    metricas={c.metricasImpacto}
+                    accentColor={c.tagColor as "blue" | "emerald" | "amber"}
+                  />
+                )}
 
-              {/* CTA por caso */}
-              <div className="px-6 md:px-10 pb-8">
-                <a
-                  href={buildWaLink(c.ctaMessage)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-2 text-white font-black py-3 px-7 rounded-xl transition-all active:scale-95 text-[14px] ${ctaStyles[c.tagColor]}`}
-                >
-                  Quiero un sistema así para mi empresa
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                {/* CTA por caso */}
+                <div className="px-6 md:px-10 pb-8">
+                  <a
+                    href={buildWaLink(c.ctaMessage)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-2 text-white font-black py-3 px-7 rounded-xl transition-all active:scale-95 text-[14px] ${ctaStyles[c.tagColor]}`}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </article>
-          ))}
+                    Quiero un sistema así para mi empresa
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 

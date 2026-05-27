@@ -1,6 +1,14 @@
 // ─── CAPA CONFIG: Casos de obras / casos de éxito ────────────────────────────
 // Fuente única de verdad para los datos de cada caso en producción.
 // La UI en app/[lang]/(marketing)/obras/page.tsx consume este array.
+//
+// Métricas de impacto: viven en lib/config/obras/[slug].ts (una por cliente)
+// y se importan aquí para mantener la config centralizada.
+
+import type { MetricaImpacto } from "../domain/obra";
+import { METRICAS_METAL_MAD } from "./obras/metal-mad-modular-k";
+
+export type { MetricaImpacto };
 
 export interface CasoObra {
   id: string;
@@ -12,6 +20,11 @@ export interface CasoObra {
   solution: string[];
   result: string;
   ctaMessage: string;
+  /**
+   * Métricas de impacto cuantificado.
+   * Si no está definido, el componente MetricasImpactoCard no se renderiza.
+   */
+  metricasImpacto?: MetricaImpacto[];
 }
 
 export const CASOS_OBRAS: CasoObra[] = [
@@ -32,6 +45,7 @@ export const CASOS_OBRAS: CasoObra[] = [
       "Respuesta comercial inmediata desde el primer contacto. Cero errores de cálculo. El equipo dejó de hacer planillas y empezó a cerrar ventas.",
     ctaMessage:
       "Hola Oscar. Vi el caso de Oriplast en AYCweb y quiero un cotizador B2B dinámico para mi empresa.",
+    // metricasImpacto: pendiente confirmación post-sprint con el cliente
   },
   {
     id: "dra-bianca-odontologia",
@@ -50,6 +64,7 @@ export const CASOS_OBRAS: CasoObra[] = [
       "Flujo ordenado de pacientes en la agenda. Solo ingresan pacientes precalificados, con expectativas claras y menor tasa de cancelación.",
     ctaMessage:
       "Hola Oscar. Vi el caso de la Dra. Bianca en AYCweb y quiero un sistema de agendamiento con precalificación para mi consultorio.",
+    // metricasImpacto: pendiente confirmación de números con el cliente
   },
   {
     id: "metal-mad-modular-k",
@@ -68,5 +83,44 @@ export const CASOS_OBRAS: CasoObra[] = [
       "Venta corporativa más profesional y trazable. El cliente recibe un documento claro, el equipo técnico ahorra horas de armado y el cierre es más rápido.",
     ctaMessage:
       "Hola Oscar. Vi el caso de Metal Mad / Modular K en AYCweb y quiero una calculadora paramétrica con generación de PDF para mi empresa.",
+    metricasImpacto: METRICAS_METAL_MAD,
+  },
+  {
+    id: "dr-nicolas-silvero-medicina",
+    tag: "Salud & Profesionales",
+    tagColor: "emerald",
+    client: "Dr. Nicolás Ángel Silvero",
+    industry: "Medicina especializada",
+    problem:
+      "La captación de pacientes dependía exclusivamente del boca a boca y llamadas telefónicas. Sin filtro previo, el consultorio recibía consultas fuera del perfil de su especialidad, lo que generaba pérdida de tiempo y una agenda desordenada.",
+    solution: [
+      "Landing de autoridad profesional orientada a conversión de pacientes calificados",
+      "Formulario de precalificación por tipo de consulta y especialidad",
+      "Integración con WhatsApp para confirmación y recordatorio automático de turnos",
+    ],
+    result:
+      "Llegada de pacientes más calificados con expectativas claras. Agenda ordenada y menor tasa de cancelación. El consultorio redujo el tiempo perdido en consultas fuera del perfil.",
+    ctaMessage:
+      "Hola Oscar. Vi el caso del Dr. Nicolás Silvero en AYCweb y quiero un sistema de captación y agendamiento para mi consultorio.",
+    // metricasImpacto: pendiente confirmación de números con el cliente
+  },
+  {
+    id: "dr-jose-lahaye-salud",
+    tag: "Salud & Profesionales",
+    tagColor: "blue",
+    client: "Dr. José Lahaye",
+    industry: "Salud especializada",
+    problem:
+      "Sin presencia digital estructurada, el médico dependía de derivaciones internas y referencias personales para captar nuevos pacientes. No había manera de escalar ni de filtrar prospectos antes del primer contacto.",
+    solution: [
+      "Sitio de autoridad profesional con perfil, especialidades y credenciales verificables",
+      "Sistema de agendamiento con filtro por tipo de consulta",
+      "Canal WhatsApp estructurado con mensajes de precalificación automáticos",
+    ],
+    result:
+      "Canal digital activo de captación sin depender de derivaciones. Los pacientes llegan con contexto claro sobre el médico y sus especialidades, reduciendo fricciones en el primer contacto.",
+    ctaMessage:
+      "Hola Oscar. Vi el caso del Dr. José Lahaye en AYCweb y quiero un sistema de presencia digital y captación para mi práctica médica.",
+    // metricasImpacto: pendiente confirmación de números con el cliente
   },
 ];

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FranjaClientes } from "@/components/social/FranjaClientes";
+import { buildWaLink } from "@/lib/config/contact";
 
 export const metadata: Metadata = {
   title: "Sistemas Operativos B2B para Empresas | AYCweb Paraguay",
@@ -43,10 +45,6 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
 };
-
-const WHATSAPP = "595985864209";
-const waLink = (msg: string) =>
-  `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
 const PLANES = [
   {
@@ -147,9 +145,9 @@ export default function ProductosPage() {
             Cotizadores dinámicos, generación de PDFs y motores operativos para empresas que ya facturan en serio y necesitan dejar de cotizar a mano.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center flex-wrap">
             <a
-              href={waLink(
+              href={buildWaLink(
                 "Hola Oscar, soy de una empresa y quiero agendar un diagnóstico operativo gratuito."
               )}
               target="_blank"
@@ -159,6 +157,13 @@ export default function ProductosPage() {
               Diagnóstico gratuito
             </a>
             <Link
+              href="/motor/demo"
+              className="w-full sm:w-auto bg-emerald-950/40 border border-emerald-500/30 hover:border-emerald-400/60 hover:bg-emerald-950/60 text-emerald-300 font-black py-4 px-10 rounded-xl transition-all flex items-center justify-center gap-2"
+            >
+              <span>⚡</span>
+              Probá el Motor en vivo
+            </Link>
+            <Link
               href="#planes"
               className="w-full sm:w-auto bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-200 font-bold py-4 px-10 rounded-xl transition-all"
             >
@@ -167,6 +172,9 @@ export default function ProductosPage() {
           </div>
         </div>
       </section>
+
+      {/* PRUEBA SOCIAL: Franja de clientes destacados */}
+      <FranjaClientes palette="blue" />
 
       {/* DOLORES → ALIVIO */}
       <section className="relative z-10 px-6 py-20 md:py-28">
@@ -277,7 +285,7 @@ export default function ProductosPage() {
                   </div>
 
                   <a
-                    href={waLink(
+                    href={buildWaLink(
                       `Hola Oscar, me interesa el plan ${plan.nombre} (${plan.precio}) para mi empresa.`
                     )}
                     target="_blank"
@@ -384,7 +392,7 @@ export default function ProductosPage() {
           </p>
 
           <a
-            href={waLink(
+            href={buildWaLink(
               "Hola Oscar, vengo de la página de Empresas y quiero agendar el diagnóstico operativo gratuito."
             )}
             target="_blank"

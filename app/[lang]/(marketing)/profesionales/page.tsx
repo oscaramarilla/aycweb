@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { buildWaLink } from "@/lib/config/contact";
 
 export const metadata: Metadata = {
   title: "Sistemas de Captación Digital para Profesionales | AYCweb Paraguay",
@@ -42,10 +43,6 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
 };
-
-const WHATSAPP = "595985864209";
-const waLink = (msg: string) =>
-  `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
 const PLANES = [
   {
@@ -165,9 +162,9 @@ export default function SolucionesPage() {
             Sistemas de captación, agenda online y autoridad digital para médicos, abogados, contadores, arquitectos y profesionales que quieren dejar de depender del boca a boca.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center flex-wrap">
             <a
-              href={waLink(
+              href={buildWaLink(
                 "Hola Oscar, soy profesional independiente y quiero agendar un diagnóstico gratuito para mi servicio."
               )}
               target="_blank"
@@ -176,6 +173,13 @@ export default function SolucionesPage() {
             >
               Diagnóstico gratuito
             </a>
+            <Link
+              href="/diagnostico-comercial"
+              className="w-full sm:w-auto bg-purple-950/40 border border-purple-500/30 hover:border-purple-400/60 hover:bg-purple-950/60 text-purple-300 font-bold py-4 px-10 rounded-xl transition-all flex items-center justify-center gap-2"
+            >
+              <span>⚡</span>
+              Diagnóstico Express (5 min)
+            </Link>
             <Link
               href="#planes"
               className="w-full sm:w-auto bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-200 font-bold py-4 px-10 rounded-xl transition-all"

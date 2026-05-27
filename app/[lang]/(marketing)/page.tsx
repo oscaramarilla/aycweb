@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import { FranjaClientes } from "@/components/social/FranjaClientes";
+import { buildWaLink } from "@/lib/config/contact";
 
 // 1. CACHÉ ULTRARRÁPIDO: Guarda la página en los servidores globales de Vercel por 1 hora
 export const revalidate = 3600;
@@ -11,8 +13,7 @@ export const metadata: Metadata = {
 
 export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const whatsappNumber = "595985864209";
-  const whatsappMsg = encodeURIComponent("Hola Oscar. Quiero agendar una Auditoría B2B para mi operación.");
+  const auditMsg = buildWaLink("Hola Oscar. Quiero agendar una Auditoría B2B para mi operación.");
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-950 text-slate-50 font-sans relative overflow-hidden">
@@ -39,12 +40,19 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           
           <div className="flex flex-col items-center justify-center gap-6">
             <a 
-              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
+              href={auditMsg}
               target="_blank" rel="noopener noreferrer"
               className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-black py-3.5 md:py-4 px-8 md:px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] active:scale-95 text-[15px] md:text-lg"
             >
               Agendar Auditoría B2B
             </a>
+            <Link
+              href="/diagnostico-comercial"
+              className="w-full sm:w-auto bg-purple-950/40 border border-purple-500/30 hover:border-purple-400/60 hover:bg-purple-950/60 text-purple-300 font-bold py-3.5 md:py-4 px-8 md:px-10 rounded-xl transition-all flex items-center justify-center gap-2 text-[15px] md:text-base"
+            >
+              <span>⚡</span>
+              Diagnóstico Comercial Express (5 min)
+            </Link>
             
             <div className="flex items-center gap-6 text-[13px] md:text-sm font-medium text-slate-400">
               <Link href={`/${lang}/empresas`} className="hover:text-blue-400 transition-colors flex items-center gap-1.5">
@@ -62,6 +70,9 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           </div>
         </div>
       </section>
+
+      {/* ================= 1b) PRUEBA SOCIAL: Franja de clientes ================= */}
+      <FranjaClientes palette="neutral" />
 
       {/* ================= 2) EVIDENCIA DE RESULTADO (NUEVO) ================= */}
       <section className="py-16 md:py-24 relative z-10 bg-[#04050a] border-b border-white/[0.05]">
@@ -86,8 +97,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             ))}
             <div className="bg-gradient-to-br from-blue-600/20 to-transparent p-8 rounded-2xl border border-blue-500/20 flex flex-col justify-center items-center text-center">
               <p className="text-white font-bold text-lg mb-2">¿Querés verlo en vivo?</p>
-              <Link href={`/${lang}/demo-cotizador`} className="text-blue-400 font-bold hover:underline mb-3">
-                Probá el Motor Cotizador B2B →
+              <Link href="/motor/demo" className="text-blue-400 font-bold hover:underline mb-3 block">
+                ⚡ Probá el Motor en vivo →
               </Link>
               <Link href={`/${lang}/obras`} className="text-slate-400 text-sm hover:text-slate-200 hover:underline transition-colors">Ver obras en producción →</Link>
             </div>
@@ -198,7 +209,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               </div>
 
               <a 
-                href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
+              href={auditMsg}
                 target="_blank" rel="noopener noreferrer"
                 className="block w-full sm:w-auto sm:inline-block bg-white text-slate-950 font-black py-3.5 md:py-4 px-6 md:px-10 rounded-xl transition-all shadow-lg hover:bg-slate-200 active:scale-95 text-[15px] md:text-base"
               >
