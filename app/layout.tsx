@@ -84,7 +84,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="es" className={cn("scroll-smooth", inter.variable, "font-sans", geist.variable)}>
-      <body className="antialiased bg-slate-950 text-slate-50 min-h-screen flex flex-col font-sans relative selection:bg-blue-500/30">
+      <body className="antialiased text-slate-50 min-h-screen flex flex-col font-sans relative selection:bg-blue-500/30 leading-relaxed">
         
         {/* Grilla sutil futurista de fondo */}
         <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0"></div>

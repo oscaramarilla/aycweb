@@ -71,7 +71,8 @@
     --chart-3: oklch(0.439 0 0);
     --chart-4: oklch(0.371 0 0);
     --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
+    /* Radio de borde más amplio — look B2B premium */
+    --radius: 0.75rem;
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: oklch(0.205 0 0);
@@ -119,11 +120,60 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    }
-  body {
-    @apply bg-background text-foreground;
-    }
+  }
+
   html {
     @apply font-sans;
-    }
+    /* Scroll suave global — esencial para navegación dashboard */
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-foreground;
+    /*
+     * Gradiente sutil B2B premium: transición de slate-950 profundo
+     * hacia un slate con ligero tinte azul-índigo en la esquina opuesta.
+     * Mantiene la paleta slate/blue base sin alterarla.
+     */
+    background: linear-gradient(
+      160deg,
+      oklch(0.110 0.035 265) 0%,
+      oklch(0.130 0.025 258) 45%,
+      oklch(0.150 0.030 260) 100%
+    );
+    /* Tipografía respirable — indispensable en interfaces de datos */
+    line-height: 1.625;
+  }
+
+  /*
+   * Transiciones suaves por defecto en todos los elementos interactivos.
+   * Equivalente a transition-all duration-300 ease-in-out pero optimizado
+   * (excluye propiedades de layout para evitar reflows costosos).
+   */
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  [role="button"],
+  [role="tab"],
+  [role="checkbox"],
+  [role="radio"],
+  [role="switch"],
+  [role="menuitem"] {
+    transition-property:
+      color,
+      background-color,
+      border-color,
+      text-decoration-color,
+      fill,
+      stroke,
+      opacity,
+      box-shadow,
+      transform,
+      filter,
+      backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
 }
