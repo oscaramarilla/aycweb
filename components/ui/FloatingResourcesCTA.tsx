@@ -13,12 +13,14 @@ export default function FloatingResourcesCTA() {
       href={`/${lang}/recursos`}
       aria-label="Biblioteca B2B — Recursos de autoridad"
       className="
-        fixed bottom-6 right-6 z-50
-        flex items-center gap-2
+        fixed bottom-6 right-24 md:right-6 z-50
+        w-12 h-12 md:w-auto md:h-auto
+        rounded-full md:rounded-2xl
+        flex items-center justify-center md:gap-2
         bg-slate-900/80 backdrop-blur-md
         border border-slate-800/60
         text-slate-100
-        px-4 py-3 rounded-2xl
+        md:px-4 md:py-3
         shadow-lg shadow-black/40
         hover:border-blue-500/70 hover:bg-slate-800/90
         hover:scale-105 active:scale-95

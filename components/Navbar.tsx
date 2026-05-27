@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { buildWaLink, AYCWEB_CONTACT } from "@/lib/config/contact";
 
 const WA_CTA = buildWaLink(AYCWEB_CONTACT.globalMessages.auditB2B);
@@ -20,6 +21,9 @@ export default function Navbar() {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
     return () => { document.body.style.overflow = "unset"; };
   }, [isMobileMenuOpen]);
+
+  const params = useParams();
+  const lang = (params?.lang as string) ?? "es";
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
@@ -83,7 +87,8 @@ export default function Navbar() {
 
           <Link href="/nosotros" onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">Nosotros</Link>
           <Link href="/obras" onClick={toggleMenu} className="text-xl font-bold text-blue-400 py-4 border-b border-white/[0.05]">Obras</Link>
-          
+          <Link href={`/${lang}/recursos`} onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">Biblioteca B2B</Link>
+
           <Link href="/onboarding" onClick={toggleMenu} className="text-xl font-bold text-emerald-400 flex items-center gap-3 py-5 mt-2 border border-emerald-900/30 rounded-xl px-4 bg-emerald-950/10">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_15px_rgba(16,185,129,0.8)]"></span>
             Iniciar Onboarding
