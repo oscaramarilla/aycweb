@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { WHATSAPP_NUMBER } from "@/lib/config/contacto";
 
 type AccentColor = "emerald" | "blue" | "violet";
 
@@ -62,7 +63,7 @@ const TerminalDePago = ({
 }: TerminalDePagoProps) => {
   const [metodo, setMetodo] = useState<"fiat" | "crypto">("fiat");
 
-  const numero = "595985864209";
+  const numero = WHATSAPP_NUMBER;
   const msg = encodeURIComponent(
     `¡Hola Oscar! Acabo de pagar el plan ${planNombre} (${planPrecio}). Te envío el comprobante para empezar:`
   );
@@ -257,7 +258,7 @@ const PLANES = [
 export default function LandingOscar() {
   const [planAbierto, setPlanAbierto] = useState<string | null>(null);
 
-  const wa = "595985864209";
+  const wa = WHATSAPP_NUMBER;
   const msgGeneral = encodeURIComponent(
     "Hola Oscar, vengo de aycweb.com/oscar y quiero saber qué plan me conviene para mi negocio."
   );

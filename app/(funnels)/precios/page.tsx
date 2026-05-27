@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { WHATSAPP_NUMBER } from "@/lib/config/contacto";
 
-const whatsappNumber = "595985864209";
+const whatsappNumber = WHATSAPP_NUMBER;
 
 const TIERS = {
   empresa: {

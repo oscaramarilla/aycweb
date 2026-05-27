@@ -1,5 +1,7 @@
 import { articulos } from "@/lib/data/articulos";
 import { ResourceCard } from "@/components/ResourceCard";
+import { buildWhatsAppLink } from "@/lib/services/whatsapp-link";
+import { DEFAULT_WHATSAPP_TEXT } from "@/lib/config/contacto";
 
 export const dynamic = "force-static";
 
@@ -99,7 +101,7 @@ export default async function RecursosIndex({
               Agendá una auditoría sin costo
             </h3>
             <a
-              href="https://wa.me/595985864209?text=Hola%20Oscar.%20Le%C3%AD%20los%20recursos%20y%20quiero%20agendar%20una%20Auditor%C3%ADa%20B2B."
+              href={buildWhatsAppLink(DEFAULT_WHATSAPP_TEXT.recursos)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-3 px-8 rounded-xl transition-all shadow-[0_0_24px_rgba(37,99,235,0.35)] hover:shadow-[0_0_32px_rgba(37,99,235,0.5)] active:scale-95 text-sm"

@@ -6,11 +6,12 @@ import Link from "next/link";
 // --- CONSTANTES Y ESTADÍSTICAS LATAM ---
 import { calcularCotizacion, formatters, CotizacionResultados } from "@/lib/domain/cotizadorLogistico";
 import { buildWhatsappUrl } from "@/lib/services/whatsappBuilderService";
+import { WHATSAPP_NUMBER } from "@/lib/config/contacto";
 
 const FUEL_PRICE_USD = 1.25;  // Promedio LATAM proyectado al 2030 + 10% margen seguridad
 
 export default function MotorLogisticoLanding() {
-  const whatsappNumber = "595985864209";
+  const whatsappNumber = WHATSAPP_NUMBER;
   const whatsappMsg = buildWhatsappUrl("Oscar", "Motor Logístico Internacional", 1500); // Placeholder values, as the actual client name, service, and amount are not available in this context.
 
   // --- ESTADOS DEL MOTOR ---

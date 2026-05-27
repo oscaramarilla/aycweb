@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import B2BQuoterDemo from "@/components/demos/B2BQuoterDemo";
+import { buildWhatsAppLink } from "@/lib/services/whatsapp-link";
+import { DEFAULT_WHATSAPP_TEXT } from "@/lib/config/contacto";
 
 export const metadata: Metadata = {
   title: "Motor Cotizador B2B | AYCweb",
@@ -14,10 +16,7 @@ export default async function DemoCotizadorPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const whatsappNumber = "595985864209";
-  const whatsappMsg = encodeURIComponent(
-    "Hola Oscar. Quiero agendar una Auditoría B2B para mi operación."
-  );
+  const auditLink = buildWhatsAppLink(DEFAULT_WHATSAPP_TEXT.demoCotizador);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 relative overflow-hidden">
@@ -86,7 +85,7 @@ export default async function DemoCotizadorPage({
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
+              href={auditLink}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.3)] active:scale-95 text-[15px]"

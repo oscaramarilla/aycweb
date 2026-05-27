@@ -24,6 +24,7 @@ import {
   type ResultadoCotizacion,
 } from "@/lib/domain/cotizacion";
 import { generarPdfCotizacion } from "@/lib/services/pdf-cotizacion";
+import { buildWhatsAppLink } from "@/lib/services/whatsapp-link";
 
 // ─── Tipos locales ────────────────────────────────────────────────────────────
 
@@ -122,7 +123,7 @@ export default function MotorDemoPage() {
   const handleWhatsApp = () => {
     if (!hayItems) return;
     const mensaje = buildResumenWhatsApp(resultado, cliente.nombre, cliente.empresa);
-    const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+    const url = buildWhatsAppLink(mensaje);
     window.open(url, "_blank", "noopener,noreferrer");
   };
 

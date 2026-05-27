@@ -22,6 +22,7 @@ const SECTORES = [
   "Industrial",
   "Médico / Salud",
   "Servicios profesionales",
+  "Comercio",
   "Otro",
 ] as const;
 
@@ -31,6 +32,8 @@ const CUELLOS = [
   "Cotizaciones lentas",
   "Excel descontrolado",
   "Sin trazabilidad de ventas",
+  "Sin sistema de turnos",
+  "Captación dependiente de boca a boca",
   "Otro",
 ] as const;
 
@@ -85,6 +88,7 @@ export default function DiagnosticoComercialPage() {
   const [form, setForm] = useState<FormFields>(INITIAL);
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [fallbackUrl, setFallbackUrl] = useState<string | null>(null);
 
   // Helper genérico para campos de texto
   const handleChange =
@@ -119,13 +123,19 @@ export default function DiagnosticoComercialPage() {
     };
 
     const url = buildDiagnosticoWaUrl(waData);
-    window.open(url, "_blank", "noopener,noreferrer");
+    const win = window.open(url, "_blank", "noopener,noreferrer");
+
+    // Si el browser bloquea el popup, mostrar link de fallback
+    if (!win || win.closed || typeof win.closed === "undefined") {
+      setFallbackUrl(url);
+    }
 
     // Resetea después de abrir WA
     setTimeout(() => {
       setForm(INITIAL);
       setErrors({});
       setSubmitted(false);
+      setFallbackUrl(null);
     }, 3000);
   }
 
@@ -448,6 +458,24 @@ export default function DiagnosticoComercialPage() {
             <p className="text-center text-xs text-slate-500 mt-3">
               Se abrirá WhatsApp con tu diagnóstico pre-cargado. Sin costo ni compromiso.
             </p>
+
+            {/* Fallback cuando el browser bloquea window.open */}
+            {fallbackUrl && (
+              <div className="mt-4 p-4 rounded-xl bg-amber-950/40 border border-amber-500/30 text-center">
+                <p className="text-amber-300 text-sm font-semibold mb-2">
+                  Tu navegador bloqueó la ventana emergente.
+                </p>
+                <a
+                  href={fallbackUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-blue-400 underline underline-offset-4 text-sm font-bold hover:text-blue-300 transition-colors"
+                >
+                  <span>💬</span>
+                  Tocá aquí para abrir WhatsApp manualmente
+                </a>
+              </div>
+            )}
           </div>
         </form>
 

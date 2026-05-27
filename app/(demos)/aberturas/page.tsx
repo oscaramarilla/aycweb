@@ -5,6 +5,7 @@ import {
   generarPdfAberturas,
   type ClienteAberturas,
 } from "@/lib/services/pdfService";
+import { buildWhatsAppLink } from "@/lib/services/whatsapp-link";
 import {
   calcularCotizacion,
   moneda,
@@ -116,24 +117,25 @@ export default function PresupuestoAberturasPage() {
   const abrirWhatsApp = () => {
     if (!formularioValido) return;
 
-    const telefono = cliente.telefono.replace(/\D/g, "");
+    // Número del cliente (solo dígitos). Si está vacío, buildWhatsAppLink
+    // usa WHATSAPP_NUMBER como fallback (AYCweb) con validación incluida.
+    const telefonoCliente = cliente.telefono.replace(/\D/g, "") || undefined;
 
-    const mensaje = encodeURIComponent(
+    const mensajeTexto =
       `Hola, te comparto el presupuesto solicitado:\n\n` +
-        `Cliente: ${cliente.nombre || "Sin nombre"}\n` +
-        `Producto: ${resultado.productoNombre}\n` +
-        `Medidas: ${resultado.ancho} x ${resultado.alto} cm\n` +
-        `Cantidad: ${resultado.cantidad}\n` +
-        `Superficie: ${resultado.m2.toFixed(2)} m²\n` +
-        `Incluye premarco: ${incluirPremarco ? "Sí" : "No"}\n` +
-        `Incluye colocación: ${incluirColocacion ? "Sí" : "No"}\n\n` +
-        `Precio unitario: ${moneda(resultado.precioVentaRedondeado)}\n` +
-        `Total general: ${moneda(resultado.totalGeneral)}\n\n` +
-        `Validez del presupuesto: 7 días.\n` +
-        `Para avanzar podemos coordinar medición, seña y fecha de instalación.`
-    );
+      `Cliente: ${cliente.nombre || "Sin nombre"}\n` +
+      `Producto: ${resultado.productoNombre}\n` +
+      `Medidas: ${resultado.ancho} x ${resultado.alto} cm\n` +
+      `Cantidad: ${resultado.cantidad}\n` +
+      `Superficie: ${resultado.m2.toFixed(2)} m²\n` +
+      `Incluye premarco: ${incluirPremarco ? "Sí" : "No"}\n` +
+      `Incluye colocación: ${incluirColocacion ? "Sí" : "No"}\n\n` +
+      `Precio unitario: ${moneda(resultado.precioVentaRedondeado)}\n` +
+      `Total general: ${moneda(resultado.totalGeneral)}\n\n` +
+      `Validez del presupuesto: 7 días.\n` +
+      `Para avanzar podemos coordinar medición, seña y fecha de instalación.`;
 
-    const url = telefono ? `https://wa.me/${telefono}?text=${mensaje}` : `https://wa.me/?text=${mensaje}`;
+    const url = buildWhatsAppLink(mensajeTexto, telefonoCliente);
     window.open(url, "_blank");
   };
 

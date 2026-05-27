@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { WHATSAPP_NUMBER } from "@/lib/config/contacto";
 
 type CampoCopiaProps = {
   etiqueta: string;
@@ -45,7 +46,7 @@ const CampoCopia = ({ etiqueta, valor }: CampoCopiaProps) => {
 };
 
 export default function OnboardingPage() {
-  const whatsappNumber = "595985864209";
+  const whatsappNumber = WHATSAPP_NUMBER;
   const whatsappUsdMsg = encodeURIComponent("Hola Oscar. Quiero los datos de la cuenta USD para activar el onboarding internacional.");
   const whatsappPygMsg = encodeURIComponent("Hola Oscar. Acabo de hacer la transferencia inicial para arrancar el Onboarding. Te envío el comprobante:");
 

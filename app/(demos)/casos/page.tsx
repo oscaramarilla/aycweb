@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { WHATSAPP_NUMBER } from "@/lib/config/contacto";
 
 export const metadata: Metadata = {
   title: "Casos de Estudio y Resultados Operativos | AYCweb",
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default function CasosPage() {
-  const whatsappNumber = "595985864209";
+  const whatsappNumber = WHATSAPP_NUMBER;
   const whatsappMsg = encodeURIComponent("¡Hola Oscar! Vi los casos de estudio en AYCweb y quiero saber si pueden construir una infraestructura similar para mi empresa.");
 
   return (

@@ -1,7 +1,13 @@
 // ============================================================
-// FUENTE ÚNICA DE VERDAD: Datos de contacto de AYCweb
-// Importar desde aquí en lugar de hardcodear en cada archivo.
+// DATOS DE CONTACTO DE AYCweb (retrocompatibilidad)
 // ============================================================
+// IMPORTANTE: buildWaLink y AYCWEB_CONTACT.whatsappNumber ahora delegan
+// a lib/config/contacto.ts + lib/services/whatsapp-link.ts.
+// No hardcodees el número aquí — la fuente es WHATSAPP_NUMBER en contacto.ts.
+// ============================================================
+
+import { WHATSAPP_NUMBER } from "@/lib/config/contacto";
+import { buildWhatsAppLink } from "@/lib/services/whatsapp-link";
 
 export interface ContactInfo {
   whatsappNumber: string;
@@ -19,12 +25,9 @@ export interface ContactInfo {
   };
 }
 
-const _waNumber = process.env.WHATSAPP_NUMBER ?? "595985864209";
-const _waBaseUrl = process.env.WHATSAPP_API_URL ?? `https://wa.me/${_waNumber}`;
-
 export const AYCWEB_CONTACT: ContactInfo = {
-  whatsappNumber: _waNumber,
-  waBaseUrl: _waBaseUrl,
+  whatsappNumber: WHATSAPP_NUMBER,
+  waBaseUrl: `https://wa.me/${WHATSAPP_NUMBER}`,
   email: "hola@aycweb.com",
   globalMessages: {
     diagnosis:
@@ -70,9 +73,10 @@ export const AYCWEB_CONTACT: ContactInfo = {
 
 /**
  * Genera un link de WhatsApp con mensaje pre-armado.
+ * Delega a buildWhatsAppLink para garantizar que el número nunca esté vacío.
  * @param message - Texto del mensaje (sin encodear)
  * @returns URL completa de wa.me
  */
 export function buildWaLink(message: string): string {
-  return `${AYCWEB_CONTACT.waBaseUrl}?text=${encodeURIComponent(message)}`;
+  return buildWhatsAppLink(message);
 }
