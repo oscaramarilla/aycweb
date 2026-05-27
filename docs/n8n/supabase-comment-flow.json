@@ -1,0 +1,171 @@
+{
+  "name": "Supabase anonymous comments -> OpenAI -> WhatsApp",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "supabase-anon-comments",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "comment",
+              "value": "={{ $json[\"body\"] && $json[\"body\"][\"new\"] ? $json[\"body\"][\"new\"][\"comment\"] : ($json[\"body\"] && $json[\"body\"][\"record\"] ? $json[\"body\"][\"record\"][\"comment\"] : $json[\"body\"][\"comment\"])) }}"
+            },
+            {
+              "name": "slug",
+              "value": "={{ $json[\"body\"] && $json[\"body\"][\"new\"] ? $json[\"body\"][\"new\"][\"article_slug\"] : ($json[\"body\"] && $json[\"body\"][\"record\"] ? $json[\"body\"][\"record\"][\"article_slug\"] : $json[\"body\"][\"article_slug\"])) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set comment+slug",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "jsonParameters": true,
+        "options": {},
+        "headerParametersJson": "{\"Authorization\":\"Bearer {{$env.N8N_OPENAI_API_KEY}}\",\"Content-Type\":\"application/json\"}",
+        "bodyParametersJson": "{\n  \"model\": \"{{$env.OPENAI_MODEL || 'gpt-4o-mini'}}\",\n  \"temperature\": 0.0,\n  \"max_tokens\": 500,\n  \"messages\": [\n    {\"role\": \"system\", \"content\": \"Eres un clasificador y extractor. Recibirás un comentario en texto y debes devolver UNICAMENTE un JSON válido con estas claves: \\\n+{\\\n  \\\"label\\\": \\\"legit\\\" o \\\"spam\\\",\\\n  \\\"intent\\\": una de [\\\"compra\\\", \\\"duda_operativa\\\", \\\"soporte\\\", \\\"otro\\\"],\\\n  \\\"summary\\\": breve resumen del dolor/consulta (max 40 palabras)\\\n}\\\nNo agregues texto fuera del JSON.\"},\n    {\"role\": \"user\", \"content\": \"{{ $json[\\\"comment\\\"] }}\"}\n  ]\n}"
+      },
+      "name": "OpenAI - classify",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [780, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "const body = $json; // OpenAI response object\nconst content = body.choices && body.choices[0] && body.choices[0].message && body.choices[0].message.content ? body.choices[0].message.content : null;\nlet parsed = { label: 'unknown', intent: 'otro', summary: '' };\nif (content) {\n  try {\n    parsed = JSON.parse(content);\n  } catch (e) {\n    // try to extract JSON substring\n    const m = content.match(/\\{[\\s\\S]*\\}/);\n    if (m) parsed = JSON.parse(m[0]);\n  }\n}\nreturn [{ json: { classification: parsed, raw: body, comment: $input.all()[0].json.comment, slug: $input.all()[0].json.slug } }];"
+      },
+      "name": "Parse AI JSON",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1060, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json[\"classification\"] && $json[\"classification\"].label ? $json[\"classification\"].label.toLowerCase() : '' }}",
+              "operation": "equal",
+              "value2": "legit"
+            }
+          ]
+        }
+      },
+      "name": "IF is legit",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1320, 300]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $env.WHATSAPP_API_URL || `https://graph.facebook.com/v16.0/${$env.WHATSAPP_PHONE_ID}/messages` }}",
+        "jsonParameters": true,
+        "options": {},
+        "headerParametersJson": "{\"Authorization\":\"Bearer {{$env.WHATSAPP_ACCESS_TOKEN}}\",\"Content-Type\":\"application/json\"}",
+        "bodyParametersJson": "{\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{$env.ALERT_RECIPIENT_PHONE}}\",\n  \"type\": \"text\",\n  \"text\": {\n    \"preview_url\": false,\n    \"body\": \"Nuevo comentario anónimo en el artículo: {{ $json.slug }}\\nComentario: {{ $json.comment }}\\nIntención detectada: {{ $json.classification.intent }}\\nResumen: {{ $json.classification.summary }}\"\n  }\n}"
+      },
+      "name": "WhatsApp Notify",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [1580, 220]
+    },
+    {
+      "parameters": {
+        "responseBody": "={{ { status: 'received' } }}",
+        "responseCode": 200
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1580, 380]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set comment+slug",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set comment+slug": {
+      "main": [
+        [
+          {
+            "node": "OpenAI - classify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI - classify": {
+      "main": [
+        [
+          {
+            "node": "Parse AI JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse AI JSON": {
+      "main": [
+        [
+          {
+            "node": "IF is legit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF is legit": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Notify",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
