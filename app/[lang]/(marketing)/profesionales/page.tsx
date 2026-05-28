@@ -1,27 +1,24 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { buildWaLink } from "@/lib/config/contact";
 
 export const metadata: Metadata = {
-  title: "Sistemas de Captación Digital para Profesionales | AYCweb Paraguay",
+  title: "Sistema Automático de Agenda para Profesionales | AYCweb Paraguay",
   description:
-    "Agenda online, captación automatizada y autoridad digital para médicos, odontólogos, abogados, contadores y arquitectos en Paraguay. Dejá de depender del boca a boca y llenás tu agenda con clientes precalificados.",
+    "Dejá de gestionar tu agenda por WhatsApp. Configuramos tu sistema de captación automática, filtro de consultas y enlace de agenda por USD 50 único. Mantenimiento por USD 10/mes.",
   keywords: [
-    "captación digital profesionales paraguay",
-    "agenda online profesionales paraguay",
-    "sistema captación médicos paraguay",
-    "autoridad digital profesionales",
-    "landing page profesional paraguay",
-    "marketing digital profesionales independientes",
+    "agenda online automática profesionales paraguay",
+    "sistema captación digital profesionales",
+    "filtro consultas whatsapp profesionales",
+    "agenda calendly profesional paraguay",
     "AYCweb profesionales",
   ],
   alternates: {
     canonical: "https://aycweb.com/es/profesionales",
   },
   openGraph: {
-    title: "Sistemas de Captación Digital para Profesionales | AYCweb Paraguay",
+    title: "Sistema Automático de Agenda para Profesionales | AYCweb Paraguay",
     description:
-      "Agenda online, captación automatizada y autoridad digital para médicos, odontólogos, abogados, contadores y arquitectos en Paraguay. Tu consultorio trabaja por vos.",
+      "Tu agenda no necesita más mensajes sueltos en WhatsApp. Necesita un sistema automático. Setup por USD 50 + mantenimiento USD 10/mes.",
     url: "https://aycweb.com/es/profesionales",
     siteName: "AYCweb",
     images: [
@@ -29,7 +26,7 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Sistemas de Captación para Profesionales - AYCweb Paraguay",
+        alt: "Sistema Automático de Agenda - AYCweb Paraguay",
       },
     ],
     locale: "es_PY",
@@ -37,160 +34,219 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sistemas de Captación Digital para Profesionales | AYCweb Paraguay",
+    title: "Sistema Automático de Agenda para Profesionales | AYCweb Paraguay",
     description:
-      "Agenda online y captación automatizada para médicos, abogados, contadores y arquitectos en Paraguay. Llenás tu agenda con clientes precalificados.",
+      "Tu agenda no necesita más mensajes sueltos en WhatsApp. Necesita un sistema automático. USD 50 setup + USD 10/mes.",
     images: ["/og-image.jpg"],
   },
 };
 
-const PLANES = [
+const PROBLEMAS = [
   {
-    nombre: "Profesional Starter",
-    precio: "$350",
-    entrega: "Entrega en 1 semana",
-    tagline:
-      "Presencia digital clara y enfoque directo para empezar a captar de forma seria.",
-    features: [
-      "Landing page profesional de una sola página",
-      "Copywriting orientado a conversión",
-      "Mensajes pre-armados a WhatsApp",
-      "Links de pago QR / Pagopar",
-      "Diseño mobile-first",
-      "PageSpeed 95+",
-    ],
-    ideal: "Profesionales que recién están armando su presencia digital seria.",
-    cta: "Quiero la Base",
-    badge: null,
+    icon: "📱",
+    titulo: "Mensajes sueltos en WhatsApp",
+    desc: "Confirmás turnos uno por uno. Cada vez que alguien pregunta precio, horario o disponibilidad, sos vos el que responde manualmente.",
   },
   {
-    nombre: "Profesional Pro",
-    precio: "$650",
-    entrega: "Entrega en 2 semanas",
-    tagline:
-      "Sistema completo de captación, autoridad y filtro de consultas para subir nivel.",
-    features: [
-      "Todo lo de Profesional Starter, más:",
-      "Agenda Calendly / Google Calendar integrada",
-      "Formularios de precalificación de pacientes/clientes",
-      "Blog de autoridad y SEO on-page",
-      "Sección de testimonios y casos",
-      "WhatsApp por servicio específico",
-    ],
-    ideal: "Profesionales que ya tienen demanda y necesitan filtrar y cerrar mejor.",
-    cta: "Quiero el Pro",
-    badge: "RECOMENDADO",
-  },
-] as const;
-
-const PROFESIONES = [
-  { icon: "🩺", nombre: "Ingenieros y Médicos", desc: "Especialistas y consulta general" },
-  { icon: "🦷", nombre: "Odontólogos", desc: "Consultorios y clínicas dentales" },
-  { icon: "⚖️", nombre: "Abogados", desc: "Estudios y profesionales independientes" },
-  { icon: "📊", nombre: "Contadores", desc: "Estudios contables y asesores" },
-  { icon: "📐", nombre: "Arquitectos", desc: "Estudios y diseñadores de interiores" },
-  { icon: "📷", nombre: "Fotógrafos", desc: "Bodas, eventos, productos" },
-  { icon: "💼", nombre: "Consultores", desc: "Coaching, marketing, finanzas" },
-  { icon: "🎨", nombre: "Diseñadores", desc: "Gráfico, web, branding" },
-] as const;
-
-const DOLORES = [
-  {
-    titulo: "Tu agenda tiene huecos",
-    desc: "El boca a boca te mantiene a flote pero no escala. Querés llenar la semana, no rezar para que llegue el lunes.",
+    icon: "🔄",
+    titulo: "Ida y vuelta infinita",
+    desc: "Tres mensajes para agendar, dos para confirmar, uno para reagendar. Tu tiempo de atención se va en administración, no en tu trabajo real.",
   },
   {
+    icon: "😤",
     titulo: "Consultas que no califican",
-    desc: "Te escriben por WhatsApp pidiendo precio sin saber lo que ofrecés. Perdés tiempo explicando lo básico una y otra vez.",
-  },
-  {
-    titulo: "Te googlean y no encuentran nada",
-    desc: "Cuando alguien te recomienda, lo primero que hace es buscarte en Google. Si no aparecés, perdiste el cliente antes de hablar.",
-  },
-  {
-    titulo: "No tenés autoridad visible",
-    desc: "Sabés que sos bueno en lo tuyo, pero tu presencia online no lo refleja. La calidad del servicio no se ve antes del primer contacto.",
+    desc: "Te escriben sin saber precio, sin saber qué ofrecés, sin intención real de contratar. Filtrás consultas en lugar de cerrar clientes.",
   },
 ] as const;
 
-const QUE_OBTENES = [
-  {
-    icon: "📅",
-    titulo: "Agenda autopiloto",
-    desc: "Tus pacientes/clientes reservan online sin ida y vuelta de WhatsApps. Llegan ya sabiendo precio, horario y qué llevar.",
-  },
-  {
-    icon: "🎯",
-    titulo: "Filtro de consultas",
-    desc: "Formularios que precalifican antes del contacto. Solo hablás con quien ya está listo para pagar.",
-  },
-  {
-    icon: "📝",
-    titulo: "Autoridad por SEO",
-    desc: "Blog optimizado donde respondés las preguntas que tu cliente hace en Google. Aparecer primero es ganar el cliente.",
-  },
-  {
-    icon: "💬",
-    titulo: "WhatsApp ordenado",
-    desc: "Cada servicio con su propio link directo y mensaje pre-armado. Cero ambigüedad sobre qué te están pidiendo.",
-  },
-] as const;
+const INCLUYE_SETUP = [
+  "Página de captación con tu oferta clara",
+  "Formulario de precalificación de consultas",
+  "Enlace de agenda online (Calendly o Google Calendar)",
+  "Mensajes automáticos de confirmación y recordatorio",
+  "Link directo a WhatsApp ya pre-armado por servicio",
+];
 
-export default function SolucionesPage() {
+const INCLUYE_MANT = [
+  "Hosting y uptime de toda la infraestructura",
+  "Soporte técnico ante cualquier caída o ajuste",
+  "Actualizaciones menores de contenido (precios, horarios)",
+  "Monitoreo de rendimiento (PageSpeed, disponibilidad)",
+];
+
+export default function ProfesionalesPage() {
+  const ctaWa = buildWaLink(
+    "Hola Oscar, soy profesional independiente y quiero iniciar mi sistema automático de agenda por USD 50."
+  );
+
   return (
     <div className="relative min-h-screen bg-slate-950 text-slate-50 overflow-hidden">
-      <div className="fixed inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15] pointer-events-none mix-blend-overlay z-0" />
+      {/* Ruido de fondo */}
+      <div className="fixed inset-0 bg-[url('/noise.svg')] opacity-[0.15] pointer-events-none mix-blend-overlay z-0" />
 
-      {/* HERO */}
+      {/* ── HERO ── */}
       <section className="relative z-10 px-6 pt-28 md:pt-40 pb-16 md:pb-24 border-b border-white/[0.05]">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-emerald-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-emerald-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
 
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 text-[11px] font-bold uppercase tracking-[0.2em] mb-6">
             <span className="text-base">🧑‍⚕️</span>
             Línea Profesionales
           </span>
 
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-[1.02] tracking-tighter text-white mb-6">
-            Tu consultorio <br className="hidden sm:block" />
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.05] tracking-tighter text-white mb-6">
+            Tu agenda no necesita <br className="hidden sm:block" />
+            más mensajes sueltos en WhatsApp.
+            <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
-              trabaja por vos.
+              Necesita un sistema automático.
             </span>
           </h1>
 
-          <p className="text-base md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-10">
-            Sistemas de captación, agenda online y autoridad digital para médicos, abogados, contadores, arquitectos y profesionales que quieren dejar de depender del boca a boca.
+          <p className="text-base md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10">
+            Configuramos tu captación, filtro de consultas y enlace de agenda para que tus clientes se agenden solos — sin que vos tengas que estar pendiente del celular.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center flex-wrap">
-            <a
-              href={buildWaLink(
-                "Hola Oscar, soy profesional independiente y quiero agendar un diagnóstico gratuito para mi servicio."
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(16,185,129,0.4)] active:scale-95"
-            >
-              Diagnóstico gratuito
-            </a>
-            <Link
-              href="/es/diagnostico-comercial"
-              className="w-full sm:w-auto bg-purple-950/40 border border-purple-500/30 hover:border-purple-400/60 hover:bg-purple-950/60 text-purple-300 font-bold py-4 px-10 rounded-xl transition-all flex items-center justify-center gap-2"
-            >
-              <span>⚡</span>
-              Diagnóstico Express (5 min)
-            </Link>
-            <Link
-              href="#planes"
-              className="w-full sm:w-auto bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-200 font-bold py-4 px-10 rounded-xl transition-all"
-            >
-              Ver planes
-            </Link>
+          <a
+            href={ctaWa}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-12 rounded-xl transition-all shadow-[0_0_30px_rgba(16,185,129,0.4)] active:scale-95 text-lg"
+          >
+            Iniciar mi sistema por $50
+          </a>
+        </div>
+      </section>
+
+      {/* ── PROBLEMAS ── */}
+      <section className="relative z-10 px-6 py-16 md:py-24 border-b border-white/[0.05]">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-3">
+            Por qué esto no escala
+          </p>
+          <h2 className="text-3xl md:text-4xl font-black text-white text-center mb-12 tracking-tight">
+            El problema no es tu servicio.<br />
+            <span className="text-slate-400 font-normal">Es cómo lo gestionás.</span>
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {PROBLEMAS.map((p) => (
+              <div
+                key={p.titulo}
+                className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 hover:border-slate-600 transition-colors"
+              >
+                <div className="text-3xl mb-4">{p.icon}</div>
+                <h3 className="font-bold text-white text-base mb-2">{p.titulo}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{p.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* rest of page retained as original for brevity */}
+      {/* ── OFERTA ÚNICA ── */}
+      <section id="oferta" className="relative z-10 px-6 py-16 md:py-28">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-emerald-700/[0.07] rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto">
+          <p className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-400 mb-3">
+            Una sola oferta. Sin sorpresas.
+          </p>
+          <h2 className="text-3xl md:text-4xl font-black text-white text-center mb-4 tracking-tight">
+            Precio claro desde el primer día
+          </h2>
+          <p className="text-slate-400 text-center text-base mb-12 max-w-xl mx-auto">
+            Sin paquetes confusos, sin add-ons ocultos. Sabés exactamente qué pagás y qué recibís.
+          </p>
+
+          {/* Tarjetas */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+
+            {/* Setup Inicial */}
+            <div className="relative bg-slate-900/70 border border-emerald-500/30 rounded-3xl p-8 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/20 to-transparent pointer-events-none rounded-3xl" />
+              <div className="relative z-10">
+                <span className="inline-block text-[10px] font-black uppercase tracking-[0.18em] text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full mb-4">
+                  Pago Único
+                </span>
+
+                <div className="flex items-end gap-2 mb-1">
+                  <span className="text-5xl font-black text-white">$50</span>
+                  <span className="text-slate-400 text-sm mb-2">USD</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Setup Inicial</h3>
+                <p className="text-slate-400 text-sm mb-6 border-b border-slate-800 pb-6">
+                  Dejamos todo configurado y funcionando para que empieces a recibir agendamientos desde el día uno.
+                </p>
+
+                <ul className="space-y-2.5">
+                  {INCLUYE_SETUP.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-slate-300">
+                      <span className="text-emerald-400 mt-0.5 flex-shrink-0">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Mantenimiento */}
+            <div className="relative bg-slate-900/70 border border-slate-700/50 rounded-3xl p-8 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-800/20 to-transparent pointer-events-none rounded-3xl" />
+              <div className="relative z-10">
+                <span className="inline-block text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 bg-slate-800/60 border border-slate-700 px-3 py-1 rounded-full mb-4">
+                  Mensual
+                </span>
+
+                <div className="flex items-end gap-2 mb-1">
+                  <span className="text-5xl font-black text-white">$10</span>
+                  <span className="text-slate-400 text-sm mb-2">USD / mes</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Mantenimiento</h3>
+                <p className="text-slate-400 text-sm mb-6 border-b border-slate-800 pb-6">
+                  Tu sistema sigue online, actualizado y con soporte técnico disponible mientras seguís operando.
+                </p>
+
+                <ul className="space-y-2.5">
+                  {INCLUYE_MANT.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-slate-300">
+                      <span className="text-cyan-400 mt-0.5 flex-shrink-0">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Resumen de precio total */}
+          <div className="bg-emerald-950/30 border border-emerald-500/20 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
+            <div>
+              <p className="text-emerald-300 font-bold text-sm">Costo total al arrancar</p>
+              <p className="text-slate-400 text-xs">Setup único + primer mes de mantenimiento incluido</p>
+            </div>
+            <div className="flex items-end gap-1">
+              <span className="text-3xl font-black text-white">$60</span>
+              <span className="text-slate-400 text-sm mb-1">USD total</span>
+            </div>
+          </div>
+
+          {/* CTA principal */}
+          <div className="text-center">
+            <a
+              href={ctaWa}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-14 rounded-xl transition-all shadow-[0_0_40px_rgba(16,185,129,0.35)] active:scale-95 text-lg mb-4"
+            >
+              Iniciar mi sistema por $50
+            </a>
+            <p className="text-slate-500 text-xs">
+              Te contactamos dentro de las 24 hs hábiles para coordinar el setup.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

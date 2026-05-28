@@ -69,6 +69,49 @@ export default function OnboardingPage() {
         </div>
       </section>
 
+      {/* ── TARJETA DE CONFIANZA INSTITUCIONAL ── */}
+      <section className="relative z-10 px-6 max-w-5xl mx-auto mb-8">
+        <div className="relative bg-slate-900/50 border border-slate-700/60 rounded-2xl p-6 md:p-8 overflow-hidden backdrop-blur-sm">
+          {/* Borde sutil con brillo */}
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-slate-700/20 via-transparent to-emerald-900/10 pointer-events-none" />
+
+          <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+            {/* Foto de perfil */}
+            <div className="flex-shrink-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/oscar.jpg"
+                alt="Oscar Amarilla"
+                className="w-16 h-16 rounded-full object-cover bg-slate-800 border-2 border-slate-700"
+              />
+            </div>
+
+            {/* Texto */}
+            <div className="flex-1">
+              <p className="text-white font-bold text-base mb-1">
+                Soy Oscar Amarilla, director de AYCweb y tu responsable técnico.
+              </p>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Operamos bajo el{" "}
+                <span className="text-slate-300 font-semibold">RUC 4499507-5</span>,
+                registrado y actualizado en la{" "}
+                <span className="text-slate-300 font-semibold">DNIT (Dirección Nacional de Ingresos Tributarios)</span>.
+                Cada pago que realizás queda respaldado por una empresa formalmente constituida en Paraguay.
+              </p>
+            </div>
+
+            {/* Badge RUC */}
+            <div className="flex-shrink-0 text-center hidden md:block">
+              <div className="bg-emerald-950/60 border border-emerald-500/30 rounded-xl px-4 py-3">
+                <p className="text-[9px] font-black uppercase tracking-[0.15em] text-emerald-400 mb-0.5">RUC Verificado</p>
+                <p className="text-white font-mono font-bold text-sm">4499507-5</p>
+                <p className="text-[9px] text-slate-500 mt-0.5">DNIT Paraguay</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="relative z-10 px-6 max-w-5xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="bg-slate-900/60 border border-slate-800 rounded-[1.5rem] p-6 md:p-8 flex flex-col relative transition-all hover:border-emerald-500/50">
