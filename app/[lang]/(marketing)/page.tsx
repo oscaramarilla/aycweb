@@ -47,7 +47,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               Agendar Auditoría B2B
             </a>
             <Link
-              href="/diagnostico-comercial"
+              href="/es/diagnostico-comercial"
               className="w-full sm:w-auto bg-purple-950/40 border border-purple-500/30 hover:border-purple-400/60 hover:bg-purple-950/60 text-purple-300 font-bold py-3.5 md:py-4 px-8 md:px-10 rounded-xl transition-all flex items-center justify-center gap-2 text-[15px] md:text-base"
             >
               <span>⚡</span>
@@ -97,7 +97,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             ))}
             <div className="bg-gradient-to-br from-blue-600/20 to-transparent p-8 rounded-2xl border border-blue-500/20 flex flex-col justify-center items-center text-center">
               <p className="text-white font-bold text-lg mb-2">¿Querés verlo en vivo?</p>
-              <Link href="/motor/demo" className="text-blue-400 font-bold hover:underline mb-3 block">
+              <Link href="/es/motor/demo" className="text-blue-400 font-bold hover:underline mb-3 block">
                 ⚡ Probá el Motor en vivo →
               </Link>
               <Link href={`/${lang}/obras`} className="text-slate-400 text-sm hover:text-slate-200 hover:underline transition-colors">Ver obras en producción →</Link>

@@ -16,6 +16,9 @@ const nextConfig: NextConfig = {
       { source: '/controlroom', destination: '/admin/controlroom',permanent: true },
       { source: '/costos',      destination: '/admin/costos',     permanent: true },
       { source: '/contrato',    destination: '/admin/contrato',   permanent: true },
+      // Migración de rutas huérfanas a [lang]/(funnels) — mayo 2026
+      { source: '/diagnostico-comercial', destination: '/es/diagnostico-comercial', permanent: true },
+      { source: '/motor/demo',            destination: '/es/motor/demo',            permanent: true },
     ];
   },
 };

@@ -1,5 +1,5 @@
 // ============================================================
-// LAYOUT: /diagnostico-comercial
+// LAYOUT: [lang]/(funnels)/diagnostico-comercial
 // ============================================================
 // Este layout existe exclusivamente para proveer metadata SEO
 // a la ruta, ya que page.tsx usa "use client" y no puede
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Diagnóstico Comercial Express – AYCweb",
     description:
       "6 preguntas · 5 minutos · Diagnóstico personalizado gratuito para sistematizar tu operación comercial.",
-    url: "https://aycweb.com/diagnostico-comercial",
+    url: "https://aycweb.com/es/diagnostico-comercial",
     siteName: "AYCweb",
     images: [
       {
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     images: ["https://aycweb.com/og-image.jpg"],
   },
   alternates: {
-    canonical: "https://aycweb.com/diagnostico-comercial",
+    canonical: "https://aycweb.com/es/diagnostico-comercial",
   },
 };
 

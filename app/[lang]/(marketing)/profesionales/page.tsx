@@ -174,7 +174,7 @@ export default function SolucionesPage() {
               Diagnóstico gratuito
             </a>
             <Link
-              href="/diagnostico-comercial"
+              href="/es/diagnostico-comercial"
               className="w-full sm:w-auto bg-purple-950/40 border border-purple-500/30 hover:border-purple-400/60 hover:bg-purple-950/60 text-purple-300 font-bold py-4 px-10 rounded-xl transition-all flex items-center justify-center gap-2"
             >
               <span>⚡</span>

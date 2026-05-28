@@ -104,7 +104,7 @@ export function SolucionPageTemplate({ config, casosRelacionados }: Props) {
             {/* CTA Hero */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/diagnostico-comercial"
+                href="/es/diagnostico-comercial"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] active:scale-95 text-[15px]"
               >
                 <span>⚡</span>
@@ -451,7 +451,7 @@ export function SolucionPageTemplate({ config, casosRelacionados }: Props) {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* CTA Principal — Diagnóstico en web (no abre WA directo) */}
               <Link
-                href="/diagnostico-comercial"
+                href="/es/diagnostico-comercial"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-10 rounded-xl transition-all shadow-[0_0_40px_rgba(37,99,235,0.35)] active:scale-95 text-[15px]"
               >
                 <span aria-hidden="true">💬</span>

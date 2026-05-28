@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * app/motor/demo/page.tsx
+ * app/[lang]/(funnels)/motor/demo/page.tsx
  * ─────────────────────────────────────────────────────────────
  * Demo público del Motor AYCweb — Cotizador de Muebles a Medida.
  *
@@ -148,7 +148,7 @@ export default function MotorDemoPage() {
             </p>
           </div>
           <Link
-            href="/diagnostico-comercial"
+            href="/es/diagnostico-comercial"
             className="shrink-0 rounded-lg bg-white px-3 py-1.5 text-[11px] sm:text-xs font-black text-blue-700 transition hover:bg-yellow-300 hover:text-blue-900 active:scale-95 whitespace-nowrap"
           >
             Quiero este motor →
@@ -322,7 +322,7 @@ export default function MotorDemoPage() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
-              href="/diagnostico-comercial"
+              href="/es/diagnostico-comercial"
               className="w-full sm:w-auto rounded-xl bg-blue-600 px-8 py-4 font-black text-white shadow-[0_0_30px_rgba(37,99,235,0.4)] transition hover:bg-blue-500 active:scale-95 text-center"
             >
               Quiero este motor en mi sitio
@@ -589,7 +589,7 @@ function ResumenCotizacion({
               Este cotizador funciona en el sitio de tu empresa. Configurado con tu catálogo y precios.
             </p>
             <Link
-              href="/diagnostico-comercial"
+              href="/es/diagnostico-comercial"
               className="inline-block rounded-lg bg-blue-600 px-4 py-2 text-[11px] font-black text-white transition hover:bg-blue-500 active:scale-95"
             >
               Desde USD 50/mes →
