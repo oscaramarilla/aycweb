@@ -15,3 +15,17 @@ export interface MetricaImpacto {
   /** Unidad opcional cuando aplica contexto adicional (ej: "por solicitud") */
   unidad?: string;
 }
+
+/**
+ * Pieza de evidencia visual de una obra en producción.
+ * Permite mostrar capturas, previews de PDF o vistas mobile del sistema.
+ */
+export type EvidenciaVisual = {
+  /** Ruta relativa desde public/ (ej: "/obras/metalmadeas/01-cotizador.webp") */
+  src: string;
+  /** Descripción SEO de la imagen */
+  alt: string;
+  /** Texto explicativo factual mostrado en hover y lightbox */
+  caption?: string;
+  tipo: "screenshot" | "pdf_preview" | "mobile_view";
+};

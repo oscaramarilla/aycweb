@@ -5,10 +5,10 @@
 // Métricas de impacto: viven en lib/config/obras/[slug].ts (una por cliente)
 // y se importan aquí para mantener la config centralizada.
 
-import type { MetricaImpacto } from "../domain/obra";
+import type { MetricaImpacto, EvidenciaVisual } from "../domain/obra";
 import { METRICAS_METAL_MAD } from "./obras/metal-mad-modular-k";
 
-export type { MetricaImpacto };
+export type { MetricaImpacto, EvidenciaVisual };
 
 export interface CasoObra {
   id: string;
@@ -25,6 +25,11 @@ export interface CasoObra {
    * Si no está definido, el componente MetricasImpactoCard no se renderiza.
    */
   metricasImpacto?: MetricaImpacto[];
+  /**
+   * Evidencia visual del sistema en producción.
+   * Si no está definido o está vacío, GaleriaEvidencia devuelve null.
+   */
+  evidenciaVisual?: EvidenciaVisual[];
 }
 
 export const CASOS_OBRAS: CasoObra[] = [
@@ -84,6 +89,20 @@ export const CASOS_OBRAS: CasoObra[] = [
     ctaMessage:
       "Hola Oscar. Vi el caso de Metal Mad / Modular K en AYCweb y quiero una calculadora paramétrica con generación de PDF para mi empresa.",
     metricasImpacto: METRICAS_METAL_MAD,
+    evidenciaVisual: [
+      {
+        src: "/test-modular-exterior.webp",
+        alt: "Cabina PIR modular Modular K — vista exterior en instalación",
+        caption: "Cabina PIR modular en instalación, 2025",
+        tipo: "mobile_view",
+      },
+      {
+        src: "/test-modular-interior.webp",
+        alt: "Cabina PIR modular Modular K — vista interior terminada",
+        caption: "Interior cabina PIR terminada, 2025",
+        tipo: "mobile_view",
+      },
+    ],
   },
   {
     id: "dr-nicolas-silvero-medicina",

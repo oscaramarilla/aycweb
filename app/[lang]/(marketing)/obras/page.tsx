@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AYCWEB_CONTACT, buildWaLink } from "../../../../lib/config/contact";
 import { CASOS_OBRAS } from "../../../../lib/config/obras";
 import { MetricasImpactoCard } from "../../../../components/obras/MetricasImpactoCard";
+import GaleriaEvidencia from "../../../../components/obras/GaleriaEvidencia";
 
 export const metadata: Metadata = {
   title: "Casos de Éxito y Sistemas Implementados | AYCweb Paraguay",
@@ -171,6 +172,13 @@ export default function ObrasPage() {
                         {metricaDestacada.label}: {metricaDestacada.antes} → {metricaDestacada.despues}
                       </span>
                     )}
+
+                    {/* ── Badge de evidencia visual (sólo si hay imágenes) ── */}
+                    {c.evidenciaVisual && c.evidenciaVisual.length > 0 && (
+                      <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full border bg-violet-500/10 text-violet-300 border-violet-500/25">
+                        📸 Ver evidencia ({c.evidenciaVisual.length})
+                      </span>
+                    )}
                   </div>
                   <h2 className={`text-2xl md:text-3xl font-black mb-1 ${accentStyles[c.tagColor]}`}>
                     {c.client}
@@ -234,6 +242,9 @@ export default function ObrasPage() {
                     accentColor={c.tagColor as "blue" | "emerald" | "amber"}
                   />
                 )}
+
+                {/* ── Galería de evidencia visual (devuelve null si no hay imágenes) ── */}
+                <GaleriaEvidencia evidencia={c.evidenciaVisual ?? []} />
 
                 {/* CTA por caso */}
                 <div className="px-6 md:px-10 pb-8">
