@@ -142,6 +142,44 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         </div>
       </section>
 
+      {/* ================= 3b) PIPELINE OPERATIVO ================= */}
+      <section className="py-16 md:py-24 relative z-10 bg-[#04050a] border-b border-white/[0.05]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight">
+              No entregamos una web.<br className="hidden md:block" /> Entregamos un flujo operativo.
+            </h2>
+            <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
+              Así funciona el proceso, desde el primer mensaje hasta el sistema en producción.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 md:gap-4">
+            {[
+              { icon: "💬", step: "01", label: "Consulta", desc: "Nos contás tu operación y el problema central" },
+              { icon: "🔍", step: "02", label: "Filtro", desc: "Evaluamos si hay encaje real, sin vender por vender" },
+              { icon: "📋", step: "03", label: "Diagnóstico", desc: "Mapeamos el flujo actual, fricción por fricción" },
+              { icon: "⚙️", step: "04", label: "Sistema", desc: "Diseñamos y construimos el motor a medida" },
+              { icon: "📄", step: "05", label: "PDF / WhatsApp", desc: "Cotizaciones y mensajes automatizados" },
+              { icon: "📊", step: "06", label: "Panel", desc: "Métricas y visibilidad en tiempo real" },
+              { icon: "🔁", step: "07", label: "Seguimiento", desc: "Acompañamiento post-lanzamiento" },
+            ].map((item, i) => (
+              <div key={i} className="relative flex flex-col">
+                <div className="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-4 md:p-5 text-center flex flex-col items-center flex-1 hover:border-blue-500/20 transition-colors">
+                  <span className="text-2xl md:text-3xl mb-2 block">{item.icon}</span>
+                  <span className="text-[10px] text-blue-500/70 font-black tracking-widest mb-1.5 block">{item.step}</span>
+                  <h4 className="text-white font-bold text-[12px] md:text-[13px] mb-2 leading-tight">{item.label}</h4>
+                  <p className="text-slate-500 text-[10px] md:text-[11px] leading-relaxed hidden sm:block">{item.desc}</p>
+                </div>
+                {i < 6 && (
+                  <div className="absolute -right-2.5 top-1/2 -translate-y-1/2 text-slate-700 font-bold z-10 hidden lg:flex items-center text-base">›</div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ================= 4) FILTRO Y ADMISIÓN ================= */}
       <section className="py-16 md:py-32 relative z-10 border-y border-white/[0.05] overflow-hidden">
         <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-red-600/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>

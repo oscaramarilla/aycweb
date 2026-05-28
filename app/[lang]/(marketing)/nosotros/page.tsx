@@ -77,17 +77,58 @@ export default function NosotrosPage() {
         </div>
       </section>
 
+      {/* ====== BIO DE OSCAR ====== */}
+      <section className="px-6 py-16 border-t border-white/[0.04]">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
+            <div>
+              <span className="text-slate-500 font-bold tracking-widest uppercase text-[11px] mb-4 block">Fundador</span>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-2">Oscar Amarilla</h2>
+              <p className="text-blue-400 font-bold mb-6 text-[15px]">Infraestructura Digital · AYCweb Paraguay</p>
+              <p className="text-slate-400 leading-relaxed mb-8 text-[15px]">
+                Más de 12 años construyendo sistemas desde cero. Vengo de otro rubro: aprendí tecnología porque
+                vi que los sistemas que necesitaban las empresas paraguayas no existían —o costaban como si
+                vinieran del exterior sin entender la operación local.
+              </p>
+              <blockquote className="border-l-4 border-blue-500 pl-6 py-2 text-slate-300 italic leading-relaxed text-[15px]">
+                "Vi cómo las empresas paraguayas perdían ventas por procesos manuales y decidí construir los sistemas que no existían."
+              </blockquote>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-black text-white mb-6">Por qué importa quién construye el sistema</h3>
+              <div className="space-y-4">
+                {[
+                  { icon: "🔍", title: "Auditoría antes de propuesta", desc: "Nunca arrancamos sin entender tu operación actual. Si no hay encaje real, te lo decimos antes de cobrarte." },
+                  { icon: "🤝", title: "Interlocutor directo", desc: "No tercerizamos el proyecto ni el criterio. Hablás con quien diseña y construye el sistema." },
+                  { icon: "✅", title: "Garantía real", desc: "30 días de devolución completa. Sin letra chica, sin condiciones, sin discusión." },
+                ].map((p, i) => (
+                  <div key={i} className="bg-slate-900/40 border border-slate-800 rounded-2xl p-5 flex gap-4">
+                    <span className="text-xl shrink-0 mt-0.5">{p.icon}</span>
+                    <div>
+                      <h4 className="text-white font-bold mb-1 text-[14px]">{p.title}</h4>
+                      <p className="text-slate-400 text-[13px] leading-relaxed">{p.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== CTA FINAL ====== */}
       <section className="px-6 py-12 border-t border-white/[0.04] text-center">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-black mb-3">Hablemos</h2>
-          <p className="text-slate-400 mb-6">Si querés entender cómo podemos ayudar tu operación, agendá una llamada.</p>
+          <h2 className="text-2xl font-black mb-3">¿Tu operación tiene encaje con AYCweb?</h2>
+          <p className="text-slate-400 mb-6">En 15 minutos de diagnóstico te decimos si podemos construir algo juntos.</p>
           <a
-            href={buildWaLink("Hola Oscar, me interesa conocer al equipo y coordinar una llamada.")}
-            className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-3 px-8 rounded-xl"
+            href={buildWaLink("Hola Oscar, quiero saber si mi operación tiene encaje con AYCweb.")}
+            className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-3.5 px-8 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)]"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Contactar
+            Agendar Diagnóstico
           </a>
         </div>
       </section>

@@ -31,20 +31,20 @@ export default function Navbar() {
     <>
       <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${scrolled ? "bg-[#070810]/95 backdrop-blur-xl border-b border-white/[0.05] shadow-lg shadow-black/20" : "bg-transparent"}`}>
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-black tracking-tighter text-white hover:text-blue-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href={`/${lang}`} className="text-2xl font-black tracking-tighter text-white hover:text-blue-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
             AYC<span className="text-blue-500">web</span>
           </Link>
 
           {/* DESKTOP NAV */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {/* FRÍO: Exploración */}
-            <Link href="/empresas" className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Empresas</Link>
-            <Link href="/profesionales" className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Profesionales</Link>
-            <Link href="/nosotros" className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Nosotros</Link>
-            <Link href="/obras" className="text-[14px] font-bold text-blue-400 hover:text-blue-300 transition-colors">Obras</Link>
+            <Link href={`/${lang}/empresas`} className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Empresas</Link>
+            <Link href={`/${lang}/profesionales`} className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Profesionales</Link>
+            <Link href={`/${lang}/nosotros`} className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Nosotros</Link>
+            <Link href={`/${lang}/obras`} className="text-[14px] font-bold text-blue-400 hover:text-blue-300 transition-colors">Obras</Link>
 
             {/* TIBIO: Compromiso (Borde sutil) */}
-            <Link href="/onboarding" className="text-[14px] font-bold text-emerald-400 hover:text-emerald-300 transition-colors border border-emerald-500/30 px-4 py-2 rounded-xl hover:bg-emerald-500/10 flex items-center gap-2">
+            <Link href={`/${lang}/onboarding`} className="text-[14px] font-bold text-emerald-400 hover:text-emerald-300 transition-colors border border-emerald-500/30 px-4 py-2 rounded-xl hover:bg-emerald-500/10 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
               Onboarding
             </Link>
@@ -71,25 +71,25 @@ export default function Navbar() {
         <div className="flex flex-col h-full overflow-y-auto px-6 pt-24 pb-24">
           <div className="text-[11px] uppercase tracking-[0.25em] text-slate-500 font-bold mb-3">Elegí tu camino</div>
           
-          <Link href="/empresas" onClick={toggleMenu} className="rounded-2xl border border-blue-900/40 bg-blue-950/20 p-5 mb-3 active:scale-[0.98] transition-transform">
+          <Link href={`/${lang}/empresas`} onClick={toggleMenu} className="rounded-2xl border border-blue-900/40 bg-blue-950/20 p-5 mb-3 active:scale-[0.98] transition-transform">
             <div className="flex items-center gap-3 mb-2">
               <span className="text-3xl">🏭</span><div className="text-2xl font-black text-white">Empresas</div>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">Manufactureras, clínicas, distribuidoras.</p>
           </Link>
 
-          <Link href="/profesionales" onClick={toggleMenu} className="rounded-2xl border border-emerald-900/40 bg-emerald-950/20 p-5 mb-6 active:scale-[0.98] transition-transform">
+          <Link href={`/${lang}/profesionales`} onClick={toggleMenu} className="rounded-2xl border border-emerald-900/40 bg-emerald-950/20 p-5 mb-6 active:scale-[0.98] transition-transform">
             <div className="flex items-center gap-3 mb-2">
               <span className="text-3xl">🧑‍⚕️</span><div className="text-2xl font-black text-white">Profesionales</div>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">Médicos, dentistas, abogados, consultores.</p>
           </Link>
 
-          <Link href="/nosotros" onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">Nosotros</Link>
-          <Link href="/obras" onClick={toggleMenu} className="text-xl font-bold text-blue-400 py-4 border-b border-white/[0.05]">Obras</Link>
+          <Link href={`/${lang}/nosotros`} onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">Nosotros</Link>
+          <Link href={`/${lang}/obras`} onClick={toggleMenu} className="text-xl font-bold text-blue-400 py-4 border-b border-white/[0.05]">Obras</Link>
           <Link href={`/${lang}/recursos`} onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">Biblioteca B2B</Link>
 
-          <Link href="/onboarding" onClick={toggleMenu} className="text-xl font-bold text-emerald-400 flex items-center gap-3 py-5 mt-2 border border-emerald-900/30 rounded-xl px-4 bg-emerald-950/10">
+          <Link href={`/${lang}/onboarding`} onClick={toggleMenu} className="text-xl font-bold text-emerald-400 flex items-center gap-3 py-5 mt-2 border border-emerald-900/30 rounded-xl px-4 bg-emerald-950/10">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_15px_rgba(16,185,129,0.8)]"></span>
             Iniciar Onboarding
           </Link>
