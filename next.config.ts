@@ -19,6 +19,9 @@ const nextConfig: NextConfig = {
       // Migración de rutas huérfanas a [lang]/(funnels) — mayo 2026
       { source: '/diagnostico-comercial', destination: '/es/diagnostico-comercial', permanent: true },
       { source: '/motor/demo',            destination: '/es/motor/demo',            permanent: true },
+      // Protección coherencia de precios B2B Premium — rutas legacy /os → /es/empresas
+      { source: '/os',        destination: '/es/empresas', permanent: true },
+      { source: '/os/:path*', destination: '/es/empresas', permanent: true },
     ];
   },
 };

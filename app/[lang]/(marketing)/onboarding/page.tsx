@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { WHATSAPP_NUMBER } from "@/lib/config/contacto";
+import { LEGAL_INFO } from "@/lib/config/legal";
 
 type CampoCopiaProps = {
   etiqueta: string;
@@ -199,6 +200,13 @@ export default function OnboardingPage() {
 
         </div>
       </section>
+
+      {/* Microfirma institucional */}
+      <div className="relative z-10 px-6 max-w-5xl mx-auto mt-6 mb-2">
+        <p className="text-center text-[11px] text-slate-600 border-t border-white/[0.04] pt-5">
+          Factura emitida por {LEGAL_INFO.razonSocial} · RUC {LEGAL_INFO.ruc}
+        </p>
+      </div>
     </div>
   );
 }

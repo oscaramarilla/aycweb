@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import FloatingResourcesCTA from "@/components/ui/FloatingResourcesCTA";
 
 export default function MarketingLayout({
@@ -12,6 +13,7 @@ export default function MarketingLayout({
       <main className="flex-1">
         {children}
       </main>
+      <Footer />
       <FloatingResourcesCTA />
     </div>
   );

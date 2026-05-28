@@ -358,9 +358,9 @@ export default function ProductosPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-5 text-center">
-              <div className="font-black text-white mb-2">Pagás primero</div>
+              <div className="font-black text-white mb-2">Pagás cuando aceptás</div>
               <p className="text-[13px] text-slate-400 leading-relaxed">
-                Filtramos curiosos. Compromiso mutuo desde el día uno.
+                No antes. Primero diagnóstico, después propuesta. Si la aceptás, arrancamos.
               </p>
             </div>
             <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-5 text-center">

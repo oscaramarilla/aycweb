@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { FranjaClientes } from "@/components/social/FranjaClientes";
 import { buildWaLink } from "@/lib/config/contact";
+import { FILTRO_ADMISION_COPY } from "@/lib/config/copy/filtro-admision";
 
 // 1. CACHÉ ULTRARRÁPIDO: Guarda la página en los servidores globales de Vercel por 1 hora
 export const revalidate = 3600;
@@ -191,8 +192,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                 No trabajamos por volumen. <br/> Trabajamos por encaje.
               </h2>
               <div className="space-y-4 md:space-y-6 text-slate-400 text-[15px] md:text-lg leading-relaxed">
-                <p>No aceptamos a todos los clientes. Si no vemos una oportunidad clara de ordenar o vender mejor, te lo vamos a decir de frente.</p>
-                <p className="text-blue-400 font-bold">Preferimos rechazar un proyecto antes que prometer humo.</p>
+                <p>{FILTRO_ADMISION_COPY.texto}</p>
               </div>
             </div>
             
@@ -228,7 +228,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               <span className="text-4xl md:text-6xl block mb-4 md:mb-8">🛡️</span>
               <h2 className="text-2xl md:text-5xl font-black text-white mb-4 md:mb-6">Garantía sin fricción</h2>
               <p className="text-slate-400 text-[15px] md:text-xl max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed">
-                Elegimos con cuidado. Si decidimos que no somos el equipo correcto, <strong className="text-white">te devolvemos el 100%</strong>. Si en los primeros 30 días no hay conformidad real, <strong className="text-white">te devolvemos el 100%</strong>. Sin letra chica.
+                Evalúo con cuidado cada proyecto. Si no hay encaje real, te lo digo antes de cobrarte. Si en los primeros 30 días no hay conformidad real, <strong className="text-white">te devolvemos el 100%</strong>. Sin letra chica.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6 mb-8 md:mb-12">
