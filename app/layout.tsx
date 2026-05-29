@@ -4,6 +4,7 @@ import { Inter, Geist } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
+import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -84,6 +85,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="es" className={cn("scroll-smooth", inter.variable, "font-sans", geist.variable)}>
+      <head>
+        <SchemaMarkup />
+      </head>
       <body className="antialiased text-slate-50 min-h-screen flex flex-col font-sans relative selection:bg-blue-500/30 leading-relaxed">
         
         {/* Grilla sutil futurista de fondo */}
