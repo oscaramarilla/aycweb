@@ -2,11 +2,16 @@ import type { Metadata } from "next";
 import { buildWaLink } from "../../../../lib/config/contact";
 
 export const metadata: Metadata = {
-  title: "Operador Único + IA | Infraestructura Digital B2B | AYCweb Paraguay",
+  title: "Orquestación de Agentes + Optimización de APIs | AYCweb Paraguay",
   description:
-    "AYCweb es operado por un único arquitecto de sistemas con asistencia de IA. Hablás directo con quien construye tu motor digital, no con un account manager. Más de 12 años automatizando operaciones reales en Paraguay.",
+    "AYCweb opera con orquestación multi-agente (Claude + Cline) y optimización de costos de API. Un solo arquitecto de sistemas construye tu motor digital. Hablás directo con quien programa, no con un account manager. Más de 12 años automatizando operaciones reales en Paraguay.",
   keywords: [
     "quiénes somos AYCweb",
+    "orquestación de agentes IA",
+    "optimización APIs IA",
+    "multi-agent orchestration Paraguay",
+    "desarrollo con Cline Claude",
+    "eficiencia tokens API",
     "operador único desarrollo web paraguay",
     "firma infraestructura digital paraguay",
     "AYC SRL paraguay",
@@ -14,14 +19,16 @@ export const metadata: Metadata = {
     "desarrollo B2B paraguay",
     "automatización empresas paraguay",
     "IA augmentation paraguay",
+    "agente AI B2B Paraguay",
+    "costos API eficientes",
   ],
   alternates: {
     canonical: "https://aycweb.com/es/nosotros",
   },
   openGraph: {
-    title: "Operador Único + IA | Infraestructura Digital B2B | AYCweb Paraguay",
+    title: "Orquestación de Agentes + Optimización de APIs | AYCweb Paraguay",
     description:
-      "Un solo arquitecto de sistemas, asistido por IA, construye tu motor digital de principio a fin. Sin teléfono descompuesto, sin account managers. Infraestructura B2B real para empresas en Paraguay.",
+      "Arquitecto de sistemas con orquestación multi-agente (Claude + Cline). Cada llamada a API se optimiza. Sin intermediarios, sin teléfono descompuesto. Infraestructura B2B real para empresas en Paraguay.",
     url: "https://aycweb.com/es/nosotros",
     siteName: "AYCweb",
     images: [
@@ -29,7 +36,7 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "AYCweb - Operador Único + IA · Infraestructura Digital B2B Paraguay",
+        alt: "AYCweb - Orquestación de Agentes + Optimización de APIs · Infraestructura Digital B2B Paraguay",
       },
     ],
     locale: "es_PY",
@@ -37,9 +44,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Operador Único + IA | AYCweb Paraguay",
+    title: "Orquestación de Agentes + Optimización de APIs | AYCweb Paraguay",
     description:
-      "Un solo arquitecto de sistemas con asistencia de IA. Hablás con quien construye, no con un intermediario. Infraestructura B2B para Paraguay.",
+      "Arquitecto con orquestación multi-agente. APIs optimizadas, costos controlados. Infraestructura B2B para Paraguay.",
     images: ["/og-image.jpg"],
   },
 };
@@ -55,10 +62,11 @@ export default function NosotrosPage() {
             Modelo de trabajo
           </span>
           <h1 className="text-4xl md:text-6xl font-black mb-4">
-            Operador Único.<br className="hidden md:block" /> Asistido por IA.
+            Operador Único.<br className="hidden md:block" /> Orquestación Multi-Agente.
           </h1>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            Un solo arquitecto de sistemas construye tu motor digital de principio a fin.
+          <p className="text-slate-400 max-w-3xl mx-auto text-lg">
+            Un solo arquitecto de sistemas coordina agentes de IA especializados (Claude, Cline)
+            para construir tu motor digital. Cada llamada a API se optimiza al máximo.
             Sin intermediarios, sin teléfono descompuesto.
           </p>
         </div>
@@ -72,7 +80,7 @@ export default function NosotrosPage() {
             {/* Columna izquierda: Bio */}
             <div>
               <span className="text-slate-500 font-bold tracking-widest uppercase text-[11px] mb-4 block">
-                Fundador &amp; Arquitecto de Sistemas
+                Fundador & Arquitecto de Sistemas
               </span>
               <h2 className="text-3xl md:text-4xl font-black text-white mb-2">Oscar Amarilla</h2>
               <p className="text-blue-400 font-bold mb-6 text-[15px]">Infraestructura Digital · AYCweb Paraguay</p>
@@ -90,7 +98,7 @@ export default function NosotrosPage() {
             <div className="rounded-2xl border border-blue-500/30 bg-blue-950/20 p-8">
               <h3 className="text-xl font-black text-white mb-3">Quién construye tu sistema</h3>
               <p className="text-slate-300 leading-relaxed mb-6 text-[15px]">
-                <strong className="text-white">Operador único, con asistencia de IA.</strong> Vos hablás con el
+                <strong className="text-white">Operador único, con orquestación multi-agente.</strong> Vos hablás con el
                 arquitecto del sistema, no con un account manager.
               </p>
               <div className="rounded-xl bg-slate-900/60 border border-slate-700 p-5">
@@ -99,8 +107,15 @@ export default function NosotrosPage() {
                   Infraestructura B2B construida con{" "}
                   <span className="text-white font-semibold">Next.js</span>,{" "}
                   <span className="text-white font-semibold">Supabase</span>,{" "}
-                  <span className="text-white font-semibold">Vercel</span>, y orquestación asistida por{" "}
-                  <span className="text-blue-400 font-semibold">Inteligencia Artificial (Claude/Cline)</span>.
+                  <span className="text-white font-semibold">Vercel</span>, y{" "}
+                  <strong className="text-blue-400 font-semibold">orquestación multi-agente</strong>{" "}
+                  donde Claude y Cline colaboran en cadena: análisis → diseño → desarrollo → QA → deploy.
+                </p>
+                <p className="text-slate-400 text-[13px] leading-relaxed mt-3 border-t border-slate-700/50 pt-3">
+                  <span className="text-emerald-400 font-bold">Optimización de APIs:</span>{" "}
+                  Cada solicitud se diseña con contexto preciso, minimizando tokens y reutilizando
+                  resultados. El costo por funcionalidad entregada es hasta 3× más eficiente que
+                  el uso genérico de IA.
                 </p>
               </div>
             </div>
@@ -149,25 +164,119 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      {/* ====== PILLARES OPERATIVOS ====== */}
-      <section className="px-6 py-12 border-t border-white/[0.04]">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="rounded-2xl border border-slate-800 p-6 bg-slate-900/40 text-center">
-            <div className="text-3xl mb-3">👨‍💻</div>
-            <h3 className="font-black text-white mb-2">Producto</h3>
-            <p className="text-slate-400">Flujos diseñados para usuarios reales, con métricas medibles.</p>
+      {/* ====== ORQUESTACIÓN MULTI-AGENTE ====== */}
+      <section className="px-6 py-16 border-t border-white/[0.04]">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-10 text-center">
+            <span className="text-slate-500 font-bold tracking-widest uppercase text-[11px] mb-3 block">
+              Cómo construimos
+            </span>
+            <h2 className="text-3xl md:text-4xl font-black text-white">
+              Orquestación Multi-Agente
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto mt-4 text-[15px]">
+              No usamos IA como &ldquo;un chat que ayuda&rdquo;. Tenemos una arquitectura de agentes
+              especializados que colaboran en cadena, cada uno con un rol y un contexto definido.
+            </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 p-6 bg-slate-900/40 text-center">
-            <div className="text-3xl mb-3">⚙️</div>
-            <h3 className="font-black text-white mb-2">Ingeniería</h3>
-            <p className="text-slate-400">Sistemas escalables y mantenibles, con métricas reales.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              {
+                icon: "🔍",
+                title: "Agente de Análisis",
+                desc: "Audita tu operación actual, releva procesos y documenta requerimientos con precisión quirúrgica.",
+              },
+              {
+                icon: "🧠",
+                title: "Agente de Arquitectura",
+                desc: "Diseña la estructura del sistema, el modelo de datos y las integraciones necesarias.",
+              },
+              {
+                icon: "⚙️",
+                title: "Agente de Desarrollo",
+                desc: "Escribe código modular, testeable y documentado. Implementa cada componente con contexto completo.",
+              },
+              {
+                icon: "✅",
+                title: "Agente de QA & Deploy",
+                desc: "Ejecuta pruebas, verifica consistencia y despliega a producción con monitoreo continuo.",
+              },
+            ].map((agent, i) => (
+              <div key={i} className="rounded-2xl border border-blue-500/20 bg-blue-950/10 p-5 text-center">
+                <div className="text-3xl mb-3">{agent.icon}</div>
+                <h3 className="font-black text-white mb-2 text-[14px]">{agent.title}</h3>
+                <p className="text-slate-400 text-[13px] leading-relaxed">{agent.desc}</p>
+              </div>
+            ))}
           </div>
 
-          <div className="rounded-2xl border border-slate-800 p-6 bg-slate-900/40 text-center">
-            <div className="text-3xl mb-3">🤝</div>
-            <h3 className="font-black text-white mb-2">Operaciones</h3>
-            <p className="text-slate-400">Acompañamiento directo en la implementación y capacitación en campo.</p>
+          <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-900/40 p-6 text-center max-w-2xl mx-auto">
+            <p className="text-slate-300 text-[14px] leading-relaxed">
+              <strong className="text-white">Todos los agentes son orquestados por un solo arquitecto humano.</strong>{" "}
+              No hay automatización sin supervisión. El resultado: velocidad de máquina con criterio humano.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== EFICIENCIA EN COSTOS DE APIs ====== */}
+      <section className="px-6 py-16 border-t border-white/[0.04]">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-10 text-center">
+            <span className="text-slate-500 font-bold tracking-widest uppercase text-[11px] mb-3 block">
+              Optimización de recursos
+            </span>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+              Eficiencia en costos de IA
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-[15px]">
+              La mayoría usa IA a lo bruto: prompts gigantes, contexto repetido, tokens desperdiciados.
+              Nosotros ingenierizamos cada llamada.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: "🎯",
+                title: "Contexto preciso",
+                desc: "Cada solicitud a la API lleva exactamente la información necesaria. Nada de &ldquo;contexto completo del proyecto&rdquo; en cada llamada.",
+                metric: "-60% tokens",
+                metricColor: "text-emerald-400",
+              },
+              {
+                icon: "♻️",
+                title: "Reutilización inteligente",
+                desc: "Los resultados de agentes previos se cachean y reutilizan. No preguntamos dos veces lo mismo ni regeneramos lo que ya está resuelto.",
+                metric: "-50% llamadas",
+                metricColor: "text-emerald-400",
+              },
+              {
+                icon: "📐",
+                title: "Prompts ingenierizados",
+                desc: "Cada prompt está diseñado con estructura, ejemplos y restricciones para obtener el mejor resultado en la menor cantidad de tokens posible.",
+                metric: "3× eficiencia",
+                metricColor: "text-blue-400",
+              },
+            ].map((item, i) => (
+              <div key={i} className="rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
+                <div className="text-3xl mb-4">{item.icon}</div>
+                <h3 className="font-black text-white mb-2 text-[16px]">{item.title}</h3>
+                <p className="text-slate-400 text-[14px] leading-relaxed mb-4">{item.desc}</p>
+                <span className={`inline-block font-black text-[22px] ${item.metricColor}`}>
+                  {item.metric}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-emerald-500/20 bg-emerald-950/10 p-6 max-w-3xl mx-auto">
+            <p className="text-slate-300 text-[14px] leading-relaxed text-center">
+              <strong className="text-emerald-400">Resultado:</strong>{" "}
+              El ahorro en costos de API se traslada directamente al cliente final.
+              No pagás por tokens desperdiciados —pagás por sistema funcionando.
+            </p>
           </div>
         </div>
       </section>
@@ -194,18 +303,53 @@ export default function NosotrosPage() {
         </div>
       </section>
 
+      {/* ====== SCHEMA JSON-LD PARA AGENTES Y MOTORES DE BÚSQUEDA ====== */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://aycweb.com/#organization",
+            name: "AYCweb",
+            url: "https://aycweb.com/",
+            founder: {
+              "@type": "Person",
+              name: "Oscar Amarilla Cáceres",
+              jobTitle: "Arquitecto de Sistemas",
+            },
+            knowsAbout: [
+              "AI Agent Orchestration",
+              "Multi-Agent Systems",
+              "API Cost Optimization",
+              "Software Architecture",
+              "B2B Infrastructure",
+              "Next.js Development",
+              "Supabase",
+              "Prompt Engineering",
+              "System Automation",
+            ],
+            description:
+              "Arquitecto de sistemas con orquestación multi-agente (Claude + Cline). Optimización de costos de API. Infraestructura B2B para empresas en Paraguay.",
+          }),
+        }}
+      />
+
       {/* ====== CTA FINAL ====== */}
       <section className="px-6 py-12 border-t border-white/[0.04] text-center">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl font-black mb-3">¿Tu operación tiene encaje con AYCweb?</h2>
-          <p className="text-slate-400 mb-6">En 15 minutos de diagnóstico te digo si puedo construir algo que resuelva tu problema real.</p>
+          <p className="text-slate-400 mb-6">
+            En 15 minutos de diagnóstico te muestro cómo funciona la orquestación de agentes
+            aplicada a tu caso concreto y qué significa en costo y velocidad real.
+          </p>
           <a
-            href={buildWaLink("Hola Oscar, quiero saber si mi operación tiene encaje con AYCweb.")}
+            href={buildWaLink("Hola Oscar, quiero saber si mi operación tiene encaje con AYCweb y cómo funciona tu orquestación de agentes.")}
             className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-3.5 px-8 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)]"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Agendar Diagnóstico
+            Agendar Diagnóstico de Orquestación
           </a>
         </div>
       </section>
