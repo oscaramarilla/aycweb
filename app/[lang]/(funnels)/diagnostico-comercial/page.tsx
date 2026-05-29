@@ -186,7 +186,7 @@ export default function DiagnosticoComercialPage() {
           </h1>
 
           <p className="text-slate-400 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
-            Completa estos datos operativos. Al enviar, abriremos una conversación directa por WhatsApp con un contexto claro para evaluar si tu infraestructura califica para nuestro despliegue B2B.
+            Completa estos datos operativos. Al enviar, recibiremos tu información por WhatsApp para evaluar si tu infraestructura califica para nuestro despliegue B2B y agendar una llamada.
           </p>
         </div>
 

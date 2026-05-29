@@ -15,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aycweb.com"),
+  metadataBase: new URL("https://www.aycweb.com"),
   title: {
     default: "AYCweb Paraguay | Firma de Infraestructura Digital B2B",
     template: "%s | AYCweb",
@@ -47,13 +47,13 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://aycweb.com",
+    canonical: "https://www.aycweb.com",
   },
   openGraph: {
     title: "AYCweb | Firma de Infraestructura Digital B2B",
     description:
       "Sistemas operativos y comerciales de alto rendimiento para empresas y profesionales en Paraguay. Automatizamos ventas, cotizaciones y operaciones.",
-    url: "https://aycweb.com",
+    url: "https://www.aycweb.com",
     siteName: "AYCweb",
     images: [
       {

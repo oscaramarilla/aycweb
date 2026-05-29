@@ -95,7 +95,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             ))}
             <div className="bg-gradient-to-br from-blue-600/20 to-transparent p-8 rounded-2xl border border-blue-500/20 flex flex-col justify-center items-center text-center">
               <p className="text-white font-bold text-lg mb-2">¿Querés verlo en vivo?</p>
-              <Link href="/es/motor/demo" className="text-blue-400 font-bold hover:underline mb-3 block">
+              <Link href={`/${lang}/demo-cotizador`} className="text-blue-400 font-bold hover:underline mb-3 block">
                 ⚡ Probar Cotizador en Vivo →
               </Link>
               <Link href={`/${lang}/obras`} className="text-slate-400 text-sm hover:text-slate-200 hover:underline transition-colors">Ver obras en producción →</Link>
