@@ -8,13 +8,13 @@ const whatsappNumber = WHATSAPP_NUMBER;
 
 const TIERS = {
   empresa: {
-    label: "Tier Empresarial",
+    label: "AYCweb Business / Enterprise",
     accent: "lime",
     description: "Motores que reemplazan procesos manuales enteros y recuperan horas-hombre cada semana.",
-    maintenance: "$80 USD/mes",
+    maintenance: "Desde $30 USD/mes",
     plans: [
       {
-        name: "Embudo Comercial Corporativo",
+        name: "AYCweb Business",
         price: "$900",
         subtitle: "Entrega en 3 semanas",
         features: [
@@ -26,12 +26,12 @@ const TIERS = {
         ideal: "Manufactureras, clínicas, agroindustria, distribuidoras y hospitales.",
       },
       {
-        name: "Motor Operativo",
+        name: "AYCweb Enterprise",
         price: "$1.800",
         subtitle: "Entrega en 4-6 semanas",
         badge: "MÁS ELEGIDO",
         features: [
-          "Todo lo del Embudo Comercial Corporativo",
+          "Todo lo de AYCweb Business",
           "Cotizador dinámico interactivo",
           "Generación de PDFs y contratos automáticos",
           "Panel de métricas y flujo interno para vendedores",
@@ -53,10 +53,10 @@ const TIERS = {
     ],
   },
   profesional: {
-    label: "Tier Profesional",
+    label: "AYCweb Start",
     accent: "sky",
     description: "Sistemas que captan pacientes, clientes y proyectos sin que vos levantes el teléfono.",
-    maintenance: "$25 USD/mes",
+    maintenance: "$15 USD/mes",
     plans: [
       {
         name: "Presencia & Captación",

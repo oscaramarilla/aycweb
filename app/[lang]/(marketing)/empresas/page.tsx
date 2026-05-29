@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 
 const PLANES = [
   {
-    nombre: "Starter Empresa",
+    nombre: "AYCweb Business",
     precio: "$900",
     entrega: "Entrega en 3 semanas",
     tagline:
@@ -63,17 +63,17 @@ const PLANES = [
       "Rutas WhatsApp por sección",
     ],
     ideal: "Empresas que recién están saliendo de Excel y WhatsApp manual.",
-    cta: "Quiero el Starter",
+    cta: "Quiero AYCweb Business",
     badge: null,
   },
   {
-    nombre: "Sistema Empresa",
+    nombre: "AYCweb Enterprise",
     precio: "$1.800",
     entrega: "Entrega en 4-6 semanas",
     tagline:
       "Infraestructura completa con automatización real para empresas con volumen comercial.",
     features: [
-      "Todo lo del Starter",
+      "Todo lo del Business",
       "Cotizador dinámico interactivo",
       "Generación de PDFs y contratos automáticos",
       "Panel interno para vendedores",
@@ -81,7 +81,7 @@ const PLANES = [
       "Integración WhatsApp avanzada",
     ],
     ideal: "Empresas con procesos comerciales complejos y datos en escala.",
-    cta: "Quiero el Sistema",
+    cta: "Quiero AYCweb Enterprise",
     badge: "MÁS ELEGIDO",
   },
   {
@@ -105,8 +105,9 @@ const PLANES = [
 ] as const;
 
 const PLANES_ONBOARDING = [
-  { nombre: "Onboarding Starter — 20% inicial", precio: "$180" },
-  { nombre: "Onboarding Sistema Empresa — 20% inicial", precio: "$360" },
+  { nombre: "AYCweb Start - Activación (USD 60)", precio: "$60" },
+  { nombre: "AYCweb Business - Anticipo 20% (USD 180)", precio: "$180" },
+  { nombre: "AYCweb Enterprise - Anticipo 20% (USD 360)", precio: "$360" },
 ];
 
 const SECTORES = [
@@ -317,10 +318,26 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
             <p className="text-[12px] text-slate-500 mb-5">Así distribuimos el compromiso económico a lo largo del proyecto.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
               {[
-                { num: "01", pct: "20%", desc: "Para iniciar onboarding y diagnóstico operativo." },
-                { num: "02", pct: "30%", desc: "Contra primer avance funcional (prototipo navegable)." },
-                { num: "03", pct: "20%", desc: "Luego del sprint de ajustes (dentro del alcance acordado)." },
-                { num: "04", pct: "30%", desc: "Contra entrega final y puesta en producción." },
+                {
+                  num: "01",
+                  pct: "20%",
+                  desc: "Para iniciar onboarding: USD 180 en AYCweb Business o USD 360 en AYCweb Enterprise.",
+                },
+                {
+                  num: "02",
+                  pct: "30%",
+                  desc: "Contra primer avance funcional: USD 270 en Business o USD 540 en Enterprise.",
+                },
+                {
+                  num: "03",
+                  pct: "20%",
+                  desc: "Luego del sprint de ajustes: USD 180 en Business o USD 360 en Enterprise.",
+                },
+                {
+                  num: "04",
+                  pct: "30%",
+                  desc: "Contra entrega final: USD 270 en Business o USD 540 en Enterprise.",
+                },
               ].map((e) => (
                 <div key={e.num} className="flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-950/50 p-3">
                   <span className="text-blue-400 font-black text-xs mt-0.5 w-4 flex-shrink-0">{e.num}</span>
@@ -328,6 +345,9 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
                 </div>
               ))}
             </div>
+            <p className="text-[12px] text-slate-400 mt-4 text-center">
+              El mantenimiento mensual se abona los días <strong>15 de cada mes</strong> tras la puesta en producción.
+            </p>
             <div className="text-center">
               <CheckoutForm
                 planes={PLANES_ONBOARDING}
@@ -343,9 +363,12 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
             <div className="text-[11px] uppercase tracking-widest text-slate-500 font-bold mb-2">
               Mantenimiento mensual
             </div>
-            <div className="text-2xl font-black text-white mb-2">$80 USD/mes</div>
-            <p className="text-sm text-slate-400">
-              Hosting enterprise, dominio corporativo, copias de seguridad y soporte técnico continuo. Tu motor nunca se detiene.
+            <div className="text-xl font-black text-white mb-2">Desde USD 30/mes</div>
+            <p className="text-sm text-slate-400 mb-3">
+              USD 30/mes para AYCweb Business y USD 45/mes para AYCweb Enterprise.
+            </p>
+            <p className="text-xs text-slate-500">
+              Se abona el día <strong>15 de cada mes</strong> tras la puesta en producción.
             </p>
           </div>
         </div>

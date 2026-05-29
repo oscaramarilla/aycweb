@@ -207,6 +207,53 @@ export default function OnboardingPage() {
         </div>
       </section>
 
+      {/* ── METODOLOGÍA: IA + PROFESIONALES ── */}
+      <section className="relative z-10 px-6 max-w-5xl mx-auto py-12 md:py-16">
+        <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 md:p-8 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-slate-900/20 pointer-events-none rounded-2xl" />
+          
+          <div className="relative z-10">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-2xl">🤖</span>
+              <h3 className="text-lg md:text-xl font-black text-white">Metodología: Agentes IA + Profesionales</h3>
+            </div>
+            
+            <p className="text-slate-300 text-sm md:text-base leading-relaxed mb-6">
+              Utilizamos <strong>agentes de inteligencia artificial</strong> y <strong>coding agents</strong> para hacer los trabajos asistidos por IA, 
+              <strong> guiados por un profesional en ayuda mutua</strong>. 
+              Esto significa que cada entrega combina:
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4">
+                <p className="text-blue-400 font-bold text-sm mb-2">🤖 Agentes IA</p>
+                <p className="text-slate-400 text-[12px] leading-relaxed">
+                  Análisis automatizado, generación de código y optimización en tiempo real.
+                </p>
+              </div>
+              
+              <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4">
+                <p className="text-cyan-400 font-bold text-sm mb-2">⚙️ Coding Agents</p>
+                <p className="text-slate-400 text-[12px] leading-relaxed">
+                  Desarrollo asistido, pruebas automatizadas e integración de sistemas.
+                </p>
+              </div>
+              
+              <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4">
+                <p className="text-emerald-400 font-bold text-sm mb-2">👨‍💼 Supervisor Profesional</p>
+                <p className="text-slate-400 text-[12px] leading-relaxed">
+                  Revisión, validación y dirección estratégica de cada paso del proyecto.
+                </p>
+              </div>
+            </div>
+            
+            <p className="text-slate-500 text-xs md:text-sm mt-6 bg-slate-950/60 border border-slate-700 rounded-lg px-4 py-3">
+              <strong>Resultado:</strong> Infraestructuras digitales más rápidas, confiables y auditables. Cada línea de código, cada decisión, pasa por validación humana.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Microfirma institucional */}
       <div className="relative z-10 px-6 max-w-5xl mx-auto mt-6 mb-2">
         <p className="text-center text-[11px] text-slate-600 border-t border-white/[0.04] pt-5">

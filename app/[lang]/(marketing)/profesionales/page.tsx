@@ -5,13 +5,13 @@ import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 
 // Planes disponibles para el checkout directo de profesionales
 const PLANES_PROF = [
-  { nombre: "Activación AYCweb Start", precio: "$60" },
+  { nombre: "AYCweb Start - Activación (USD 60)", precio: "$60" },
 ];
 
 export const metadata: Metadata = {
   title: "Sistema Automático de Agenda para Profesionales | AYCweb Paraguay",
   description:
-    "Dejá de gestionar tu agenda por WhatsApp. Configuramos tu sistema de captación automática, filtro de consultas y enlace de agenda por USD 50 único. Mantenimiento por USD 10/mes.",
+    "Dejá de gestionar tu agenda por WhatsApp. Configuramos tu sistema de captación automática, filtro de consultas y enlace de agenda por USD 60 único. Mantenimiento por USD 15/mes pagadero el 15 de cada mes.",
   keywords: [
     "agenda online automática profesionales paraguay",
     "sistema captación digital profesionales",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sistema Automático de Agenda para Profesionales | AYCweb Paraguay",
     description:
-      "Tu agenda no necesita más mensajes sueltos en WhatsApp. Necesita un sistema automático. Setup por USD 50 + mantenimiento USD 10/mes.",
+      "Tu agenda no necesita más mensajes sueltos en WhatsApp. Necesita un sistema automático. Setup por USD 60 + mantenimiento USD 15/mes (el 15 de cada mes).",
     url: "https://aycweb.com/es/profesionales",
     siteName: "AYCweb",
     images: [
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sistema Automático de Agenda para Profesionales | AYCweb Paraguay",
     description:
-      "Tu agenda no necesita más mensajes sueltos en WhatsApp. Necesita un sistema automático. USD 50 setup + USD 10/mes.",
+      "Tu agenda no necesita más mensajes sueltos en WhatsApp. Necesita un sistema automático. USD 60 setup + USD 15/mes (el 15 de cada mes).",
     images: ["/og-image.jpg"],
   },
 };
@@ -195,7 +195,7 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
                 </p>
                 <div className="flex items-start gap-2 bg-emerald-950/30 border border-emerald-500/20 rounded-lg px-3 py-2.5 mb-4 text-[12px] text-emerald-300">
                   <span className="flex-shrink-0">🎁</span>
-                  <p><strong>Pagando con USDT (Cripto):</strong> el primer mes de mantenimiento (USD 10) queda 100% bonificado.</p>
+                  <p><strong>Pagando con USDT (Cripto):</strong> el primer mes de mantenimiento (USD 15) queda 100% bonificado.</p>
                 </div>
                 <div className="border-b border-slate-800 pb-4 mb-3" />
 
@@ -219,10 +219,13 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
                 </span>
 
                 <div className="flex items-end gap-2 mb-1">
-                  <span className="text-5xl font-black text-white">$10</span>
+                  <span className="text-5xl font-black text-white">$15</span>
                   <span className="text-slate-400 text-sm mb-2">USD / mes</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">Mantenimiento</h3>
+                <p className="text-slate-400 text-sm mb-3 text-[12px] text-emerald-300 bg-emerald-950/20 border border-emerald-500/20 rounded-lg px-3 py-2">
+                  💳 Pagadero el <strong>15 de cada mes</strong> — Renovación automática.
+                </p>
                 <p className="text-slate-400 text-sm mb-6 border-b border-slate-800 pb-6">
                   Tu sistema sigue online, actualizado y con soporte técnico disponible mientras seguís operando.
                 </p>
@@ -243,10 +246,10 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
           <div className="bg-emerald-950/30 border border-emerald-500/20 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
             <div>
               <p className="text-emerald-300 font-bold text-sm">Costo total al arrancar</p>
-              <p className="text-slate-400 text-xs">Setup único + primer mes de mantenimiento incluido</p>
+              <p className="text-slate-400 text-xs">Setup único ($60) + primer mes de mantenimiento ($15)</p>
             </div>
             <div className="flex items-end gap-1">
-              <span className="text-3xl font-black text-white">$60</span>
+              <span className="text-3xl font-black text-white">$75</span>
               <span className="text-slate-400 text-sm mb-1">USD total</span>
             </div>
           </div>
