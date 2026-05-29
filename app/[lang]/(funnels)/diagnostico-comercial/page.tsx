@@ -11,6 +11,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import {
   buildDiagnosticoWaUrl,
   type DiagnosticoData,
@@ -85,6 +86,9 @@ function validate(data: FormFields): Errors {
 // ─── Componente ──────────────────────────────────────────────────────────────
 
 export default function DiagnosticoComercialPage() {
+  const params = useParams<{ lang: string }>();
+  const lang = params?.lang ?? "es";
+
   const [form, setForm] = useState<FormFields>(INITIAL);
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
@@ -122,7 +126,8 @@ export default function DiagnosticoComercialPage() {
       whatsapp: `+595${form.whatsappLocal.replace(/\D/g, "")}`,
     };
 
-    const url = buildDiagnosticoWaUrl(waData);
+    // Pasar lang para que el mensaje WA se genere en el idioma del prospecto
+    const url = buildDiagnosticoWaUrl(waData, lang);
     const win = window.open(url, "_blank", "noopener,noreferrer");
 
     // Si el browser bloquea el popup, mostrar link de fallback
@@ -152,7 +157,7 @@ export default function DiagnosticoComercialPage() {
       {/* ── Header mínimo ── */}
       <header className="relative z-10 px-6 py-5 flex items-center justify-between border-b border-white/[0.06] max-w-5xl mx-auto">
         <Link
-          href="/es"
+          href={`/${lang}`}
           className="text-slate-400 hover:text-white transition-colors text-sm font-semibold flex items-center gap-2"
         >
           <span className="text-lg">←</span>

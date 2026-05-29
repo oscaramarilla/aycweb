@@ -15,6 +15,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 import { CATALOGO_DEMO, type ProductoDemo } from "@/lib/config/demo/productos";
 import {
@@ -37,6 +38,9 @@ interface ClienteForm {
 // ─── Componente ───────────────────────────────────────────────────────────────
 
 export default function MotorDemoPage() {
+  const params = useParams<{ lang: string }>();
+  const lang = params?.lang ?? "es";
+
   // Estado del formulario de cliente
   const [cliente, setCliente] = useState<ClienteForm>({
     nombre: "",
@@ -122,7 +126,7 @@ export default function MotorDemoPage() {
 
   const handleWhatsApp = () => {
     if (!hayItems) return;
-    const mensaje = buildResumenWhatsApp(resultado, cliente.nombre, cliente.empresa);
+    const mensaje = buildResumenWhatsApp(resultado, cliente.nombre, cliente.empresa, lang);
     const url = buildWhatsAppLink(mensaje);
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -154,7 +158,7 @@ export default function MotorDemoPage() {
             </div>
           </div>
           <Link
-            href="/es/diagnostico-comercial"
+            href={`/${lang}/diagnostico-comercial`}
             className="shrink-0 rounded-lg bg-white px-3 py-1.5 text-[11px] sm:text-xs font-black text-blue-700 transition hover:bg-yellow-300 hover:text-blue-900 active:scale-95 whitespace-nowrap"
           >
             Quiero este motor →
@@ -269,6 +273,7 @@ export default function MotorDemoPage() {
               cargandoPdf={cargandoPdf}
               onGenerarPDF={handleGenerarPDF}
               onWhatsApp={handleWhatsApp}
+              lang={lang}
             />
           </aside>
         </div>
@@ -328,13 +333,13 @@ export default function MotorDemoPage() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
-              href="/es/diagnostico-comercial"
+              href={`/${lang}/diagnostico-comercial`}
               className="w-full sm:w-auto rounded-xl bg-blue-600 px-8 py-4 font-black text-white shadow-[0_0_30px_rgba(37,99,235,0.4)] transition hover:bg-blue-500 active:scale-95 text-center"
             >
               Quiero este motor en mi sitio
             </Link>
             <Link
-              href="/es/obras"
+              href={`/${lang}/obras`}
               className="w-full sm:w-auto rounded-xl border border-slate-700 bg-slate-900 px-8 py-4 font-bold text-slate-300 transition hover:bg-slate-800 text-center"
             >
               Ver casos reales →
@@ -467,6 +472,7 @@ interface ResumenCotizacionProps {
   cargandoPdf: boolean;
   onGenerarPDF: () => void;
   onWhatsApp: () => void;
+  lang?: string;
 }
 
 function ResumenCotizacion({
@@ -475,6 +481,7 @@ function ResumenCotizacion({
   cargandoPdf,
   onGenerarPDF,
   onWhatsApp,
+  lang = "es",
 }: ResumenCotizacionProps) {
   return (
     <div className="rounded-2xl border border-slate-800 bg-slate-900/60 overflow-hidden">
@@ -600,7 +607,7 @@ function ResumenCotizacion({
               Este cotizador funciona en el sitio de tu empresa. Configurado con tu catálogo y precios.
             </p>
             <Link
-              href="/es/diagnostico-comercial"
+              href={`/${lang}/diagnostico-comercial`}
               className="inline-block rounded-lg bg-blue-600 px-4 py-2 text-[11px] font-black text-white transition hover:bg-blue-500 active:scale-95"
             >
               Desde USD 50/mes →

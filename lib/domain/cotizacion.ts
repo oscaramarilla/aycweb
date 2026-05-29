@@ -96,20 +96,61 @@ export function formatearMoneda(
 }
 
 /**
- * Genera el texto de resumen para WhatsApp.
+ * Genera el texto de resumen para WhatsApp, en el idioma indicado.
  */
 export function buildResumenWhatsApp(
   resultado: ResultadoCotizacion,
   nombreCliente?: string,
-  empresa?: string
+  empresa?: string,
+  lang: string = "es"
 ): string {
-  const fecha = new Date().toLocaleDateString("es-PY");
+  const locale = lang === "pt-br" ? "pt-BR" : lang === "en" ? "en-US" : "es-PY";
+  const fecha = new Date().toLocaleDateString(locale);
+
+  const LABELS: Record<string, { title: string; date: string; client: string; company: string; subtotal: string; discount: string; tax: string; total: string; footer: string }> = {
+    es: {
+      title: "🧾 *COTIZACIÓN – Motor AYCweb*",
+      date: "📅 Fecha",
+      client: "👤 Cliente",
+      company: "🏢 Empresa",
+      subtotal: "Subtotal",
+      discount: "Descuento",
+      tax: "IVA (10%)",
+      total: "TOTAL",
+      footer: "_Cotización generada con Motor AYCweb · aycweb.com_",
+    },
+    en: {
+      title: "🧾 *QUOTATION – Motor AYCweb*",
+      date: "📅 Date",
+      client: "👤 Client",
+      company: "🏢 Company",
+      subtotal: "Subtotal",
+      discount: "Discount",
+      tax: "VAT (10%)",
+      total: "TOTAL",
+      footer: "_Quote generated with Motor AYCweb · aycweb.com_",
+    },
+    'pt-br': {
+      title: "🧾 *COTAÇÃO – Motor AYCweb*",
+      date: "📅 Data",
+      client: "👤 Cliente",
+      company: "🏢 Empresa",
+      subtotal: "Subtotal",
+      discount: "Desconto",
+      tax: "IVA (10%)",
+      total: "TOTAL",
+      footer: "_Cotação gerada com Motor AYCweb · aycweb.com_",
+    },
+  };
+
+  const localeKey = lang === "pt-br" ? "pt-br" : lang === "en" ? "en" : "es";
+  const labels = LABELS[localeKey];
 
   const encabezado = [
-    `🧾 *COTIZACIÓN – Motor AYCweb*`,
-    `📅 Fecha: ${fecha}`,
-    nombreCliente ? `👤 Cliente: ${nombreCliente}` : "",
-    empresa ? `🏢 Empresa: ${empresa}` : "",
+    labels.title,
+    `${labels.date}: ${fecha}`,
+    nombreCliente ? `${labels.client}: ${nombreCliente}` : "",
+    empresa ? `${labels.company}: ${empresa}` : "",
     "",
   ]
     .filter(Boolean)
@@ -124,14 +165,14 @@ export function buildResumenWhatsApp(
 
   const totales = [
     "",
-    `Subtotal: ${formatearMoneda(resultado.subtotal, resultado.moneda)}`,
+    `${labels.subtotal}: ${formatearMoneda(resultado.subtotal, resultado.moneda)}`,
     resultado.descuento > 0
-      ? `Descuento: -${formatearMoneda(resultado.descuento, resultado.moneda)}`
+      ? `${labels.discount}: -${formatearMoneda(resultado.descuento, resultado.moneda)}`
       : "",
-    `IVA (10%): ${formatearMoneda(resultado.iva, resultado.moneda)}`,
-    `*TOTAL: ${formatearMoneda(resultado.total, resultado.moneda)}*`,
+    `${labels.tax}: ${formatearMoneda(resultado.iva, resultado.moneda)}`,
+    `*${labels.total}: ${formatearMoneda(resultado.total, resultado.moneda)}*`,
     "",
-    `_Cotización generada con Motor AYCweb · aycweb.com_`,
+    labels.footer,
   ]
     .filter(Boolean)
     .join("\n");

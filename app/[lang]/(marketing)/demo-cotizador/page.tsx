@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import B2BQuoterDemo from "@/components/demos/B2BQuoterDemo";
 import { buildWhatsAppLink } from "@/lib/services/whatsapp-link";
-import { DEFAULT_WHATSAPP_TEXT } from "@/lib/config/contacto";
+import { getWhatsAppText } from "@/lib/config/contacto";
 
 export const metadata: Metadata = {
   title: "Motor Cotizador B2B | AYCweb",
@@ -16,7 +16,7 @@ export default async function DemoCotizadorPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const auditLink = buildWhatsAppLink(DEFAULT_WHATSAPP_TEXT.demoCotizador);
+  const auditLink = buildWhatsAppLink(getWhatsAppText("demoCotizador", lang));
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 relative overflow-hidden">
