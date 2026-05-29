@@ -57,13 +57,13 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               href={`/${lang}/diagnostico-comercial`}
               className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-full transition-all shadow-[0_0_30px_rgba(37,99,235,0.35)] text-[15px] md:text-lg"
             >
-              Diagnosticar mi operación
+              Solicitar Diagnóstico B2B
             </Link>
             <Link
               href={`/${lang}/demo-cotizador`}
               className="w-full sm:w-auto border border-slate-600 hover:border-slate-400 text-slate-300 px-8 py-4 rounded-full transition-all text-[15px] md:text-lg"
             >
-              Ver motor operativo en vivo
+              Probar Cotizador en Vivo
             </Link>
           </div>
         </div>
@@ -96,7 +96,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <div className="bg-gradient-to-br from-blue-600/20 to-transparent p-8 rounded-2xl border border-blue-500/20 flex flex-col justify-center items-center text-center">
               <p className="text-white font-bold text-lg mb-2">¿Querés verlo en vivo?</p>
               <Link href="/es/motor/demo" className="text-blue-400 font-bold hover:underline mb-3 block">
-                ⚡ Probá el Motor en vivo →
+                ⚡ Probar Cotizador en Vivo →
               </Link>
               <Link href={`/${lang}/obras`} className="text-slate-400 text-sm hover:text-slate-200 hover:underline transition-colors">Ver obras en producción →</Link>
             </div>
@@ -247,9 +247,9 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <div className="absolute inset-0 bg-blue-500/5 backdrop-blur-3xl z-0"></div>
             <div className="relative z-10">
               <span className="text-4xl md:text-6xl block mb-4 md:mb-8">🛡️</span>
-              <h2 className="text-2xl md:text-5xl font-black text-white mb-4 md:mb-6">Garantía sin fricción</h2>
+              <h2 className="text-2xl md:text-5xl font-black text-white mb-4 md:mb-6">Garantía Inteligente por Etapas</h2>
               <p className="text-slate-400 text-[15px] md:text-xl max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed">
-                Evalúo con cuidado cada proyecto. Si no hay encaje real, te lo digo antes de cobrarte. Garantía Inteligente por Etapas: si en la primera etapa el sistema no responde al objetivo acordado, cancelás sin avanzar a los pagos siguientes. Si determinamos inviabilidad técnica antes del desarrollo, se devuelve el pago inicial.
+                Garantía Inteligente por Etapas: Si durante la primera etapa de definición no logramos validar que el sistema resolverá el problema operativo acordado, cancelamos el proyecto y te devolvemos el pago inicial según las condiciones pactadas.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6 mb-8 md:mb-12">
@@ -259,7 +259,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                 </div>
                 <div className="bg-slate-950/80 border border-slate-800 p-4 md:p-6 rounded-[1rem] md:rounded-2xl">
                   <div className="font-bold text-white mb-1 md:mb-2 text-[14px] md:text-base">Garantía Inteligente</div>
-                  <div className="text-[13px] md:text-sm text-slate-500 text-center">Cancelás en la primera etapa si no hay encaje. El pago inicial se devuelve ante inviabilidad técnica.</div>
+                  <div className="text-[13px] md:text-sm text-slate-500 text-center">Si en la primera etapa el sistema no resuelve el problema operativo acordado, cancelamos el proyecto y devolvemos el pago inicial según lo pactado.</div>
                 </div>
                 <div className="bg-slate-950/80 border border-slate-800 p-4 md:p-6 rounded-[1rem] md:rounded-2xl">
                   <div className="font-bold text-white mb-1 md:mb-2 text-[14px] md:text-base">Cero sorpresas</div>
@@ -272,7 +272,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                 target="_blank" rel="noopener noreferrer"
                 className="block w-full sm:w-auto sm:inline-block bg-white text-slate-950 font-black py-3.5 md:py-4 px-6 md:px-10 rounded-xl transition-all shadow-lg hover:bg-slate-200 active:scale-95 text-[15px] md:text-base"
               >
-                Quiero auditar mi operación
+                Solicitar Diagnóstico B2B
               </a>
             </div>
           </div>

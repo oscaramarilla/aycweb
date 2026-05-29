@@ -90,7 +90,7 @@ export default async function DemoCotizadorPage({
               rel="noopener noreferrer"
               className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.3)] active:scale-95 text-[15px]"
             >
-              Agendar Auditoría B2B
+              Solicitar Diagnóstico B2B
             </a>
             <Link
               href={`/${lang}/obras`}

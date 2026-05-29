@@ -186,8 +186,7 @@ export default function DiagnosticoComercialPage() {
           </h1>
 
           <p className="text-slate-400 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
-            Completá 6 preguntas rápidas y te enviamos un diagnóstico
-            personalizado sobre cómo sistematizar tu operación comercial.
+            Completa estos datos operativos. Al enviar, abriremos una conversación directa por WhatsApp con un contexto claro para evaluar si tu infraestructura califica para nuestro despliegue B2B.
           </p>
         </div>
 
@@ -455,12 +454,12 @@ export default function DiagnosticoComercialPage() {
               ) : (
                 <>
                   <span>💬</span>
-                  Enviar diagnóstico por WhatsApp
+                  Enviar datos para evaluación B2B
                 </>
               )}
             </button>
             <p className="text-center text-xs text-slate-500 mt-3">
-              Se abrirá WhatsApp con tu diagnóstico pre-cargado. Sin costo ni compromiso.
+              Se abrirá WhatsApp con tus datos pre-cargados. Sin costo ni compromiso.
             </p>
 
             {/* Fallback cuando el browser bloquea window.open */}

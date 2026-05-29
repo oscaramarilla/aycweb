@@ -90,7 +90,7 @@ const PLANES = [
   {
     nombre: "Arquitectura a Medida",
     precio: "Cotización",
-    entrega: "Cronograma tras auditoría",
+    entrega: "Cronograma tras diagnóstico",
     tagline:
       "Para operaciones con lógica propia, integraciones ERP o cuellos de botella complejos.",
     features: [
@@ -102,7 +102,7 @@ const PLANES = [
       "Soporte prioritario",
     ],
     ideal: "Casos que requieren software a medida.",
-    cta: "Auditoría Técnica",
+    cta: "Solicitar Diagnóstico B2B",
     badge: null,
   },
 ] as const;
@@ -126,7 +126,7 @@ const SECTORES = [
 
 const DOLORES = [
   { antes: "45 minutos cotizando un pedido grande", despues: "Cotización en 30 segundos" },
-  { antes: "Errores de cálculo en planillas Excel", despues: "Precisión del 100% automática" },
+  { antes: "Errores de cálculo en planillas Excel", despues: "Eliminación de errores de cálculo manual mediante cotizaciones parametrizadas." },
   { antes: "Vendedores respondiendo WhatsApps repetidos", despues: "Sistema que filtra antes de hablar" },
   { antes: "PDFs hechos a mano en Word", despues: "Documentos generados al instante" },
 ] as const;
@@ -158,22 +158,18 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center flex-wrap">
-            <a
-              href={buildWaLink(
-                "Hola Oscar, soy de una empresa y quiero agendar un diagnóstico operativo gratuito."
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={`/${params?.lang || 'es'}/diagnostico-comercial`}
               className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] active:scale-95"
             >
-              Diagnosticar mi operación
-            </a>
+              Solicitar Diagnóstico B2B
+            </Link>
             <Link
-              href="/es/motor/demo"
+              href={`/${params?.lang || 'es'}/demo-cotizador`}
               className="w-full sm:w-auto bg-emerald-950/40 border border-emerald-500/30 hover:border-emerald-400/60 hover:bg-emerald-950/60 text-emerald-300 font-black py-4 px-10 rounded-xl transition-all flex items-center justify-center gap-2"
             >
               <span>⚡</span>
-              Probá el Motor en vivo
+              Probar Cotizador en Vivo
             </Link>
             <Link
               href="#planes"
@@ -417,10 +413,10 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
           <div className="text-center mb-10">
             <div className="text-5xl mb-4">🛡️</div>
             <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">
-              Garantía Inquebrantable
+              Garantía Inteligente por Etapas
             </h2>
             <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg">
-              No aceptamos a todos los clientes. Por eso podemos garantizar resultado.
+              Garantía Inteligente por Etapas: Si durante la primera etapa de definición no logramos validar que el sistema resolverá el problema operativo acordado, cancelamos el proyecto y te devolvemos el pago inicial según las condiciones pactadas.
             </p>
           </div>
 
@@ -434,13 +430,13 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
             <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-5 text-center">
               <div className="font-black text-white mb-2">Garantía Inteligente</div>
               <p className="text-[13px] text-slate-400 leading-relaxed">
-                Si el sistema no cumple el objetivo acordado en la primera etapa, cancelás sin pagar el resto. Devolución del 100% del pago inicial si determinamos inviabilidad técnica antes del desarrollo.
+                Si en la primera etapa el sistema no resuelve el problema operativo acordado, cancelamos el proyecto y devolvemos el pago inicial según lo pactado.
               </p>
             </div>
             <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-5 text-center">
               <div className="font-black text-white mb-2">Sin letra chica</div>
               <p className="text-[13px] text-slate-400 leading-relaxed">
-                Cero costos ocultos. Cero excusas.
+                Cero costos ocultos. Sin ambigüedad.
               </p>
             </div>
           </div>
@@ -453,23 +449,19 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
 
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight">
-            ¿Listo para auditar tu operación?
+            ¿Listo para solicitar tu diagnóstico?
           </h2>
           <p className="text-slate-400 text-base md:text-lg mb-10 leading-relaxed">
-            En 15 minutos te decimos si podemos generarte un ROI claro. Si no, también te lo decimos. Sin vueltas.
+            En 15 minutos evaluamos si tu operación califica para nuestro despliegue B2B. Si no, también te lo decimos. Sin vueltas.
           </p>
 
           <div className="flex flex-col md:flex-row gap-4 justify-center items-center flex-wrap">
-            <a
-              href={buildWaLink(
-                "Hola Oscar, vengo de la página de Empresas y quiero agendar el diagnóstico operativo gratuito."
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={`/${params?.lang || 'es'}/diagnostico-comercial`}
               className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-12 rounded-xl transition-all shadow-[0_0_40px_rgba(37,99,235,0.4)] active:scale-95"
             >
-              Agendar diagnóstico
-            </a>
+              Solicitar Diagnóstico B2B
+            </Link>
           </div>
           <div className="mt-4 flex justify-center">
             <Link
