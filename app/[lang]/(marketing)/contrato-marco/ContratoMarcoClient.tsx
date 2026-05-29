@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Printer } from "lucide-react";
 import { LEGAL_INFO } from "@/lib/config/legal";
+import { PLANES_PRECIOS, formatCurrencyUSD } from "@/lib/config/precios";
 
 /* ──────────────────────────────────────────────
    Casilla de verificación reutilizable
@@ -154,22 +155,22 @@ export default function ContratoMarcoClient() {
                 marcada={plan === "start"}
                 onClick={() => alternar("start", plan, setPlan)}
               >
-                <strong className="text-white print:text-black">AYCweb Start</strong>{" "}
-                (Setup: USD 60)
+                <strong className="text-white print:text-black">{PLANES_PRECIOS.starter.nombre}</strong>{" "}
+                (Setup: {formatCurrencyUSD(PLANES_PRECIOS.starter.setupTotal)})
               </Casilla>
               <Casilla
                 marcada={plan === "business"}
                 onClick={() => alternar("business", plan, setPlan)}
               >
-                <strong className="text-white print:text-black">AYCweb Business</strong>{" "}
-                (Setup: USD 900)
+                <strong className="text-white print:text-black">{PLANES_PRECIOS.business.nombre}</strong>{" "}
+                (Setup: {formatCurrencyUSD(PLANES_PRECIOS.business.setupTotal)})
               </Casilla>
               <Casilla
                 marcada={plan === "enterprise"}
                 onClick={() => alternar("enterprise", plan, setPlan)}
               >
-                <strong className="text-white print:text-black">AYCweb Enterprise</strong>{" "}
-                (Setup: USD 1.800)
+                <strong className="text-white print:text-black">{PLANES_PRECIOS.enterprise.nombre}</strong>{" "}
+                (Setup: {formatCurrencyUSD(PLANES_PRECIOS.enterprise.setupTotal)})
               </Casilla>
             </div>
           </section>
@@ -223,23 +224,23 @@ export default function ContratoMarcoClient() {
             </p>
             <div className="grid gap-3 rounded-xl border border-slate-800/60 bg-slate-900/30 p-4 sm:grid-cols-3 print:border-slate-300 print:bg-transparent">
               <Casilla
-                marcada={canon === "15"}
-                onClick={() => alternar("15", canon, setCanon)}
+                marcada={canon === String(PLANES_PRECIOS.starter.mantenimientoMensual)}
+                onClick={() => alternar(String(PLANES_PRECIOS.starter.mantenimientoMensual), canon, setCanon)}
               >
-                <strong className="text-white print:text-black">USD 15/mes</strong> (Start)
+                <strong className="text-white print:text-black">{formatCurrencyUSD(PLANES_PRECIOS.starter.mantenimientoMensual)}/mes</strong> (Start)
               </Casilla>
               <Casilla
-                marcada={canon === "30"}
-                onClick={() => alternar("30", canon, setCanon)}
+                marcada={canon === String(PLANES_PRECIOS.business.mantenimientoMensual)}
+                onClick={() => alternar(String(PLANES_PRECIOS.business.mantenimientoMensual), canon, setCanon)}
               >
-                <strong className="text-white print:text-black">USD 30/mes</strong>{" "}
+                <strong className="text-white print:text-black">{formatCurrencyUSD(PLANES_PRECIOS.business.mantenimientoMensual)}/mes</strong>{" "}
                 (Business)
               </Casilla>
               <Casilla
-                marcada={canon === "45"}
-                onClick={() => alternar("45", canon, setCanon)}
+                marcada={canon === String(PLANES_PRECIOS.enterprise.mantenimientoMensual)}
+                onClick={() => alternar(String(PLANES_PRECIOS.enterprise.mantenimientoMensual), canon, setCanon)}
               >
-                <strong className="text-white print:text-black">USD 45/mes</strong>{" "}
+                <strong className="text-white print:text-black">{formatCurrencyUSD(PLANES_PRECIOS.enterprise.mantenimientoMensual)}/mes</strong>{" "}
                 (Enterprise)
               </Casilla>
             </div>

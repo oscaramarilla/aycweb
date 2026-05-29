@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FranjaClientes } from "@/components/social/FranjaClientes";
 import { buildWaLink } from "@/lib/config/contact";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
+import { PLANES_PRECIOS, type PlanPrecio } from "@/lib/config/precios";
 
 export const metadata: Metadata = {
   title: "Sistemas Operativos B2B para Empresas | AYCweb Paraguay",
@@ -47,10 +48,12 @@ export const metadata: Metadata = {
   },
 };
 
+const { business: BIZ, enterprise: ENT } = PLANES_PRECIOS;
+
 const PLANES = [
   {
-    nombre: "AYCweb Business",
-    precio: "$900",
+    nombre: BIZ.nombre,
+    precio: `$${BIZ.setupTotal}`,
     entrega: "Entrega en 3 semanas",
     tagline:
       "Base sólida para empezar a sistematizar captación, presentación y primer flujo comercial.",
@@ -67,8 +70,8 @@ const PLANES = [
     badge: null,
   },
   {
-    nombre: "AYCweb Enterprise",
-    precio: "$1.800",
+    nombre: ENT.nombre,
+    precio: `$${ENT.setupTotal}`,
     entrega: "Entrega en 4-6 semanas",
     tagline:
       "Infraestructura completa con automatización real para empresas con volumen comercial.",
@@ -105,11 +108,11 @@ const PLANES = [
 ] as const;
 
 const PLANES_ONBOARDING = [
-  { nombre: "AYCweb Start - Activación (USD 60)", precio: "$60" },
-  { nombre: "AYCweb Business - Anticipo 20% (USD 180)", precio: "$180" },
-  { nombre: "AYCweb Enterprise - Anticipo 20% (USD 360)", precio: "$360" },
-  { nombre: "AYCweb Business - Liquidación Única 100% (USD 900)", precio: "$900" },
-  { nombre: "AYCweb Enterprise - Liquidación Única 100% (USD 1.800)", precio: "$1.800" },
+  { nombre: `AYCweb Start - Activación`, precio: `$${PLANES_PRECIOS.starter.setupTotal}` },
+  { nombre: `AYCweb Business - Anticipo 20% ($${BIZ.hitos.anticipo})`, precio: `$${BIZ.hitos.anticipo}` },
+  { nombre: `AYCweb Enterprise - Anticipo 20% ($${ENT.hitos.anticipo})`, precio: `$${ENT.hitos.anticipo}` },
+  { nombre: `AYCweb Business - Liquidación Única 100% ($${BIZ.setupTotal})`, precio: `$${BIZ.setupTotal}` },
+  { nombre: `AYCweb Enterprise - Liquidación Única 100% ($${ENT.setupTotal})`, precio: `$${ENT.setupTotal}` },
 ];
 
 const SECTORES = [

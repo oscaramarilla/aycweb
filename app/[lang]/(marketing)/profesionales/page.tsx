@@ -2,16 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { buildWaLink } from "@/lib/config/contact";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
+import { PLANES_PRECIOS } from "@/lib/config/precios";
+
+const START = PLANES_PRECIOS.starter;
 
 // Planes disponibles para el checkout directo de profesionales
 const PLANES_PROF = [
-  { nombre: "AYCweb Start - Activación (USD 60)", precio: "$60" },
+  { nombre: `AYCweb Start - Activación (USD ${START.setupTotal})`, precio: `$${START.setupTotal}` },
 ];
 
 export const metadata: Metadata = {
   title: "Sistema Automático de Agenda para Profesionales | AYCweb Paraguay",
   description:
-    "Dejá de gestionar tu agenda por WhatsApp. Configuramos tu sistema de captación automática, filtro de consultas y enlace de agenda por USD 60 único. Mantenimiento por USD 15/mes pagadero el 15 de cada mes.",
+    `Dejá de gestionar tu agenda por WhatsApp. Configuramos tu sistema de captación automática, filtro de consultas y enlace de agenda por USD ${START.setupTotal} único. Mantenimiento por USD ${START.mantenimientoMensual}/mes pagadero el 15 de cada mes.`,
   keywords: [
     "agenda online automática profesionales paraguay",
     "sistema captación digital profesionales",
@@ -25,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sistema Automático de Agenda para Profesionales | AYCweb Paraguay",
     description:
-      "Tu agenda no necesita más mensajes sueltos en WhatsApp. Necesita un sistema automático. Setup por USD 60 + mantenimiento USD 15/mes (el 15 de cada mes).",
+      `Tu agenda no necesita más mensajes sueltos en WhatsApp. Necesita un sistema automático. Setup por USD ${START.setupTotal} + mantenimiento USD ${START.mantenimientoMensual}/mes (el 15 de cada mes).`,
     url: "https://aycweb.com/es/profesionales",
     siteName: "AYCweb",
     images: [
@@ -43,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sistema Automático de Agenda para Profesionales | AYCweb Paraguay",
     description:
-      "Tu agenda no necesita más mensajes sueltos en WhatsApp. Necesita un sistema automático. USD 60 setup + USD 15/mes (el 15 de cada mes).",
+      `Tu agenda no necesita más mensajes sueltos en WhatsApp. Necesita un sistema automático. USD ${START.setupTotal} setup + USD ${START.mantenimientoMensual}/mes (el 15 de cada mes).`,
     images: ["/og-image.jpg"],
   },
 };
@@ -83,7 +86,7 @@ const INCLUYE_MANT = [
 
 export default function ProfesionalesPage({ params }: { params?: { lang?: string } }) {
   const ctaWa = buildWaLink(
-    "Hola Oscar, soy profesional independiente y quiero activar AYCweb Start por USD 60."
+    `Hola Oscar, soy profesional independiente y quiero activar ${START.nombre} por $${START.setupTotal}.`
   );
 
   return (
@@ -121,7 +124,7 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
               rel="noopener noreferrer"
               className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-12 rounded-xl transition-all shadow-[0_0_30px_rgba(16,185,129,0.4)] active:scale-95 text-lg"
             >
-              Activar AYCweb Start — $60
+              Activar {START.nombre} — ${START.setupTotal}
             </a>
             <CheckoutForm
               planes={PLANES_PROF}
@@ -186,7 +189,7 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
                 </span>
 
                 <div className="flex items-end gap-2 mb-1">
-                  <span className="text-5xl font-black text-white">$60</span>
+                  <span className="text-5xl font-black text-white">{START.setupTotal}</span>
                   <span className="text-slate-400 text-sm mb-2">USD</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">Activación AYCweb Start</h3>
@@ -195,7 +198,7 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
                 </p>
                 <div className="flex items-start gap-2 bg-emerald-950/30 border border-emerald-500/20 rounded-lg px-3 py-2.5 mb-4 text-[12px] text-emerald-300">
                   <span className="flex-shrink-0">🎁</span>
-                  <p><strong>Pagando con USDT (Cripto):</strong> el primer mes de mantenimiento (USD 15) queda 100% bonificado.</p>
+                  <p><strong>Pagando con USDT (Cripto):</strong> el primer mes de mantenimiento (USD {START.mantenimientoMensual}) queda 100% bonificado.</p>
                 </div>
                 <div className="border-b border-slate-800 pb-4 mb-3" />
 
@@ -219,7 +222,7 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
                 </span>
 
                 <div className="flex items-end gap-2 mb-1">
-                  <span className="text-5xl font-black text-white">$15</span>
+                  <span className="text-5xl font-black text-white">{START.mantenimientoMensual}</span>
                   <span className="text-slate-400 text-sm mb-2">USD / mes</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">Mantenimiento</h3>
@@ -246,10 +249,10 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
           <div className="bg-emerald-950/30 border border-emerald-500/20 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
             <div>
               <p className="text-emerald-300 font-bold text-sm">Costo total al arrancar</p>
-              <p className="text-slate-400 text-xs">Setup único ($60) + primer mes de mantenimiento ($15)</p>
+              <p className="text-slate-400 text-xs">Setup único (${START.setupTotal}) + primer mes de mantenimiento (${START.mantenimientoMensual})</p>
             </div>
             <div className="flex items-end gap-1">
-              <span className="text-3xl font-black text-white">$75</span>
+              <span className="text-3xl font-black text-white">{START.setupTotal + START.mantenimientoMensual}</span>
               <span className="text-slate-400 text-sm mb-1">USD total</span>
             </div>
           </div>
@@ -263,7 +266,7 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
                 rel="noopener noreferrer"
                 className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-14 rounded-xl transition-all shadow-[0_0_40px_rgba(16,185,129,0.35)] active:scale-95 text-lg"
               >
-                Activar AYCweb Start — $60
+                Activar {START.nombre} — ${START.setupTotal}
               </a>
               <CheckoutForm
                 planes={PLANES_PROF}

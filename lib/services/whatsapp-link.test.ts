@@ -61,19 +61,21 @@ describe("buildWhatsAppLink", () => {
     expect(num.length).toBeGreaterThanOrEqual(8);
   });
 
-  // ── Contextos de página ───────────────────────────────────────────────────
+  // ── Contextos de página (multilingüe) ─────────────────────────────────────
 
-  it("genera links correctos para todos los contextos de DEFAULT_WHATSAPP_TEXT", async () => {
-    const { DEFAULT_WHATSAPP_TEXT } = await import("@/lib/config/contacto");
+  it("genera links correctos para todos los contextos WHATSAPP_TEXTS en todos los idiomas", async () => {
+    const { WHATSAPP_TEXTS, SUPPORTED_LOCALES } = await import("@/lib/config/contacto");
 
-    for (const [ctx, texto] of Object.entries(DEFAULT_WHATSAPP_TEXT)) {
-      const url = buildWhatsAppLink(texto);
-      expect(url, `Contexto '${ctx}' generó URL sin número`).not.toMatch(
-        /^https:\/\/wa\.me\/\?text=/
-      );
-      expect(url, `Contexto '${ctx}' no contiene número`).toMatch(
-        /^https:\/\/wa\.me\/\d+\?text=.+/
-      );
+    for (const locale of SUPPORTED_LOCALES) {
+      for (const [ctx, texto] of Object.entries(WHATSAPP_TEXTS[locale])) {
+        const url = buildWhatsAppLink(texto);
+        expect(url, `[${locale}] Contexto '${ctx}' generó URL sin número`).not.toMatch(
+          /^https:\/\/wa\.me\/\?text=/
+        );
+        expect(url, `[${locale}] Contexto '${ctx}' no contiene número`).toMatch(
+          /^https:\/\/wa\.me\/\d+\?text=.+/
+        );
+      }
     }
   });
 

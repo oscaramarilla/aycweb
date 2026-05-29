@@ -13,6 +13,7 @@
 
 import type { Metadata } from "next";
 import { buildWaLink } from "@/lib/config/contact";
+import { PLANES_PRECIOS, formatCurrencyUSD } from "@/lib/config/precios";
 
 export const metadata: Metadata = {
   title: "Planes Express — AYCweb",
@@ -23,32 +24,38 @@ const PLANES = [
   {
     badge: "Profesionales",
     badgeColor: "emerald",
-    nombre: "AYCweb Start",
-    precio: "$60 USD",
+    nombre: PLANES_PRECIOS.starter.nombre,
+    precio: formatCurrencyUSD(PLANES_PRECIOS.starter.setupTotal),
     sub: "Activación única",
     detalle: "Captación, agenda y WhatsApp ordenado. Listo en 24–48 hs.",
-    mant: "+ $15 USD/mes mantenimiento",
-    waMsg: "Hola Oscar, quiero activar AYCweb Start (USD 60). Soy profesional independiente.",
+    mant: `+ ${formatCurrencyUSD(PLANES_PRECIOS.starter.mantenimientoMensual)}/mes mantenimiento`,
+    waMsg: `Hola Oscar, quiero activar ${PLANES_PRECIOS.starter.nombre} (${formatCurrencyUSD(
+      PLANES_PRECIOS.starter.setupTotal
+    )}). Soy profesional independiente.`,
   },
   {
     badge: "Empresas",
     badgeColor: "blue",
-    nombre: "AYCweb Business",
-    precio: "$180 USD",
-    sub: "Anticipo 20% del setup ($900)",
+    nombre: PLANES_PRECIOS.business.nombre,
+    precio: formatCurrencyUSD(PLANES_PRECIOS.business.hitos.anticipo),
+    sub: `Anticipo 20% del setup (${formatCurrencyUSD(PLANES_PRECIOS.business.setupTotal)})`,
     detalle: "Sistema B2B con cotizador, captación y WhatsApp estructurado. Entrega 3 semanas.",
     mant: "Pago por etapas: 20 / 30 / 20 / 30%",
-    waMsg: "Hola Oscar, quiero iniciar AYCweb Business con el anticipo del 20% (USD 180).",
+    waMsg: `Hola Oscar, quiero iniciar ${PLANES_PRECIOS.business.nombre} con el anticipo del 20% (${formatCurrencyUSD(
+      PLANES_PRECIOS.business.hitos.anticipo
+    )}).`,
   },
   {
     badge: "Empresas",
     badgeColor: "violet",
-    nombre: "AYCweb Enterprise",
-    precio: "$360 USD",
-    sub: "Anticipo 20% del setup ($1.800)",
+    nombre: PLANES_PRECIOS.enterprise.nombre,
+    precio: formatCurrencyUSD(PLANES_PRECIOS.enterprise.hitos.anticipo),
+    sub: `Anticipo 20% del setup (${formatCurrencyUSD(PLANES_PRECIOS.enterprise.setupTotal)})`,
     detalle: "Infraestructura completa: cotizador, PDFs, panel vendedores, métricas. Entrega 4–6 semanas.",
     mant: "Pago por etapas: 20 / 30 / 20 / 30%",
-    waMsg: "Hola Oscar, quiero iniciar AYCweb Enterprise con el anticipo del 20% (USD 360).",
+    waMsg: `Hola Oscar, quiero iniciar ${PLANES_PRECIOS.enterprise.nombre} con el anticipo del 20% (${formatCurrencyUSD(
+      PLANES_PRECIOS.enterprise.hitos.anticipo
+    )}).`,
   },
 ];
 
