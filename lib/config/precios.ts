@@ -3,6 +3,10 @@
 // ============================================================
 // Modelo de cobros por hitos 20/20/30/30 + mantenimiento fijo.
 // Regla: NADIE hardcodea precios fuera de este archivo.
+// REGLA VISUAL: totalAnualInversion existe en datos pero NO debe
+// aparecer como texto visible en cabeceras de tarjetas de precios.
+// La jerarquía visual prioriza: costo mensual (dominante) →
+// setup único (secundario) → aclaración de financiamiento (terciario).
 // ============================================================
 
 export type PlanPrecio = {
@@ -16,6 +20,7 @@ export type PlanPrecio = {
     implementacion: number;// 30%
     pruebas: number;       // 30%
   };
+  /** @internal Los totales anuales existen en DB pero NO se muestran en UI de tarjetas */
   totalAnualInversion: number; // setupTotal + (mantenimientoMensual * 12)
 };
 
@@ -54,3 +59,12 @@ export function formatCurrencyUSD(n: number): string {
     maximumFractionDigits: 0,
   }).format(n);
 }
+
+/** Retorna el monto de financiamiento por mes (1 a 4 cuotas del setup). */
+export function getCuotaFinanciada(setupTotal: number, meses: 1 | 2 | 3 | 4): number {
+  return Math.round(setupTotal / meses);
+}
+
+/** Texto descriptivo sobre el financiamiento del setup en hasta 4 pagos. */
+export const TEXTO_FINANCIAMIENTO =
+  "El costo de configuración puede financiarse hasta en 4 pagos durante la etapa de desarrollo.";

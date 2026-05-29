@@ -94,13 +94,8 @@ function buildMensajeES(p: CalculadoraParams, r: CalculadoraResult): string {
     `*Ofertas rápidas de AYCweb:*`,
     ...Object.values(PLANES_PRECIOS).map((plan) =>
       [
-        `- ${plan.nombre}: ${formatCurrencyUSD(plan.setupTotal)}`,
-        `  Desglose: Anticipo ${formatCurrencyUSD(plan.hitos.anticipo)} · Definición ${formatCurrencyUSD(
-          plan.hitos.definicion
-        )} · Implementación ${formatCurrencyUSD(plan.hitos.implementacion)} · Pruebas ${formatCurrencyUSD(
-          plan.hitos.pruebas
-        )}`,
-        `  Mantenimiento: ${formatCurrencyUSD(plan.mantenimientoMensual)}/mes`,
+        `- ${plan.nombre}: El mantenimiento es de ${formatCurrencyUSD(plan.mantenimientoMensual)}/mes.`,
+        `  El setup único es de ${formatCurrencyUSD(plan.setupTotal)}, el cual podés liquidar hasta en 4 pagos financiados durante los meses de configuración.`,
       ].join("\n")
     ),
   ].join("\n");

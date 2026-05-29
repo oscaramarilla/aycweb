@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { buildWaLink } from "@/lib/config/contact";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
-import { PLANES_PRECIOS } from "@/lib/config/precios";
+import { PLANES_PRECIOS, TEXTO_FINANCIAMIENTO } from "@/lib/config/precios";
+import PricingCard from "@/components/pricing/PricingCard";
 
 const START = PLANES_PRECIOS.starter;
 
@@ -177,83 +178,44 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
             Plan de entrada para profesionales independientes. No reemplaza un sistema empresarial completo; ordena tu captación, agenda y WhatsApp para empezar rápido.
           </p>
 
-          {/* Tarjetas */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-
-            {/* Setup Inicial */}
-            <div className="relative bg-slate-900/70 border border-emerald-500/30 rounded-3xl p-8 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/20 to-transparent pointer-events-none rounded-3xl" />
-              <div className="relative z-10">
-                <span className="inline-block text-[10px] font-black uppercase tracking-[0.18em] text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full mb-4">
-                  Pago Único
-                </span>
-
-                <div className="flex items-end gap-2 mb-1">
-                  <span className="text-5xl font-black text-white">{START.setupTotal}</span>
-                  <span className="text-slate-400 text-sm mb-2">USD</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Activación AYCweb Start</h3>
-                <p className="text-slate-400 text-sm mb-3">
-                  Dejamos todo configurado y funcionando para que empieces a recibir agendamientos desde el día uno.
-                </p>
-                <div className="flex items-start gap-2 bg-emerald-950/30 border border-emerald-500/20 rounded-lg px-3 py-2.5 mb-4 text-[12px] text-emerald-300">
-                  <span className="flex-shrink-0">🎁</span>
-                  <p><strong>Pagando con USDT (Cripto):</strong> el primer mes de mantenimiento (USD {START.mantenimientoMensual}) queda 100% bonificado.</p>
-                </div>
-                <div className="border-b border-slate-800 pb-4 mb-3" />
-
-                <ul className="space-y-2.5">
-                  {INCLUYE_SETUP.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-slate-300">
-                      <span className="text-emerald-400 mt-0.5 flex-shrink-0">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Mantenimiento */}
-            <div className="relative bg-slate-900/70 border border-slate-700/50 rounded-3xl p-8 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-800/20 to-transparent pointer-events-none rounded-3xl" />
-              <div className="relative z-10">
-                <span className="inline-block text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 bg-slate-800/60 border border-slate-700 px-3 py-1 rounded-full mb-4">
-                  Mensual
-                </span>
-
-                <div className="flex items-end gap-2 mb-1">
-                  <span className="text-5xl font-black text-white">{START.mantenimientoMensual}</span>
-                  <span className="text-slate-400 text-sm mb-2">USD / mes</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Mantenimiento</h3>
-                <p className="text-slate-400 text-sm mb-3 text-[12px] text-emerald-300 bg-emerald-950/20 border border-emerald-500/20 rounded-lg px-3 py-2">
-                  💳 Pagadero el <strong>15 de cada mes</strong> — Renovación automática.
-                </p>
-                <p className="text-slate-400 text-sm mb-6 border-b border-slate-800 pb-6">
-                  Tu sistema sigue online, actualizado y con soporte técnico disponible mientras seguís operando.
-                </p>
-
-                <ul className="space-y-2.5">
-                  {INCLUYE_MANT.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-slate-300">
-                      <span className="text-cyan-400 mt-0.5 flex-shrink-0">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+          {/* PricingCard con nueva jerarquía visual: domina el costo mensual */}
+          <div className="mb-10 max-w-md mx-auto">
+            <PricingCard
+              planId="starter"
+              accent="emerald"
+              ctaHref={ctaWa}
+              ctaLabel={`Activar ${START.nombre} — $${START.setupTotal}`}
+              tagline="Dejamos todo configurado y funcionando para que empieces a recibir agendamientos desde el día uno."
+            />
           </div>
 
-          {/* Resumen de precio total */}
-          <div className="bg-emerald-950/30 border border-emerald-500/20 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
-            <div>
-              <p className="text-emerald-300 font-bold text-sm">Costo total al arrancar</p>
-              <p className="text-slate-400 text-xs">Setup único (${START.setupTotal}) + primer mes de mantenimiento (${START.mantenimientoMensual})</p>
+          {/* Features de Setup y Mantenimiento en grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <div className="bg-slate-900/60 border border-emerald-500/20 rounded-2xl p-6">
+              <span className="inline-block text-[10px] font-black uppercase tracking-[0.18em] text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full mb-4">
+                Incluye Setup
+              </span>
+              <ul className="space-y-2.5">
+                {INCLUYE_SETUP.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-slate-300">
+                    <span className="text-emerald-400 mt-0.5 flex-shrink-0">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="flex items-end gap-1">
-              <span className="text-3xl font-black text-white">{START.setupTotal + START.mantenimientoMensual}</span>
-              <span className="text-slate-400 text-sm mb-1">USD total</span>
+            <div className="bg-slate-900/60 border border-slate-700/50 rounded-2xl p-6">
+              <span className="inline-block text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 bg-slate-800/60 border border-slate-700 px-3 py-1 rounded-full mb-4">
+                Incluye Mantenimiento
+              </span>
+              <ul className="space-y-2.5">
+                {INCLUYE_MANT.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-slate-300">
+                    <span className="text-cyan-400 mt-0.5 flex-shrink-0">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 

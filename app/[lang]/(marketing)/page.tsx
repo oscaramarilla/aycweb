@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import { FranjaClientes } from "@/components/social/FranjaClientes";
 import { buildWaLink } from "@/lib/config/contact";
 import { FILTRO_ADMISION_COPY } from "@/lib/config/copy/filtro-admision";
+import PricingCard from "@/components/pricing/PricingCard";
+import { PLANES_PRECIOS, TEXTO_FINANCIAMIENTO } from "@/lib/config/precios";
 
 // 1. CACHÉ ULTRARRÁPIDO: Guarda la página en los servidores globales de Vercel por 1 hora
 export const revalidate = 3600;
@@ -236,6 +238,53 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                 {dominio.nombre}
               </a>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= SECCIÓN DE PRECIOS: Resumen estratégico con nueva jerarquía visual ================= */}
+      <section className="py-16 md:py-24 relative z-10 bg-[#04050a] border-b border-white/[0.05]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight">
+              Inversión clara. Sin ambigüedad.
+            </h2>
+            <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
+              El mantenimiento arranca desde 15 USD/mes. Elegí el plan que se ajuste a tu operación.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <PricingCard
+              planId="starter"
+              accent="emerald"
+              ctaHref={buildWaLink(`Hola Oscar, quiero agendar una Auditoría B2B para mi operación. Me interesa el plan Starter.`)}
+              ctaLabel="Consultar Starter"
+              tagline="Para profesionales independientes"
+            />
+
+            <PricingCard
+              planId="business"
+              accent="blue"
+              badge="MÁS ELEGIDO"
+              ctaHref={buildWaLink(`Hola Oscar, quiero agendar una Auditoría B2B para mi operación. Me interesa el plan Business.`)}
+              ctaLabel="Consultar Business"
+              tagline="Para empresas con volumen comercial"
+            />
+
+            <PricingCard
+              planId="enterprise"
+              accent="violet"
+              ctaHref={buildWaLink(`Hola Oscar, quiero agendar una Auditoría B2B para mi operación. Me interesa el plan Enterprise.`)}
+              ctaLabel="Consultar Enterprise"
+              tagline="Para operaciones complejas"
+            />
+          </div>
+
+          <div className="text-center mt-8">
+            <p className="text-[11px] md:text-xs text-slate-500 max-w-xl mx-auto leading-relaxed">
+              Todos los planes incluyen {TEXTO_FINANCIAMIENTO.toLowerCase()} Sin sorpresas. Sin costos ocultos.
+            </p>
           </div>
         </div>
       </section>

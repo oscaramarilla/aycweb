@@ -3,7 +3,8 @@ import Link from "next/link";
 import { FranjaClientes } from "@/components/social/FranjaClientes";
 import { buildWaLink } from "@/lib/config/contact";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
-import { PLANES_PRECIOS, type PlanPrecio } from "@/lib/config/precios";
+import { PLANES_PRECIOS, TEXTO_FINANCIAMIENTO } from "@/lib/config/precios";
+import PricingCard from "@/components/pricing/PricingCard";
 
 export const metadata: Metadata = {
   title: "Sistemas Operativos B2B para Empresas | AYCweb Paraguay",
@@ -238,79 +239,70 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-            {PLANES.map((plan) => {
-              const isFeatured = plan.badge !== null;
-              return (
-                <article
-                  key={plan.nombre}
-                  className={`relative rounded-[1.5rem] p-7 flex flex-col transition-all duration-300 ${
-                    isFeatured
-                      ? "border-2 border-blue-500/40 bg-blue-950/20 shadow-[0_0_50px_rgba(37,99,235,0.15)]"
-                      : "border border-white/[0.06] bg-[#0a0c14] hover:border-white/[0.12]"
-                  }`}
-                >
-                  {plan.badge && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-blue-500 px-4 py-1 text-[10px] uppercase tracking-[0.2em] text-white font-black shadow-lg whitespace-nowrap">
-                      {plan.badge}
-                    </span>
-                  )}
+            {/* Business Plan */}
+            <PricingCard
+              planId="business"
+              accent="blue"
+              tagline={PLANES[0].tagline}
+              features={PLANES[0].features}
+              ideal={PLANES[0].ideal}
+              ctaHref={buildWaLink(`Hola Oscar, me interesa el plan ${PLANES[0].nombre} ($${BIZ.setupTotal}) para mi empresa.`)}
+              ctaLabel={PLANES[0].cta}
+            />
 
-                  <h3 className="text-xl font-black text-white mb-2">{plan.nombre}</h3>
-                  <p className="text-[13px] text-slate-500 mb-5">{plan.entrega}</p>
+            {/* Enterprise Plan — featured */}
+            <PricingCard
+              planId="enterprise"
+              accent="blue"
+              badge="MÁS ELEGIDO"
+              tagline={PLANES[1].tagline}
+              features={PLANES[1].features}
+              ideal={PLANES[1].ideal}
+              ctaHref={buildWaLink(`Hola Oscar, me interesa el plan ${PLANES[1].nombre} ($${ENT.setupTotal}) para mi empresa.`)}
+              ctaLabel={PLANES[1].cta}
+            />
 
-                  <div className="mb-6">
-                    <div className="text-[11px] text-slate-500 uppercase tracking-widest font-bold mb-1">
-                      Setup único
-                    </div>
-                    <div className="flex items-baseline gap-2">
-                      {plan.precio !== "Cotización" && (
-                        <span className="text-base text-slate-500 font-normal">USD</span>
-                      )}
-                      <span className="text-4xl font-black text-white tracking-tight">
-                        {plan.precio}
-                      </span>
-                    </div>
-                  </div>
+            {/* Arquitectura a Medida — custom card since it's not a standard plan */}
+            <article className="relative rounded-[1.5rem] p-7 flex flex-col border border-white/[0.06] bg-[#0a0c14] hover:border-white/[0.12] transition-all">
+              <h3 className="text-lg font-black text-white mb-2">Arquitectura a Medida</h3>
+              <p className="text-[13px] text-slate-500 mb-5">Cronograma tras diagnóstico</p>
 
-                  <p className="text-sm text-slate-400 leading-relaxed mb-6 min-h-[3rem]">
-                    {plan.tagline}
-                  </p>
+              <div className="mb-6">
+                <span className="text-[11px] text-slate-500 uppercase tracking-widest font-bold">Setup único</span>
+                <div className="text-4xl font-black text-white tracking-tight mt-1">Cotización</div>
+              </div>
 
-                  <ul className="space-y-3 mb-6 flex-1">
-                    {plan.features.map((f) => (
-                      <li
-                        key={f}
-                        className="text-[13px] text-slate-300 flex items-start gap-2.5 leading-relaxed"
-                      >
-                        <span className="text-blue-400 font-black mt-[2px]">✓</span>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+              <p className="text-[11px] md:text-xs text-slate-500 leading-relaxed mb-5">
+                {TEXTO_FINANCIAMIENTO}
+              </p>
 
-                  <div className="rounded-xl border border-white/[0.04] bg-slate-950/50 p-3 mb-5 text-[12px] text-slate-400">
-                    <span className="font-bold text-white">Ideal para: </span>
-                    {plan.ideal}
-                  </div>
+              <div className="border-t border-white/[0.06] pt-4 mb-4" />
 
-                  <a
-                    href={buildWaLink(
-                      `Hola Oscar, me interesa el plan ${plan.nombre} (${plan.precio}) para mi empresa.`
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`block w-full text-center py-3.5 rounded-xl font-black text-[14px] transition-all ${
-                      isFeatured
-                        ? "bg-blue-500 text-white hover:bg-blue-400 shadow-[0_0_30px_rgba(37,99,235,0.4)]"
-                        : "bg-transparent text-blue-300 border border-blue-300/30 hover:border-blue-300/60 hover:bg-blue-300/5"
-                    }`}
-                  >
-                    {plan.cta}
-                  </a>
+              <p className="text-sm text-slate-400 leading-relaxed mb-6">{PLANES[2].tagline}</p>
 
-                </article>
-              );
-            })}
+              <ul className="space-y-2.5 mb-5 flex-1">
+                {PLANES[2].features.map((f) => (
+                  <li key={f} className="text-[13px] text-slate-300 flex items-start gap-2.5 leading-relaxed">
+                    <span className="text-violet-400 font-black mt-[2px]">✓</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="rounded-xl border border-white/[0.04] bg-slate-950/50 p-3 mb-5 text-[12px] text-slate-400">
+                <span className="font-bold text-white">Ideal para: </span>
+                {PLANES[2].ideal}
+              </div>
+
+              <a
+                href={buildWaLink("Hola Oscar, quiero solicitar un diagnóstico para una Arquitectura a Medida.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center py-3.5 rounded-xl font-black text-[14px] text-violet-300 border border-violet-300/30 hover:border-violet-300/60 hover:bg-violet-300/5 transition-all"
+              >
+                {PLANES[2].cta}
+              </a>
+            </article>
           </div>
 
           {/* Modelo de implementación por etapas */}
