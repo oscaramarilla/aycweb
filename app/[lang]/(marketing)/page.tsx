@@ -15,14 +15,14 @@ export const metadata: Metadata = {
 const DOMINIOS_GESTIONADOS = [
   { nombre: "aycweb.com", url: "https://aycweb.com" },
   { nombre: "ayc.com.py", url: "https://ayc.com.py" },
-  { nombre: "webprox.co", url: "https://webprox.co" },
+  { nombre: "proteinasmart.com", url: "https://proteinasmart.com" },
   { nombre: "drabiancapy.com", url: "https://drabiancapy.com" },
   { nombre: "drjoselahaye.com", url: "https://drjoselahaye.com" },
   { nombre: "metalmadeas.com", url: "https://metalmadeas.com" },
   { nombre: "oriplastpy.com", url: "https://oriplastpy.com" },
   { nombre: "larocaemprendimientos.com", url: "https://larocaemprendimientos.com" },
   { nombre: "latabletapy.com", url: "https://latabletapy.com" },
-  { nombre: "proteinasmart.com", url: "https://proteinasmart.com" },
+  { nombre: "webprox.co", url: "https://webprox.co" },
 ];
 
 export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
