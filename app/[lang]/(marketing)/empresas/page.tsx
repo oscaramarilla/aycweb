@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FranjaClientes } from "@/components/social/FranjaClientes";
 import { buildWaLink } from "@/lib/config/contact";
+import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 
 export const metadata: Metadata = {
   title: "Sistemas Operativos B2B para Empresas | AYCweb Paraguay",
@@ -170,6 +171,16 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
               Ver planes
             </Link>
           </div>
+
+          {/* Pago directo — alternativa sin auditoría */}
+          <div className="flex justify-center mt-4">
+            <CheckoutForm
+              planes={PLANES.map((p) => ({ nombre: p.nombre, precio: p.precio }))}
+              colorScheme="blue"
+              triggerLabel="⚡ Pago Directo (Sin auditoría)"
+            />
+          </div>
+          <p className="text-xs text-slate-600 mt-2">Pagás en USDT y desplegamos al instante.</p>
         </div>
       </section>
 
@@ -298,6 +309,18 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
                   >
                     {plan.cta}
                   </a>
+
+                  {/* Pago directo solo para planes con precio fijo */}
+                  {plan.precio !== "Cotización" && (
+                    <div className="mt-2 w-full">
+                      <CheckoutForm
+                        planes={[{ nombre: plan.nombre, precio: plan.precio }]}
+                        colorScheme="blue"
+                        triggerLabel="⚡ Pago Directo"
+                        fullWidth
+                      />
+                    </div>
+                  )}
                 </article>
               );
             })}
@@ -391,7 +414,7 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
             En 15 minutos te decimos si podemos generarte un ROI claro. Si no, también te lo decimos. Sin vueltas.
           </p>
 
-          <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col md:flex-row gap-4 justify-center items-center flex-wrap">
             <a
               href={buildWaLink(
                 "Hola Oscar, vengo de la página de Empresas y quiero agendar el diagnóstico operativo gratuito."
@@ -402,14 +425,21 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
             >
               Agendar diagnóstico
             </a>
+            <CheckoutForm
+              planes={PLANES.map((p) => ({ nombre: p.nombre, precio: p.precio }))}
+              colorScheme="blue"
+              triggerLabel="⚡ Pago Directo (Sin auditoría)"
+            />
+          </div>
+          <div className="mt-4 flex justify-center">
             <Link
               href={`/${params?.lang || 'es'}/onboarding`}
-              className="inline-flex items-center justify-center px-8 py-4 text-sm font-black text-slate-900 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full shadow-[0_0_25px_rgba(16,185,129,0.4)] hover:shadow-[0_0_40px_rgba(16,185,129,0.7)] hover:-translate-y-1 transition-all duration-300"
+              className="inline-flex items-center justify-center px-8 py-3 text-sm font-black text-slate-900 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full shadow-[0_0_25px_rgba(16,185,129,0.4)] hover:shadow-[0_0_40px_rgba(16,185,129,0.7)] hover:-translate-y-1 transition-all duration-300"
             >
               ⚡ Activa con 20% de descuento Cripto
             </Link>
           </div>
-          <p className="mt-4 text-xs text-slate-500">Sin costo. Sin compromiso.</p>
+          <p className="mt-3 text-xs text-slate-500">Sin costo. Sin compromiso.</p>
         </div>
       </section>
     </div>
