@@ -249,7 +249,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               <span className="text-4xl md:text-6xl block mb-4 md:mb-8">🛡️</span>
               <h2 className="text-2xl md:text-5xl font-black text-white mb-4 md:mb-6">Garantía sin fricción</h2>
               <p className="text-slate-400 text-[15px] md:text-xl max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed">
-                Evalúo con cuidado cada proyecto. Si no hay encaje real, te lo digo antes de cobrarte. Si en los primeros 30 días no hay conformidad real, <strong className="text-white">te devolvemos el 100%</strong>. Sin letra chica.
+                Evalúo con cuidado cada proyecto. Si no hay encaje real, te lo digo antes de cobrarte. Garantía Inteligente por Etapas: si en la primera etapa el sistema no responde al objetivo acordado, cancelás sin avanzar a los pagos siguientes. Si determinamos inviabilidad técnica antes del desarrollo, se devuelve el pago inicial.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6 mb-8 md:mb-12">
@@ -258,8 +258,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                   <div className="text-[13px] md:text-sm text-slate-500 text-center">Intención real de construir.</div>
                 </div>
                 <div className="bg-slate-950/80 border border-slate-800 p-4 md:p-6 rounded-[1rem] md:rounded-2xl">
-                  <div className="font-bold text-white mb-1 md:mb-2 text-[14px] md:text-base">30 días de respaldo</div>
-                  <div className="text-[13px] md:text-sm text-slate-500 text-center">Si no funciona, devolución total. Sin discusión.</div>
+                  <div className="font-bold text-white mb-1 md:mb-2 text-[14px] md:text-base">Garantía Inteligente</div>
+                  <div className="text-[13px] md:text-sm text-slate-500 text-center">Cancelás en la primera etapa si no hay encaje. El pago inicial se devuelve ante inviabilidad técnica.</div>
                 </div>
                 <div className="bg-slate-950/80 border border-slate-800 p-4 md:p-6 rounded-[1rem] md:rounded-2xl">
                   <div className="font-bold text-white mb-1 md:mb-2 text-[14px] md:text-base">Cero sorpresas</div>

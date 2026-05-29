@@ -136,7 +136,7 @@ export default function NosotrosPage() {
               {
                 icon: "🛡️",
                 title: "Garantía respaldada",
-                desc: "La garantía de 30 días la asume la misma persona que construye tu motor. Sin letra chica, sin discusión.",
+                desc: "La Garantía Inteligente la asume la misma persona que construye tu motor. Si en la primera etapa no hay encaje, cancelás sin avanzar. Sin letra chica.",
               },
             ].map((item, i) => (
               <div key={i} className="rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
@@ -180,7 +180,7 @@ export default function NosotrosPage() {
             {[
               { icon: "🔍", title: "Auditoría antes de propuesta", desc: "Nunca arranca nada sin entender tu operación actual. Si no hay encaje real, te lo digo antes de cobrarte." },
               { icon: "🤝", title: "Interlocutor directo", desc: "El proyecto no se terceriza ni el criterio. Hablás con quien diseña y construye el sistema." },
-              { icon: "✅", title: "Garantía real", desc: "30 días de devolución completa. Sin letra chica, sin condiciones, sin discusión." },
+              { icon: "✅", title: "Garantía real", desc: "Garantía Inteligente: cancelás en la primera etapa si el sistema no cumple el objetivo. Pago inicial devuelto si determinamos inviabilidad técnica antes del desarrollo." },
             ].map((p, i) => (
               <div key={i} className="bg-slate-900/40 border border-slate-800 rounded-2xl p-5 flex gap-4">
                 <span className="text-xl shrink-0 mt-0.5">{p.icon}</span>

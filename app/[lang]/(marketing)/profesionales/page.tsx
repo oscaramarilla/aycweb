@@ -276,7 +276,7 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
                 href={`/${params?.lang || 'es'}/onboarding`}
                 className="inline-flex items-center justify-center px-8 py-3 text-sm font-black text-slate-900 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full shadow-[0_0_25px_rgba(16,185,129,0.4)] hover:shadow-[0_0_40px_rgba(16,185,129,0.7)] hover:-translate-y-1 transition-all duration-300"
               >
-                ⚡ Activa con 20% de descuento Cripto
+                ⚡ Iniciar onboarding con 20%
               </Link>
             </div>
             <p className="text-slate-500 text-xs">

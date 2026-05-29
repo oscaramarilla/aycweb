@@ -76,8 +76,8 @@ function validate(data: FormFields): Errors {
   const digits = data.whatsappLocal.replace(/\D/g, "");
   if (!digits) {
     errors.whatsappLocal = "Ingresá tu número de WhatsApp.";
-  } else if (digits.length !== 9) {
-    errors.whatsappLocal = "Ingresá exactamente 9 dígitos (número paraguayo).";
+  } else if (digits.length < 7 || digits.length > 15) {
+    errors.whatsappLocal = "Ingresá un número válido (ej: 595 985 123 456 para Paraguay).";
   }
 
   return errors;
@@ -123,7 +123,7 @@ export default function DiagnosticoComercialPage() {
       tamanoEquipo: form.tamanoEquipo,
       cuelloBottella: form.cuelloBottella,
       stackActual: form.stackActual.trim(),
-      whatsapp: `+595${form.whatsappLocal.replace(/\D/g, "")}`,
+      whatsapp: `+${form.whatsappLocal.replace(/\D/g, "")}`,
     };
 
     // Pasar lang para que el mensaje WA se genere en el idioma del prospecto
@@ -391,25 +391,22 @@ export default function DiagnosticoComercialPage() {
               <span className="text-blue-400">*</span>
             </label>
             <p className="text-xs text-slate-500">
-              9 dígitos · número paraguayo
+              Con código de país · ej: 595 985 123 456
             </p>
             <div className="flex items-center rounded-xl border border-slate-700 bg-slate-900/60 overflow-hidden focus-within:border-blue-500/60 focus-within:ring-1 focus-within:ring-blue-500/30 transition-all">
               {/* Prefijo estático */}
               <span className="px-4 py-4 text-slate-400 font-mono text-base font-semibold bg-slate-800/60 border-r border-slate-700 shrink-0 select-none whitespace-nowrap">
-                +595
+                +
               </span>
               <input
                 id="whatsappLocal"
                 type="tel"
                 inputMode="numeric"
-                pattern="[0-9]{9}"
-                placeholder="985864209"
-                maxLength={9}
-                autoComplete="tel-local"
+                placeholder="595 985 864 209"
+                autoComplete="tel"
                 value={form.whatsappLocal}
                 onChange={(e) => {
-                  // Solo dígitos
-                  const val = e.target.value.replace(/\D/g, "").slice(0, 9);
+                  const val = e.target.value.replace(/[^\d\s]/g, "").slice(0, 20);
                   setForm((prev) => ({ ...prev, whatsappLocal: val }));
                   if (errors.whatsappLocal)
                     setErrors((prev) => ({
@@ -427,12 +424,14 @@ export default function DiagnosticoComercialPage() {
             <p
               id="wa-hint"
               className={`text-[11px] ${
-                form.whatsappLocal.replace(/\D/g, "").length === 9
+                form.whatsappLocal.replace(/\D/g, "").length >= 7
                   ? "text-emerald-400"
                   : "text-slate-600"
               }`}
             >
-              {form.whatsappLocal.replace(/\D/g, "").length}/9 dígitos
+              {form.whatsappLocal.replace(/\D/g, "").length > 0
+                ? `${form.whatsappLocal.replace(/\D/g, "").length} dígitos`
+                : "Incluí el código de país (595 para Paraguay)"}
             </p>
             {errors.whatsappLocal && (
               <p id="wa-error" className={errorCls}>

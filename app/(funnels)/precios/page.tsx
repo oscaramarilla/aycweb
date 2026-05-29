@@ -220,8 +220,8 @@ export default function PreciosPage() {
             <p className="text-[13px] text-slate-400 leading-relaxed">Reservá tu lugar. El compromiso es mutuo desde el día uno.</p>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4 text-center">
-            <p className="text-[15px] font-bold text-white mb-2">30 días de garantía</p>
-            <p className="text-[13px] text-slate-400 leading-relaxed">Si no funciona para ninguna de las partes, devolución total.</p>
+            <p className="text-[15px] font-bold text-white mb-2">Garantía Inteligente</p>
+            <p className="text-[13px] text-slate-400 leading-relaxed">Si no hay encaje en la primera etapa, cancelás sin avanzar. Pago inicial devuelto ante inviabilidad técnica.</p>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4 text-center">
             <p className="text-[15px] font-bold text-white mb-2">Sin letra chica</p>
