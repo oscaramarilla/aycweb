@@ -64,6 +64,12 @@ export default function OnboardingPage() {
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-[1.05] text-white">
             Tres formas de <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">encender el motor.</span>
           </h1>
+          <h2 className="mb-3 text-lg text-slate-200 font-bold opacity-90">
+            Onboarding operativo para clientes aprobados
+          </h2>
+          <p className="text-sm text-slate-400 max-w-2xl mx-auto font-medium leading-relaxed mb-6">
+            Esta pasarela de activación y pago se utiliza exclusivamente después de haber completado el diagnóstico comercial, o para activaciones express previamente acordadas con la firma.
+          </p>
           <p className="text-base md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
             Asegurá tu lugar en la agenda técnica. Elegí el riel financiero que mejor se adapte a la operativa de tu empresa.
           </p>

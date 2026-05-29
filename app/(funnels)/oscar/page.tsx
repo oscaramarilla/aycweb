@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 import { WHATSAPP_NUMBER } from "@/lib/config/contacto";
 
 type AccentColor = "emerald" | "blue" | "violet";
@@ -310,6 +311,14 @@ export default function LandingOscar() {
 
   return (
     <div className="min-h-screen bg-zinc-950 font-sans text-zinc-50 selection:bg-blue-500 selection:text-white pb-28 md:pb-0">
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
+
+      {/* Banner legacy */}
+      <div className="w-full bg-amber-900/6 border-b border-amber-800/10 text-amber-200 text-sm py-2 text-center">
+        ⚠️ Estás viendo un archivo comercial legacy. Para ver la infraestructura actual, visitá /empresas o /profesionales.
+      </div>
       
       {/* HERO SECTION */}
       <section className="relative mx-auto max-w-7xl overflow-hidden px-6 pb-20 pt-16 sm:pb-28 sm:pt-24">

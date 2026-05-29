@@ -141,11 +141,17 @@ export default function MotorDemoPage() {
             <span className="hidden sm:flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/20 text-sm font-black">
               ⚡
             </span>
-            <p className="text-[12px] sm:text-sm font-semibold text-white leading-snug">
-              <span className="font-black">Esto es exactamente lo que instalamos en tu sitio.</span>{" "}
-              <span className="hidden sm:inline">Motor AYCweb desde </span>
-              <span className="text-yellow-300 font-black">USD 50/mes.</span>
-            </p>
+            <div className="text-left">
+              <p className="text-[12px] sm:text-sm font-semibold text-white leading-snug">
+                <span className="font-black">Esto es exactamente lo que instalamos en tu sitio.</span>
+              </p>
+              <p className="text-[12px] sm:text-sm text-yellow-300 font-bold mt-1">
+                Modelo SaaS Simple: Desde USD 50/mes (Catálogo estandarizado, despliegue en 3–5 días).
+              </p>
+              <p className="text-[11px] sm:text-[12px] text-white/80 mt-1">
+                Infraestructura B2B a Medida: Desde USD 900 (Arquitectura completa, PDFs dinámicos, panel operativo e integración profunda). Ver planes completos en la sección Empresas.
+              </p>
+            </div>
           </div>
           <Link
             href="/es/diagnostico-comercial"
@@ -335,9 +341,14 @@ export default function MotorDemoPage() {
             </Link>
           </div>
 
-          <p className="mt-5 text-xs text-slate-600">
-            Sin setup técnico de tu parte · Entrega en 3–5 días · Desde USD 50/mes
-          </p>
+          <div className="mt-5 text-xs text-slate-600 space-y-1">
+            <p>
+              <strong>Modelo SaaS Simple:</strong> Desde USD 50/mes — Catálogo estandarizado, despliegue en 3–5 días.
+            </p>
+            <p>
+              <strong>Infraestructura B2B a Medida:</strong> Desde USD 900 — Arquitectura completa, PDFs dinámicos, panel operativo e integración profunda. Ver planes en Empresas.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
