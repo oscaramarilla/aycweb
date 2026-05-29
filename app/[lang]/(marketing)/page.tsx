@@ -12,6 +12,19 @@ export const metadata: Metadata = {
   description: "Construimos ecosistemas digitales que automatizan ventas y operaciones para empresas y profesionales. No somos para todos, postulá a una auditoría.",
 };
 
+const DOMINIOS_GESTIONADOS = [
+  { nombre: "aycweb.com", url: "https://aycweb.com" },
+  { nombre: "ayc.com.py", url: "https://ayc.com.py" },
+  { nombre: "webprox.co", url: "https://webprox.co" },
+  { nombre: "drabiancapy.com", url: "https://drabiancapy.com" },
+  { nombre: "drjoselahaye.com", url: "https://drjoselahaye.com" },
+  { nombre: "metalmadeas.com", url: "https://metalmadeas.com" },
+  { nombre: "oriplastpy.com", url: "https://oriplastpy.com" },
+  { nombre: "larocaemprendimientos.com", url: "https://larocaemprendimientos.com" },
+  { nombre: "latabletapy.com", url: "https://latabletapy.com" },
+  { nombre: "proteinasmart.com", url: "https://proteinasmart.com" },
+];
+
 export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const auditMsg = buildWaLink("Hola Oscar. Quiero agendar una Auditoría B2B para mi operación.");
@@ -215,6 +228,30 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                  ))}
                </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= 5b) ECOSISTEMA EN PRODUCCIÓN ================= */}
+      <section className="py-16 md:py-24 relative z-10 border-b border-white/[0.05]">
+        <div className="max-w-5xl mx-auto px-6">
+          <h3 className="text-2xl font-bold text-white mb-3 text-center">Ecosistema en Producción</h3>
+          <p className="text-slate-400 text-center mb-8">Infraestructuras digitales, embudos y dominios actualmente gestionados por nuestra firma.</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {DOMINIOS_GESTIONADOS.map((dominio) => (
+              <a
+                key={dominio.nombre}
+                href={dominio.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm hover:bg-white/10 hover:text-white transition-colors flex items-center gap-2"
+              >
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
+                  <circle cx="4" cy="4" r="4" fill="#22c55e"/>
+                </svg>
+                {dominio.nombre}
+              </a>
+            ))}
           </div>
         </div>
       </section>
