@@ -119,7 +119,7 @@ const DOLORES = [
   { antes: "PDFs hechos a mano en Word", despues: "Documentos generados al instante" },
 ] as const;
 
-export default function ProductosPage() {
+export default function ProductosPage({ params }: { params?: { lang?: string } }) {
   return (
     <div className="relative min-h-screen bg-slate-950 text-slate-50 overflow-hidden">
       <div className="fixed inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15] pointer-events-none mix-blend-overlay z-0" />
@@ -391,16 +391,24 @@ export default function ProductosPage() {
             En 15 minutos te decimos si podemos generarte un ROI claro. Si no, también te lo decimos. Sin vueltas.
           </p>
 
-          <a
-            href={buildWaLink(
-              "Hola Oscar, vengo de la página de Empresas y quiero agendar el diagnóstico operativo gratuito."
-            )}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-12 rounded-xl transition-all shadow-[0_0_40px_rgba(37,99,235,0.4)] active:scale-95"
-          >
-            Agendar diagnóstico
-          </a>
+          <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+            <a
+              href={buildWaLink(
+                "Hola Oscar, vengo de la página de Empresas y quiero agendar el diagnóstico operativo gratuito."
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-12 rounded-xl transition-all shadow-[0_0_40px_rgba(37,99,235,0.4)] active:scale-95"
+            >
+              Agendar diagnóstico
+            </a>
+            <Link
+              href={`/${params?.lang || 'es'}/onboarding`}
+              className="inline-flex items-center justify-center px-8 py-4 text-sm font-black text-slate-900 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full shadow-[0_0_25px_rgba(16,185,129,0.4)] hover:shadow-[0_0_40px_rgba(16,185,129,0.7)] hover:-translate-y-1 transition-all duration-300"
+            >
+              ⚡ Activa con 20% de descuento Cripto
+            </Link>
+          </div>
           <p className="mt-4 text-xs text-slate-500">Sin costo. Sin compromiso.</p>
         </div>
       </section>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { buildWaLink } from "@/lib/config/contact";
 
 export const metadata: Metadata = {
@@ -74,7 +75,7 @@ const INCLUYE_MANT = [
   "Monitoreo de rendimiento (PageSpeed, disponibilidad)",
 ];
 
-export default function ProfesionalesPage() {
+export default function ProfesionalesPage({ params }: { params?: { lang?: string } }) {
   const ctaWa = buildWaLink(
     "Hola Oscar, soy profesional independiente y quiero iniciar mi sistema automático de agenda por USD 50."
   );
@@ -233,14 +234,22 @@ export default function ProfesionalesPage() {
 
           {/* CTA principal */}
           <div className="text-center">
-            <a
-              href={ctaWa}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-14 rounded-xl transition-all shadow-[0_0_40px_rgba(16,185,129,0.35)] active:scale-95 text-lg mb-4"
-            >
-              Iniciar mi sistema por $50
-            </a>
+            <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-4">
+              <a
+                href={ctaWa}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-14 rounded-xl transition-all shadow-[0_0_40px_rgba(16,185,129,0.35)] active:scale-95 text-lg"
+              >
+                Iniciar mi sistema por $50
+              </a>
+              <Link
+                href={`/${params?.lang || 'es'}/onboarding`}
+                className="inline-flex items-center justify-center px-8 py-4 text-sm font-black text-slate-900 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full shadow-[0_0_25px_rgba(16,185,129,0.4)] hover:shadow-[0_0_40px_rgba(16,185,129,0.7)] hover:-translate-y-1 transition-all duration-300"
+              >
+                ⚡ Activa con 20% de descuento Cripto
+              </Link>
+            </div>
             <p className="text-slate-500 text-xs">
               Te contactamos dentro de las 24 hs hábiles para coordinar el setup.
             </p>
