@@ -5,8 +5,7 @@ import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 
 // Planes disponibles para el checkout directo de profesionales
 const PLANES_PROF = [
-  { nombre: "Setup Inicial", precio: "$50" },
-  { nombre: "Setup + 1er mes (todo incluido)", precio: "$60" },
+  { nombre: "Activación AYCweb Start", precio: "$60" },
 ];
 
 export const metadata: Metadata = {
@@ -84,7 +83,7 @@ const INCLUYE_MANT = [
 
 export default function ProfesionalesPage({ params }: { params?: { lang?: string } }) {
   const ctaWa = buildWaLink(
-    "Hola Oscar, soy profesional independiente y quiero iniciar mi sistema automático de agenda por USD 50."
+    "Hola Oscar, soy profesional independiente y quiero activar AYCweb Start por USD 60."
   );
 
   return (
@@ -122,12 +121,12 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
               rel="noopener noreferrer"
               className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-12 rounded-xl transition-all shadow-[0_0_30px_rgba(16,185,129,0.4)] active:scale-95 text-lg"
             >
-              Iniciar mi sistema por $50
+              Activar AYCweb Start — $60
             </a>
             <CheckoutForm
               planes={PLANES_PROF}
               colorScheme="emerald"
-              triggerLabel="⚡ Pago Directo (Sin auditoría)"
+              triggerLabel="⚡ Pagar con USDT"
             />
           </div>
           <p className="text-xs text-slate-600 mt-3">Pagás en USDT y desplegamos en 24 hs.</p>
@@ -169,10 +168,10 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
             Una sola oferta. Sin sorpresas.
           </p>
           <h2 className="text-3xl md:text-4xl font-black text-white text-center mb-4 tracking-tight">
-            Precio claro desde el primer día
+            AYCweb Start para Profesionales
           </h2>
           <p className="text-slate-400 text-center text-base mb-12 max-w-xl mx-auto">
-            Sin paquetes confusos, sin add-ons ocultos. Sabés exactamente qué pagás y qué recibís.
+            Plan de entrada para profesionales independientes. No reemplaza un sistema empresarial completo; ordena tu captación, agenda y WhatsApp para empezar rápido.
           </p>
 
           {/* Tarjetas */}
@@ -187,13 +186,18 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
                 </span>
 
                 <div className="flex items-end gap-2 mb-1">
-                  <span className="text-5xl font-black text-white">$50</span>
+                  <span className="text-5xl font-black text-white">$60</span>
                   <span className="text-slate-400 text-sm mb-2">USD</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Setup Inicial</h3>
-                <p className="text-slate-400 text-sm mb-6 border-b border-slate-800 pb-6">
+                <h3 className="text-xl font-bold text-white mb-2">Activación AYCweb Start</h3>
+                <p className="text-slate-400 text-sm mb-3">
                   Dejamos todo configurado y funcionando para que empieces a recibir agendamientos desde el día uno.
                 </p>
+                <div className="flex items-start gap-2 bg-emerald-950/30 border border-emerald-500/20 rounded-lg px-3 py-2.5 mb-4 text-[12px] text-emerald-300">
+                  <span className="flex-shrink-0">🎁</span>
+                  <p><strong>Pagando con USDT (Cripto):</strong> el primer mes de mantenimiento (USD 10) queda 100% bonificado.</p>
+                </div>
+                <div className="border-b border-slate-800 pb-4 mb-3" />
 
                 <ul className="space-y-2.5">
                   {INCLUYE_SETUP.map((item) => (
@@ -256,12 +260,12 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
                 rel="noopener noreferrer"
                 className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-14 rounded-xl transition-all shadow-[0_0_40px_rgba(16,185,129,0.35)] active:scale-95 text-lg"
               >
-                Iniciar mi sistema por $50
+                Activar AYCweb Start — $60
               </a>
               <CheckoutForm
                 planes={PLANES_PROF}
                 colorScheme="emerald"
-                triggerLabel="⚡ Pago Directo (Sin auditoría)"
+                triggerLabel="⚡ Pagar con USDT"
               />
             </div>
             <div className="flex justify-center mb-4">

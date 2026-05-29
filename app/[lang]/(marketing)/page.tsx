@@ -52,35 +52,19 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             Convertimos procesos manuales en sistemas de captación, cotización y cierre para que dejes de depender de Excel, mensajes sueltos y seguimiento desordenado.
           </p>
           
-          <div className="flex flex-col items-center justify-center gap-6">
-            <a 
-              href={auditMsg}
-              target="_blank" rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-black py-3.5 md:py-4 px-8 md:px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] active:scale-95 text-[15px] md:text-lg"
-            >
-              Agendar Auditoría B2B
-            </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/es/diagnostico-comercial"
-              className="w-full sm:w-auto bg-purple-950/40 border border-purple-500/30 hover:border-purple-400/60 hover:bg-purple-950/60 text-purple-300 font-bold py-3.5 md:py-4 px-8 md:px-10 rounded-xl transition-all flex items-center justify-center gap-2 text-[15px] md:text-base"
+              href={`/${lang}/diagnostico-comercial`}
+              className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-full transition-all shadow-[0_0_30px_rgba(37,99,235,0.35)] text-[15px] md:text-lg"
             >
-              <span>⚡</span>
-              Diagnóstico Comercial Express (5 min)
+              Diagnosticar mi operación
             </Link>
-            
-            <div className="flex items-center gap-6 text-[13px] md:text-sm font-medium text-slate-400">
-              <Link href={`/${lang}/empresas`} className="hover:text-blue-400 transition-colors flex items-center gap-1.5">
-                Soy empresa <span className="text-blue-500">→</span>
-              </Link>
-              <span className="text-slate-700">|</span>
-              <Link href={`/${lang}/profesionales`} className="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
-                Soy profesional <span className="text-emerald-500">→</span>
-              </Link>
-            </div>
-
-            <p className="text-xs text-stone-400 mt-4 tracking-wide uppercase font-semibold">
-              Cotizadores · PDFs · WhatsApp · Paneles internos
-            </p>
+            <Link
+              href={`/${lang}/demo-cotizador`}
+              className="w-full sm:w-auto border border-slate-600 hover:border-slate-400 text-slate-300 px-8 py-4 rounded-full transition-all text-[15px] md:text-lg"
+            >
+              Ver motor operativo en vivo
+            </Link>
           </div>
         </div>
       </section>

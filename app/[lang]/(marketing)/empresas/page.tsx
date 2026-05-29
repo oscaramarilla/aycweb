@@ -104,6 +104,11 @@ const PLANES = [
   },
 ] as const;
 
+const PLANES_ONBOARDING = [
+  { nombre: "Onboarding Starter — 20% inicial", precio: "$180" },
+  { nombre: "Onboarding Sistema Empresa — 20% inicial", precio: "$360" },
+];
+
 const SECTORES = [
   { icon: "🏭", nombre: "Manufactureras", desc: "Cotizadores con cálculo de materia prima y márgenes" },
   { icon: "🏥", nombre: "Clínicas y Hospitales", desc: "Agendas, presupuestos médicos y derivaciones" },
@@ -155,7 +160,7 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
               rel="noopener noreferrer"
               className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] active:scale-95"
             >
-              Diagnóstico gratuito
+              Diagnosticar mi operación
             </a>
             <Link
               href="/es/motor/demo"
@@ -172,15 +177,6 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
             </Link>
           </div>
 
-          {/* Pago directo — alternativa sin auditoría */}
-          <div className="flex justify-center mt-4">
-            <CheckoutForm
-              planes={PLANES.map((p) => ({ nombre: p.nombre, precio: p.precio }))}
-              colorScheme="blue"
-              triggerLabel="⚡ Pago Directo (Sin auditoría)"
-            />
-          </div>
-          <p className="text-xs text-slate-600 mt-2">Pagás en USDT y desplegamos al instante.</p>
         </div>
       </section>
 
@@ -310,20 +306,36 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
                     {plan.cta}
                   </a>
 
-                  {/* Pago directo solo para planes con precio fijo */}
-                  {plan.precio !== "Cotización" && (
-                    <div className="mt-2 w-full">
-                      <CheckoutForm
-                        planes={[{ nombre: plan.nombre, precio: plan.precio }]}
-                        colorScheme="blue"
-                        triggerLabel="⚡ Pago Directo"
-                        fullWidth
-                      />
-                    </div>
-                  )}
                 </article>
               );
             })}
+          </div>
+
+          {/* Modelo de implementación por etapas */}
+          <div className="mt-10 max-w-3xl mx-auto rounded-2xl border border-blue-500/20 bg-blue-950/10 p-6">
+            <p className="text-[11px] font-black uppercase tracking-widest text-blue-400 mb-1">Modelo de implementación por etapas</p>
+            <p className="text-[12px] text-slate-500 mb-5">Así distribuimos el compromiso económico a lo largo del proyecto.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+              {[
+                { num: "01", pct: "20%", desc: "Para iniciar onboarding y diagnóstico operativo." },
+                { num: "02", pct: "30%", desc: "Contra primer avance funcional (prototipo navegable)." },
+                { num: "03", pct: "20%", desc: "Luego del sprint de ajustes (dentro del alcance acordado)." },
+                { num: "04", pct: "30%", desc: "Contra entrega final y puesta en producción." },
+              ].map((e) => (
+                <div key={e.num} className="flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-950/50 p-3">
+                  <span className="text-blue-400 font-black text-xs mt-0.5 w-4 flex-shrink-0">{e.num}</span>
+                  <p className="text-[12px] text-slate-300 leading-snug"><strong className="text-white">{e.pct}</strong> {e.desc}</p>
+                </div>
+              ))}
+            </div>
+            <div className="text-center">
+              <CheckoutForm
+                planes={PLANES_ONBOARDING}
+                colorScheme="blue"
+                triggerLabel="⚡ Iniciar con 20% — Onboarding y Diagnóstico"
+              />
+              <p className="text-[11px] text-slate-600 mt-2">Primer paso del proyecto: diagnóstico operativo sin compromiso de continuar.</p>
+            </div>
           </div>
 
           {/* Mantenimiento */}
@@ -387,9 +399,9 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
               </p>
             </div>
             <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-5 text-center">
-              <div className="font-black text-white mb-2">30 días, 100%</div>
+              <div className="font-black text-white mb-2">Garantía Inteligente</div>
               <p className="text-[13px] text-slate-400 leading-relaxed">
-                Si no funciona, devolución total. Sin discusión.
+                Si el sistema no cumple el objetivo acordado en la primera etapa, cancelás sin pagar el resto. Devolución del 100% del pago inicial si determinamos inviabilidad técnica antes del desarrollo.
               </p>
             </div>
             <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-5 text-center">
@@ -425,11 +437,6 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
             >
               Agendar diagnóstico
             </a>
-            <CheckoutForm
-              planes={PLANES.map((p) => ({ nombre: p.nombre, precio: p.precio }))}
-              colorScheme="blue"
-              triggerLabel="⚡ Pago Directo (Sin auditoría)"
-            />
           </div>
           <div className="mt-4 flex justify-center">
             <Link

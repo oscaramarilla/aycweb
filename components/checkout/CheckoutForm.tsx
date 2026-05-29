@@ -115,7 +115,7 @@ const palette: Record<
 export function CheckoutForm({
   planes,
   colorScheme = "emerald",
-  triggerLabel = "⚡ Pago Directo (Sin auditoría)",
+  triggerLabel = "⚡ Pagar con USDT",
   fullWidth = false,
 }: CheckoutFormProps) {
   const c = palette[colorScheme];
