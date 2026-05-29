@@ -28,6 +28,11 @@ export type PlanOption = {
   precio: string;
 };
 
+export const CHECKOUT_PLAN_OPTIONS: PlanOption[] = [
+  { nombre: "AYCweb Business - Liquidación Única 100% (USD 900)", precio: "$900" },
+  { nombre: "AYCweb Enterprise - Liquidación Única 100% (USD 1.800)", precio: "$1.800" },
+];
+
 type ColorScheme = "emerald" | "blue";
 
 export interface CheckoutFormProps {

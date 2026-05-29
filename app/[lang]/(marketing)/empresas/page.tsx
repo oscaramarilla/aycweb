@@ -108,6 +108,8 @@ const PLANES_ONBOARDING = [
   { nombre: "AYCweb Start - Activación (USD 60)", precio: "$60" },
   { nombre: "AYCweb Business - Anticipo 20% (USD 180)", precio: "$180" },
   { nombre: "AYCweb Enterprise - Anticipo 20% (USD 360)", precio: "$360" },
+  { nombre: "AYCweb Business - Liquidación Única 100% (USD 900)", precio: "$900" },
+  { nombre: "AYCweb Enterprise - Liquidación Única 100% (USD 1.800)", precio: "$1.800" },
 ];
 
 const SECTORES = [
@@ -348,6 +350,11 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
             <p className="text-[12px] text-slate-400 mt-4 text-center">
               El mantenimiento mensual se abona los días <strong>15 de cada mes</strong> tras la puesta en producción.
             </p>
+            <div className="rounded-2xl border border-slate-700 bg-slate-800/50 p-4 text-slate-300 mt-6">
+              <p className="text-sm leading-relaxed">
+                <span className="text-blue-300 font-bold">⚡ Fast-Track Administrativo (Opcional):</span> Si tu departamento contable prefiere evitar la fricción de aprobaciones múltiples, puedes liquidar el 100% del setup en un solo movimiento al inicio del proyecto. Misma garantía de etapas, cero burocracia.
+              </p>
+            </div>
             <div className="text-center">
               <CheckoutForm
                 planes={PLANES_ONBOARDING}
