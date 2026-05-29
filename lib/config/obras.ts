@@ -48,8 +48,7 @@ export const CASOS_OBRAS: CasoObra[] = [
     ],
     result:
       "Respuesta comercial inmediata desde el primer contacto. Cero errores de cálculo. El equipo dejó de hacer planillas y empezó a cerrar ventas.",
-    ctaMessage:
-      "Hola Oscar. Vi el caso de Oriplast en AYCweb y quiero un cotizador B2B dinámico para mi empresa.",
+    ctaMessage: "Quiero un sistema así para mi empresa",
     // metricasImpacto: pendiente confirmación post-sprint con el cliente
   },
   {
@@ -67,8 +66,7 @@ export const CASOS_OBRAS: CasoObra[] = [
     ],
     result:
       "Flujo ordenado de pacientes en la agenda. Solo ingresan pacientes precalificados, con expectativas claras y menor tasa de cancelación.",
-    ctaMessage:
-      "Hola Oscar. Vi el caso de la Dra. Bianca en AYCweb y quiero un sistema de agendamiento con precalificación para mi consultorio.",
+    ctaMessage: "Quiero un sistema así para mi empresa",
     // metricasImpacto: pendiente confirmación de números con el cliente
   },
   {
@@ -86,8 +84,7 @@ export const CASOS_OBRAS: CasoObra[] = [
     ],
     result:
       "Venta corporativa más profesional y trazable. El cliente recibe un documento claro, el equipo técnico ahorra horas de armado y el cierre es más rápido.",
-    ctaMessage:
-      "Hola Oscar. Vi el caso de Metal Mad / Modular K en AYCweb y quiero una calculadora paramétrica con generación de PDF para mi empresa.",
+    ctaMessage: "Quiero un sistema así para mi empresa",
     metricasImpacto: METRICAS_METAL_MAD,
     evidenciaVisual: [
       {
@@ -119,8 +116,7 @@ export const CASOS_OBRAS: CasoObra[] = [
     ],
     result:
       "Llegada de pacientes más calificados con expectativas claras. Agenda ordenada y menor tasa de cancelación. El consultorio redujo el tiempo perdido en consultas fuera del perfil.",
-    ctaMessage:
-      "Hola Oscar. Vi el caso del Dr. Nicolás Silvero en AYCweb y quiero un sistema de captación y agendamiento para mi consultorio.",
+    ctaMessage: "Quiero un sistema así para mi empresa",
     // metricasImpacto: pendiente confirmación de números con el cliente
   },
   {
@@ -138,8 +134,7 @@ export const CASOS_OBRAS: CasoObra[] = [
     ],
     result:
       "Canal digital activo de captación sin depender de derivaciones. Los pacientes llegan con contexto claro sobre el médico y sus especialidades, reduciendo fricciones en el primer contacto.",
-    ctaMessage:
-      "Hola Oscar. Vi el caso del Dr. José Lahaye en AYCweb y quiero un sistema de presencia digital y captación para mi práctica médica.",
+    ctaMessage: "Quiero un sistema así para mi empresa",
     // metricasImpacto: pendiente confirmación de números con el cliente
   },
 ];

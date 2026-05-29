@@ -78,6 +78,12 @@ export default function ObrasPage() {
             <VideoCard video={SHOWROOM.main} featured />
           </div>
 
+          {/* Copy estratégico de autoridad */}
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Sistemas operando. Resultados reales.</h2>
+            <p className="text-slate-400 mb-10">No mostramos renders ni promesas genéricas. Estos son los sistemas que construimos, el problema que resolvieron y el resultado que dejaron en cada empresa.</p>
+          </div>
+
           {/* Grilla de 4 videos secundarios */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {SHOWROOM.secondary.map((v) => (

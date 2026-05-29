@@ -13,7 +13,7 @@ export interface ShowroomConfig {
 
 export const SHOWROOM: ShowroomConfig = {
   main: {
-    id: "bltpfwxpwoQ",
+    id: "6FU09JD5MWg",
     title: "El Ecosistema Operativo B2B en Acción",
     tag: "Ecosistema completo",
     description:
