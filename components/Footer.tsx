@@ -8,7 +8,7 @@ export default function Footer() {
         {/* Enlaces principales */}
         <div className="flex flex-col gap-3">
           <span className="text-[12px] font-bold text-slate-400 uppercase tracking-wider mb-1">Navegación</span>
-          <Link href="/soluciones" className="text-[12px] text-slate-500 hover:text-white transition-colors">Soluciones</Link>
+          <a href="/soluciones" className="text-[12px] text-slate-500 hover:text-white transition-colors">Soluciones</a>
           <Link href="/es/empresas" className="text-[12px] text-slate-500 hover:text-white transition-colors">Empresas</Link>
           <Link href="/es/profesionales" className="text-[12px] text-slate-500 hover:text-white transition-colors">Profesionales</Link>
           <Link href="/es/nosotros" className="text-[12px] text-slate-500 hover:text-white transition-colors">Nosotros</Link>
