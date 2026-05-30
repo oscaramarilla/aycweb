@@ -353,7 +353,7 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
                 {
                   num: "01",
                   pct: "20%",
-                  desc: "Para iniciar onboarding: USD 180 en AYCweb Business o USD 360 en AYCweb Enterprise.",
+                  desc: "Para iniciar el proyecto: USD 180 en AYCweb Business o USD 360 en AYCweb Enterprise.",
                 },
                 {
                   num: "02",
@@ -389,7 +389,7 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
               <CheckoutForm
                 planes={PLANES_ONBOARDING}
                 colorScheme="blue"
-                triggerLabel="⚡ Iniciar con 20% — Onboarding y Diagnóstico"
+                triggerLabel="⚡ Iniciar con 20% — Diagnóstico"
               />
               <p className="text-[11px] text-slate-600 mt-2">Primer paso del proyecto: diagnóstico operativo sin compromiso de continuar.</p>
             </div>
@@ -492,14 +492,6 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
               className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-12 rounded-xl transition-all shadow-[0_0_40px_rgba(37,99,235,0.4)] active:scale-95"
             >
               Solicitar Diagnóstico B2B
-            </Link>
-          </div>
-          <div className="mt-4 flex justify-center">
-            <Link
-              href={`/${params?.lang || 'es'}/onboarding`}
-              className="inline-flex items-center justify-center px-8 py-3 text-sm font-black text-slate-900 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full shadow-[0_0_25px_rgba(16,185,129,0.4)] hover:shadow-[0_0_40px_rgba(16,185,129,0.7)] hover:-translate-y-1 transition-all duration-300"
-            >
-              ⚡ Iniciar onboarding con 20%
             </Link>
           </div>
           <p className="mt-3 text-xs text-slate-500">Sin costo. Sin compromiso.</p>

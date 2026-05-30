@@ -107,7 +107,7 @@ export function SchemaMarkup() {
             name: "Infraestructura Digital a Medida",
             description:
               "Desarrollo de sistemas digitales personalizados para empresas en Paraguay",
-            url: "https://aycweb.com/es/onboarding",
+            url: "https://aycweb.com/soluciones",
           },
         },
       ],

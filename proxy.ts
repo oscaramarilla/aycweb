@@ -81,54 +81,60 @@ function checkCredentials(authorization: string | null): boolean {
 }
 
 export function proxy(req: NextRequest) {
-  const { pathname } = req.nextUrl;
+  try {
+    const { pathname } = req.nextUrl;
 
-  // Si la ruta es administrativa, aplicamos autenticación HTTP Basic
-  if (
-    pathname.startsWith("/controlroom") ||
-    pathname.startsWith("/panel") ||
-    pathname.startsWith("/autoppto") ||
-    pathname.startsWith("/legales") ||
-    pathname.startsWith("/admin")
-  ) {
-    // En producción, las variables de entorno son obligatorias
-    if (isProduction && (!process.env.ADMIN_USER || !process.env.ADMIN_PASS)) {
-      return serverErrorResponse(
-        "Protección administrativa no configurada. Establecé ADMIN_USER y ADMIN_PASS en las variables de entorno."
-      );
+    // Si la ruta es administrativa, aplicamos autenticación HTTP Basic
+    if (
+      pathname.startsWith("/controlroom") ||
+      pathname.startsWith("/panel") ||
+      pathname.startsWith("/autoppto") ||
+      pathname.startsWith("/legales") ||
+      pathname.startsWith("/admin")
+    ) {
+      // En producción, las variables de entorno son obligatorias
+      if (isProduction && (!process.env.ADMIN_USER || !process.env.ADMIN_PASS)) {
+        return serverErrorResponse(
+          "Protección administrativa no configurada. Establecé ADMIN_USER y ADMIN_PASS en las variables de entorno."
+        );
+      }
+
+      const auth = req.headers.get("authorization");
+
+      if (!checkCredentials(auth)) {
+        return unauthorizedResponse();
+      }
+
+      return NextResponse.next();
     }
 
-    const auth = req.headers.get("authorization");
+    // Lógica i18n: evita rutas estáticas, Next internals, y el hub SEO sin locale
+    const isIgnored =
+      pathname.startsWith("/_next") ||
+      pathname.startsWith("/api") ||
+      pathname === "/soluciones" ||           // Hub SEO raíz — sin prefijo de idioma por diseño
+      pathname.startsWith("/soluciones/") ||  // Landings SEO /soluciones/* — sin prefijo de idioma
+      pathname === "/favicon.ico" ||
+      /\.(?:svg|png|jpg|jpeg|gif|webp|ico)$/.test(pathname);
 
-    if (!checkCredentials(auth)) {
-      return unauthorizedResponse();
+    if (!isIgnored) {
+      const pathnameHasLocale = locales.some(
+        (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+      );
+
+      if (!pathnameHasLocale) {
+        // Forzamos siempre el idioma por defecto (es) para evitar canibalización SEO
+        const best = "es";
+        req.nextUrl.pathname = `/${best}${pathname}`;
+        return NextResponse.redirect(req.nextUrl);
+      }
     }
 
     return NextResponse.next();
+  } catch {
+    // Si algo falla inesperadamente, dejamos pasar la petición para evitar un 500
+    return NextResponse.next();
   }
-
-  // Lógica i18n: evita rutas estáticas y de Next/_next/api
-  const isIgnored =
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/api") ||
-    pathname.startsWith("/soluciones") ||   // Hub SEO sin prefijo de idioma por diseño
-    pathname === "/favicon.ico" ||
-    /\.(?:svg|png|jpg|jpeg|gif|webp|ico)$/.test(pathname);
-
-  if (!isIgnored) {
-    const pathnameHasLocale = locales.some(
-      (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-    );
-
-    if (!pathnameHasLocale) {
-      // Forzamos siempre el idioma por defecto (es) para evitar canibalización SEO
-      const best = 'es';
-      req.nextUrl.pathname = `/${best}${pathname}`;
-      return NextResponse.redirect(req.nextUrl);
-    }
-  }
-
-  return NextResponse.next();
 }
 
 export const config = {
