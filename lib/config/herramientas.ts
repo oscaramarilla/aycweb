@@ -30,7 +30,7 @@ export const HERRAMIENTAS_B2B: HerramientaB2B[] = [
     titulo: "Matriz de Cotización PDF",
     descripcion:
       "Plantilla base para estructurar presupuestos de alta conversión.",
-    href: "#",
+    href: "#matriz-pdf",
     badge: "Plantilla",
   },
 ];
