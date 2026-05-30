@@ -111,6 +111,7 @@ export function proxy(req: NextRequest) {
   const isIgnored =
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
+    pathname.startsWith("/soluciones") ||   // Hub SEO sin prefijo de idioma por diseño
     pathname === "/favicon.ico" ||
     /\.(?:svg|png|jpg|jpeg|gif|webp|ico)$/.test(pathname);
 
