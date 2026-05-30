@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { AYCWEB_CONTACT, buildWaLink } from "../../../../lib/config/contact";
 import { SHOWROOM } from "../../../../lib/config/showroom";
+import { CASOS_OBRAS } from "../../../../lib/config/obras";
 import { VideoCard } from "../../../../components/obras/VideoShowroom";
 
 export const metadata: Metadata = {
@@ -70,6 +72,7 @@ export default function ObrasPage() {
         </div>
       </section>
 
+      {/* Showroom de Videos (sin cambios) */}
       <section className="relative z-10 px-6 mb-20">
         <div className="max-w-6xl mx-auto space-y-14">
 
@@ -78,38 +81,138 @@ export default function ObrasPage() {
             <VideoCard video={SHOWROOM.main} featured />
           </div>
 
-          {/* Copy estratégico de autoridad */}
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Sistemas operando. Resultados reales.</h2>
-            <p className="text-slate-400 mb-10">No mostramos renders ni promesas genéricas. Estos son los sistemas que construimos, el problema que resolvieron y el resultado que dejaron en cada empresa.</p>
-          </div>
-
           {/* Grilla de 4 videos secundarios */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {SHOWROOM.secondary.map((v) => (
               <VideoCard key={v.id} video={v} />
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* CTA final */}
-          <div className="rounded-[2rem] border border-slate-800 bg-slate-950/80 p-7 max-w-lg mx-auto text-center">
-            <h3 className="text-2xl font-black text-white">Tu próximo paso</h3>
-            <p className="mt-4 text-slate-400 leading-relaxed">
-              Si querés ver cómo aplicamos este showroom a tu operación, agendá ahora la auditoría B2B por WhatsApp.
+      {/* ─── CASOS DE ÉXITO (FICHAS TÉCNICAS) ──────────────────────────── */}
+      <section className="relative z-10 px-6 mb-20">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">
+              Sistemas en Producción (Casos de Éxito)
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg">
+              Sistemas operando. Resultados reales. Cada caso documenta el problema, la solución y el resultado cuantificado.
             </p>
-            <a
-              href={auditLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-6 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.3)]"
-            >
-              Agendar Auditoría B2B
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
           </div>
 
+          <div className="space-y-10">
+            {CASOS_OBRAS.map((caso) => (
+              <article
+                key={caso.id}
+                className="rounded-2xl border border-slate-800 bg-slate-900/50 overflow-hidden hover:border-slate-700 transition-colors"
+              >
+                {/* Header del caso */}
+                <div className="p-6 md:p-8 border-b border-slate-800">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span
+                      className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest ${
+                        caso.tagColor === "blue"
+                          ? "bg-blue-950/40 text-blue-300 border border-blue-500/20"
+                          : caso.tagColor === "emerald"
+                          ? "bg-emerald-950/40 text-emerald-300 border border-emerald-500/20"
+                          : "bg-amber-950/40 text-amber-300 border border-amber-500/20"
+                      }`}
+                    >
+                      {caso.tag}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-black text-white">
+                    {caso.client}
+                  </h3>
+                  <p className="text-sm text-slate-500 mt-1">{caso.industry}</p>
+                </div>
+
+                {/* Cuerpo: Problema / Solución / Resultado */}
+                <div className="p-6 md:p-8 space-y-6">
+
+                  {/* El Problema */}
+                  <div>
+                    <h4 className="text-[11px] uppercase tracking-widest font-bold text-slate-500 mb-2 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                      El Problema
+                    </h4>
+                    <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                      {caso.problem}
+                    </p>
+                  </div>
+
+                  {/* Solución AYCweb */}
+                  <div>
+                    <h4 className="text-[11px] uppercase tracking-widest font-bold text-slate-500 mb-2 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                      Solución AYCweb
+                    </h4>
+                    <ul className="space-y-2">
+                      {caso.solution.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-sm md:text-base text-slate-300">
+                          <span className="text-blue-400 font-black mt-0.5">✓</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* EL RESULTADO (ROI) — destacado */}
+                  <div className="rounded-xl border border-emerald-500/20 bg-emerald-950/10 p-5">
+                    <h4 className="text-[11px] uppercase tracking-widest font-bold text-emerald-400 mb-2 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      EL RESULTADO (ROI)
+                    </h4>
+                    <p className="text-white font-bold text-base md:text-lg leading-relaxed">
+                      {caso.result}
+                    </p>
+                  </div>
+
+                  {/* Evidencia visual si existe */}
+                  {caso.evidenciaVisual && caso.evidenciaVisual.length > 0 && (
+                    <div className="grid grid-cols-2 gap-3">
+                      {caso.evidenciaVisual.map((ev, i) => (
+                        <figure key={i} className="rounded-xl overflow-hidden border border-slate-800">
+                          <img
+                            src={ev.src}
+                            alt={ev.alt}
+                            className="w-full h-40 object-cover"
+                            loading="lazy"
+                          />
+                          {ev.caption && (
+                            <figcaption className="text-[11px] text-slate-500 px-3 py-2 bg-slate-950/80">
+                              {ev.caption}
+                            </figcaption>
+                          )}
+                        </figure>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA final */}
+      <section className="relative z-10 px-6">
+        <div className="rounded-[2rem] border border-slate-800 bg-slate-950/80 p-7 max-w-lg mx-auto text-center">
+          <h3 className="text-2xl font-black text-white">¿Tu operación sufre problemas similares?</h3>
+          <p className="mt-4 text-slate-400 leading-relaxed">
+            Si tu empresa enfrenta cuellos de botella en cotización, seguimiento de pedidos o captación de clientes, solicité un diagnóstico B2B sin costo.
+          </p>
+          <Link
+            href="/es/diagnostico-comercial"
+            className="mt-8 inline-flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-6 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.3)]"
+          >
+            Solicitar Diagnóstico B2B
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </Link>
         </div>
       </section>
     </div>

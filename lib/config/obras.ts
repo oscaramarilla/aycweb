@@ -35,21 +35,52 @@ export interface CasoObra {
 export const CASOS_OBRAS: CasoObra[] = [
   {
     id: "oriplast-mobiliario-escolar",
-    tag: "Mobiliario Escolar B2B",
+    tag: "Manufactura / Plásticos",
     tagColor: "blue",
-    client: "Oriplast",
-    industry: "Fabricante de pupitres y mesas escolares",
+    client: "Oriplast Paraguay",
+    industry: "Manufactura / Plásticos",
     problem:
-      "El equipo comercial cotizaba lotes de pupitres y mesas de forma manual: planillas Excel, cálculos a mano y respuestas que tardaban horas. Cada error de precio o cantidad generaba retrabajo y pérdida de oportunidades.",
+      "Cotización manual compleja de mobiliario escolar que generaba cuellos de botella operativos y demoras de horas frente al cliente.",
     solution: [
-      "Cotizador B2B dinámico con lógica de precios por volumen y modelo",
-      "Integración directa con WhatsApp para envío inmediato de la cotización",
-      "Interfaz pensada para el cliente mayorista: rápida y sin fricción",
+      "Desarrollo de un motor de cotización paramétrico con catálogo integrado",
+      "Generación automática de PDF con detalle técnico y presentación comercial",
+      "Vinculación directa a la API de WhatsApp para envío inmediato",
     ],
     result:
-      "Respuesta comercial inmediata desde el primer contacto. Cero errores de cálculo. El equipo dejó de hacer planillas y empezó a cerrar ventas.",
+      "Reducción del tiempo de cotización de 2 horas a 3 minutos. Eliminación total de errores de cálculo humano.",
     ctaMessage: "Quiero un sistema así para mi empresa",
-    // metricasImpacto: pendiente confirmación post-sprint con el cliente
+  },
+  {
+    id: "metal-mad-modular-k",
+    tag: "Metalúrgica / Mobiliario Institucional",
+    tagColor: "amber",
+    client: "Metal Mad (A y C S.R.L.)",
+    industry: "Metalúrgica / Mobiliario Institucional",
+    problem:
+      "Desorden en el seguimiento de pedidos B2B, falta de centralización en la comunicación con clientes y procesos de producción desconectados.",
+    solution: [
+      "Implementación de infraestructura digital integral para la operación",
+      "Automatización de flujos B2B desde la captación hasta la entrega",
+      "Panel de gestión operativa para control del ciclo de vida del cliente",
+    ],
+    result:
+      "Control absoluto del ciclo de vida del cliente, desde la captación hasta la entrega, permitiendo escalar a contratos de alto volumen sin quiebres operativos.",
+    ctaMessage: "Quiero un sistema así para mi empresa",
+    metricasImpacto: METRICAS_METAL_MAD,
+    evidenciaVisual: [
+      {
+        src: "/test-modular-exterior.webp",
+        alt: "Cabina PIR modular Modular K — vista exterior en instalación",
+        caption: "Cabina PIR modular en instalación, 2025",
+        tipo: "mobile_view",
+      },
+      {
+        src: "/test-modular-interior.webp",
+        alt: "Cabina PIR modular Modular K — vista interior terminada",
+        caption: "Interior cabina PIR terminada, 2025",
+        tipo: "mobile_view",
+      },
+    ],
   },
   {
     id: "dra-bianca-odontologia",
@@ -68,38 +99,6 @@ export const CASOS_OBRAS: CasoObra[] = [
       "Flujo ordenado de pacientes en la agenda. Solo ingresan pacientes precalificados, con expectativas claras y menor tasa de cancelación.",
     ctaMessage: "Quiero un sistema así para mi empresa",
     // metricasImpacto: pendiente confirmación de números con el cliente
-  },
-  {
-    id: "metal-mad-modular-k",
-    tag: "Industria & Construcción",
-    tagColor: "amber",
-    client: "Metal Mad / Modular K",
-    industry: "Estructuras metálicas y cabinas PIR modulares",
-    problem:
-      "Los presupuestos técnicos de estructuras metálicas y cabinas PIR son complejos: múltiples variables, medidas personalizadas y especificaciones difíciles de explicar al cliente sin soporte visual ni documentación clara.",
-    solution: [
-      "Calculadora paramétrica que procesa dimensiones, materiales y configuraciones",
-      "Generación automática de PDF con detalle técnico y presentación comercial",
-      "Flujo de venta corporativa trazable desde la consulta hasta el cierre",
-    ],
-    result:
-      "Venta corporativa más profesional y trazable. El cliente recibe un documento claro, el equipo técnico ahorra horas de armado y el cierre es más rápido.",
-    ctaMessage: "Quiero un sistema así para mi empresa",
-    metricasImpacto: METRICAS_METAL_MAD,
-    evidenciaVisual: [
-      {
-        src: "/test-modular-exterior.webp",
-        alt: "Cabina PIR modular Modular K — vista exterior en instalación",
-        caption: "Cabina PIR modular en instalación, 2025",
-        tipo: "mobile_view",
-      },
-      {
-        src: "/test-modular-interior.webp",
-        alt: "Cabina PIR modular Modular K — vista interior terminada",
-        caption: "Interior cabina PIR terminada, 2025",
-        tipo: "mobile_view",
-      },
-    ],
   },
   {
     id: "dr-nicolas-silvero-medicina",
