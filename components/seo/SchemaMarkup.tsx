@@ -11,6 +11,7 @@ export function SchemaMarkup() {
     "@id": "https://aycweb.com/#organization",
     name: "AYCweb",
     alternateName: "AYC SRL",
+    foundingDate: "2012",
     description:
       "Firma de infraestructura digital B2B y motores operativos. Construimos ecosistemas digitales que automatizan ventas, cotizaciones y operaciones para empresas y profesionales en Paraguay.",
     url: "https://aycweb.com",
@@ -39,6 +40,7 @@ export function SchemaMarkup() {
       longitude: -57.647,
     },
     areaServed: [
+      "PY",
       {
         "@type": "Country",
         name: "Paraguay",
@@ -64,7 +66,12 @@ export function SchemaMarkup() {
       "Generación de documentos PDF automatizada",
       "Software empresarial Paraguay",
     ],
-    sameAs: ["https://aycweb.com"],
+    sameAs: [
+      "https://aycweb.com",
+      "https://www.linkedin.com/company/aycweb",
+      "https://www.instagram.com/aycweb",
+    ],
+    knowsLanguage: ["es", "en", "pt"],
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": "https://aycweb.com",
