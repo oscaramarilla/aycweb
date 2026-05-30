@@ -48,7 +48,7 @@ export const CASOS_OBRAS: CasoObra[] = [
     ],
     result:
       "Reducción del tiempo de cotización de 2 horas a 3 minutos. Errores de cálculo reducidos a cero.",
-    ctaMessage: "Quiero un sistema así para mi empresa",
+    ctaMessage: "Auditar mi proceso de cotización",
   },
   {
     id: "metal-mad-modular-k",
@@ -65,7 +65,7 @@ export const CASOS_OBRAS: CasoObra[] = [
     ],
     result:
       "Control completo del ciclo de vida del cliente, desde la captación hasta la entrega, permitiendo escalar a contratos de alto volumen sin quiebres operativos.",
-    ctaMessage: "Quiero un sistema así para mi empresa",
+    ctaMessage: "Solicitar un sistema similar",
     metricasImpacto: METRICAS_METAL_MAD,
     evidenciaVisual: [
       {
@@ -97,7 +97,7 @@ export const CASOS_OBRAS: CasoObra[] = [
     ],
     result:
       "Flujo ordenado de pacientes en la agenda. Solo ingresan pacientes precalificados, con expectativas claras y menor tasa de cancelación.",
-    ctaMessage: "Quiero un sistema así para mi empresa",
+    ctaMessage: "Ver sistema en vivo",
     // metricasImpacto: pendiente confirmación de números con el cliente
   },
   {
@@ -115,7 +115,7 @@ export const CASOS_OBRAS: CasoObra[] = [
     ],
     result:
       "Llegada de pacientes más calificados con expectativas claras. Agenda ordenada y menor tasa de cancelación. El consultorio redujo el tiempo perdido en consultas fuera del perfil.",
-    ctaMessage: "Quiero un sistema así para mi empresa",
+    ctaMessage: "Auditar mi captación de pacientes",
     // metricasImpacto: pendiente confirmación de números con el cliente
   },
   {
@@ -133,7 +133,7 @@ export const CASOS_OBRAS: CasoObra[] = [
     ],
     result:
       "Canal digital activo de captación sin depender de derivaciones. Los pacientes llegan con contexto claro sobre el médico y sus especialidades, reduciendo fricciones en el primer contacto.",
-    ctaMessage: "Quiero un sistema así para mi empresa",
+    ctaMessage: "Ver sistema en vivo",
     // metricasImpacto: pendiente confirmación de números con el cliente
   },
 ];

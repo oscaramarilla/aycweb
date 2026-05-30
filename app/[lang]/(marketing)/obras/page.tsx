@@ -196,6 +196,18 @@ export default function ObrasPage() {
                       ))}
                     </div>
                   )}
+
+                  {/* CTA del caso */}
+                  <div className="pt-2 border-t border-slate-800/60 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                    <Link
+                      href="/es/diagnostico-comercial"
+                      className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-black text-[14px] px-6 py-3 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.25)] active:scale-95"
+                    >
+                      <span aria-hidden="true">⚡</span>
+                      {caso.ctaMessage}
+                    </Link>
+                    <span className="text-slate-600 text-xs">Sin costo · Sin compromiso</span>
+                  </div>
                 </div>
               </article>
             ))}
