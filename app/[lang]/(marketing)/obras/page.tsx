@@ -98,7 +98,7 @@ export default function ObrasPage() {
               Sistemas en Producción (Casos de Éxito)
             </h2>
             <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg">
-              Sistemas operando. Resultados reales. Cada caso documenta el problema, la solución y el resultado cuantificado.
+              No mostramos solo trabajos visuales. Mostramos sistemas en producción que ahorran tiempo, reducen fricción operativa y ayudan a vender mejor.
             </p>
           </div>
 
@@ -163,7 +163,7 @@ export default function ObrasPage() {
                   <div className="rounded-xl border border-emerald-500/20 bg-emerald-950/10 p-5">
                     <h4 className="text-[11px] uppercase tracking-widest font-bold text-emerald-400 mb-2 flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                      EL RESULTADO (ROI)
+                      RESULTADO OPERATIVO
                     </h4>
                     <p className="text-white font-bold text-base md:text-lg leading-relaxed">
                       {caso.result}
@@ -194,6 +194,18 @@ export default function ObrasPage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Bloque: Cada sistema bien diseñado recupera tiempo */}
+      <section className="relative z-10 px-6 mb-12">
+        <div className="max-w-2xl mx-auto text-center">
+          <h3 className="text-2xl md:text-3xl font-black text-white mb-4">
+            Cada sistema bien diseñado recupera tiempo
+          </h3>
+          <p className="text-slate-400 text-base md:text-lg leading-relaxed">
+            Una infraestructura digital filtra consultas, acelera presupuestos y ordena oportunidades. Eso construimos: máquinas comerciales que convierten procesos lentos en métricas medibles.
+          </p>
         </div>
       </section>
 

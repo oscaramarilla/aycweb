@@ -51,7 +51,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Necesita un sistema.</span>
           </h1>
           <p className="text-base md:text-2xl text-slate-400 mb-8 md:mb-10 max-w-3xl mx-auto font-light leading-relaxed">
-            Convertimos procesos manuales en sistemas de captación, cotización y cierre para que dejes de depender de Excel, mensajes sueltos y seguimiento desordenado.
+            Tu empresa no necesita otra página web decorativa. Necesita un sistema que le devuelva tiempo y convierta consultas en oportunidades reales de venta.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -260,7 +260,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               accent="emerald"
               ctaHref={buildWaLink(`Hola Oscar, quiero agendar una Auditoría B2B para mi operación. Me interesa el plan Starter.`)}
               ctaLabel="Consultar Starter"
-              tagline="Para profesionales independientes"
+              tagline="Base digital profesional para salir al mercado rápido, validar tu oferta y empezar a recibir consultas."
             />
 
             <PricingCard
@@ -269,7 +269,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               badge="MÁS ELEGIDO"
               ctaHref={buildWaLink(`Hola Oscar, quiero agendar una Auditoría B2B para mi operación. Me interesa el plan Business.`)}
               ctaLabel="Consultar Business"
-              tagline="Para empresas con volumen comercial"
+              tagline="Motor comercial que filtra, ordena y acelera oportunidades para que tu equipo venda más y repita menos tareas."
             />
 
             <PricingCard
@@ -277,7 +277,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               accent="violet"
               ctaHref={buildWaLink(`Hola Oscar, quiero agendar una Auditoría B2B para mi operación. Me interesa el plan Enterprise.`)}
               ctaLabel="Consultar Enterprise"
-              tagline="Para operaciones complejas"
+              tagline="Infraestructura a medida para operaciones complejas que necesitan automatizar, integrar y escalar con control."
             />
           </div>
 
@@ -298,7 +298,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               <span className="text-4xl md:text-6xl block mb-4 md:mb-8">🛡️</span>
               <h2 className="text-2xl md:text-5xl font-black text-white mb-4 md:mb-6">Garantía Inteligente por Etapas</h2>
               <p className="text-slate-400 text-[15px] md:text-xl max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed">
-                Garantía Inteligente por Etapas: Si durante la primera etapa de definición no logramos validar que el sistema resolverá el problema operativo acordado, cancelamos el proyecto y te devolvemos el pago inicial según las condiciones pactadas.
+                Primero medimos cuánto tiempo pierde tu equipo. Luego diseñamos el sistema para reducir tareas repetitivas. Si en la primera etapa no logramos una mejora operativa validada, cancelamos el proyecto y devolvemos el pago inicial.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6 mb-8 md:mb-12">
@@ -308,7 +308,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                 </div>
                 <div className="bg-slate-950/80 border border-slate-800 p-4 md:p-6 rounded-[1rem] md:rounded-2xl">
                   <div className="font-bold text-white mb-1 md:mb-2 text-[14px] md:text-base">Garantía Inteligente</div>
-                  <div className="text-[13px] md:text-sm text-slate-500 text-center">Si en la primera etapa el sistema no resuelve el problema operativo acordado, cancelamos el proyecto y devolvemos el pago inicial según lo pactado.</div>
+                  <div className="text-[13px] md:text-sm text-slate-500 text-center">Si en la primera etapa no logramos una mejora operativa validada, cancelamos el proyecto y devolvemos el pago inicial.</div>
                 </div>
                 <div className="bg-slate-950/80 border border-slate-800 p-4 md:p-6 rounded-[1rem] md:rounded-2xl">
                   <div className="font-bold text-white mb-1 md:mb-2 text-[14px] md:text-base">Cero sorpresas</div>

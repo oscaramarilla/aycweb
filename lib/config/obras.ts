@@ -47,7 +47,7 @@ export const CASOS_OBRAS: CasoObra[] = [
       "Vinculación directa a la API de WhatsApp para envío inmediato",
     ],
     result:
-      "Reducción del tiempo de cotización de 2 horas a 3 minutos. Eliminación total de errores de cálculo humano.",
+      "Reducción del tiempo de cotización de 2 horas a 3 minutos. Errores de cálculo reducidos a cero.",
     ctaMessage: "Quiero un sistema así para mi empresa",
   },
   {
@@ -64,7 +64,7 @@ export const CASOS_OBRAS: CasoObra[] = [
       "Panel de gestión operativa para control del ciclo de vida del cliente",
     ],
     result:
-      "Control absoluto del ciclo de vida del cliente, desde la captación hasta la entrega, permitiendo escalar a contratos de alto volumen sin quiebres operativos.",
+      "Control completo del ciclo de vida del cliente, desde la captación hasta la entrega, permitiendo escalar a contratos de alto volumen sin quiebres operativos.",
     ctaMessage: "Quiero un sistema así para mi empresa",
     metricasImpacto: METRICAS_METAL_MAD,
     evidenciaVisual: [
