@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { Inter, Geist } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
@@ -33,8 +34,7 @@ export const metadata: Metadata = {
     "AYCweb",
   ],
   authors: [{ name: "Oscar Amarilla Cáceres", url: "https://www.aycweb.com" }],
-  // Agregar el código de verificación desde Google Search Console:
-  // verification: { google: "TU_CODIGO_AQUI" },
+  verification: { google: "TU_CODIGO_AQUI" },
   creator: "AYCweb - Oscar Amarilla Cáceres",
   publisher: "AYCweb",
   robots: {
@@ -100,6 +100,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           {children}
         </LanguageProvider>
         <Analytics />
+
+        {/* Google Analytics 4 — P2.5 */}
+        {/* Reemplazar G-XXXXXXXXXX con tu ID real de GA4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');`}
+        </Script>
       </body>
     </html>
   );
