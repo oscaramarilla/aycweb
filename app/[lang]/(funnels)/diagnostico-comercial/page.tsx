@@ -1,150 +1,234 @@
 "use client";
 
 /**
- * Diagnóstico Comercial Express
- * ─────────────────────────────
- * Formulario de pre-calificación de leads para AYCweb.
- * Sin backend. Al submit arma el mensaje y abre WhatsApp.
- * Validación nativa con React (sin zod / react-hook-form).
- * El número de destino se lee SIEMPRE desde lib/config/contact.ts.
+ * Diagnóstico Comercial Express — Motor de Scoring B2B
+ * ─────────────────────────────────────────────────────
+ * Paso 1: Cuestionario de 3 preguntas con puntuación de ineficiencia.
+ * Paso 2: Resultado (Nivel Crítico / Moderado / Optimizado) + form de contacto.
+ * Sin backend. Al submit construye el mensaje con el score y abre WhatsApp.
  */
 
 import { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import {
-  buildDiagnosticoWaUrl,
-  type DiagnosticoData,
-} from "@/lib/services/whatsapp-message";
+import { buildWhatsAppLink } from "@/lib/services/whatsapp-link";
 
-// ─── Opciones de selects y radios ────────────────────────────────────────────
+// ─── Cuestionario ─────────────────────────────────────────────────────────────
 
-const SECTORES = [
-  "Industrial",
-  "Médico / Salud",
-  "Servicios profesionales",
-  "Comercio",
-  "Otro",
-] as const;
+type PreguntaId = "p1" | "p2" | "p3";
 
-const TAMANOS = ["1–3", "4–10", "10+"] as const;
+const PREGUNTAS: {
+  id: PreguntaId;
+  numero: string;
+  texto: string;
+  opciones: { label: string; score: number }[];
+}[] = [
+  {
+    id: "p1",
+    numero: "01",
+    texto: "¿Cómo gestionás actualmente tus cotizaciones?",
+    opciones: [
+      { label: "Excel o proceso manual", score: 3 },
+      { label: "Software genérico (Google Sheets, etc.)", score: 1 },
+      { label: "Sistema propio o CRM dedicado", score: 0 },
+    ],
+  },
+  {
+    id: "p2",
+    numero: "02",
+    texto: "¿Cuánto tiempo te toma emitir una proforma o presupuesto al cliente?",
+    opciones: [
+      { label: "Más de 1 hora", score: 3 },
+      { label: "15 a 60 minutos", score: 1 },
+      { label: "Menos de 5 minutos", score: 0 },
+    ],
+  },
+  {
+    id: "p3",
+    numero: "03",
+    texto: "¿Cómo captás y das seguimiento a los prospectos?",
+    opciones: [
+      { label: "WhatsApp desordenado / sin sistema", score: 3 },
+      { label: "CRM básico con seguimiento manual", score: 1 },
+      { label: "Flujo automatizado de captación", score: 0 },
+    ],
+  },
+];
 
-const CUELLOS = [
-  "Cotizaciones lentas",
-  "Excel descontrolado",
-  "Sin trazabilidad de ventas",
-  "Sin sistema de turnos",
-  "Captación dependiente de boca a boca",
-  "Otro",
-] as const;
+// ─── Niveles de resultado ──────────────────────────────────────────────────────
 
-// ─── Tipos ───────────────────────────────────────────────────────────────────
+const NIVELES = {
+  critico: {
+    label: "Nivel Crítico",
+    rango: "7 – 9 pts",
+    colorText: "text-rose-400",
+    colorBorder: "border-rose-500/40",
+    colorBg: "bg-rose-950/25",
+    colorBar: "bg-rose-500",
+    colorGlow: "shadow-[0_0_40px_rgba(244,63,94,0.15)]",
+    descripcion:
+      "Tu operación está perdiendo capital por ineficiencia manual. Necesitás infraestructura B2B urgente.",
+  },
+  moderado: {
+    label: "Nivel Moderado",
+    rango: "3 – 6 pts",
+    colorText: "text-amber-400",
+    colorBorder: "border-amber-500/40",
+    colorBg: "bg-amber-950/25",
+    colorBar: "bg-amber-400",
+    colorGlow: "shadow-[0_0_40px_rgba(251,191,36,0.12)]",
+    descripcion:
+      "Tenés cuellos de botella que limitan tu capacidad de escalar.",
+  },
+  optimizado: {
+    label: "Nivel Optimizado",
+    rango: "0 – 2 pts",
+    colorText: "text-emerald-400",
+    colorBorder: "border-emerald-500/40",
+    colorBg: "bg-emerald-950/25",
+    colorBar: "bg-emerald-500",
+    colorGlow: "shadow-[0_0_40px_rgba(16,185,129,0.12)]",
+    descripcion:
+      "Tu operación es sólida, podemos enfocarnos en escalabilidad.",
+  },
+} as const;
 
-type FormFields = Omit<DiagnosticoData, "whatsapp"> & { whatsappLocal: string };
-type Errors = Partial<Record<keyof FormFields | "whatsappLocal", string>>;
+type NivelKey = keyof typeof NIVELES;
 
-const INITIAL: FormFields = {
-  empresa: "",
-  sector: "",
-  tamanoEquipo: "",
-  cuelloBottella: "",
-  stackActual: "",
-  whatsappLocal: "",
-};
-
-// ─── Validación ──────────────────────────────────────────────────────────────
-
-function validate(data: FormFields): Errors {
-  const errors: Errors = {};
-
-  if (!data.empresa.trim()) {
-    errors.empresa = "Ingresá el nombre de tu empresa.";
-  }
-  if (!data.sector) {
-    errors.sector = "Seleccioná el sector de tu empresa.";
-  }
-  if (!data.tamanoEquipo) {
-    errors.tamanoEquipo = "Seleccioná el tamaño del equipo comercial.";
-  }
-  if (!data.cuelloBottella) {
-    errors.cuelloBottella = "Seleccioná el cuello de botella principal.";
-  }
-  if (!data.stackActual.trim()) {
-    errors.stackActual = "Contanos qué herramientas usás actualmente.";
-  }
-
-  const digits = data.whatsappLocal.replace(/\D/g, "");
-  if (!digits) {
-    errors.whatsappLocal = "Ingresá tu número de WhatsApp.";
-  } else if (digits.length < 7 || digits.length > 15) {
-    errors.whatsappLocal = "Ingresá un número válido (ej: 595 985 123 456 para Paraguay).";
-  }
-
-  return errors;
+function resolveNivel(total: number): NivelKey {
+  if (total >= 7) return "critico";
+  if (total >= 3) return "moderado";
+  return "optimizado";
 }
 
-// ─── Componente ──────────────────────────────────────────────────────────────
+// ─── Helpers de clases ────────────────────────────────────────────────────────
+
+function fieldCls(hasError: boolean): string {
+  return [
+    "w-full bg-slate-900/60 border rounded-xl px-4 py-4",
+    "text-white placeholder-slate-600 text-base",
+    "outline-none transition-all",
+    hasError
+      ? "border-red-500/60 focus:border-red-500 focus:ring-1 focus:ring-red-500/30"
+      : "border-slate-700 focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/30",
+  ].join(" ");
+}
+
+const errorCls =
+  "text-red-400 text-xs font-medium flex items-center gap-1 before:content-['⚠'] before:text-red-400";
+
+// ─── Componente ───────────────────────────────────────────────────────────────
 
 export default function DiagnosticoComercialPage() {
   const params = useParams<{ lang: string }>();
   const lang = params?.lang ?? "es";
 
-  const [form, setForm] = useState<FormFields>(INITIAL);
-  const [errors, setErrors] = useState<Errors>({});
+  // ── Paso activo
+  const [step, setStep] = useState<"quiz" | "result">("quiz");
+
+  // ── Estado del cuestionario
+  const [answers, setAnswers] = useState<Record<PreguntaId, number | null>>({
+    p1: null,
+    p2: null,
+    p3: null,
+  });
+  const [quizError, setQuizError] = useState(false);
+
+  // ── Estado de resultado
+  const [score, setScore] = useState(0);
+  const [nivel, setNivel] = useState<NivelKey>("critico");
+
+  // ── Estado del formulario de contacto
+  const [nombre, setNombre] = useState("");
+  const [empresa, setEmpresa] = useState("");
+  const [whatsappLocal, setWhatsappLocal] = useState("");
+  const [contactErrors, setContactErrors] = useState<{
+    nombre?: string;
+    empresa?: string;
+    whatsappLocal?: string;
+  }>({});
   const [submitted, setSubmitted] = useState(false);
   const [fallbackUrl, setFallbackUrl] = useState<string | null>(null);
 
-  // Helper genérico para campos de texto
-  const handleChange =
-    (field: keyof FormFields) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      setForm((prev) => ({ ...prev, [field]: e.target.value }));
-      // Limpia error al editar
-      if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
-    };
+  // ── Handlers
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSelectAnswer(preguntaId: PreguntaId, score: number) {
+    setAnswers((prev) => ({ ...prev, [preguntaId]: score }));
+    if (quizError) setQuizError(false);
+  }
+
+  function handleCalcular() {
+    if (answers.p1 === null || answers.p2 === null || answers.p3 === null) {
+      setQuizError(true);
+      return;
+    }
+    const total = (answers.p1 as number) + (answers.p2 as number) + (answers.p3 as number);
+    setScore(total);
+    setNivel(resolveNivel(total));
+    setStep("result");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function handleRepetir() {
+    setStep("quiz");
+    setAnswers({ p1: null, p2: null, p3: null });
+    setQuizError(false);
+    setNombre("");
+    setEmpresa("");
+    setWhatsappLocal("");
+    setContactErrors({});
+  }
+
+  function handleSubmitContact(e: React.FormEvent) {
     e.preventDefault();
 
-    const errs = validate(form);
+    const errs: typeof contactErrors = {};
+    if (!nombre.trim()) errs.nombre = "Ingresá tu nombre.";
+    if (!empresa.trim()) errs.empresa = "Ingresá el nombre de tu empresa.";
+    const digits = whatsappLocal.replace(/\D/g, "");
+    if (!digits) {
+      errs.whatsappLocal = "Ingresá tu número de WhatsApp.";
+    } else if (digits.length < 7 || digits.length > 15) {
+      errs.whatsappLocal = "Ingresá un número válido (ej: 595 985 123 456 para Paraguay).";
+    }
+
     if (Object.keys(errs).length > 0) {
-      setErrors(errs);
-      // Hace scroll al primer error
-      const firstKey = Object.keys(errs)[0];
-      document.getElementById(firstKey)?.focus();
+      setContactErrors(errs);
       return;
     }
 
     setSubmitted(true);
 
-    const waData: DiagnosticoData = {
-      empresa: form.empresa.trim(),
-      sector: form.sector,
-      tamanoEquipo: form.tamanoEquipo,
-      cuelloBottella: form.cuelloBottella,
-      stackActual: form.stackActual.trim(),
-      whatsapp: `+${form.whatsappLocal.replace(/\D/g, "")}`,
-    };
+    const nivelLabel = NIVELES[nivel].label;
+    const message = [
+      `Hola Oscar, realicé el diagnóstico B2B de AYCweb.`,
+      ``,
+      `📊 Mi nivel de fricción operativa es *${nivelLabel}* (${score}/9).`,
+      `👤 Nombre: ${nombre.trim()}`,
+      `🏢 Empresa: ${empresa.trim()}`,
+      `📱 WhatsApp: +${digits}`,
+      ``,
+      `Quiero agendar una conversación para evaluar encaje.`,
+    ].join("\n");
 
-    // Pasar lang para que el mensaje WA se genere en el idioma del prospecto
-    const url = buildDiagnosticoWaUrl(waData, lang);
+    const url = buildWhatsAppLink(message);
     const win = window.open(url, "_blank", "noopener,noreferrer");
 
-    // Si el browser bloquea el popup, mostrar link de fallback
     if (!win || win.closed || typeof win.closed === "undefined") {
       setFallbackUrl(url);
     }
 
-    // Resetea después de abrir WA
     setTimeout(() => {
-      setForm(INITIAL);
-      setErrors({});
       setSubmitted(false);
       setFallbackUrl(null);
     }, 3000);
   }
 
-  // ─── Render ────────────────────────────────────────────────────────────────
+  const allAnswered =
+    answers.p1 !== null && answers.p2 !== null && answers.p3 !== null;
+  const nivelConfig = NIVELES[nivel];
+
+  // ── Render
 
   return (
     <div className="relative min-h-screen bg-slate-950 text-slate-50 overflow-hidden">
@@ -156,356 +240,395 @@ export default function DiagnosticoComercialPage() {
 
       {/* ── Header mínimo ── */}
       <header className="relative z-10 px-6 py-5 flex items-center justify-between border-b border-white/[0.06] max-w-5xl mx-auto">
-        <Link
-          href={`/${lang}`}
-          className="text-slate-400 hover:text-white transition-colors text-sm font-semibold flex items-center gap-2"
-        >
-          <span className="text-lg">←</span>
-          <span className="hidden sm:inline">Volver a AYCweb</span>
-          <span className="sm:hidden">Volver</span>
-        </Link>
+        {step === "quiz" ? (
+          <Link
+            href={`/${lang}`}
+            className="text-slate-400 hover:text-white transition-colors text-sm font-semibold flex items-center gap-2"
+          >
+            <span className="text-lg">←</span>
+            <span className="hidden sm:inline">Volver a AYCweb</span>
+            <span className="sm:hidden">Volver</span>
+          </Link>
+        ) : (
+          <button
+            type="button"
+            onClick={handleRepetir}
+            className="text-slate-400 hover:text-white transition-colors text-sm font-semibold flex items-center gap-2"
+          >
+            <span className="text-lg">←</span>
+            Repetir diagnóstico
+          </button>
+        )}
         <span className="text-[11px] uppercase tracking-[0.2em] font-bold text-blue-400/80">
-          AYCweb · Diagnóstico
+          AYCweb · Scoring B2B
         </span>
       </header>
 
       {/* ── Contenido principal ── */}
       <main className="relative z-10 px-6 py-12 md:py-20 max-w-2xl mx-auto">
-        {/* Cabecera */}
-        <div className="text-center mb-10">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-950/50 border border-blue-500/20 text-blue-300 text-[11px] font-bold uppercase tracking-[0.2em] mb-5">
-            <span>⚡</span>
-            5 minutos · Sin compromiso
-          </span>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tighter text-white mb-4">
-            Diagnóstico Comercial{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-              Express
-            </span>
-          </h1>
+        {/* ══════════════════════════════════════════════════════════ */}
+        {/* PASO 1 — Cuestionario                                     */}
+        {/* ══════════════════════════════════════════════════════════ */}
+        {step === "quiz" && (
+          <>
+            <div className="text-center mb-10">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-950/50 border border-blue-500/20 text-blue-300 text-[11px] font-bold uppercase tracking-[0.2em] mb-5">
+                <span>⚡</span>
+                3 preguntas · 2 minutos
+              </span>
 
-          <p className="text-slate-400 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
-            Completa estos datos operativos. Al enviar, recibiremos tu información por WhatsApp para evaluar si tu infraestructura califica para nuestro despliegue B2B y agendar una llamada.
-          </p>
-        </div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tighter text-white mb-4">
+                Motor de{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                  Scoring B2B
+                </span>
+              </h1>
 
-        {/* ── Formulario ── */}
-        <form
-          onSubmit={handleSubmit}
-          noValidate
-          className="space-y-6"
-          aria-label="Formulario de diagnóstico comercial"
-        >
-          {/* 1. Empresa */}
-          <div className="space-y-2">
-            <label
-              htmlFor="empresa"
-              className="block text-sm font-bold text-slate-200"
-            >
-              Empresa <span className="text-blue-400">*</span>
-            </label>
-            <input
-              id="empresa"
-              type="text"
-              autoComplete="organization"
-              placeholder="ej. Distribuidora Norte S.A."
-              value={form.empresa}
-              onChange={handleChange("empresa")}
-              className={fieldCls(!!errors.empresa)}
-              aria-describedby={errors.empresa ? "empresa-error" : undefined}
-              aria-invalid={!!errors.empresa}
-            />
-            {errors.empresa && (
-              <p id="empresa-error" className={errorCls}>
-                {errors.empresa}
+              <p className="text-slate-400 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
+                Respondé 3 preguntas sobre tu operación. Calculamos tu nivel de fricción y te decimos qué infraestructura necesitás.
               </p>
-            )}
-          </div>
+            </div>
 
-          {/* 2. Sector */}
-          <div className="space-y-2">
-            <label
-              htmlFor="sector"
-              className="block text-sm font-bold text-slate-200"
-            >
-              Sector <span className="text-blue-400">*</span>
-            </label>
-            <select
-              id="sector"
-              value={form.sector}
-              onChange={handleChange("sector")}
-              className={fieldCls(!!errors.sector)}
-              aria-describedby={errors.sector ? "sector-error" : undefined}
-              aria-invalid={!!errors.sector}
-            >
-              <option value="" disabled>
-                — Seleccioná tu sector —
-              </option>
-              {SECTORES.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
-            {errors.sector && (
-              <p id="sector-error" className={errorCls}>
-                {errors.sector}
-              </p>
-            )}
-          </div>
-
-          {/* 3. Tamaño equipo comercial (radio) */}
-          <fieldset className="space-y-3">
-            <legend className="text-sm font-bold text-slate-200">
-              Tamaño del equipo comercial{" "}
-              <span className="text-blue-400">*</span>
-            </legend>
-            <div
-              id="tamanoEquipo"
-              role="group"
-              aria-describedby={
-                errors.tamanoEquipo ? "tamano-error" : undefined
-              }
-              className="flex flex-wrap gap-3"
-            >
-              {TAMANOS.map((t) => (
-                <label
-                  key={t}
-                  className={`
-                    flex items-center gap-2.5 px-5 py-3.5 rounded-xl border cursor-pointer transition-all
-                    text-sm font-semibold select-none
-                    ${
-                      form.tamanoEquipo === t
-                        ? "bg-blue-600/20 border-blue-500 text-blue-300"
-                        : "bg-slate-900/60 border-slate-700 text-slate-400 hover:border-slate-500 hover:text-slate-200"
-                    }
-                  `}
+            <div className="space-y-5">
+              {PREGUNTAS.map((pregunta) => (
+                <div
+                  key={pregunta.id}
+                  className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6"
                 >
+                  <div className="flex items-start gap-3 mb-4">
+                    <span className="text-[11px] font-black text-blue-400/60 uppercase tracking-widest mt-[3px] shrink-0">
+                      {pregunta.numero}
+                    </span>
+                    <p className="text-white font-bold text-base leading-snug">
+                      {pregunta.texto}
+                    </p>
+                  </div>
+
+                  <div className="space-y-2.5">
+                    {pregunta.opciones.map((opcion) => {
+                      const selected = answers[pregunta.id] === opcion.score;
+                      return (
+                        <button
+                          key={opcion.label}
+                          type="button"
+                          onClick={() =>
+                            handleSelectAnswer(pregunta.id, opcion.score)
+                          }
+                          className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl border text-left transition-all text-sm font-medium ${
+                            selected
+                              ? "bg-blue-600/20 border-blue-500 text-blue-200"
+                              : "bg-slate-950/60 border-slate-700 text-slate-400 hover:border-slate-500 hover:text-slate-200 hover:bg-slate-900/80"
+                          }`}
+                        >
+                          <span
+                            className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                              selected ? "border-blue-400" : "border-slate-600"
+                            }`}
+                          >
+                            {selected && (
+                              <span className="w-2 h-2 rounded-full bg-blue-400 block" />
+                            )}
+                          </span>
+                          {opcion.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {quizError && (
+              <p className="mt-5 text-red-400 text-sm font-medium text-center flex items-center justify-center gap-1.5">
+                <span>⚠</span>
+                Respondé las 3 preguntas para calcular tu nivel.
+              </p>
+            )}
+
+            <div className="mt-8">
+              <button
+                type="button"
+                onClick={handleCalcular}
+                className={`w-full font-black py-4 px-8 rounded-xl transition-all text-base flex items-center justify-center gap-3 ${
+                  allAnswered
+                    ? "bg-blue-600 hover:bg-blue-500 text-white shadow-[0_0_40px_rgba(37,99,235,0.35)] active:scale-95"
+                    : "bg-slate-800 text-slate-500 cursor-not-allowed"
+                }`}
+              >
+                <span>📊</span>
+                Calcular Nivel de Fricción
+              </button>
+              <p className="text-center text-xs text-slate-500 mt-3">
+                Sin costo ni compromiso. Resultado inmediato.
+              </p>
+            </div>
+          </>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════ */}
+        {/* PASO 2 — Resultado + Formulario de contacto               */}
+        {/* ══════════════════════════════════════════════════════════ */}
+        {step === "result" && (
+          <>
+            {/* Encabezado de resultado */}
+            <div className="text-center mb-8">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/60 border border-slate-700 text-slate-300 text-[11px] font-bold uppercase tracking-[0.2em] mb-5">
+                Resultado del diagnóstico
+              </span>
+
+              <h1 className="text-3xl sm:text-4xl font-black leading-tight tracking-tighter text-white mb-3">
+                Tu{" "}
+                <span className={nivelConfig.colorText}>
+                  {nivelConfig.label}
+                </span>
+              </h1>
+
+              <p className="text-slate-400 text-base leading-relaxed max-w-xl mx-auto">
+                {nivelConfig.descripcion}
+              </p>
+            </div>
+
+            {/* Tarjeta de score */}
+            <div
+              className={`rounded-2xl border ${nivelConfig.colorBorder} ${nivelConfig.colorBg} ${nivelConfig.colorGlow} p-6 mb-8`}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <span
+                  className={`text-xs font-bold ${nivelConfig.colorText} uppercase tracking-widest`}
+                >
+                  Índice de fricción operativa
+                </span>
+                <span className={`text-3xl font-black ${nivelConfig.colorText}`}>
+                  {score}
+                  <span className="text-slate-500 text-lg font-normal">/9</span>
+                </span>
+              </div>
+
+              {/* Barra de progreso */}
+              <div className="h-2.5 bg-slate-800 rounded-full overflow-hidden">
+                <div
+                  className={`h-full rounded-full transition-all duration-700 ${nivelConfig.colorBar}`}
+                  style={{ width: `${(score / 9) * 100}%` }}
+                />
+              </div>
+
+              <div className="flex justify-between mt-2 text-[10px] text-slate-600 font-bold uppercase tracking-wider">
+                <span>Optimizado</span>
+                <span>Moderado</span>
+                <span>Crítico</span>
+              </div>
+
+              {/* Referencia de rangos */}
+              <div className="mt-5 pt-4 border-t border-white/[0.05] grid grid-cols-3 gap-2 text-center">
+                {(Object.keys(NIVELES) as NivelKey[]).map((key) => {
+                  const cfg = NIVELES[key];
+                  return (
+                    <div
+                      key={key}
+                      className={`rounded-lg px-2 py-2 transition-all ${
+                        key === nivel
+                          ? `${cfg.colorBg} border ${cfg.colorBorder}`
+                          : "opacity-30"
+                      }`}
+                    >
+                      <p className={`font-bold text-[11px] ${cfg.colorText}`}>
+                        {cfg.label}
+                      </p>
+                      <p className="text-slate-500 text-[10px] mt-0.5">
+                        {cfg.rango}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Formulario de contacto */}
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
+              <h2 className="text-lg font-black text-white mb-1">
+                Agendá tu diagnóstico con Oscar
+              </h2>
+              <p className="text-slate-400 text-sm mb-6">
+                En 15 minutos evaluamos si hay encaje real. Sin compromiso.
+              </p>
+
+              <form
+                onSubmit={handleSubmitContact}
+                noValidate
+                className="space-y-4"
+              >
+                {/* Nombre */}
+                <div className="space-y-1.5">
+                  <label
+                    htmlFor="nombre"
+                    className="block text-sm font-bold text-slate-200"
+                  >
+                    Nombre <span className="text-blue-400">*</span>
+                  </label>
                   <input
-                    type="radio"
-                    name="tamanoEquipo"
-                    value={t}
-                    checked={form.tamanoEquipo === t}
-                    onChange={handleChange("tamanoEquipo")}
-                    className="sr-only"
-                    aria-label={`${t} personas`}
+                    id="nombre"
+                    type="text"
+                    autoComplete="given-name"
+                    placeholder="ej. Juan Pérez"
+                    value={nombre}
+                    onChange={(e) => {
+                      setNombre(e.target.value);
+                      if (contactErrors.nombre)
+                        setContactErrors((p) => ({ ...p, nombre: undefined }));
+                    }}
+                    className={fieldCls(!!contactErrors.nombre)}
                   />
-                  <span
-                    className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${
-                      form.tamanoEquipo === t
-                        ? "border-blue-400"
-                        : "border-slate-600"
+                  {contactErrors.nombre && (
+                    <p className={errorCls}>{contactErrors.nombre}</p>
+                  )}
+                </div>
+
+                {/* Empresa */}
+                <div className="space-y-1.5">
+                  <label
+                    htmlFor="empresa"
+                    className="block text-sm font-bold text-slate-200"
+                  >
+                    Empresa <span className="text-blue-400">*</span>
+                  </label>
+                  <input
+                    id="empresa"
+                    type="text"
+                    autoComplete="organization"
+                    placeholder="ej. Distribuidora Norte S.A."
+                    value={empresa}
+                    onChange={(e) => {
+                      setEmpresa(e.target.value);
+                      if (contactErrors.empresa)
+                        setContactErrors((p) => ({
+                          ...p,
+                          empresa: undefined,
+                        }));
+                    }}
+                    className={fieldCls(!!contactErrors.empresa)}
+                  />
+                  {contactErrors.empresa && (
+                    <p className={errorCls}>{contactErrors.empresa}</p>
+                  )}
+                </div>
+
+                {/* WhatsApp */}
+                <div className="space-y-1.5">
+                  <label
+                    htmlFor="whatsappLocal"
+                    className="block text-sm font-bold text-slate-200"
+                  >
+                    WhatsApp <span className="text-blue-400">*</span>
+                  </label>
+                  <p className="text-xs text-slate-500">
+                    Con código de país · ej: 595 985 123 456
+                  </p>
+                  <div className="flex items-center rounded-xl border border-slate-700 bg-slate-900/60 overflow-hidden focus-within:border-blue-500/60 focus-within:ring-1 focus-within:ring-blue-500/30 transition-all">
+                    <span className="px-4 py-4 text-slate-400 font-mono text-base font-semibold bg-slate-800/60 border-r border-slate-700 shrink-0 select-none">
+                      +
+                    </span>
+                    <input
+                      id="whatsappLocal"
+                      type="tel"
+                      inputMode="numeric"
+                      placeholder="595 985 864 209"
+                      autoComplete="tel"
+                      value={whatsappLocal}
+                      onChange={(e) => {
+                        const val = e.target.value
+                          .replace(/[^\d\s]/g, "")
+                          .slice(0, 20);
+                        setWhatsappLocal(val);
+                        if (contactErrors.whatsappLocal)
+                          setContactErrors((p) => ({
+                            ...p,
+                            whatsappLocal: undefined,
+                          }));
+                      }}
+                      className="flex-1 bg-transparent px-4 py-4 text-white placeholder-slate-600 text-base font-mono outline-none"
+                    />
+                  </div>
+                  <p
+                    className={`text-[11px] ${
+                      whatsappLocal.replace(/\D/g, "").length >= 7
+                        ? "text-emerald-400"
+                        : "text-slate-600"
                     }`}
                   >
-                    {form.tamanoEquipo === t && (
-                      <span className="w-2 h-2 rounded-full bg-blue-400 block" />
+                    {whatsappLocal.replace(/\D/g, "").length > 0
+                      ? `${whatsappLocal.replace(/\D/g, "").length} dígitos`
+                      : "Incluí el código de país (595 para Paraguay)"}
+                  </p>
+                  {contactErrors.whatsappLocal && (
+                    <p className={errorCls}>{contactErrors.whatsappLocal}</p>
+                  )}
+                </div>
+
+                {/* Botón submit */}
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    disabled={submitted}
+                    className="w-full bg-blue-600 hover:bg-blue-500 disabled:bg-blue-800 disabled:cursor-not-allowed text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_40px_rgba(37,99,235,0.35)] active:scale-95 text-base flex items-center justify-center gap-3"
+                  >
+                    {submitted ? (
+                      <>
+                        <span className="animate-spin inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />
+                        Abriendo WhatsApp…
+                      </>
+                    ) : (
+                      <>
+                        <span>💬</span>
+                        Enviar resultado y agendar diagnóstico
+                      </>
                     )}
-                  </span>
-                  {t} personas
-                </label>
-              ))}
+                  </button>
+                  <p className="text-center text-xs text-slate-500 mt-3">
+                    Se abrirá WhatsApp con tu scoring pre-cargado. Sin compromiso.
+                  </p>
+
+                  {fallbackUrl && (
+                    <div className="mt-4 p-4 rounded-xl bg-amber-950/40 border border-amber-500/30 text-center">
+                      <p className="text-amber-300 text-sm font-semibold mb-2">
+                        Tu navegador bloqueó la ventana emergente.
+                      </p>
+                      <a
+                        href={fallbackUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-blue-400 underline underline-offset-4 text-sm font-bold hover:text-blue-300 transition-colors"
+                      >
+                        <span>💬</span>
+                        Tocá aquí para abrir WhatsApp manualmente
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </form>
             </div>
-            {errors.tamanoEquipo && (
-              <p id="tamano-error" className={errorCls}>
-                {errors.tamanoEquipo}
-              </p>
-            )}
-          </fieldset>
 
-          {/* 4. Cuello de botella */}
-          <div className="space-y-2">
-            <label
-              htmlFor="cuelloBottella"
-              className="block text-sm font-bold text-slate-200"
-            >
-              Principal cuello de botella <span className="text-blue-400">*</span>
-            </label>
-            <select
-              id="cuelloBottella"
-              value={form.cuelloBottella}
-              onChange={handleChange("cuelloBottella")}
-              className={fieldCls(!!errors.cuelloBottella)}
-              aria-describedby={
-                errors.cuelloBottella ? "cuello-error" : undefined
-              }
-              aria-invalid={!!errors.cuelloBottella}
-            >
-              <option value="" disabled>
-                — ¿Cuál es tu mayor dolor comercial? —
-              </option>
-              {CUELLOS.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-            {errors.cuelloBottella && (
-              <p id="cuello-error" className={errorCls}>
-                {errors.cuelloBottella}
-              </p>
-            )}
-          </div>
-
-          {/* 5. Stack actual */}
-          <div className="space-y-2">
-            <label
-              htmlFor="stackActual"
-              className="block text-sm font-bold text-slate-200"
-            >
-              Stack / herramientas actuales{" "}
-              <span className="text-blue-400">*</span>
-            </label>
-            <p className="text-xs text-slate-500">
-              ej. Excel + WhatsApp, Google Sheets, SAP, sin sistema
-            </p>
-            <input
-              id="stackActual"
-              type="text"
-              placeholder="ej. Excel + WhatsApp"
-              inputMode="text"
-              autoComplete="off"
-              value={form.stackActual}
-              onChange={handleChange("stackActual")}
-              className={fieldCls(!!errors.stackActual)}
-              aria-describedby={
-                errors.stackActual ? "stack-error" : undefined
-              }
-              aria-invalid={!!errors.stackActual}
-            />
-            {errors.stackActual && (
-              <p id="stack-error" className={errorCls}>
-                {errors.stackActual}
-              </p>
-            )}
-          </div>
-
-          {/* 6. WhatsApp */}
-          <div className="space-y-2">
-            <label
-              htmlFor="whatsappLocal"
-              className="block text-sm font-bold text-slate-200"
-            >
-              WhatsApp del responsable{" "}
-              <span className="text-blue-400">*</span>
-            </label>
-            <p className="text-xs text-slate-500">
-              Con código de país · ej: 595 985 123 456
-            </p>
-            <div className="flex items-center rounded-xl border border-slate-700 bg-slate-900/60 overflow-hidden focus-within:border-blue-500/60 focus-within:ring-1 focus-within:ring-blue-500/30 transition-all">
-              {/* Prefijo estático */}
-              <span className="px-4 py-4 text-slate-400 font-mono text-base font-semibold bg-slate-800/60 border-r border-slate-700 shrink-0 select-none whitespace-nowrap">
-                +
-              </span>
-              <input
-                id="whatsappLocal"
-                type="tel"
-                inputMode="numeric"
-                placeholder="595 985 864 209"
-                autoComplete="tel"
-                value={form.whatsappLocal}
-                onChange={(e) => {
-                  const val = e.target.value.replace(/[^\d\s]/g, "").slice(0, 20);
-                  setForm((prev) => ({ ...prev, whatsappLocal: val }));
-                  if (errors.whatsappLocal)
-                    setErrors((prev) => ({
-                      ...prev,
-                      whatsappLocal: undefined,
-                    }));
-                }}
-                className="flex-1 bg-transparent px-4 py-4 text-white placeholder-slate-600 text-base font-mono outline-none"
-                aria-describedby={
-                  errors.whatsappLocal ? "wa-error" : "wa-hint"
-                }
-                aria-invalid={!!errors.whatsappLocal}
-              />
+            {/* Link para repetir */}
+            <div className="mt-6 text-center">
+              <button
+                type="button"
+                onClick={handleRepetir}
+                className="text-slate-500 hover:text-slate-300 text-sm transition-colors underline underline-offset-2"
+              >
+                ← Repetir el diagnóstico
+              </button>
             </div>
-            <p
-              id="wa-hint"
-              className={`text-[11px] ${
-                form.whatsappLocal.replace(/\D/g, "").length >= 7
-                  ? "text-emerald-400"
-                  : "text-slate-600"
-              }`}
-            >
-              {form.whatsappLocal.replace(/\D/g, "").length > 0
-                ? `${form.whatsappLocal.replace(/\D/g, "").length} dígitos`
-                : "Incluí el código de país (595 para Paraguay)"}
-            </p>
-            {errors.whatsappLocal && (
-              <p id="wa-error" className={errorCls}>
-                {errors.whatsappLocal}
-              </p>
-            )}
-          </div>
-
-          {/* ── Botón Submit ── */}
-          <div className="pt-2">
-            <button
-              type="submit"
-              disabled={submitted}
-              className="w-full bg-blue-600 hover:bg-blue-500 disabled:bg-blue-800 disabled:cursor-not-allowed text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_40px_rgba(37,99,235,0.35)] active:scale-95 text-base flex items-center justify-center gap-3"
-            >
-              {submitted ? (
-                <>
-                  <span className="animate-spin inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />
-                  Abriendo WhatsApp…
-                </>
-              ) : (
-                <>
-                  <span>💬</span>
-                  Enviar datos para evaluación B2B
-                </>
-              )}
-            </button>
-            <p className="text-center text-xs text-slate-500 mt-3">
-              Se abrirá WhatsApp con tus datos pre-cargados. Sin costo ni compromiso.
-            </p>
-
-            {/* Fallback cuando el browser bloquea window.open */}
-            {fallbackUrl && (
-              <div className="mt-4 p-4 rounded-xl bg-amber-950/40 border border-amber-500/30 text-center">
-                <p className="text-amber-300 text-sm font-semibold mb-2">
-                  Tu navegador bloqueó la ventana emergente.
-                </p>
-                <a
-                  href={fallbackUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-blue-400 underline underline-offset-4 text-sm font-bold hover:text-blue-300 transition-colors"
-                >
-                  <span>💬</span>
-                  Tocá aquí para abrir WhatsApp manualmente
-                </a>
-              </div>
-            )}
-          </div>
-        </form>
+          </>
+        )}
 
         {/* ── Footer mínimo ── */}
         <footer className="mt-16 text-center text-xs text-slate-600">
           <p>
-            © {new Date().getFullYear()} AYCweb · Infraestructura Digital B2B Paraguay
+            © {new Date().getFullYear()} AYCweb · Infraestructura Digital B2B
+            Paraguay
           </p>
         </footer>
       </main>
     </div>
   );
 }
-
-// ─── Helpers de clases ────────────────────────────────────────────────────────
-
-function fieldCls(hasError: boolean): string {
-  return [
-    "w-full bg-slate-900/60 border rounded-xl px-4 py-4",
-    "text-white placeholder-slate-600 text-base",
-    "outline-none transition-all",
-    "appearance-none", // para selects en Safari
-    hasError
-      ? "border-red-500/60 focus:border-red-500 focus:ring-1 focus:ring-red-500/30"
-      : "border-slate-700 focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/30",
-  ].join(" ");
-}
-
-const errorCls =
-  "text-red-400 text-xs font-medium flex items-center gap-1 before:content-['⚠'] before:text-red-400";
