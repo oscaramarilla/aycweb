@@ -1,13 +1,13 @@
 "use client";
 
-import { PLANES_PRECIOS, formatCurrencyUSD, TEXTO_FINANCIAMIENTO } from "@/lib/config/precios";
+import { PLANES_PRECIOS, formatCurrencyUSD } from "@/lib/config/precios";
 import type { PlanPrecio } from "@/lib/config/precios";
 
 export type PlanId = "starter" | "business" | "enterprise";
 
 interface PricingCardProps {
   planId: PlanId;
-  /** Precio del setup que se muestra (ej: 60 para starter en /oscar, 240 para starter normal) */
+  /** Precio de construcción que se muestra (ej: 60 para starter, 900 para business, 1800 para enterprise) */
   setupDisplay?: number;
   /** Badge opcional */
   badge?: string | null;
@@ -23,6 +23,10 @@ interface PricingCardProps {
   tagline?: string;
   /** Ideal para */
   ideal?: string;
+  /** Etiqueta de construcción (ej: "Construcción del sistema") */
+  constructionLabel?: string;
+  /** Texto de mantenimiento mensual (ej: "USD 15/mes de mantenimiento, actualizaciones y limpieza operativa") */
+  monthlyText?: string;
 }
 
 const accentMap: Record<string, { border: string; bg: string; text: string; btn: string }> = {
@@ -56,10 +60,12 @@ export default function PricingCard({
   features,
   tagline,
   ideal,
+  constructionLabel,
+  monthlyText,
 }: PricingCardProps) {
   const plan: PlanPrecio = PLANES_PRECIOS[planId];
   const ac = accentMap[accent] ?? accentMap.blue;
-  const setupVal = setupDisplay ?? plan.setupTotal;
+  const constructionVal = setupDisplay ?? plan.setupTotal;
 
   return (
     <article
@@ -73,35 +79,34 @@ export default function PricingCard({
 
       {/* NOMBRE DEL PLAN */}
       <h3 className="text-lg font-black text-white mb-1">{plan.nombre}</h3>
-      {tagline && <p className="text-[13px] text-slate-500 mb-4">{tagline}</p>}
+      {tagline && <p className="text-[13px] text-slate-500 mb-5 leading-relaxed">{tagline}</p>}
 
       {/* ===== NUEVA JERARQUÍA VISUAL ===== */}
 
-      {/* 1. DOMINANTE: Costo mensual */}
-      <div className="mb-2">
-        <span className="text-[11px] text-slate-500 uppercase tracking-widest font-bold">
-          Mantenimiento mensual
-        </span>
-        <div className="text-5xl md:text-6xl font-black text-white tracking-tight leading-none mt-1">
-          {plan.mantenimientoMensual} <span className="text-2xl md:text-3xl font-bold text-slate-400">USD/mes</span>
+      {/* 1. DOMINANTE: Precio de construcción */}
+      <div className="mb-1">
+        <div className="text-5xl md:text-6xl font-black text-white tracking-tight leading-none">
+          {formatCurrencyUSD(constructionVal)}
         </div>
       </div>
 
-      {/* 2. MEDIANO: Setup único */}
-      <div className="mt-4 mb-2">
-        <span className="text-xl md:text-2xl font-bold text-slate-300">
-          Setup: {formatCurrencyUSD(setupVal)}
+      {/* 2. Etiqueta de construcción */}
+      {constructionLabel && (
+        <span className="inline-block text-[11px] md:text-xs text-slate-400 uppercase tracking-widest font-bold mt-1 mb-4">
+          {constructionLabel}
         </span>
-      </div>
+      )}
 
-      {/* 3. TEXTO DESCRIPTIVO: Aclaración de financiamiento */}
-      <p className="text-[11px] md:text-xs text-slate-500 leading-relaxed mb-5">
-        {TEXTO_FINANCIAMIENTO}
-      </p>
+      {/* 3. Mantenimiento mensual separado (más pequeño) */}
+      {monthlyText && (
+        <p className="text-[13px] md:text-sm text-slate-400 leading-relaxed mb-5">
+          {monthlyText}
+        </p>
+      )}
 
       <div className="border-t border-white/[0.06] pt-4 mb-4" />
 
-      {/* Tagline opcional si no va arriba */}
+      {/* Tagline alternativo si no va arriba */}
       {!tagline && ideal && (
         <p className="text-sm text-slate-400 leading-relaxed mb-4">{ideal}</p>
       )}

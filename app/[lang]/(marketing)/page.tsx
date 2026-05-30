@@ -4,7 +4,6 @@ import { FranjaClientes } from "@/components/social/FranjaClientes";
 import { buildWaLink } from "@/lib/config/contact";
 import { FILTRO_ADMISION_COPY } from "@/lib/config/copy/filtro-admision";
 import PricingCard from "@/components/pricing/PricingCard";
-import { PLANES_PRECIOS, TEXTO_FINANCIAMIENTO } from "@/lib/config/precios";
 
 // 1. CACHÉ ULTRARRÁPIDO: Guarda la página en los servidores globales de Vercel por 1 hora
 export const revalidate = 3600;
@@ -242,7 +241,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         </div>
       </section>
 
-      {/* ================= SECCIÓN DE PRECIOS: Resumen estratégico con nueva jerarquía visual ================= */}
+      {/* ================= SECCIÓN DE PRECIOS: Construcción + Mantenimiento mensual ================= */}
       <section className="py-16 md:py-24 relative z-10 bg-[#04050a] border-b border-white/[0.05]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -259,8 +258,10 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               planId="starter"
               accent="emerald"
               ctaHref={buildWaLink(`Hola Oscar, quiero agendar una Auditoría B2B para mi operación. Me interesa el plan Starter.`)}
-              ctaLabel="Consultar Starter"
-              tagline="Base digital profesional para salir al mercado rápido, validar tu oferta y empezar a recibir consultas."
+              ctaLabel="Empezar validación"
+              tagline="Para validar rápido una presencia digital profesional sin perder semanas armando algo improvisado."
+              constructionLabel="Construcción del sistema"
+              monthlyText="USD 15/mes de mantenimiento, actualizaciones y limpieza operativa"
             />
 
             <PricingCard
@@ -268,22 +269,26 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               accent="blue"
               badge="MÁS ELEGIDO"
               ctaHref={buildWaLink(`Hola Oscar, quiero agendar una Auditoría B2B para mi operación. Me interesa el plan Business.`)}
-              ctaLabel="Consultar Business"
-              tagline="Motor comercial que filtra, ordena y acelera oportunidades para que tu equipo venda más y repita menos tareas."
+              ctaLabel="Solicitar diagnóstico comercial"
+              tagline="Para empresas que necesitan convertir web + WhatsApp en un motor comercial con mejor seguimiento y menos tareas repetitivas."
+              constructionLabel="Construcción del ecosistema comercial"
+              monthlyText="USD 30/mes de mantenimiento, actualizaciones y limpieza operativa"
             />
 
             <PricingCard
               planId="enterprise"
               accent="violet"
               ctaHref={buildWaLink(`Hola Oscar, quiero agendar una Auditoría B2B para mi operación. Me interesa el plan Enterprise.`)}
-              ctaLabel="Consultar Enterprise"
-              tagline="Infraestructura a medida para operaciones complejas que necesitan automatizar, integrar y escalar con control."
+              ctaLabel="Diseñar infraestructura"
+              tagline="Para operaciones que necesitan cotizadores, automatización, integración y control operativo más robusto."
+              constructionLabel="Construcción de infraestructura operativa"
+              monthlyText="USD 45/mes de mantenimiento, actualizaciones y limpieza operativa"
             />
           </div>
 
           <div className="text-center mt-8">
             <p className="text-[11px] md:text-xs text-slate-500 max-w-xl mx-auto leading-relaxed">
-              Todos los planes incluyen {TEXTO_FINANCIAMIENTO.toLowerCase()} Sin sorpresas. Sin costos ocultos.
+              Los planes se estructuran con construcción inicial del sistema + mantenimiento mensual operativo. La duración contractual y condiciones finales se definen en la propuesta formal.
             </p>
           </div>
         </div>
