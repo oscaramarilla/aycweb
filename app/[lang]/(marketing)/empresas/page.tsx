@@ -22,6 +22,12 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://www.aycweb.com/es/empresas",
+    languages: {
+      "es": "https://www.aycweb.com/es/empresas",
+      "en": "https://www.aycweb.com/en/empresas",
+      "pt-BR": "https://www.aycweb.com/pt-br/empresas",
+      "x-default": "https://www.aycweb.com/es/empresas",
+    },
   },
   openGraph: {
     title: "Sistemas Operativos B2B para Empresas | AYCweb Paraguay",
@@ -50,6 +56,25 @@ export const metadata: Metadata = {
 };
 
 const { business: BIZ, enterprise: ENT } = PLANES_PRECIOS;
+
+const FAQ_SCHEMA = [
+  {
+    pregunta: "¿Cuánto cuesta un sistema B2B para empresas en Paraguay?",
+    respuesta: `El plan AYCweb Business tiene un setup único de USD ${BIZ.setupTotal}. El plan Enterprise cuesta USD ${ENT.setupTotal}. Ambos incluyen mantenimiento mensual desde USD ${BIZ.mantenimientoMensual}/mes.`,
+  },
+  {
+    pregunta: "¿En cuánto tiempo se implementa el sistema?",
+    respuesta: "AYCweb Business se entrega en 3 semanas. AYCweb Enterprise en 4-6 semanas. El proceso arranca con un diagnóstico operativo sin costo.",
+  },
+  {
+    pregunta: "¿Qué tipo de empresas en Paraguay pueden usar estos sistemas?",
+    respuesta: "Manufactureras, distribuidoras, empresas de construcción, agroindustria, clínicas y metalúrgicas. Cualquier empresa que necesite cotizar productos o servicios complejos y dejar de hacerlo a mano.",
+  },
+  {
+    pregunta: "¿El sistema se integra con WhatsApp?",
+    respuesta: "Sí. El sistema genera la cotización o presupuesto y puede enviarlo automáticamente al cliente por WhatsApp. Los planes incluyen integración de rutas WhatsApp por sección.",
+  },
+];
 
 const PLANES = [
   {
@@ -133,8 +158,22 @@ const DOLORES = [
 ] as const;
 
 export default function ProductosPage({ params }: { params?: { lang?: string } }) {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_SCHEMA.map((item) => ({
+      "@type": "Question",
+      name: item.pregunta,
+      acceptedAnswer: { "@type": "Answer", text: item.respuesta },
+    })),
+  };
+
   return (
     <div className="relative min-h-screen bg-slate-950 text-slate-50 overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="fixed inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15] pointer-events-none mix-blend-overlay z-0" />
 
       {/* HERO */}

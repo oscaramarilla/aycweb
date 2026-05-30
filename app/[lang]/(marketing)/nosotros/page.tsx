@@ -24,6 +24,12 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://www.aycweb.com/es/nosotros",
+    languages: {
+      "es": "https://www.aycweb.com/es/nosotros",
+      "en": "https://www.aycweb.com/en/nosotros",
+      "pt-BR": "https://www.aycweb.com/pt-br/nosotros",
+      "x-default": "https://www.aycweb.com/es/nosotros",
+    },
   },
   openGraph: {
     title: "Orquestación de Agentes + Optimización de APIs | AYCweb Paraguay",
@@ -51,9 +57,42 @@ export const metadata: Metadata = {
   },
 };
 
+const FAQ_SCHEMA = [
+  {
+    pregunta: "¿Qué es AYCweb y qué hace?",
+    respuesta: "AYCweb es una firma de infraestructura digital B2B en Paraguay. Construye cotizadores automáticos, funnels de ventas y dashboards operativos para empresas que necesitan salir del Excel y WhatsApp manual.",
+  },
+  {
+    pregunta: "¿Cuánto tiempo tiene AYCweb operando?",
+    respuesta: "Más de 12 años automatizando operaciones reales en Paraguay. Oscar Amarilla Cáceres es el fundador y único arquitecto de sistemas de la firma.",
+  },
+  {
+    pregunta: "¿Cómo trabaja AYCweb con sus clientes?",
+    respuesta: "Sin intermediarios. Hablás directamente con quien programa el sistema. El proceso comienza con un diagnóstico operativo y avanza por etapas con entregas verificables.",
+  },
+  {
+    pregunta: "¿AYCweb trabaja solo con empresas paraguayas?",
+    respuesta: "Principalmente empresas en Paraguay. También trabajamos con empresas de Argentina y otros países hispanohablantes que necesiten infraestructura digital B2B.",
+  },
+];
+
 export default function NosotrosPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_SCHEMA.map((item) => ({
+      "@type": "Question",
+      name: item.pregunta,
+      acceptedAnswer: { "@type": "Answer", text: item.respuesta },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       {/* ====== HERO ====== */}
       <section className="px-6 pt-28 pb-12 text-center">

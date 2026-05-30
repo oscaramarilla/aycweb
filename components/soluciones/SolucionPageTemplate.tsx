@@ -37,6 +37,17 @@ export function SolucionPageTemplate({ config, casosRelacionados }: Props) {
   );
   const auditLink = buildWaLink(AYCWEB_CONTACT.globalMessages.auditB2B);
 
+  // ── JSON-LD BreadcrumbList ─────────────────────────────────────────────────
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.aycweb.com" },
+      { "@type": "ListItem", position: 2, name: "Soluciones", item: "https://www.aycweb.com/soluciones" },
+      { "@type": "ListItem", position: 3, name: config.hero.title, item: `https://www.aycweb.com/soluciones/${config.slug}` },
+    ],
+  };
+
   // ── JSON-LD FAQPage (solo si hay FAQ) ──────────────────────────────────────
   const faqJsonLd =
     config.faq && config.faq.length > 0
@@ -57,6 +68,10 @@ export function SolucionPageTemplate({ config, casosRelacionados }: Props) {
   return (
     <>
       {/* ── JSON-LD Schema.org ─────────────────────────────────────────────── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {faqJsonLd && (
         <script
           type="application/ld+json"

@@ -28,6 +28,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
+  // ── Hub de soluciones (índice de las 40 landings) ────────────────────────
+  const solucionesHubUrl: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE_URL}/soluciones`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as MetadataRoute.Sitemap[number]["changeFrequency"],
+      priority: 0.85,
+    },
+  ];
+
   // ── Landings SEO /soluciones/[slug] (sin prefijo de idioma) ──────────────
   const solucionesUrls: MetadataRoute.Sitemap = TODAS_SOLUCIONES.map((s) => ({
     url: `${BASE_URL}/soluciones/${s.slug}`,
@@ -54,5 +64,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...marketingUrls, ...solucionesUrls, ...blogUrls, ...funnelUrls];
+  return [...marketingUrls, ...solucionesHubUrl, ...solucionesUrls, ...blogUrls, ...funnelUrls];
 }

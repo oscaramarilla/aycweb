@@ -20,6 +20,12 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://www.aycweb.com/es/obras",
+    languages: {
+      "es": "https://www.aycweb.com/es/obras",
+      "en": "https://www.aycweb.com/en/obras",
+      "pt-BR": "https://www.aycweb.com/pt-br/obras",
+      "x-default": "https://www.aycweb.com/es/obras",
+    },
   },
   openGraph: {
     title: "Casos de Éxito y Sistemas Implementados | AYCweb Paraguay",

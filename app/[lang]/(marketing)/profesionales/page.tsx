@@ -25,6 +25,12 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://www.aycweb.com/es/profesionales",
+    languages: {
+      "es": "https://www.aycweb.com/es/profesionales",
+      "en": "https://www.aycweb.com/en/profesionales",
+      "pt-BR": "https://www.aycweb.com/pt-br/profesionales",
+      "x-default": "https://www.aycweb.com/es/profesionales",
+    },
   },
   openGraph: {
     title: "Sistema Automático de Agenda para Profesionales | AYCweb Paraguay",
@@ -85,13 +91,46 @@ const INCLUYE_MANT = [
   "Monitoreo de rendimiento (PageSpeed, disponibilidad)",
 ];
 
+const FAQ_SCHEMA = [
+  {
+    pregunta: "¿Cuánto cuesta el sistema de agenda automática para profesionales?",
+    respuesta: `El plan AYCweb Start tiene un setup único de USD ${START.setupTotal}. El mantenimiento mensual es de USD ${START.mantenimientoMensual}/mes, pagadero el día 15 de cada mes.`,
+  },
+  {
+    pregunta: "¿En cuánto tiempo queda configurada la agenda online?",
+    respuesta: "En 24 horas hábiles desde el pago. El sistema incluye página de captación, formulario de precalificación y enlace de agenda online.",
+  },
+  {
+    pregunta: "¿Para qué tipo de profesionales funciona este sistema?",
+    respuesta: "Médicos, dentistas, psicólogos, abogados, arquitectos, nutricionistas, contadores y cualquier profesional independiente que gestione turnos o consultas por WhatsApp.",
+  },
+  {
+    pregunta: "¿El sistema puede filtrar consultas antes de que lleguen a WhatsApp?",
+    respuesta: "Sí. Incluye formulario de precalificación que filtra consultas según criterios definidos: tipo de servicio, disponibilidad horaria y presupuesto del cliente.",
+  },
+];
+
 export default function ProfesionalesPage({ params }: { params?: { lang?: string } }) {
   const ctaWa = buildWaLink(
     `Hola Oscar, soy profesional independiente y quiero activar ${START.nombre} por $${START.setupTotal}.`
   );
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_SCHEMA.map((item) => ({
+      "@type": "Question",
+      name: item.pregunta,
+      acceptedAnswer: { "@type": "Answer", text: item.respuesta },
+    })),
+  };
+
   return (
     <div className="relative min-h-screen bg-slate-950 text-slate-50 overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* Ruido de fondo */}
       <div className="fixed inset-0 bg-[url('/noise.svg')] opacity-[0.15] pointer-events-none mix-blend-overlay z-0" />
 
