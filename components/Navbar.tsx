@@ -44,12 +44,6 @@ export default function Navbar() {
             <Link href={`/${lang}/nosotros`} className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Nosotros</Link>
             <Link href={`/${lang}/obras`} className="text-[14px] font-bold text-blue-400 hover:text-blue-300 transition-colors">Obras</Link>
 
-            {/* TIBIO: Compromiso (Borde sutil) */}
-            <Link href={`/${lang}/onboarding`} className="text-[14px] font-bold text-emerald-400 hover:text-emerald-300 transition-colors border border-emerald-500/30 px-4 py-2 rounded-xl hover:bg-emerald-500/10 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              Onboarding
-            </Link>
-
             {/* CALIENTE: Acción (Fondo sólido) */}
             <a href={WA_CTA} target="_blank" rel="noopener noreferrer" className="bg-blue-600 hover:bg-blue-500 text-white font-black text-[14px] px-6 py-2.5 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)]">
               Solicitar Diagnóstico B2B
@@ -96,11 +90,6 @@ export default function Navbar() {
           <Link href={`/${lang}/nosotros`} onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">Nosotros</Link>
           <Link href={`/${lang}/obras`} onClick={toggleMenu} className="text-xl font-bold text-blue-400 py-4 border-b border-white/[0.05]">Obras</Link>
           <Link href={`/${lang}/recursos`} onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">Biblioteca B2B</Link>
-
-          <Link href={`/${lang}/onboarding`} onClick={toggleMenu} className="text-xl font-bold text-emerald-400 flex items-center gap-3 py-5 mt-2 border border-emerald-900/30 rounded-xl px-4 bg-emerald-950/10">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_15px_rgba(16,185,129,0.8)]"></span>
-            Iniciar Onboarding
-          </Link>
 
           <a href={WA_CTA} target="_blank" rel="noopener noreferrer" onClick={toggleMenu} className="mt-6 bg-blue-600 text-white text-center font-black text-lg w-full py-4 rounded-xl active:scale-95 shadow-[0_0_30px_rgba(37,99,235,0.4)]">
             Solicitar Diagnóstico B2B

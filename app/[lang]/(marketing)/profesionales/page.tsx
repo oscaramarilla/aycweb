@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { buildWaLink } from "@/lib/config/contact";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 import { PLANES_PRECIOS, TEXTO_FINANCIAMIENTO } from "@/lib/config/precios";
@@ -274,14 +273,6 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
                 colorScheme="emerald"
                 triggerLabel="⚡ Pagar con USDT"
               />
-            </div>
-            <div className="flex justify-center mb-4">
-              <Link
-                href={`/${params?.lang || 'es'}/onboarding`}
-                className="inline-flex items-center justify-center px-8 py-3 text-sm font-black text-slate-900 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full shadow-[0_0_25px_rgba(16,185,129,0.4)] hover:shadow-[0_0_40px_rgba(16,185,129,0.7)] hover:-translate-y-1 transition-all duration-300"
-              >
-                ⚡ Iniciar onboarding con 20%
-              </Link>
             </div>
             <p className="text-slate-500 text-xs">
               Te contactamos dentro de las 24 hs hábiles para coordinar el setup.

@@ -294,9 +294,9 @@ export default function DiagnosticoComercialPage() {
               </span>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tighter text-white mb-4">
-                Motor de{" "}
+                Diagnóstico de{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                  Scoring B2B
+                  Fricción Comercial
                 </span>
               </h1>
 

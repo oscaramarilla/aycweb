@@ -9,9 +9,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Diagnóstico Comercial Express | AYCweb Paraguay",
+  title: "Diagnóstico de Fricción Comercial | AYCweb Paraguay",
   description:
-    "Completá 6 preguntas en 5 minutos y recibí un diagnóstico personalizado sobre cómo sistematizar tu operación comercial. Sin costo, sin compromiso. AYCweb – Infraestructura Digital B2B Paraguay.",
+    "Completá 3 preguntas en 2 minutos y recibí un diagnóstico personalizado sobre las fricciones en tu operación comercial. Sin costo, sin compromiso. AYCweb – Infraestructura Digital B2B Paraguay.",
   keywords: [
     "diagnóstico comercial paraguay",
     "sistematizar operación comercial",
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     "AYCweb",
   ],
   openGraph: {
-    title: "Diagnóstico Comercial Express – AYCweb",
+    title: "Diagnóstico de Fricción Comercial – AYCweb",
     description:
-      "6 preguntas · 5 minutos · Diagnóstico personalizado gratuito para sistematizar tu operación comercial.",
+      "3 preguntas · 2 minutos · Diagnóstico personalizado gratuito para identificar fricciones en tu operación comercial.",
     url: "https://www.aycweb.com/es/diagnostico-comercial",
     siteName: "AYCweb",
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
         url: "https://www.aycweb.com/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Diagnóstico Comercial Express – AYCweb Paraguay",
+        alt: "Diagnóstico de Fricción Comercial – AYCweb Paraguay",
       },
     ],
     locale: "es_PY",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Diagnóstico Comercial Express – AYCweb",
+    title: "Diagnóstico de Fricción Comercial – AYCweb",
     description:
-      "6 preguntas · 5 minutos · Diagnóstico personalizado gratuito para sistematizar tu operación comercial.",
+      "3 preguntas · 2 minutos · Diagnóstico personalizado gratuito para identificar fricciones en tu operación comercial.",
     images: ["https://www.aycweb.com/og-image.jpg"],
   },
   alternates: {
