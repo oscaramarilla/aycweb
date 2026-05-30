@@ -12,6 +12,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { buildWhatsAppLink } from "@/lib/services/whatsapp-link";
+import { supabase } from "@/lib/supabaseClient";
 
 // ─── Cuestionario ─────────────────────────────────────────────────────────────
 
@@ -179,7 +180,7 @@ export default function DiagnosticoComercialPage() {
     setContactErrors({});
   }
 
-  function handleSubmitContact(e: React.FormEvent) {
+  async function handleSubmitContact(e: React.FormEvent) {
     e.preventDefault();
 
     const errs: typeof contactErrors = {};
@@ -212,16 +213,30 @@ export default function DiagnosticoComercialPage() {
     ].join("\n");
 
     const url = buildWhatsAppLink(message);
-    const win = window.open(url, "_blank", "noopener,noreferrer");
 
-    if (!win || win.closed || typeof win.closed === "undefined") {
-      setFallbackUrl(url);
+    try {
+      await supabase.from("leads_b2b").insert({
+        nombre: nombre.trim(),
+        empresa: empresa.trim(),
+        whatsapp: `+${digits}`,
+        score,
+        nivel: nivelLabel,
+        created_at: new Date().toISOString(),
+      });
+    } catch (err) {
+      console.error("[leads_b2b] Error capturando lead:", err);
+    } finally {
+      const win = window.open(url, "_blank", "noopener,noreferrer");
+
+      if (!win || win.closed || typeof win.closed === "undefined") {
+        setFallbackUrl(url);
+      }
+
+      setTimeout(() => {
+        setSubmitted(false);
+        setFallbackUrl(null);
+      }, 3000);
     }
-
-    setTimeout(() => {
-      setSubmitted(false);
-      setFallbackUrl(null);
-    }, 3000);
   }
 
   const allAnswered =
