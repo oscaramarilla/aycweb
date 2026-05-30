@@ -32,7 +32,9 @@ export const metadata: Metadata = {
     "AYC SRL",
     "AYCweb",
   ],
-  authors: [{ name: "Oscar Amarilla Cáceres", url: "https://aycweb.com" }],
+  authors: [{ name: "Oscar Amarilla Cáceres", url: "https://www.aycweb.com" }],
+  // Agregar el código de verificación desde Google Search Console:
+  // verification: { google: "TU_CODIGO_AQUI" },
   creator: "AYCweb - Oscar Amarilla Cáceres",
   publisher: "AYCweb",
   robots: {

@@ -23,13 +23,13 @@ export const metadata: Metadata = {
     "costos API eficientes",
   ],
   alternates: {
-    canonical: "https://aycweb.com/es/nosotros",
+    canonical: "https://www.aycweb.com/es/nosotros",
   },
   openGraph: {
     title: "Orquestación de Agentes + Optimización de APIs | AYCweb Paraguay",
     description:
       "Arquitecto de sistemas con orquestación multi-agente (Claude + Cline). Cada llamada a API se optimiza. Sin intermediarios, sin teléfono descompuesto. Infraestructura B2B real para empresas en Paraguay.",
-    url: "https://aycweb.com/es/nosotros",
+    url: "https://www.aycweb.com/es/nosotros",
     siteName: "AYCweb",
     images: [
       {

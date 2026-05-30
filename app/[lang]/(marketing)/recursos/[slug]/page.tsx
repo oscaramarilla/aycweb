@@ -1,9 +1,46 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getArticuloBySlug, articulos } from "../../../../../lib/data/articulos";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   return articulos.map((a) => ({ slug: a.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string; slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const articulo = getArticuloBySlug(slug);
+  if (!articulo) return {};
+
+  const canonicalUrl = `https://www.aycweb.com/es/recursos/${slug}`;
+
+  return {
+    title: articulo.titulo,
+    description: articulo.descripcion,
+    authors: [{ name: articulo.autor }],
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title: articulo.titulo,
+      description: articulo.descripcion,
+      url: canonicalUrl,
+      siteName: "AYCweb",
+      locale: "es_PY",
+      type: "article",
+      publishedTime: articulo.fechaPublicacion,
+      authors: [articulo.autor],
+      images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: articulo.titulo,
+      description: articulo.descripcion,
+      images: ["/og-image.jpg"],
+    },
+  };
 }
 
 export default async function RecursoSlug({
@@ -18,8 +55,33 @@ export default async function RecursoSlug({
     notFound();
   }
 
+  const canonicalUrl = `https://www.aycweb.com/es/recursos/${slug}`;
+
+  const blogPostingJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: articulo.titulo,
+    description: articulo.descripcion,
+    author: {
+      "@type": "Person",
+      name: articulo.autor,
+      url: "https://www.aycweb.com/es/nosotros",
+    },
+    publisher: { "@id": "https://www.aycweb.com/#organization" },
+    datePublished: articulo.fechaPublicacion,
+    dateModified: articulo.fechaPublicacion,
+    mainEntityOfPage: canonicalUrl,
+    url: canonicalUrl,
+    inLanguage: "es",
+    image: "https://www.aycweb.com/og-image.jpg",
+  };
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }}
+      />
       <section className="px-6 pt-28 pb-12 text-center">
         <div className="max-w-4xl mx-auto">
           <span className="text-[11px] font-bold uppercase tracking-widest text-blue-400 mb-3 block">

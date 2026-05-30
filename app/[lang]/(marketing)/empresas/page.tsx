@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     "AYCweb empresas",
   ],
   alternates: {
-    canonical: "https://aycweb.com/es/empresas",
+    canonical: "https://www.aycweb.com/es/empresas",
   },
   openGraph: {
     title: "Sistemas Operativos B2B para Empresas | AYCweb Paraguay",
     description:
       "Cotizadores dinámicos, generación de PDFs y motores operativos para manufactureras, clínicas, agroindustria y distribuidoras en Paraguay. Tu operación ya no cabe en Excel.",
-    url: "https://aycweb.com/es/empresas",
+    url: "https://www.aycweb.com/es/empresas",
     siteName: "AYCweb",
     images: [
       {

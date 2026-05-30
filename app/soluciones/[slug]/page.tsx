@@ -28,7 +28,7 @@ export async function generateMetadata({
 
   if (!config) return {};
 
-  const canonicalUrl = `https://aycweb.com/soluciones/${slug}`;
+  const canonicalUrl = `https://www.aycweb.com/soluciones/${slug}`;
 
   return {
     title: config.metaTitle,

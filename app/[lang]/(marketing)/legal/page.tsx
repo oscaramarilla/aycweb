@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "Términos y Condiciones de Servicio de AYCweb, incluyendo la Política de Pagos con Criptoactivos (USDT TRC20) para operaciones internacionales.",
   alternates: {
-    canonical: "https://aycweb.com/es/legal",
+    canonical: "https://www.aycweb.com/es/legal",
   },
   robots: { index: false, follow: false },
 };

@@ -23,11 +23,11 @@ export const metadata: Metadata = {
     title: "Diagnóstico Comercial Express – AYCweb",
     description:
       "6 preguntas · 5 minutos · Diagnóstico personalizado gratuito para sistematizar tu operación comercial.",
-    url: "https://aycweb.com/es/diagnostico-comercial",
+    url: "https://www.aycweb.com/es/diagnostico-comercial",
     siteName: "AYCweb",
     images: [
       {
-        url: "https://aycweb.com/og-image.jpg",
+        url: "https://www.aycweb.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Diagnóstico Comercial Express – AYCweb Paraguay",
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
     title: "Diagnóstico Comercial Express – AYCweb",
     description:
       "6 preguntas · 5 minutos · Diagnóstico personalizado gratuito para sistematizar tu operación comercial.",
-    images: ["https://aycweb.com/og-image.jpg"],
+    images: ["https://www.aycweb.com/og-image.jpg"],
   },
   alternates: {
-    canonical: "https://aycweb.com/es/diagnostico-comercial",
+    canonical: "https://www.aycweb.com/es/diagnostico-comercial",
   },
 };
 

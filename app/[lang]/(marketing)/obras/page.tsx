@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     "AYCweb obras",
   ],
   alternates: {
-    canonical: "https://aycweb.com/es/obras",
+    canonical: "https://www.aycweb.com/es/obras",
   },
   openGraph: {
     title: "Casos de Éxito y Sistemas Implementados | AYCweb Paraguay",
     description:
       "Sistemas B2B reales operando en empresas de Paraguay: cotizadores automáticos, agendamiento con WhatsApp y calculadoras paramétricas con generación de PDF.",
-    url: "https://aycweb.com/es/obras",
+    url: "https://www.aycweb.com/es/obras",
     siteName: "AYCweb",
     images: [
       {

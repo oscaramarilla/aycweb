@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Documento operativo privado — Contrato Marco de Prestación de Servicios de Infraestructura Digital de AYCweb.",
   alternates: {
-    canonical: "https://aycweb.com/es/contrato-marco",
+    canonical: "https://www.aycweb.com/es/contrato-marco",
   },
   robots: { index: false, follow: false },
 };

@@ -24,13 +24,13 @@ export const metadata: Metadata = {
     "AYCweb profesionales",
   ],
   alternates: {
-    canonical: "https://aycweb.com/es/profesionales",
+    canonical: "https://www.aycweb.com/es/profesionales",
   },
   openGraph: {
     title: "Sistema Automático de Agenda para Profesionales | AYCweb Paraguay",
     description:
       `Tu agenda no necesita más mensajes sueltos en WhatsApp. Necesita un sistema automático. Setup por USD ${START.setupTotal} + mantenimiento USD ${START.mantenimientoMensual}/mes (el 15 de cada mes).`,
-    url: "https://aycweb.com/es/profesionales",
+    url: "https://www.aycweb.com/es/profesionales",
     siteName: "AYCweb",
     images: [
       {
