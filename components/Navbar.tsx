@@ -51,7 +51,7 @@ export default function Navbar() {
 
             {/* CALIENTE: Acción (Fondo sólido) */}
             <a href={WA_CTA} target="_blank" rel="noopener noreferrer" className="bg-blue-600 hover:bg-blue-500 text-white font-black text-[14px] px-6 py-2.5 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)]">
-              Auditar mi proceso
+              Solicitar Diagnóstico B2B
             </a>
           </div>
 
@@ -95,7 +95,7 @@ export default function Navbar() {
           </Link>
 
           <a href={WA_CTA} target="_blank" rel="noopener noreferrer" onClick={toggleMenu} className="mt-6 bg-blue-600 text-white text-center font-black text-lg w-full py-4 rounded-xl active:scale-95 shadow-[0_0_30px_rgba(37,99,235,0.4)]">
-            Auditar mi proceso
+            Solicitar Diagnóstico B2B
           </a>
         </div>
       </div>
