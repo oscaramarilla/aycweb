@@ -207,6 +207,100 @@ export default function OnboardingPage() {
         </div>
       </section>
 
+      {/* ── PASO 2: CONTRATO MARCO (MSA) ── */}
+      <section className="relative z-10 px-6 max-w-5xl mx-auto py-12 md:py-16">
+        <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 md:p-8 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/10 via-transparent to-slate-900/20 pointer-events-none rounded-2xl" />
+
+          <div className="relative z-10">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="text-2xl">📝</span>
+              <h3 className="text-lg md:text-xl font-black text-white">
+                Paso 2: Firma del Contrato Marco (MSA)
+              </h3>
+            </div>
+
+            {/* Texto de instrucción */}
+            <p className="text-sm text-slate-400 bg-slate-950/60 border border-slate-700 rounded-xl px-5 py-4 mb-6 leading-relaxed">
+              Para proteger tu infraestructura y nuestro tiempo de desarrollo, operamos bajo acuerdos formales. Descarga el contrato, fírmalo digitalmente o a mano, y envíalo por WhatsApp para liberar tu proyecto en nuestra agenda.
+            </p>
+
+            {/* Contenedor con scroll del contrato */}
+            <div className="max-h-96 overflow-y-auto bg-slate-900 border border-slate-800 p-6 rounded-md text-sm text-slate-300 mb-6">
+              <h3 className="text-base font-black text-white mb-4 tracking-tight">
+                CONTRATO MARCO DE PRESTACIÓN DE SERVICIOS DE INFRAESTRUCTURA DIGITAL
+              </h3>
+
+              <h4 className="text-sm font-bold text-emerald-400 mt-5 mb-2">Cláusula 1 — Objeto del Contrato</h4>
+              <p className="mb-3 leading-relaxed">
+                AYCweb se compromete a desarrollar, desplegar y mantener la infraestructura digital del Cliente bajo un modelo de suscripción anual obligatoria. El entregable mínimo viable (MVP) consiste en el dominio en producción completamente funcional, con las características técnicas y comerciales acordadas en el diagnóstico y la cotización previa. El Cliente se obliga a contratar el servicio por un período mínimo de doce (12) meses contados desde la fecha de puesta en producción del MVP.
+              </p>
+
+              <h4 className="text-sm font-bold text-emerald-400 mt-5 mb-2">Cláusula 2 — Estructura Financiera</h4>
+              <p className="mb-3 leading-relaxed">
+                El Cliente abonará un costo único de configuración (setup) según el plan seleccionado, más un canon de mantenimiento mensual obligatorio durante todo el período contractual. Los mantenimientos disponibles son:
+              </p>
+              <ul className="list-disc pl-5 mb-3 space-y-1 text-slate-400">
+                <li><strong className="text-slate-200">Plan Starter:</strong> USD 15/mes — Hosting compartido optimizado, certificado SSL, respaldos semanales y soporte por ticket.</li>
+                <li><strong className="text-slate-200">Plan Business:</strong> USD 30/mes — VPS dedicado, SSL Wildcard, respaldos diarios, soporte prioritario y uptime monitoreado.</li>
+                <li><strong className="text-slate-200">Plan Enterprise:</strong> USD 45/mes — Infraestructura escalable en cloud, SSL avanzado, respaldos en tiempo real, soporte 24/7 y CDN.</li>
+              </ul>
+              <p className="mb-3 leading-relaxed">
+                El canon de mantenimiento se abonará indefectiblemente los días 15 de cada mes, iniciando el mes siguiente a la puesta en producción. El incumplimiento de dos (2) pagos consecutivos faculta a AYCweb a suspender el servicio sin responsabilidad.
+              </p>
+
+              <h4 className="text-sm font-bold text-emerald-400 mt-5 mb-2">Cláusula 3 — Reportes Quincenales</h4>
+              <p className="mb-3 leading-relaxed">
+                Durante la etapa de desarrollo y construcción del MVP, AYCweb entregará reportes quincenales de avance al Cliente, detallando el porcentaje completado, los hitos alcanzados, los bloqueos identificados y la proyección para la siguiente quincena. Estos reportes serán enviados por correo electrónico o WhatsApp corporativo y constituirán la única fuente de verdad para medir el progreso del proyecto. El Cliente dispondrá de 48 horas hábiles para formular objeciones; vencido ese plazo, el reporte se tendrá por aprobado.
+              </p>
+
+              <h4 className="text-sm font-bold text-emerald-400 mt-5 mb-2">Cláusula 4 — Salida a los 12 Meses y Pérdida de Derechos sobre el Código</h4>
+              <p className="mb-3 leading-relaxed">
+                El Cliente se obliga a mantener la suscripción activa por un plazo mínimo de doce (12) meses. En caso de rescisión anticipada por decisión unilateral del Cliente, abandono del servicio, impago del canon de mantenimiento por más de treinta (30) días corridos, o incumplimiento de cualquiera de las obligaciones esenciales del presente contrato:
+              </p>
+              <ul className="list-disc pl-5 mb-3 space-y-1 text-slate-400">
+                <li>El Cliente <strong className="text-red-400">perderá automáticamente todo derecho</strong> sobre el código fuente, la propiedad intelectual del software desarrollado, las configuraciones proprietarias y cualquier activo digital derivado del trabajo de AYCweb.</li>
+                <li>El dominio en producción será devuelto al Cliente en su estado actual, sin el respaldo del código ni las funcionalidades desarrolladas.</li>
+                <li>Los datos de clientes, métricas y contenidos ingresados por el Cliente durante la vigencia del contrato le serán entregados en un formato estándar de exportación (CSV/JSON) dentro de los 15 días hábiles siguientes a la solicitud formal.</li>
+              </ul>
+              <p className="mb-3 leading-relaxed">
+                Cumplido el período mínimo de doce (12) meses, el Cliente podrá optar por: (a) continuar con la suscripción en los términos pactados, o (b) solicitar la desvinculación, en cuyo caso se le entregará una copia del código fuente desarrollado exclusivamente para su proyecto, licenciado bajo los términos que ambas partes acuerden al momento de la salida.
+              </p>
+
+              <h4 className="text-sm font-bold text-emerald-400 mt-5 mb-2">Cláusula 5 — Confidencialidad</h4>
+              <p className="mb-3 leading-relaxed">
+                Ambas partes se comprometen a mantener la más estricta confidencialidad sobre toda la información técnica, comercial, financiera y estratégica intercambiada durante la vigencia del contrato y por un período de dos (2) años posteriores a su terminación. La información confidencial incluye, sin limitación: datos de clientes, métricas de negocio, algoritmos, configuraciones de infraestructura, credenciales de acceso y cualquier otro dato marcado como confidencial o que razonablemente deba ser considerado como tal. El incumplimiento de esta cláusula dará derecho a la parte afectada a reclamar daños y perjuicios.
+              </p>
+
+              <p className="mt-6 pt-4 border-t border-slate-700 text-[11px] text-slate-500 text-center">
+                Este documento es una versión resumida del Contrato Marco completo. La versión íntegra estará disponible para su firma digital.
+              </p>
+            </div>
+
+            {/* Botones de acción */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <a
+                href="/docs/Contrato-Marco-AYCweb.pdf"
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-600 bg-transparent px-5 py-3 text-sm font-bold text-slate-300 transition-all hover:border-emerald-500 hover:text-emerald-400 active:scale-95 flex-1"
+              >
+                📄 Descargar Contrato en PDF
+              </a>
+              <a
+                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hola Oscar, ya leí y firmé el Contrato Marco. Te adjunto el PDF para iniciar el despliegue de mi infraestructura.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 py-3 text-sm font-bold text-white transition-all hover:bg-emerald-500 active:scale-95 shadow-[0_0_20px_-5px_rgba(16,185,129,0.4)] flex-1"
+              >
+                📲 Enviar Contrato Firmado
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── METODOLOGÍA: IA + PROFESIONALES ── */}
       <section className="relative z-10 px-6 max-w-5xl mx-auto py-12 md:py-16">
         <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 md:p-8 overflow-hidden">
