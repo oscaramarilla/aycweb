@@ -10,7 +10,11 @@ const routes = [
   "/profesionales",
   "/obras",
   "/nosotros",
-  "/onboarding",
+  "/demo-cotizador",
+  "/recursos",
+  "/contrato-marco",
+  "/legal",
+  "/calculadora",
 ];
 
 const BASE_URL = "https://www.aycweb.com";
