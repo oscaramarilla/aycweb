@@ -12,7 +12,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { buildWhatsAppLink } from "@/lib/services/whatsapp-link";
-import { supabase } from "@/lib/supabaseClient";
 
 // ─── Cuestionario ─────────────────────────────────────────────────────────────
 
@@ -149,6 +148,7 @@ export default function DiagnosticoComercialPage() {
     whatsappLocal?: string;
   }>({});
   const [submitted, setSubmitted] = useState(false);
+  const [showOnboardingCta, setShowOnboardingCta] = useState(false);
   const [fallbackUrl, setFallbackUrl] = useState<string | null>(null);
 
   // ── Handlers
@@ -215,14 +215,21 @@ export default function DiagnosticoComercialPage() {
     const url = buildWhatsAppLink(message);
 
     try {
-      await supabase.from("leads_b2b").insert({
-        nombre: nombre.trim(),
-        empresa: empresa.trim(),
-        whatsapp: `+${digits}`,
-        score,
-        nivel: nivelLabel,
-        created_at: new Date().toISOString(),
+      const res = await fetch("/api/submit-diagnostico", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombre: nombre.trim(),
+          empresa: empresa.trim(),
+          whatsapp: `+${digits}`,
+          score,
+          nivel: nivelLabel,
+        }),
       });
+
+      if (!res.ok) {
+        console.error("[leads_b2b] Error del servidor:", await res.text());
+      }
     } catch (err) {
       console.error("[leads_b2b] Error capturando lead:", err);
     } finally {
@@ -232,10 +239,7 @@ export default function DiagnosticoComercialPage() {
         setFallbackUrl(url);
       }
 
-      setTimeout(() => {
-        setSubmitted(false);
-        setFallbackUrl(null);
-      }, 3000);
+      setShowOnboardingCta(true);
     }
   }
 
@@ -459,169 +463,208 @@ export default function DiagnosticoComercialPage() {
               </div>
             </div>
 
-            {/* Formulario de contacto */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
-              <h2 className="text-lg font-black text-white mb-1">
-                Agendá tu diagnóstico con Oscar
-              </h2>
-              <p className="text-slate-400 text-sm mb-6">
-                En 15 minutos evaluamos si hay encaje real. Sin compromiso.
-              </p>
+            {/* Formulario de contacto / Éxito con CTA a onboarding */}
+            {showOnboardingCta ? (
+              <div className="rounded-2xl border border-emerald-500/40 bg-emerald-950/25 p-8 text-center shadow-[0_0_40px_rgba(16,185,129,0.12)]">
+                <span className="text-5xl mb-4 block">🎯</span>
+                <h2 className="text-2xl font-black text-white mb-3">
+                  Tu empresa califica para nuestra infraestructura
+                </h2>
+                <p className="text-emerald-300 text-base font-semibold mb-6">
+                  Inicia la activación de tu sistema ahora.
+                </p>
+                <Link
+                  href="/es/onboarding"
+                  className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_40px_rgba(16,185,129,0.35)] active:scale-95 text-base"
+                >
+                  <span>⚡</span>
+                  Ir a Onboarding — Activar mi Sistema
+                </Link>
+                <p className="text-slate-500 text-xs mt-4">
+                  Elegí tu método de pago y firmá el contrato marco para liberar tu proyecto.
+                </p>
 
-              <form
-                onSubmit={handleSubmitContact}
-                noValidate
-                className="space-y-4"
-              >
-                {/* Nombre */}
-                <div className="space-y-1.5">
-                  <label
-                    htmlFor="nombre"
-                    className="block text-sm font-bold text-slate-200"
-                  >
-                    Nombre <span className="text-blue-400">*</span>
-                  </label>
-                  <input
-                    id="nombre"
-                    type="text"
-                    autoComplete="given-name"
-                    placeholder="ej. Juan Pérez"
-                    value={nombre}
-                    onChange={(e) => {
-                      setNombre(e.target.value);
-                      if (contactErrors.nombre)
-                        setContactErrors((p) => ({ ...p, nombre: undefined }));
-                    }}
-                    className={fieldCls(!!contactErrors.nombre)}
-                  />
-                  {contactErrors.nombre && (
-                    <p className={errorCls}>{contactErrors.nombre}</p>
-                  )}
-                </div>
+                {fallbackUrl && (
+                  <div className="mt-4 p-4 rounded-xl bg-amber-950/40 border border-amber-500/30 text-center">
+                    <p className="text-amber-300 text-sm font-semibold mb-2">
+                      Tu navegador bloqueó la ventana emergente.
+                    </p>
+                    <a
+                      href={fallbackUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-blue-400 underline underline-offset-4 text-sm font-bold hover:text-blue-300 transition-colors"
+                    >
+                      <span>💬</span>
+                      Tocá aquí para abrir WhatsApp manualmente
+                    </a>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
+                <h2 className="text-lg font-black text-white mb-1">
+                  Agendá tu diagnóstico con Oscar
+                </h2>
+                <p className="text-slate-400 text-sm mb-6">
+                  En 15 minutos evaluamos si hay encaje real. Sin compromiso.
+                </p>
 
-                {/* Empresa */}
-                <div className="space-y-1.5">
-                  <label
-                    htmlFor="empresa"
-                    className="block text-sm font-bold text-slate-200"
-                  >
-                    Empresa <span className="text-blue-400">*</span>
-                  </label>
-                  <input
-                    id="empresa"
-                    type="text"
-                    autoComplete="organization"
-                    placeholder="ej. Distribuidora Norte S.A."
-                    value={empresa}
-                    onChange={(e) => {
-                      setEmpresa(e.target.value);
-                      if (contactErrors.empresa)
-                        setContactErrors((p) => ({
-                          ...p,
-                          empresa: undefined,
-                        }));
-                    }}
-                    className={fieldCls(!!contactErrors.empresa)}
-                  />
-                  {contactErrors.empresa && (
-                    <p className={errorCls}>{contactErrors.empresa}</p>
-                  )}
-                </div>
-
-                {/* WhatsApp */}
-                <div className="space-y-1.5">
-                  <label
-                    htmlFor="whatsappLocal"
-                    className="block text-sm font-bold text-slate-200"
-                  >
-                    WhatsApp <span className="text-blue-400">*</span>
-                  </label>
-                  <p className="text-xs text-slate-500">
-                    Con código de país · ej: 595 985 123 456
-                  </p>
-                  <div className="flex items-center rounded-xl border border-slate-700 bg-slate-900/60 overflow-hidden focus-within:border-blue-500/60 focus-within:ring-1 focus-within:ring-blue-500/30 transition-all">
-                    <span className="px-4 py-4 text-slate-400 font-mono text-base font-semibold bg-slate-800/60 border-r border-slate-700 shrink-0 select-none">
-                      +
-                    </span>
+                <form
+                  onSubmit={handleSubmitContact}
+                  noValidate
+                  className="space-y-4"
+                >
+                  {/* Nombre */}
+                  <div className="space-y-1.5">
+                    <label
+                      htmlFor="nombre"
+                      className="block text-sm font-bold text-slate-200"
+                    >
+                      Nombre <span className="text-blue-400">*</span>
+                    </label>
                     <input
-                      id="whatsappLocal"
-                      type="tel"
-                      inputMode="numeric"
-                      placeholder="595 985 864 209"
-                      autoComplete="tel"
-                      value={whatsappLocal}
+                      id="nombre"
+                      type="text"
+                      autoComplete="given-name"
+                      placeholder="ej. Juan Pérez"
+                      value={nombre}
                       onChange={(e) => {
-                        const val = e.target.value
-                          .replace(/[^\d\s]/g, "")
-                          .slice(0, 20);
-                        setWhatsappLocal(val);
-                        if (contactErrors.whatsappLocal)
+                        setNombre(e.target.value);
+                        if (contactErrors.nombre)
+                          setContactErrors((p) => ({ ...p, nombre: undefined }));
+                      }}
+                      className={fieldCls(!!contactErrors.nombre)}
+                    />
+                    {contactErrors.nombre && (
+                      <p className={errorCls}>{contactErrors.nombre}</p>
+                    )}
+                  </div>
+
+                  {/* Empresa */}
+                  <div className="space-y-1.5">
+                    <label
+                      htmlFor="empresa"
+                      className="block text-sm font-bold text-slate-200"
+                    >
+                      Empresa <span className="text-blue-400">*</span>
+                    </label>
+                    <input
+                      id="empresa"
+                      type="text"
+                      autoComplete="organization"
+                      placeholder="ej. Distribuidora Norte S.A."
+                      value={empresa}
+                      onChange={(e) => {
+                        setEmpresa(e.target.value);
+                        if (contactErrors.empresa)
                           setContactErrors((p) => ({
                             ...p,
-                            whatsappLocal: undefined,
+                            empresa: undefined,
                           }));
                       }}
-                      className="flex-1 bg-transparent px-4 py-4 text-white placeholder-slate-600 text-base font-mono outline-none"
+                      className={fieldCls(!!contactErrors.empresa)}
                     />
-                  </div>
-                  <p
-                    className={`text-[11px] ${
-                      whatsappLocal.replace(/\D/g, "").length >= 7
-                        ? "text-emerald-400"
-                        : "text-slate-600"
-                    }`}
-                  >
-                    {whatsappLocal.replace(/\D/g, "").length > 0
-                      ? `${whatsappLocal.replace(/\D/g, "").length} dígitos`
-                      : "Incluí el código de país (595 para Paraguay)"}
-                  </p>
-                  {contactErrors.whatsappLocal && (
-                    <p className={errorCls}>{contactErrors.whatsappLocal}</p>
-                  )}
-                </div>
-
-                {/* Botón submit */}
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    disabled={submitted}
-                    className="w-full bg-blue-600 hover:bg-blue-500 disabled:bg-blue-800 disabled:cursor-not-allowed text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_40px_rgba(37,99,235,0.35)] active:scale-95 text-base flex items-center justify-center gap-3"
-                  >
-                    {submitted ? (
-                      <>
-                        <span className="animate-spin inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />
-                        Abriendo WhatsApp…
-                      </>
-                    ) : (
-                      <>
-                        <span>💬</span>
-                        Enviar resultado y agendar diagnóstico
-                      </>
+                    {contactErrors.empresa && (
+                      <p className={errorCls}>{contactErrors.empresa}</p>
                     )}
-                  </button>
-                  <p className="text-center text-xs text-slate-500 mt-3">
-                    Se abrirá WhatsApp con tu scoring pre-cargado. Sin compromiso.
-                  </p>
+                  </div>
 
-                  {fallbackUrl && (
-                    <div className="mt-4 p-4 rounded-xl bg-amber-950/40 border border-amber-500/30 text-center">
-                      <p className="text-amber-300 text-sm font-semibold mb-2">
-                        Tu navegador bloqueó la ventana emergente.
-                      </p>
-                      <a
-                        href={fallbackUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-blue-400 underline underline-offset-4 text-sm font-bold hover:text-blue-300 transition-colors"
-                      >
-                        <span>💬</span>
-                        Tocá aquí para abrir WhatsApp manualmente
-                      </a>
+                  {/* WhatsApp */}
+                  <div className="space-y-1.5">
+                    <label
+                      htmlFor="whatsappLocal"
+                      className="block text-sm font-bold text-slate-200"
+                    >
+                      WhatsApp <span className="text-blue-400">*</span>
+                    </label>
+                    <p className="text-xs text-slate-500">
+                      Con código de país · ej: 595 985 123 456
+                    </p>
+                    <div className="flex items-center rounded-xl border border-slate-700 bg-slate-900/60 overflow-hidden focus-within:border-blue-500/60 focus-within:ring-1 focus-within:ring-blue-500/30 transition-all">
+                      <span className="px-4 py-4 text-slate-400 font-mono text-base font-semibold bg-slate-800/60 border-r border-slate-700 shrink-0 select-none">
+                        +
+                      </span>
+                      <input
+                        id="whatsappLocal"
+                        type="tel"
+                        inputMode="numeric"
+                        placeholder="595 985 864 209"
+                        autoComplete="tel"
+                        value={whatsappLocal}
+                        onChange={(e) => {
+                          const val = e.target.value
+                            .replace(/[^\d\s]/g, "")
+                            .slice(0, 20);
+                          setWhatsappLocal(val);
+                          if (contactErrors.whatsappLocal)
+                            setContactErrors((p) => ({
+                              ...p,
+                              whatsappLocal: undefined,
+                            }));
+                        }}
+                        className="flex-1 bg-transparent px-4 py-4 text-white placeholder-slate-600 text-base font-mono outline-none"
+                      />
                     </div>
-                  )}
-                </div>
-              </form>
-            </div>
+                    <p
+                      className={`text-[11px] ${
+                        whatsappLocal.replace(/\D/g, "").length >= 7
+                          ? "text-emerald-400"
+                          : "text-slate-600"
+                      }`}
+                    >
+                      {whatsappLocal.replace(/\D/g, "").length > 0
+                        ? `${whatsappLocal.replace(/\D/g, "").length} dígitos`
+                        : "Incluí el código de país (595 para Paraguay)"}
+                    </p>
+                    {contactErrors.whatsappLocal && (
+                      <p className={errorCls}>{contactErrors.whatsappLocal}</p>
+                    )}
+                  </div>
+
+                  {/* Botón submit */}
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={submitted}
+                      className="w-full bg-blue-600 hover:bg-blue-500 disabled:bg-blue-800 disabled:cursor-not-allowed text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_40px_rgba(37,99,235,0.35)] active:scale-95 text-base flex items-center justify-center gap-3"
+                    >
+                      {submitted ? (
+                        <>
+                          <span className="animate-spin inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />
+                          Abriendo WhatsApp…
+                        </>
+                      ) : (
+                        <>
+                          <span>💬</span>
+                          Enviar resultado y agendar diagnóstico
+                        </>
+                      )}
+                    </button>
+                    <p className="text-center text-xs text-slate-500 mt-3">
+                      Se abrirá WhatsApp con tu scoring pre-cargado. Sin compromiso.
+                    </p>
+
+                    {fallbackUrl && (
+                      <div className="mt-4 p-4 rounded-xl bg-amber-950/40 border border-amber-500/30 text-center">
+                        <p className="text-amber-300 text-sm font-semibold mb-2">
+                          Tu navegador bloqueó la ventana emergente.
+                        </p>
+                        <a
+                          href={fallbackUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-blue-400 underline underline-offset-4 text-sm font-bold hover:text-blue-300 transition-colors"
+                        >
+                          <span>💬</span>
+                          Tocá aquí para abrir WhatsApp manualmente
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </form>
+              </div>
+            )}
 
             {/* Link para repetir */}
             <div className="mt-6 text-center">

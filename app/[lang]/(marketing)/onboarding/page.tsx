@@ -48,8 +48,9 @@ const CampoCopia = ({ etiqueta, valor }: CampoCopiaProps) => {
 
 export default function OnboardingPage() {
   const whatsappNumber = WHATSAPP_NUMBER;
+  const whatsappClosingMsg = encodeURIComponent("Hola AYC, acabo de completar mi onboarding y pago para iniciar la construcción de mi sistema. Adjunto comprobante.");
   const whatsappUsdMsg = encodeURIComponent("Hola Oscar. Quiero los datos de la cuenta USD para activar el onboarding internacional.");
-  const whatsappPygMsg = encodeURIComponent("Hola Oscar. Acabo de hacer la transferencia inicial para arrancar el Onboarding. Te envío el comprobante:");
+  const whatsappPygMsg = whatsappClosingMsg;
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-950 text-slate-50 font-sans relative overflow-hidden pb-24">
@@ -153,7 +154,7 @@ export default function OnboardingPage() {
               </div>
 
             </div>
-            <a href={`https://wa.me/${whatsappNumber}?text=${whatsappPygMsg}`} target="_blank" rel="noopener noreferrer" className="block w-full text-center py-3.5 rounded-xl font-bold text-[14px] bg-[#25D366] hover:bg-[#1DA851] text-zinc-950 transition-all shadow-[0_0_20px_-5px_rgba(37,211,102,0.4)]">
+            <a href={`https://wa.me/${whatsappNumber}?text=${whatsappClosingMsg}`} target="_blank" rel="noopener noreferrer" className="block w-full text-center py-3.5 rounded-xl font-bold text-[14px] bg-[#25D366] hover:bg-[#1DA851] text-zinc-950 transition-all shadow-[0_0_20px_-5px_rgba(37,211,102,0.4)]">
               Ya transferí — Enviar comprobante
             </a>
           </div>
@@ -199,7 +200,7 @@ export default function OnboardingPage() {
               <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-1 text-center font-bold mt-2">Red Tron (TRC20)</p>
               <CampoCopia etiqueta="Wallet" valor="TLUzuQDLjVwp4UDFAEFuypw5LmFf1K1PRQ" />
             </div>
-            <a href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hola Oscar. Acabo de transferir USDT. Te paso el Hash para confirmar:")}`} target="_blank" rel="noopener noreferrer" className="block w-full text-center py-3.5 rounded-xl font-bold text-[14px] bg-zinc-800 hover:bg-zinc-700 text-white transition-all border border-zinc-700">
+            <a href={`https://wa.me/${whatsappNumber}?text=${whatsappClosingMsg}`} target="_blank" rel="noopener noreferrer" className="block w-full text-center py-3.5 rounded-xl font-bold text-[14px] bg-zinc-800 hover:bg-zinc-700 text-white transition-all border border-zinc-700">
               Enviar Hash (TXID)
             </a>
           </div>
@@ -289,7 +290,7 @@ export default function OnboardingPage() {
                 📄 Descargar Contrato en PDF
               </a>
               <a
-                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hola Oscar, ya leí y firmé el Contrato Marco. Te adjunto el PDF para iniciar el despliegue de mi infraestructura.")}`}
+              href={`https://wa.me/${whatsappNumber}?text=${whatsappClosingMsg}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 py-3 text-sm font-bold text-white transition-all hover:bg-emerald-500 active:scale-95 shadow-[0_0_20px_-5px_rgba(16,185,129,0.4)] flex-1"
