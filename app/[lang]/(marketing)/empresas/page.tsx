@@ -348,29 +348,29 @@ export default function ProductosPage({ params }: { params?: { lang?: string } }
           <div className="mt-10 max-w-3xl mx-auto rounded-2xl border border-blue-500/20 bg-blue-950/10 p-6">
             <p className="text-[11px] font-black uppercase tracking-widest text-blue-400 mb-1">Modelo de implementación por etapas</p>
             <p className="text-[12px] text-slate-500 mb-5">Así distribuimos el compromiso económico a lo largo del proyecto.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-              {[
-                {
-                  num: "01",
-                  pct: "20%",
-                  desc: "Para iniciar el proyecto: USD 180 en AYCweb Business o USD 360 en AYCweb Enterprise.",
-                },
-                {
-                  num: "02",
-                  pct: "30%",
-                  desc: "Contra primer avance funcional: USD 270 en Business o USD 540 en Enterprise.",
-                },
-                {
-                  num: "03",
-                  pct: "20%",
-                  desc: "Luego del sprint de ajustes: USD 180 en Business o USD 360 en Enterprise.",
-                },
-                {
-                  num: "04",
-                  pct: "30%",
-                  desc: "Contra entrega final: USD 270 en Business o USD 540 en Enterprise.",
-                },
-              ].map((e) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                {[
+                  {
+                    num: "01",
+                    pct: "20%",
+                    desc: `Para iniciar el proyecto: USD ${BIZ.hitos.anticipo} en AYCweb Business o USD ${ENT.hitos.anticipo} en AYCweb Enterprise.`,
+                  },
+                  {
+                    num: "02",
+                    pct: "20%",
+                    desc: `Contra definición y alcance funcional: USD ${BIZ.hitos.definicion} en Business o USD ${ENT.hitos.definicion} en Enterprise.`,
+                  },
+                  {
+                    num: "03",
+                    pct: "30%",
+                    desc: `Contra implementación y desarrollo: USD ${BIZ.hitos.implementacion} en Business o USD ${ENT.hitos.implementacion} en Enterprise.`,
+                  },
+                  {
+                    num: "04",
+                    pct: "30%",
+                    desc: `Contra pruebas y entrega final: USD ${BIZ.hitos.pruebas} en Business o USD ${ENT.hitos.pruebas} en Enterprise.`,
+                  },
+                ].map((e) => (
                 <div key={e.num} className="flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-950/50 p-3">
                   <span className="text-blue-400 font-black text-xs mt-0.5 w-4 flex-shrink-0">{e.num}</span>
                   <p className="text-[12px] text-slate-300 leading-snug"><strong className="text-white">{e.pct}</strong> {e.desc}</p>
