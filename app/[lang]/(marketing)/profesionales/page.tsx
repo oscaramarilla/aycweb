@@ -280,6 +280,24 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
           </div>
         </div>
       </section>
+
+      {/* ── DIAGNÓSTICO COMERCIAL ── */}
+      <section className="relative z-10 px-6 py-10 md:py-14 border-t border-white/[0.05]">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-400 mb-3">
+            ¿Tu operación ya tiene más volumen?
+          </p>
+          <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-6 max-w-xl mx-auto">
+            Si ya manejás varios clientes, agenda, cotizaciones, pedidos o seguimiento por WhatsApp, conviene hacer un diagnóstico antes de elegir el sistema.
+          </p>
+          <a
+            href={`/${params?.lang || "es"}/diagnostico-comercial`}
+            className="inline-block border border-amber-500/40 text-amber-300 hover:bg-amber-500/10 font-bold py-3 px-10 rounded-xl transition-all active:scale-95 text-sm"
+          >
+            Solicitar diagnóstico comercial
+          </a>
+        </div>
+      </section>
     </div>
   );
 }
