@@ -32,7 +32,6 @@ export const PLANES_PRECIOS: Record<string, PlanPrecio> = {
     setupTotal: 900,
     mantenimientoMensual: 30,
     hitos: { anticipo: 180, definicion: 180, implementacion: 270, pruebas: 270 },
-    totalAnualInversion: 1260,
   },
   enterprise: {
     id: 'enterprise',
@@ -40,7 +39,6 @@ export const PLANES_PRECIOS: Record<string, PlanPrecio> = {
     setupTotal: 1800,
     mantenimientoMensual: 45,
     hitos: { anticipo: 360, definicion: 360, implementacion: 540, pruebas: 540 },
-    totalAnualInversion: 2340,
   },
 };
 
