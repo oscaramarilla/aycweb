@@ -1,21 +1,19 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
+const supabaseUrl = process.env.SUPABASE_URL
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn(
-    '[supabaseClient] NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY no están definidas. ' +
-    'Las operaciones de Supabase no funcionarán correctamente.'
+  throw new Error(
+    '[supabaseClient] Variables de entorno SUPABASE_URL y SUPABASE_ANON_KEY ' +
+    'son obligatorias. Definilas en .env.local (server-side únicamente). ' +
+    'Ninguna variable NEXT_PUBLIC_ debe usarse para Supabase.'
   )
 }
 
 /**
- * Cliente Supabase singleton.
- * Si faltan las variables de entorno el cliente se inicializa con strings vacíos
- * para evitar un crash silencioso que provoque "client-side exception" en producción.
+ * Cliente Supabase singleton — Server-Side únicamente.
+ * Arquitectura estricta: NO se exponen credenciales al bundle del cliente.
+ * Las variables NEXT_PUBLIC_ NO se usan para Supabase.
  */
-export const supabase: SupabaseClient = createClient(
-  supabaseUrl || 'https://placeholder.supabase.co',
-  supabaseAnonKey || 'placeholder-anon-key',
-)
+export const supabase: SupabaseClient = createClient(supabaseUrl, supabaseAnonKey)

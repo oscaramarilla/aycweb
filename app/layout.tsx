@@ -101,15 +101,22 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </LanguageProvider>
         <Analytics />
 
-        {/* Google Analytics 4 — P2.5 */}
-        {/* Reemplazar G-XXXXXXXXXX con tu ID real de GA4 */}
+        {/* Google Tag Manager — GTM-TZFHCGKD */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-TZFHCGKD"
           strategy="afterInteractive"
         />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');`}
+        <Script id="gtm-init" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}`}
         </Script>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TZFHCGKD"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
       </body>
     </html>
   );
