@@ -11,6 +11,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { buildWhatsAppLink } from "@/lib/services/whatsapp-link";
 
 // ─── Cuestionario ─────────────────────────────────────────────────────────────
 
@@ -100,6 +101,85 @@ function resolveNivel(total: number): NivelKey {
   return "optimizado";
 }
 
+// ─── Recomendación comercial ───────────────────────────────────────────────
+
+type Recomendacion = {
+  friccion: string;
+  plan: string;
+  bullets: string[];
+};
+
+function resolveRecomendacion(total: number): Recomendacion {
+  if (total >= 7) {
+    return {
+      friccion: "Crítico",
+      plan: "Enterprise / Arquitectura a medida",
+      bullets: [
+        "La operación pierde capital por ineficiencia manual.",
+        "Se requiere una transformación digital integral.",
+        "Arquitectura B2B modular para escalar sin fricción.",
+      ],
+    };
+  }
+  if (total >= 5) {
+    return {
+      friccion: "Alto",
+      plan: "Business (con posible salto a Enterprise)",
+      bullets: [
+        "La ineficiencia ya limita tu capacidad de escalar.",
+        "Business resuelve la mayoría de los cuellos de botella.",
+        "Si operás múltiples áreas o alto volumen, evaluamos Enterprise.",
+      ],
+    };
+  }
+  if (total >= 3) {
+    return {
+      friccion: "Medio",
+      plan: "Business",
+      bullets: [
+        "Hay cuellos de botella medios que frenan tu operación.",
+        "Business cubre automatización de cotizaciones + CRM + reporting.",
+      ],
+    };
+  }
+  return {
+    friccion: "Bajo",
+    plan: "Starter (sistema liviano)",
+    bullets: [
+      "Tu operación es ágil; un sistema liviano puede potenciarte.",
+      "Starter incluye lo esencial para mantener el ritmo de crecimiento.",
+    ],
+  };
+}
+
+/**
+ * Construye el mensaje de WhatsApp con los datos del diagnóstico.
+ */
+function buildMensajeRecomendacion(
+  nombre: string,
+  empresa: string,
+  friccion: string,
+  plan: string,
+  score: number
+): string {
+  const lines: string[] = [];
+
+  if (nombre.trim() && empresa.trim()) {
+    lines.push(`Hola Oscar, soy ${nombre.trim()} de ${empresa.trim()}.`);
+  } else if (nombre.trim()) {
+    lines.push(`Hola Oscar, soy ${nombre.trim()}.`);
+  } else {
+    lines.push(`Hola Oscar.`);
+  }
+
+  lines.push(`Completé el diagnóstico comercial de AYCweb.`);
+  lines.push(`Mi nivel de fricción salió: ${friccion} (${score}/9).`);
+  lines.push(`La recomendación fue: ${plan}.`);
+  lines.push(`Quiero que revises mi caso y me digas cuál sería el siguiente paso.`);
+
+  return lines.join("\n");
+}
+
 // ─── Helpers de clases ────────────────────────────────────────────────────────
 
 function fieldCls(hasError: boolean): string {
@@ -147,7 +227,7 @@ export default function DiagnosticoComercialPage() {
     whatsappLocal?: string;
   }>({});
   const [submitted, setSubmitted] = useState(false);
-  const [showOnboardingCta, setShowOnboardingCta] = useState(false);
+  const [showResultado, setShowResultado] = useState(false);
 
   // ── Handlers
 
@@ -176,6 +256,7 @@ export default function DiagnosticoComercialPage() {
     setEmpresa("");
     setWhatsappLocal("");
     setContactErrors({});
+    setShowResultado(false);
   }
 
   async function handleSubmitContact(e: React.FormEvent) {
@@ -220,13 +301,14 @@ export default function DiagnosticoComercialPage() {
       console.error("[leads_b2b] Error capturando lead:", err);
     }
 
-    setShowOnboardingCta(true);
+    setShowResultado(true);
     setSubmitted(false);
   }
 
   const allAnswered =
     answers.p1 !== null && answers.p2 !== null && answers.p3 !== null;
   const nivelConfig = NIVELES[nivel];
+  const recomendacion = resolveRecomendacion(score);
 
   // ── Render
 
@@ -445,25 +527,71 @@ export default function DiagnosticoComercialPage() {
             </div>
 
             {/* Formulario de contacto / Éxito con CTA a onboarding */}
-            {showOnboardingCta ? (
+            {showResultado ? (
               <div className="rounded-2xl border border-emerald-500/40 bg-emerald-950/25 p-8 text-center shadow-[0_0_40px_rgba(16,185,129,0.12)]">
-                <span className="text-5xl mb-4 block">🎯</span>
-                <h2 className="text-2xl font-black text-white mb-3">
-                  Tu empresa califica para nuestra infraestructura
+                <span className="text-5xl mb-4 block">✅</span>
+                <h2 className="text-2xl font-black text-white mb-2">
+                  Diagnóstico completo
                 </h2>
-                <p className="text-emerald-300 text-base font-semibold mb-6">
-                  Inicia la activación de tu sistema ahora.
+                <p className="text-emerald-300 text-sm font-semibold mb-6">
+                  {recomendacion.friccion === "Crítico" || recomendacion.friccion === "Alto"
+                    ? "Tenemos una oportunidad clara de mejora para tu operación."
+                    : "Tu operación está en buen camino, podemos potenciarla."}
                 </p>
-                <Link
-                  href="/es/onboarding"
-                  className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_40px_rgba(16,185,129,0.35)] active:scale-95 text-base"
+
+                {/* Score + Recomendación */}
+                <div className="bg-slate-900/60 border border-slate-700 rounded-xl p-5 mb-6 text-left space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400 text-sm">Nivel de fricción comercial</span>
+                    <span className="text-xl font-black text-white">{recomendacion.friccion}</span>
+                  </div>
+                  <div className="h-px bg-slate-700/50" />
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400 text-sm">Recomendación AYCweb</span>
+                    <span className="text-base font-black text-blue-400">{recomendacion.plan}</span>
+                  </div>
+                  <div className="h-px bg-slate-700/50" />
+                  <div className="pt-1">
+                    <span className="text-slate-400 text-sm block mb-2">¿Por qué?</span>
+                    <ul className="space-y-1.5">
+                      {recomendacion.bullets.map((b, i) => (
+                        <li key={i} className="text-slate-300 text-sm flex items-start gap-2">
+                          <span className="text-emerald-400 mt-0.5 shrink-0">•</span>
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* CTA principal: WhatsApp */}
+                <a
+                  href={buildWhatsAppLink(
+                    buildMensajeRecomendacion(
+                      nombre,
+                      empresa,
+                      recomendacion.friccion,
+                      recomendacion.plan,
+                      score
+                    )
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-[0_0_40px_rgba(37,99,235,0.35)] active:scale-95 text-base mb-4"
                 >
-                  <span>⚡</span>
-                  Ir a Onboarding — Activar mi Sistema
-                </Link>
-                <p className="text-slate-500 text-xs mt-4">
-                  Elegí tu método de pago y firmá el contrato marco para liberar tu proyecto.
-                </p>
+                  <span>💬</span>
+                  Enviar diagnóstico por WhatsApp
+                </a>
+
+                {/* CTA secundario: Demo cotizador */}
+                <div>
+                  <Link
+                    href={`/${lang}/demo-cotizador`}
+                    className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-semibold underline underline-offset-2"
+                  >
+                    🔍 Ver demo cotizador
+                  </Link>
+                </div>
               </div>
             ) : (
               <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
