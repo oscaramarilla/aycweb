@@ -34,8 +34,7 @@ export const metadata: Metadata = {
     "AYCweb",
   ],
   authors: [{ name: "Oscar Amarilla Cáceres", url: "https://www.aycweb.com" }],
-  verification: { google: "TU_CODIGO_AQUI" },
-  creator: "AYCweb - Oscar Amarilla Cáceres",
+creator: "AYCweb - Oscar Amarilla Cáceres",
   publisher: "AYCweb",
   robots: {
     index: true,
