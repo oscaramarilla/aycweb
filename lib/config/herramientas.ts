@@ -16,21 +16,4 @@ export const HERRAMIENTAS_B2B: HerramientaB2B[] = [
     href: "/es/diagnostico-comercial",
     badge: "Gratis",
   },
-  {
-    id: "generador-api-whatsapp",
-    titulo: "Generador API WhatsApp",
-    descripcion:
-      "Crea enlaces directos con mensajes pre-cargados para tus campañas.",
-    href: "https://wa.link/",
-    badge: "Gratis",
-    esExterno: true,
-  },
-  {
-    id: "matriz-cotizacion-pdf",
-    titulo: "Matriz de Cotización PDF",
-    descripcion:
-      "Plantilla base para estructurar presupuestos de alta conversión.",
-    href: "#matriz-pdf",
-    badge: "Plantilla",
-  },
 ];
