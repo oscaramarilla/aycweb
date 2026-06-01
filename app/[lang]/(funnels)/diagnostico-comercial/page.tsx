@@ -11,7 +11,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { buildWhatsAppLink } from "@/lib/services/whatsapp-link";
 
 // ─── Cuestionario ─────────────────────────────────────────────────────────────
 
@@ -149,7 +148,6 @@ export default function DiagnosticoComercialPage() {
   }>({});
   const [submitted, setSubmitted] = useState(false);
   const [showOnboardingCta, setShowOnboardingCta] = useState(false);
-  const [fallbackUrl, setFallbackUrl] = useState<string | null>(null);
 
   // ── Handlers
 
@@ -201,18 +199,6 @@ export default function DiagnosticoComercialPage() {
     setSubmitted(true);
 
     const nivelLabel = NIVELES[nivel].label;
-    const message = [
-      `Hola Oscar, realicé el diagnóstico B2B de AYCweb.`,
-      ``,
-      `📊 Mi nivel de fricción operativa es *${nivelLabel}* (${score}/9).`,
-      `👤 Nombre: ${nombre.trim()}`,
-      `🏢 Empresa: ${empresa.trim()}`,
-      `📱 WhatsApp: +${digits}`,
-      ``,
-      `Quiero agendar una conversación para evaluar encaje.`,
-    ].join("\n");
-
-    const url = buildWhatsAppLink(message);
 
     try {
       const res = await fetch("/api/submit-diagnostico", {
@@ -232,15 +218,10 @@ export default function DiagnosticoComercialPage() {
       }
     } catch (err) {
       console.error("[leads_b2b] Error capturando lead:", err);
-    } finally {
-      const win = window.open(url, "_blank", "noopener,noreferrer");
-
-      if (!win || win.closed || typeof win.closed === "undefined") {
-        setFallbackUrl(url);
-      }
-
-      setShowOnboardingCta(true);
     }
+
+    setShowOnboardingCta(true);
+    setSubmitted(false);
   }
 
   const allAnswered =
@@ -483,23 +464,6 @@ export default function DiagnosticoComercialPage() {
                 <p className="text-slate-500 text-xs mt-4">
                   Elegí tu método de pago y firmá el contrato marco para liberar tu proyecto.
                 </p>
-
-                {fallbackUrl && (
-                  <div className="mt-4 p-4 rounded-xl bg-amber-950/40 border border-amber-500/30 text-center">
-                    <p className="text-amber-300 text-sm font-semibold mb-2">
-                      Tu navegador bloqueó la ventana emergente.
-                    </p>
-                    <a
-                      href={fallbackUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-blue-400 underline underline-offset-4 text-sm font-bold hover:text-blue-300 transition-colors"
-                    >
-                      <span>💬</span>
-                      Tocá aquí para abrir WhatsApp manualmente
-                    </a>
-                  </div>
-                )}
               </div>
             ) : (
               <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
@@ -632,7 +596,7 @@ export default function DiagnosticoComercialPage() {
                       {submitted ? (
                         <>
                           <span className="animate-spin inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />
-                          Abriendo WhatsApp…
+                          Enviando…
                         </>
                       ) : (
                         <>
@@ -642,25 +606,8 @@ export default function DiagnosticoComercialPage() {
                       )}
                     </button>
                     <p className="text-center text-xs text-slate-500 mt-3">
-                      Se abrirá WhatsApp con tu scoring pre-cargado. Sin compromiso.
+                      Tu información será registrada. Sin compromiso.
                     </p>
-
-                    {fallbackUrl && (
-                      <div className="mt-4 p-4 rounded-xl bg-amber-950/40 border border-amber-500/30 text-center">
-                        <p className="text-amber-300 text-sm font-semibold mb-2">
-                          Tu navegador bloqueó la ventana emergente.
-                        </p>
-                        <a
-                          href={fallbackUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-blue-400 underline underline-offset-4 text-sm font-bold hover:text-blue-300 transition-colors"
-                        >
-                          <span>💬</span>
-                          Tocá aquí para abrir WhatsApp manualmente
-                        </a>
-                      </div>
-                    )}
                   </div>
                 </form>
               </div>

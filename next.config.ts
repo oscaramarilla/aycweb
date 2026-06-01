@@ -23,8 +23,6 @@ const nextConfig: NextConfig = {
       { source: '/os/:path*', destination: '/es/empresas', permanent: true },
       // Ruta personal obsoleta con precios viejos → página corporativa vigente
       { source: '/oscar', destination: '/es/nosotros', permanent: true },
-      // Proteger onboarding del loop i18n (proxy redirige /es/onboarding → /es/es/onboarding)
-      { source: '/es/onboarding', destination: '/onboarding', permanent: true },
     ];
   },
 };
