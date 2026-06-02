@@ -40,7 +40,7 @@ export default function Navbar() {
             {/* FRÍO: Exploración */}
             <Link href={`/${lang}/empresas`} className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Empresas</Link>
             <Link href={`/${lang}/profesionales`} className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Profesionales</Link>
-            <a href="/soluciones" className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Soluciones</a>
+            <Link href="/soluciones" className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Soluciones</Link>
             <Link href={`/${lang}/nosotros`} className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Nosotros</Link>
             <Link href={`/${lang}/obras`} className="text-[14px] font-bold text-blue-400 hover:text-blue-300 transition-colors">Obras</Link>
 
@@ -80,12 +80,12 @@ export default function Navbar() {
             <p className="text-sm text-slate-400 leading-relaxed">Médicos, dentistas, abogados, consultores.</p>
           </Link>
 
-          <a href="/soluciones" onClick={toggleMenu} className="block rounded-2xl border border-violet-900/40 bg-violet-950/20 p-5 mb-6 active:scale-[0.98] transition-transform">
+          <Link href="/soluciones" onClick={toggleMenu} className="block rounded-2xl border border-violet-900/40 bg-violet-950/20 p-5 mb-6 active:scale-[0.98] transition-transform">
             <div className="flex items-center gap-3 mb-2">
               <span className="text-3xl">🚀</span><div className="text-2xl font-black text-white">Soluciones</div>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">40 soluciones digitales especializadas por industria.</p>
-          </a>
+          </Link>
 
           <Link href={`/${lang}/nosotros`} onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">Nosotros</Link>
           <Link href={`/${lang}/obras`} onClick={toggleMenu} className="text-xl font-bold text-blue-400 py-4 border-b border-white/[0.05]">Obras</Link>
