@@ -45,9 +45,9 @@ export default function Navbar() {
             <Link href={`/${lang}/obras`} className="text-[14px] font-bold text-blue-400 hover:text-blue-300 transition-colors">Obras</Link>
 
             {/* CALIENTE: Acción (Fondo sólido) */}
-            <a href={WA_CTA} target="_blank" rel="noopener noreferrer" className="bg-blue-600 hover:bg-blue-500 text-white font-black text-[14px] px-6 py-2.5 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)]">
+            <Link href={`/${lang}/diagnostico-comercial`} className="bg-blue-600 hover:bg-blue-500 text-white font-black text-[14px] px-6 py-2.5 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)]">
               Solicitar Diagnóstico B2B
-            </a>
+            </Link>
           </div>
 
           {/* MOBILE TOGGLE */}
@@ -91,9 +91,9 @@ export default function Navbar() {
           <Link href={`/${lang}/obras`} onClick={toggleMenu} className="text-xl font-bold text-blue-400 py-4 border-b border-white/[0.05]">Obras</Link>
           <Link href={`/${lang}/recursos`} onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">Biblioteca B2B</Link>
 
-          <a href={WA_CTA} target="_blank" rel="noopener noreferrer" onClick={toggleMenu} className="mt-6 bg-blue-600 text-white text-center font-black text-lg w-full py-4 rounded-xl active:scale-95 shadow-[0_0_30px_rgba(37,99,235,0.4)]">
+          <Link href={`/${lang}/diagnostico-comercial`} onClick={toggleMenu} className="mt-6 bg-blue-600 text-white text-center font-black text-lg w-full py-4 rounded-xl active:scale-95 shadow-[0_0_30px_rgba(37,99,235,0.4)]">
             Solicitar Diagnóstico B2B
-          </a>
+          </Link>
         </div>
       </div>
 

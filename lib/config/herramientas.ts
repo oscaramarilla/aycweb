@@ -13,7 +13,7 @@ export const HERRAMIENTAS_B2B: HerramientaB2B[] = [
     titulo: "Calculadora de Ineficiencia",
     descripcion:
       "Calcula cuánto dinero pierde tu operación por cotizar en Excel.",
-    href: "/es/diagnostico-comercial",
+    href: "/es/calculadora",
     badge: "Gratis",
   },
 ];

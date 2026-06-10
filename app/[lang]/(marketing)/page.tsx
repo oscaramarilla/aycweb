@@ -10,7 +10,7 @@ import HerramientasSection from "@/components/tools/HerramientasSection";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "AYCweb Paraguay | Firma de Infraestructura Digital B2B",
+  title: { absolute: "AYCweb Paraguay | Firma de Infraestructura Digital B2B" },
   description: "Construimos ecosistemas digitales que automatizan ventas y operaciones para empresas y profesionales. No somos para todos, postulá a una auditoría.",
 };
 
@@ -29,8 +29,6 @@ const DOMINIOS_GESTIONADOS = [
 
 export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const auditMsg = buildWaLink("Hola Oscar. Quiero agendar una Auditoría B2B para mi operación.");
-
   return (
     <div className="flex flex-col min-h-screen bg-slate-950 text-slate-50 font-sans relative overflow-hidden">
       
@@ -250,21 +248,11 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               Inversión clara. Sin ambigüedad.
             </h2>
             <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
-              El mantenimiento arranca desde 15 USD/mes. Elegí el plan que se ajuste a tu operación.
+              Elegí el plan que se ajuste a tu operación. Sin ambigüedad.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <PricingCard
-              planId="starter"
-              accent="emerald"
-              ctaHref={buildWaLink(`Hola Oscar, quiero agendar una Auditoría B2B para mi operación. Me interesa el plan Starter.`)}
-              ctaLabel="Empezar validación"
-              tagline="Para validar rápido una presencia digital profesional sin perder semanas armando algo improvisado."
-              constructionLabel="Construcción del sistema"
-              monthlyText="USD 15/mes de mantenimiento, actualizaciones y limpieza operativa"
-            />
-
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto">
             <PricingCard
               planId="business"
               accent="blue"
@@ -322,13 +310,12 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                 </div>
               </div>
 
-              <a 
-              href={auditMsg}
-                target="_blank" rel="noopener noreferrer"
+              <Link
+                href={`/${lang}/diagnostico-comercial`}
                 className="block w-full sm:w-auto sm:inline-block bg-white text-slate-950 font-black py-3.5 md:py-4 px-6 md:px-10 rounded-xl transition-all shadow-lg hover:bg-slate-200 active:scale-95 text-[15px] md:text-base"
               >
                 Solicitar Diagnóstico B2B
-              </a>
+              </Link>
             </div>
           </div>
         </div>
