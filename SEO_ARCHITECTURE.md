@@ -312,7 +312,7 @@ Títulos prioritarios:
 9. `comparar-agencias-digitales-paraguay` — Cómo elegir entre agencias digitales en Paraguay para una empresa B2B
 10. `dashboard-operativo-que-es` — Qué es un dashboard operativo y cuándo lo necesita tu empresa
 
-**Nota arquitectónica:** El template `recursos/[slug]/page.tsx` renderiza `contenido` como texto plano (`whitespace-pre-line`). Para incluir links internos a `/soluciones/` en los artículos, evaluar migrar a los `.mdx` files que ya usa `recursos/blog/[slug]/page.tsx` (tiene `MDXRemote` conectado).
+**Nota arquitectónica:** El template `recursos/[slug]/page.tsx` soporta dos modos: si el artículo define `bloques` (unión discriminada `BloqueArticulo` en `lib/data/articulos.ts`), se renderiza con `components/blog/ArticuloBloques.tsx` (prosa, ficha, tabla, timeline, faq, cta); si no, hace fallback a `contenido` como texto plano (`whitespace-pre-line`). Para links internos a `/soluciones/` u otros recursos ricos, usar el modo `bloques`. El sistema MDX (`recursos/blog`) fue eliminado.
 
 ---
 

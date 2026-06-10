@@ -12,7 +12,7 @@ import { createClient } from "@supabase/supabase-js";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { nombre, empresa, whatsapp, score, nivel } = body;
+    const { nombre, empresa, whatsapp, email, score, nivel } = body;
 
     // Validación básica
     if (!nombre || !empresa || !whatsapp) {
@@ -39,6 +39,7 @@ export async function POST(request: NextRequest) {
       nombre,
       empresa,
       whatsapp,
+      email: email ?? null,
       score: score ?? 0,
       nivel: nivel ?? "N/A",
       created_at: new Date().toISOString(),
@@ -50,6 +51,18 @@ export async function POST(request: NextRequest) {
         { error: "Error al guardar el lead en la base de datos." },
         { status: 500 }
       );
+    }
+
+    // Disparar secuencia de email en n8n si hay email y webhook configurado (fire-and-forget)
+    const nurturingUrl = process.env.N8N_WEBHOOK_NURTURING_URL;
+    if (email && nurturingUrl) {
+      fetch(nurturingUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre, empresa, whatsapp, email, score: score ?? 0, nivel: nivel ?? "N/A" }),
+      }).catch((err) => {
+        console.error("[submit-diagnostico] Error disparando nurturing n8n:", err);
+      });
     }
 
     return NextResponse.json({ success: true, data });

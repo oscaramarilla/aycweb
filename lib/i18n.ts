@@ -25,7 +25,7 @@ export function getBestLocale(acceptLanguage: string | null): string {
 }
 
 // Carga dinámica de diccionarios
-const dictionaries: Record<string, () => Promise<any>> = {
+const dictionaries: Record<string, () => Promise<Record<string, string>>> = {
   es: () => import('./dictionaries/es.json').then((m) => m.default),
   en: () => import('./dictionaries/en.json').then((m) => m.default),
   'pt-br': () => import('./dictionaries/pt-br.json').then((m) => m.default),

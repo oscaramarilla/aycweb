@@ -44,13 +44,13 @@ export default function GeneradorContrato() {
       const nombreArchivo = "Contrato_SOW_" + nombreEmpresa + ".pdf";
 
       // Opciones optimizadas para que no explote la memoria RAM del celular
-      const opciones: any = {
+      const opciones = {
         margin:       10,
         filename:     nombreArchivo,
-        image:        { type: 'jpeg', quality: 0.95 }, 
-        html2canvas:  { scale: 1.5, logging: false }, 
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
+        image:        { type: 'jpeg' as const, quality: 0.95 },
+        html2canvas:  { scale: 1.5, logging: false },
+        jsPDF:        { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const },
+      } as const;
 
       // 🚀 TÁCTICA DE FUERZA BRUTA: Forzar Blob y Descarga
       const worker = html2pdf().set(opciones).from(elemento);

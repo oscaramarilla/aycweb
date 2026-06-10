@@ -3,7 +3,10 @@ import { Metadata } from "next";
 import { FranjaClientes } from "@/components/social/FranjaClientes";
 import { buildWaLink } from "@/lib/config/contact";
 import { FILTRO_ADMISION_COPY } from "@/lib/config/copy/filtro-admision";
+import { CASOS_OBRAS } from "@/lib/config/obras";
 import PricingCard from "@/components/pricing/PricingCard";
+import PricingComparativa from "@/components/pricing/PricingComparativa";
+import CasoCard from "@/components/CasoCard";
 import HerramientasSection from "@/components/tools/HerramientasSection";
 
 // 1. CACHÉ ULTRARRÁPIDO: Guarda la página en los servidores globales de Vercel por 1 hora
@@ -35,13 +38,13 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       {/* 2. LCP FIX: Ruta local para el noise.svg */}
       <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0"></div>
 
-      {/* ================= 1) HERO POSICIONADO ================= */}
+      {/* ================= 1) HERO POSICIONADO con ROI ================= */}
       <section className="relative pt-28 pb-12 md:pt-48 md:pb-32 px-6 text-center z-10 border-b border-white/[0.05]">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
         
         <div className="max-w-5xl mx-auto">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 text-[11px] md:text-xs font-bold uppercase tracking-widest mb-6 md:mb-8 shadow-sm">
-            Infraestructura Digital para Empresas y Profesionales
+          <span className="inline-block px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-600/20 to-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] md:text-xs font-bold uppercase tracking-widest mb-6 md:mb-8 shadow-sm">
+            ⚡ Reducí 40–70% del tiempo operativo en cotizaciones y seguimiento
           </span>
           <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-tight md:leading-[1.05] text-white">
             Tu operación no necesita más improvisación.{" "}
@@ -49,7 +52,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Necesita un sistema.</span>
           </h1>
           <p className="text-base md:text-2xl text-slate-400 mb-8 md:mb-10 max-w-3xl mx-auto font-light leading-relaxed">
-            Tu empresa no necesita otra página web decorativa. Necesita un sistema que le devuelva tiempo y convierta consultas en oportunidades reales de venta.
+            Cada hora que tu equipo pierde armando cotizaciones a mano, buscando archivos sueltos o corrigiendo errores manuales, es una oportunidad de venta que se diluye. Recuperá ese tiempo con un sistema diseñado para tu operación real.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -72,12 +75,65 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       {/* ================= 1b) PRUEBA SOCIAL: Franja de clientes ================= */}
       <FranjaClientes palette="neutral" />
 
-      {/* ================= 2) EVIDENCIA DE RESULTADO (NUEVO) ================= */}
+      {/* ================= 2) EVIDENCIA DE RESULTADO con gráfico + testimonios ================= */}
       <section className="py-16 md:py-24 relative z-10 bg-[#04050a] border-b border-white/[0.05]">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-black text-center mb-16 text-white leading-tight">
+          <h2 className="text-3xl md:text-5xl font-black text-center mb-12 md:mb-16 text-white leading-tight">
             Lo que cambia cuando el <br className="hidden md:block"/> motor entra en operación
           </h2>
+
+          {/* Gráfico visual: Antes vs Después */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-12 md:mb-16">
+            <div className="bg-slate-900/60 border border-red-500/20 rounded-2xl p-5 md:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">😫</span>
+                <span className="text-[11px] md:text-xs font-bold uppercase tracking-widest text-red-400/80">Antes del sistema</span>
+              </div>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3 text-slate-400 text-[13px] md:text-sm">
+                  <span className="text-red-400/60 mt-0.5">✕</span>
+                  Cotizaciones a mano entre archivos sueltos
+                </li>
+                <li className="flex items-start gap-3 text-slate-400 text-[13px] md:text-sm">
+                  <span className="text-red-400/60 mt-0.5">✕</span>
+                  Errores manuales en cada presupuesto
+                </li>
+                <li className="flex items-start gap-3 text-slate-400 text-[13px] md:text-sm">
+                  <span className="text-red-400/60 mt-0.5">✕</span>
+                  Clientes sin seguimiento estructurado
+                </li>
+                <li className="flex items-start gap-3 text-slate-400 text-[13px] md:text-sm">
+                  <span className="text-red-400/60 mt-0.5">✕</span>
+                  Dependencia de memoria humana
+                </li>
+              </ul>
+            </div>
+            <div className="bg-slate-900/60 border border-emerald-500/20 rounded-2xl p-5 md:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">✅</span>
+                <span className="text-[11px] md:text-xs font-bold uppercase tracking-widest text-emerald-400/80">Después del sistema</span>
+              </div>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3 text-slate-300 text-[13px] md:text-sm">
+                  <span className="text-emerald-400 mt-0.5">✓</span>
+                  Cotizaciones con lógica centralizada en segundos
+                </li>
+                <li className="flex items-start gap-3 text-slate-300 text-[13px] md:text-sm">
+                  <span className="text-emerald-400 mt-0.5">✓</span>
+                  Errores de cálculo reducidos a cero
+                </li>
+                <li className="flex items-start gap-3 text-slate-300 text-[13px] md:text-sm">
+                  <span className="text-emerald-400 mt-0.5">✓</span>
+                  Prospectos filtrados antes del primer contacto
+                </li>
+                <li className="flex items-start gap-3 text-slate-300 text-[13px] md:text-sm">
+                  <span className="text-emerald-400 mt-0.5">✓</span>
+                  Operación clara, medible y escalable
+                </li>
+              </ul>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               "Pasás de cotizar entre archivos sueltos a responder con lógica centralizada.",
@@ -99,6 +155,37 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                 ⚡ Probar Cotizador en Vivo →
               </Link>
               <Link href={`/${lang}/obras`} className="text-slate-400 text-sm hover:text-slate-200 hover:underline transition-colors">Ver obras en producción →</Link>
+            </div>
+          </div>
+
+          {/* Testimonios / prueba social breve */}
+          <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 md:p-6">
+              <div className="flex items-start gap-1 mb-2">
+                {[1,2,3,4,5].map((s) => <span key={s} className="text-amber-400 text-xs">★</span>)}
+              </div>
+              <p className="text-slate-300 text-[13px] md:text-sm leading-relaxed italic mb-3">
+                "Pasamos de 2 horas por cotización a 3 minutos. Los errores de cálculo desaparecieron por completo."
+              </p>
+              <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider">— Oriplast Paraguay</span>
+            </div>
+            <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 md:p-6">
+              <div className="flex items-start gap-1 mb-2">
+                {[1,2,3,4,5].map((s) => <span key={s} className="text-amber-400 text-xs">★</span>)}
+              </div>
+              <p className="text-slate-300 text-[13px] md:text-sm leading-relaxed italic mb-3">
+                "Ahora tenemos control completo del ciclo de vida del cliente, desde la captación hasta la entrega."
+              </p>
+              <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider">— Metal Made</span>
+            </div>
+            <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 md:p-6">
+              <div className="flex items-start gap-1 mb-2">
+                {[1,2,3,4,5].map((s) => <span key={s} className="text-amber-400 text-xs">★</span>)}
+              </div>
+              <p className="text-slate-300 text-[13px] md:text-sm leading-relaxed italic mb-3">
+                "Llegan pacientes precalificados, con expectativas claras. Se redujeron las cancelaciones de último momento."
+              </p>
+              <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider">— Dra. Bianca (Odontología)</span>
             </div>
           </div>
         </div>
@@ -140,7 +227,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         </div>
       </section>
 
-      {/* ================= 3b) PIPELINE OPERATIVO ================= */}
+      {/* ================= 3b) PIPELINE OPERATIVO (Timeline visual) ================= */}
       <section className="py-16 md:py-24 relative z-10 bg-[#04050a] border-b border-white/[0.05]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12 md:mb-16">
@@ -152,25 +239,46 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             </p>
           </div>
 
+          {/* Barra de progreso horizontal (solo visible en lg+) */}
+          <div className="hidden lg:flex justify-between items-center mb-6 px-2">
+            {["Semana 1", "Semana 1", "Semana 2", "Semanas 2-3", "Semana 3", "Semana 4+", "Continuo"].map((tiempo, i) => (
+              <div key={i} className="flex flex-col items-center">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-blue-400/70">{tiempo}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Línea de progreso conectora (solo lg+) */}
+          <div className="hidden lg:block relative h-1 mb-8 mx-6">
+            <div className="absolute inset-0 bg-white/[0.06] rounded-full"></div>
+            <div className="absolute left-0 top-0 h-full w-[85%] bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400/40 rounded-full"></div>
+          </div>
+
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 md:gap-4">
             {[
-              { icon: "💬", step: "01", label: "Consulta", desc: "Nos contás tu operación y el problema central" },
-              { icon: "🔍", step: "02", label: "Filtro", desc: "Evaluamos si hay encaje real, sin vender por vender" },
-              { icon: "📋", step: "03", label: "Diagnóstico", desc: "Mapeamos el flujo actual, fricción por fricción" },
-              { icon: "⚙️", step: "04", label: "Sistema", desc: "Diseñamos y construimos el motor a medida" },
-              { icon: "📄", step: "05", label: "PDF / WhatsApp", desc: "Cotizaciones y mensajes automatizados" },
-              { icon: "📊", step: "06", label: "Panel", desc: "Métricas y visibilidad en tiempo real" },
-              { icon: "🔁", step: "07", label: "Seguimiento", desc: "Acompañamiento post-lanzamiento" },
+              { icon: "💬", step: "01", label: "Consulta", desc: "Nos contás tu operación y el problema central", tiempo: "Semana 1", duracion: "1-2 días" },
+              { icon: "🔍", step: "02", label: "Filtro", desc: "Evaluamos si hay encaje real, sin vender por vender", tiempo: "Semana 1", duracion: "2-3 días" },
+              { icon: "📋", step: "03", label: "Diagnóstico", desc: "Mapeamos el flujo actual, fricción por fricción", tiempo: "Semana 2", duracion: "3-5 días" },
+              { icon: "⚙️", step: "04", label: "Sistema", desc: "Diseñamos y construimos el motor a medida", tiempo: "Semanas 2-3", duracion: "7-14 días" },
+              { icon: "📄", step: "05", label: "PDF / WhatsApp", desc: "Cotizaciones y mensajes automatizados", tiempo: "Semana 3", duracion: "3-5 días" },
+              { icon: "📊", step: "06", label: "Panel", desc: "Métricas y visibilidad en tiempo real", tiempo: "Semana 4+", duracion: "2-3 días" },
+              { icon: "🔁", step: "07", label: "Seguimiento", desc: "Acompañamiento post-lanzamiento", tiempo: "Continuo", duracion: "Mensual" },
             ].map((item, i) => (
               <div key={i} className="relative flex flex-col">
-                <div className="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-4 md:p-5 text-center flex flex-col items-center flex-1 hover:border-blue-500/20 transition-colors">
+                <div className="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-4 md:p-5 text-center flex flex-col items-center flex-1 hover:border-blue-500/20 transition-colors group">
+                  {/* Duración estimada (píldora visible en hover y siempre en lg) */}
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-emerald-400/60 mb-2 lg:opacity-0 group-hover:opacity-100 transition-opacity">
+                    {item.duracion}
+                  </span>
                   <span className="text-2xl md:text-3xl mb-2 block">{item.icon}</span>
                   <span className="text-[10px] text-blue-500/70 font-black tracking-widest mb-1.5 block">{item.step}</span>
                   <h4 className="text-white font-bold text-[12px] md:text-[13px] mb-2 leading-tight">{item.label}</h4>
                   <p className="text-slate-500 text-[10px] md:text-[11px] leading-relaxed hidden sm:block">{item.desc}</p>
+                  {/* Indicador de tiempo en mobile */}
+                  <span className="mt-2 text-[8px] text-slate-600 lg:hidden">{item.duracion}</span>
                 </div>
                 {i < 6 && (
-                  <div className="absolute -right-2.5 top-1/2 -translate-y-1/2 text-slate-700 font-bold z-10 hidden lg:flex items-center text-base">›</div>
+                  <div className="absolute -right-2.5 top-1/2 -translate-y-1/2 text-slate-700 font-bold z-10 hidden lg:flex items-center text-2xl transition-colors group-hover:text-blue-500">›</div>
                 )}
               </div>
             ))}
@@ -216,26 +324,42 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         </div>
       </section>
 
-      {/* ================= 5b) ECOSISTEMA EN PRODUCCIÓN ================= */}
+      {/* ================= 5b) CASOS EN PRODUCCIÓN con métricas ================= */}
       <section className="py-16 md:py-24 relative z-10 border-b border-white/[0.05]">
-        <div className="max-w-5xl mx-auto px-6">
-          <h3 className="text-2xl font-bold text-white mb-3 text-center">Ecosistema en Producción</h3>
-          <p className="text-slate-400 text-center mb-8">Infraestructuras digitales, embudos y dominios actualmente gestionados por nuestra firma.</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {DOMINIOS_GESTIONADOS.map((dominio) => (
-              <a
-                key={dominio.nombre}
-                href={dominio.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm hover:bg-white/10 hover:text-white transition-colors flex items-center gap-2"
-              >
-                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
-                  <circle cx="4" cy="4" r="4" fill="#22c55e"/>
-                </svg>
-                {dominio.nombre}
-              </a>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight">
+              Casos en producción
+            </h2>
+            <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              Esto no es teoría. Son sistemas funcionando hoy, con resultados medibles.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {CASOS_OBRAS.map((caso) => (
+              <CasoCard key={caso.id} caso={caso} lang={lang} />
             ))}
+          </div>
+
+          <div className="mt-12">
+            <h3 className="text-lg font-bold text-white mb-4 text-center">Infraestructura activa gestionada por nuestra firma</h3>
+            <div className="flex flex-wrap justify-center gap-3">
+              {DOMINIOS_GESTIONADOS.map((dominio) => (
+                <a
+                  key={dominio.nombre}
+                  href={dominio.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm hover:bg-white/10 hover:text-white transition-colors flex items-center gap-2"
+                >
+                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
+                    <circle cx="4" cy="4" r="4" fill="#22c55e"/>
+                  </svg>
+                  {dominio.nombre}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -274,6 +398,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               monthlyText="USD 45/mes de mantenimiento, actualizaciones y limpieza operativa"
             />
           </div>
+
+          <PricingComparativa />
 
           <div className="text-center mt-8">
             <p className="text-[11px] md:text-xs text-slate-500 max-w-xl mx-auto leading-relaxed">

@@ -129,7 +129,7 @@ export function SchemaMarkup() {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://www.aycweb.com/es/recursos/blog?q={search_term_string}",
+        urlTemplate: "https://www.aycweb.com/es/recursos?q={search_term_string}",
       },
       "query-input": "required name=search_term_string",
     },

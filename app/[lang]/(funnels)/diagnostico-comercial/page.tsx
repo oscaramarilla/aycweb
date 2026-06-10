@@ -221,10 +221,12 @@ export default function DiagnosticoComercialPage() {
   const [nombre, setNombre] = useState("");
   const [empresa, setEmpresa] = useState("");
   const [whatsappLocal, setWhatsappLocal] = useState("");
+  const [email, setEmail] = useState("");
   const [contactErrors, setContactErrors] = useState<{
     nombre?: string;
     empresa?: string;
     whatsappLocal?: string;
+    email?: string;
   }>({});
   const [submitted, setSubmitted] = useState(false);
   const [showResultado, setShowResultado] = useState(false);
@@ -255,6 +257,7 @@ export default function DiagnosticoComercialPage() {
     setNombre("");
     setEmpresa("");
     setWhatsappLocal("");
+    setEmail("");
     setContactErrors({});
     setShowResultado(false);
   }
@@ -277,6 +280,11 @@ export default function DiagnosticoComercialPage() {
       return;
     }
 
+    if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setContactErrors((p) => ({ ...p, email: "Ingresá un email válido." }));
+      return;
+    }
+
     setSubmitted(true);
 
     const nivelLabel = NIVELES[nivel].label;
@@ -289,6 +297,7 @@ export default function DiagnosticoComercialPage() {
           nombre: nombre.trim(),
           empresa: empresa.trim(),
           whatsapp: `+${digits}`,
+          email: email.trim() || null,
           score,
           nivel: nivelLabel,
         }),
@@ -711,6 +720,33 @@ export default function DiagnosticoComercialPage() {
                     </p>
                     {contactErrors.whatsappLocal && (
                       <p className={errorCls}>{contactErrors.whatsappLocal}</p>
+                    )}
+                  </div>
+
+                  {/* Email (opcional) */}
+                  <div className="space-y-1.5">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-bold text-slate-200"
+                    >
+                      Email{" "}
+                      <span className="text-slate-500 font-normal">(opcional — para recibir tu análisis por escrito)</span>
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      autoComplete="email"
+                      placeholder="ej. juan@empresa.com"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        if (contactErrors.email)
+                          setContactErrors((p) => ({ ...p, email: undefined }));
+                      }}
+                      className={fieldCls(!!contactErrors.email)}
+                    />
+                    {contactErrors.email && (
+                      <p className={errorCls}>{contactErrors.email}</p>
                     )}
                   </div>
 

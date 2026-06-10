@@ -4,10 +4,10 @@ import { useState } from 'react'
 export default function AnonymousCommentForm({ slug }: { slug: string }) {
   const [status, setStatus] = useState<string>('')
 
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const form = e.target
-    const comment = form.comment.value
+    const form = e.currentTarget
+    const comment = (form.elements.namedItem('comment') as HTMLTextAreaElement).value
 
     try {
       const res = await fetch('/api/submit-comment', {
@@ -19,8 +19,8 @@ export default function AnonymousCommentForm({ slug }: { slug: string }) {
       if (!res.ok) throw new Error(json.error || 'Error')
       setStatus('¡Comentario enviado y en revisión!')
       form.reset()
-    } catch (err: any) {
-      setStatus(err?.message || 'Error al enviar')
+    } catch (err: unknown) {
+      setStatus(err instanceof Error ? err.message : 'Error al enviar')
     }
   }
 
