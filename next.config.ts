@@ -4,6 +4,8 @@ const nextConfig: NextConfig = {
   compress: true,
   async redirects() {
     return [
+      { source: '/iditigal', destination: '/invertir-en-paraguay', permanent: true },
+      { source: '/kwhcoin',  destination: '/invertir-en-paraguay', permanent: true },
       { source: '/productos', destination: '/empresas', permanent: true },
       { source: '/soluciones', destination: '/profesionales', permanent: true },
       { source: '/precios', destination: '/empresas', permanent: true },
