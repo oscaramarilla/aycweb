@@ -48,6 +48,11 @@ export const AYCWEB_CONTACT: ContactInfo = {
     },
     "os": {
         "planInquiry": "Hola Oscar. Estoy en aycweb.com/os y quiero que me asesores sobre cuál plan me conviene."
+    },
+    "invertirParaguay": {
+        "dossier": "Hola, vengo de la página Invertir en Paraguay (aycweb.com/invertir-en-paraguay). Mi sector de interés es ___. Quiero recibir el dossier.",
+        "llamada": "Hola Oscar, vengo de aycweb.com/invertir-en-paraguay y quiero agendar la llamada estratégica de 30 minutos.",
+        "whatsapp": "Hola, vengo de la página Invertir en Paraguay. Mi sector de interés es ___."
     }
   }
 };
