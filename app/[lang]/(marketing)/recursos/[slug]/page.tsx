@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ArticuloBloques from "@/components/blog/ArticuloBloques";
+import { buildWhatsAppLink } from "@/lib/services/whatsapp-link";
+import { getWhatsAppText } from "@/lib/config/contacto";
 import { getArticuloBySlug, articulos } from "../../../../../lib/data/articulos";
 import { notFound } from "next/navigation";
 
@@ -12,11 +15,11 @@ export async function generateMetadata({
 }: {
   params: Promise<{ lang: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { lang, slug } = await params;
   const articulo = getArticuloBySlug(slug);
   if (!articulo) return {};
 
-  const canonicalUrl = `https://www.aycweb.com/es/recursos/${slug}`;
+  const canonicalUrl = `https://www.aycweb.com/${lang}/recursos/${slug}`;
 
   return {
     title: articulo.titulo,
@@ -55,7 +58,25 @@ export default async function RecursoSlug({
     notFound();
   }
 
-  const canonicalUrl = `https://www.aycweb.com/es/recursos/${slug}`;
+  const canonicalUrl = `https://www.aycweb.com/${lang}/recursos/${slug}`;
+  const whatsappLink = buildWhatsAppLink(getWhatsAppText("recursos", lang));
+  const faqItems = articulo.bloques?.flatMap((bloque) =>
+    bloque.tipo === "faq" ? bloque.items : []
+  ) ?? [];
+  const faqJsonLd = faqItems.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqItems.map((item) => ({
+          "@type": "Question",
+          name: item.pregunta,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.respuesta,
+          },
+        })),
+      }
+    : null;
 
   const blogPostingJsonLd = {
     "@context": "https://schema.org",
@@ -65,7 +86,7 @@ export default async function RecursoSlug({
     author: {
       "@type": "Person",
       name: articulo.autor,
-      url: "https://www.aycweb.com/es/nosotros",
+      url: `https://www.aycweb.com/${lang}/nosotros`,
     },
     publisher: { "@id": "https://www.aycweb.com/#organization" },
     datePublished: articulo.fechaPublicacion,
@@ -82,6 +103,12 @@ export default async function RecursoSlug({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }}
       />
+      {faqJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      ) : null}
       <section className="px-6 pt-28 pb-12 text-center">
         <div className="max-w-4xl mx-auto">
           <span className="text-[11px] font-bold uppercase tracking-widest text-blue-400 mb-3 block">
@@ -96,9 +123,13 @@ export default async function RecursoSlug({
       </section>
 
       <section className="px-6 py-12 max-w-3xl mx-auto">
-        <div className="prose prose-invert prose-slate max-w-none text-slate-300 leading-relaxed whitespace-pre-line">
-          {articulo.contenido}
-        </div>
+        {articulo.bloques ? (
+          <ArticuloBloques bloques={articulo.bloques} lang={lang} whatsappLink={whatsappLink} />
+        ) : (
+          <div className="prose prose-invert prose-slate max-w-none text-slate-300 leading-relaxed whitespace-pre-line">
+            {articulo.contenido}
+          </div>
+        )}
 
         <div className="mt-12 pt-8 border-t border-slate-800">
           <Link href={`/${lang}/recursos`} className="text-emerald-400 font-bold">

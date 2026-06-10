@@ -1,3 +1,37 @@
+export type BloqueArticulo =
+  | {
+      tipo: "prosa";
+      texto: string;
+    }
+  | {
+      tipo: "ficha";
+      titulo: string;
+      items: { clave: string; valor: string }[];
+    }
+  | {
+      tipo: "tabla";
+      titulo?: string;
+      columnas: string[];
+      filas: string[][];
+    }
+  | {
+      tipo: "timeline";
+      titulo?: string;
+      pasos: { titulo: string; descripcion: string }[];
+    }
+  | {
+      tipo: "faq";
+      titulo?: string;
+      items: { pregunta: string; respuesta: string }[];
+    }
+  | {
+      tipo: "cta";
+      titulo: string;
+      texto: string;
+      href: string;
+      boton: string;
+    };
+
 export interface Articulo {
   slug: string;
   titulo: string;
@@ -8,9 +42,124 @@ export interface Articulo {
   tiempoLectura: string;
   autor: string;
   contenido: string;
+  bloques?: BloqueArticulo[];
 }
 
 export const articulos: Articulo[] = [
+  {
+    slug: "automatizar-cotizaciones-excel-motor-cotizador",
+    titulo: "Automatizar cotizaciones: del Excel al motor de cotización",
+    descripcion:
+      "Un camino claro para reemplazar las cotizaciones manuales en Excel por un motor que calcula, registra y genera presupuestos sin errores.",
+    categoria: "Automatización Comercial",
+    categoriaColor: "emerald",
+    fechaPublicacion: "10 de Junio, 2026",
+    tiempoLectura: "6 min de lectura",
+    autor: "Oscar Amarilla Cáceres",
+    contenido:
+      "Cómo automatizar cotizaciones desde Excel con un motor de cotización que reduce errores, acelera la respuesta comercial y deja un registro exacto de cada presupuesto.",
+    bloques: [
+      {
+        tipo: "prosa",
+        texto:
+          "La mayor pérdida comercial no está en el precio, está en el tiempo que tu equipo pierde armando cotizaciones en Excel. Un motor de cotización transforma ese tiempo en una respuesta inmediata y confiable.",
+      },
+      {
+        tipo: "ficha",
+        titulo: "Qué cambia con el motor de cotización",
+        items: [
+          { clave: "Velocidad de respuesta", valor: "De horas a segundos." },
+          { clave: "Consistencia de precios", valor: "Mismo criterio para cada vendedor." },
+          { clave: "Registro comercial", valor: "Cada presupuesto queda guardado y medible." },
+        ],
+      },
+      {
+        tipo: "tabla",
+        titulo: "Antes y después del proceso",
+        columnas: ["Situación actual", "Resultado con motor"],
+        filas: [
+          [
+            "Cotizaciones en Excel con ajustes manuales y riesgo de errores.",
+            "Presupuestos automáticos con reglas comerciales aplicadas en el cálculo.",
+          ],
+          [
+            "Visibilidad limitada de cuántos presupuestos se envían.",
+            "Registro inmediato de cada solicitud y su estado comercial.",
+          ],
+          [
+            "No hay control central de precios ni descuentos.",
+            "Un único catálogo válido para todo el equipo de venta.",
+          ],
+        ],
+      },
+      {
+        tipo: "timeline",
+        titulo: "Fases para implementar el motor",
+        pasos: [
+          {
+            titulo: "Diagnóstico comercial",
+            descripcion:
+              "Mapeamos tu proceso de cotización actual y definimos las reglas que debe aplicar el motor.",
+          },
+          {
+            titulo: "Catálogo y condiciones",
+            descripcion:
+              "Centralizamos precios, descuentos y variables de negocio en una fuente única de verdad.",
+          },
+          {
+            titulo: "Motor de cálculo",
+            descripcion:
+              "Configuramos las reglas para que el sistema calcule automáticamente subtotales, fletes e impuestos.",
+          },
+          {
+            titulo: "Generación de documento",
+            descripcion:
+              "El presupuesto sale listo en PDF con tu identidad comercial y los datos del cliente.",
+          },
+        ],
+      },
+      // ⚠️ FAQ PARA REVISIÓN antes de deploy
+      {
+        tipo: "faq",
+        titulo: "Preguntas frecuentes",
+        items: [
+          {
+            pregunta: "¿Por qué no alcanza con seguir cotizando en Excel?",
+            respuesta:
+              "Excel es una herramienta de cálculo, no un sistema comercial. El problema real es que depende de personas y versiones, lo que genera errores, demoras y falta de trazabilidad.",
+          },
+          {
+            pregunta: "¿Qué aporta un motor de cotización al equipo de ventas?",
+            respuesta:
+              "Aporta velocidad, consistencia y control. Cada cotización se hace con las mismas reglas, el mismo catálogo y sin depender de quién la arme.",
+          },
+          {
+            pregunta: "¿Cuánto trabajo implica pasar del Excel al motor?",
+            respuesta:
+              "El esfuerzo se concentra en definir reglas y condiciones comerciales. Una vez montado, el motor reduce el trabajo manual y protege contra errores recurrentes.",
+          },
+          {
+            pregunta: "¿Se pierde flexibilidad al automatizar los precios?",
+            respuesta:
+              "No: se mantiene la flexibilidad dentro de reglas claras. El motor permite aplicar descuentos y condiciones especiales sin sacrificar consistencia ni control.",
+          },
+          {
+            pregunta: "¿Cuál es el principal error operativo que evita este sistema?",
+            respuesta:
+              "Evita cotizaciones inconsistentes y la dependencia del conocimiento individual. Eso es lo que más daña la credibilidad comercial y la toma de decisiones en tu empresa.",
+          },
+        ],
+      },
+      {
+        tipo: "cta",
+        titulo: "Pasá del Excel a un proceso confiable",
+        texto:
+          "Si querés tener un flujo de cotización que responda rápido y que no dependa de una planilla, el primer paso es validar tu motor comercial.",
+        href: "/diagnostico-comercial",
+        boton: "Ir al diagnóstico",
+      },
+    ],
+  },
   {
     slug: "como-pasar-de-cotizar-en-excel-a-emitir-presupuestos-pdf-automaticos",
     titulo: "Cómo pasar de cotizar en Excel a emitir presupuestos PDF automáticos",
