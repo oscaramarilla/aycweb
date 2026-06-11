@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "title": "AYCweb Paraguai | Firma de Infraestrutura Digital B2B",
+    "description": "Construímos ecossistemas digitais que automatizam vendas e operações para empresas e profissionais no Paraguai.",
+    "keywords": "automação B2B paraguai, infraestrutura digital paraguai, cotadores dinâmicos, sistemas empresariais paraguai",
+    "ogTitle": "AYCweb | Firma de Infraestrutura Digital B2B",
+    "ogDescription": "Sistemas operacionais e comerciais de alto desempenho para escalar no Paraguai."
+  },
+  "localeSwitcher": {
+    "label": "Idioma",
+    "es": "Español",
+    "en": "English",
+    "pt": "Português",
+    "de": "Deutsch"
+  },
+  "nav": {
+    "companies": "Empresas",
+    "professionals": "Profissionais",
+    "about": "Sobre nós",
+    "works": "Projetos",
+    "onboarding": "Onboarding",
+    "audit": "Auditar meu processo",
+    "whatsappMsg": "Olá Oscar, quero agendar uma Auditoria B2B.",
+    "choosePath": "Escolha seu caminho",
+    "companiesDesc": "Indústrias, clínicas, distribuidoras.",
+    "prosDesc": "Médicos, dentistas, advogados, consultores.",
+    "startOnboarding": "Iniciar Onboarding",
+    "openMenu": "Abrir menu",
+    "whatsappAria": "Falar no WhatsApp"
+  },
+  "home": {
+    "meta": {
+      "title": "AYCweb Paraguai | Firma de Infraestrutura Digital B2B",
+      "description": "Construímos ecossistemas digitais que automatizam vendas e operações para empresas e profissionais. Não somos para todos — candidate-se a uma auditoria."
+    },
+    "hero": {
+      "badge": "Infraestrutura Digital para Empresas e Profissionais",
+      "title": "Sua operação não precisa de mais improviso.",
+      "titleHighlight": "Precisa de um sistema.",
+      "subtitle": "Transformamos processos manuais em sistemas de captação, cotação e fechamento para você parar de depender de Excel, mensagens soltas e follow-up desorganizado.",
+      "cta": "Agendar Auditoria B2B",
+      "whatsappMsg": "Olá Oscar. Quero agendar uma Auditoria B2B para minha operação.",
+      "iAmCompany": "Sou empresa",
+      "iAmPro": "Sou profissional"
+    },
+    "results": {
+      "title": "O que muda quando o motor entra em operação",
+      "item1": "Você deixa de cotar em arquivos soltos e passa a responder com lógica centralizada.",
+      "item2": "Você reduz erros manuais em orçamentos, follow-up e documentação.",
+      "item3": "Você filtra melhor antes de falar com cada prospect.",
+      "item4": "Você organiza o processo comercial sem depender de memória humana ou improviso.",
+      "item5": "Você transforma uma operação dispersa em um sistema claro de venda e atendimento.",
+      "liveTitle": "Quer ver ao vivo?",
+      "liveLink": "Ver nossos sistemas em produção →"
+    },
+    "segmentation": {
+      "title": "Dois caminhos. Dois sistemas.",
+      "subtitle": "Nem todos compram do mesmo jeito. Projetamos uma arquitetura diferente para empresas com operação complexa e para profissionais que precisam de ordem.",
+      "companiesTitle": "Para Empresas",
+      "companiesDesc": "Se a sua operação já não cabe no Excel, projetamos um sistema para cotar mais rápido, reduzir erros e emitir documentos na hora.",
+      "companiesCta": "Ver soluções para empresas →",
+      "prosTitle": "Para Profissionais",
+      "prosDesc": "Se você depende do boca a boca, montamos um sistema para captar melhor, filtrar prospects e converter mais sem saturar seu tempo.",
+      "prosCta": "Ver soluções para profissionais →"
+    },
+    "filter": {
+      "badge": "Filtro de Admissão",
+      "title1": "Não trabalhamos por volume.",
+      "title2": "Trabalhamos por encaixe.",
+      "p1": "Não aceitamos todos os clientes. Se não enxergarmos uma oportunidade clara de organizar ou vender melhor, vamos falar na lata.",
+      "p2": "Preferimos recusar um projeto a prometer fumaça.",
+      "howTitle": "Como entrar na AYCweb:",
+      "step1Title": "Candidatura",
+      "step1Desc": "Você nos mostra como vende ou cota hoje.",
+      "step2Title": "Diagnóstico",
+      "step2Desc": "Detectamos se existe um atrito que valha a pena resolver.",
+      "step3Title": "Arquitetura e Proposta",
+      "step3Desc": "Se houver encaixe, apresentamos o sistema e o próximo passo."
+    },
+    "guarantee": {
+      "title": "Garantia sem atrito",
+      "desc": "Escolhemos com cuidado. Se decidirmos que não somos o time certo, <strong>devolvemos 100%</strong>. Se nos primeiros 30 dias não houver conformidade real, <strong>devolvemos 100%</strong>. Sem letras miúdas.",
+      "card1Title": "Compromisso mútuo",
+      "card1Desc": "Intenção real de construir.",
+      "card2Title": "30 dias de respaldo",
+      "card2Desc": "Você não assume o risco sozinho.",
+      "card3Title": "Zero surpresas",
+      "card3Desc": "Tudo claro desde o início.",
+      "cta": "Quero auditar minha operação"
+    }
+  }
+}

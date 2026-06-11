@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "title": "AYCweb Paraguay | B2B-Firma für digitale Infrastruktur",
+    "description": "Wir bauen digitale Ökosysteme, die Vertrieb und Abläufe für Unternehmen und Selbstständige in Paraguay automatisieren.",
+    "keywords": "B2B-Automatisierung Paraguay, digitale Infrastruktur Paraguay, dynamische Angebotssysteme, Unternehmenssysteme Paraguay",
+    "ogTitle": "AYCweb | B2B-Firma für digitale Infrastruktur",
+    "ogDescription": "Leistungsstarke Betriebs- und Vertriebssysteme zum Skalieren in Paraguay."
+  },
+  "localeSwitcher": {
+    "label": "Sprache",
+    "es": "Español",
+    "en": "English",
+    "pt": "Português",
+    "de": "Deutsch"
+  },
+  "nav": {
+    "companies": "Unternehmen",
+    "professionals": "Selbstständige",
+    "about": "Über uns",
+    "works": "Referenzen",
+    "onboarding": "Onboarding",
+    "audit": "Prozess prüfen lassen",
+    "whatsappMsg": "Hi Oscar, I'd like to book a B2B audit.",
+    "choosePath": "Wählen Sie Ihren Weg",
+    "companiesDesc": "Produktion, Kliniken, Großhandel.",
+    "prosDesc": "Ärzte, Zahnärzte, Anwälte, Berater.",
+    "startOnboarding": "Onboarding starten",
+    "openMenu": "Menü öffnen",
+    "whatsappAria": "Per WhatsApp kontaktieren"
+  },
+  "home": {
+    "meta": {
+      "title": "AYCweb Paraguay | B2B-Firma für digitale Infrastruktur",
+      "description": "Wir bauen digitale Ökosysteme, die Vertrieb und Abläufe für Unternehmen und Selbstständige automatisieren. Nicht für jeden — bewerben Sie sich für ein Audit."
+    },
+    "hero": {
+      "badge": "Digitale Infrastruktur für Unternehmen und Selbstständige",
+      "title": "Ihr Betrieb braucht keine Improvisation mehr.",
+      "titleHighlight": "Er braucht ein System.",
+      "subtitle": "Wir verwandeln manuelle Prozesse in Systeme für Kundengewinnung, Angebotserstellung und Abschluss — damit Sie nicht länger von Excel, losen Nachrichten und chaotischem Follow-up abhängen.",
+      "cta": "B2B-Audit vereinbaren",
+      "whatsappMsg": "Hi Oscar. I'd like to book a B2B audit for my operation.",
+      "iAmCompany": "Ich bin ein Unternehmen",
+      "iAmPro": "Ich bin selbstständig"
+    },
+    "results": {
+      "title": "Was sich ändert, wenn das System in Betrieb geht",
+      "item1": "Statt mit verstreuten Dateien zu kalkulieren, antworten Sie mit zentralisierter Logik.",
+      "item2": "Sie reduzieren manuelle Fehler in Angeboten, Follow-up und Dokumentation.",
+      "item3": "Sie filtern besser, bevor Sie mit einem Interessenten sprechen.",
+      "item4": "Sie ordnen Ihren Vertriebsprozess, ohne sich auf Gedächtnis oder Improvisation zu verlassen.",
+      "item5": "Sie verwandeln einen zerstreuten Betrieb in ein klares System für Verkauf und Betreuung.",
+      "liveTitle": "Möchten Sie es live sehen?",
+      "liveLink": "Unsere Systeme im Einsatz ansehen →"
+    },
+    "segmentation": {
+      "title": "Zwei Wege. Zwei Systeme.",
+      "subtitle": "Nicht alle kaufen gleich. Wir entwerfen unterschiedliche Architekturen für Unternehmen mit komplexen Abläufen und für Selbstständige, die Ordnung brauchen.",
+      "companiesTitle": "Für Unternehmen",
+      "companiesDesc": "Wenn Ihr Betrieb nicht mehr in Excel passt, entwerfen wir ein System, um schneller anzubieten, Fehler zu reduzieren und Dokumente sofort zu erstellen.",
+      "companiesCta": "Lösungen für Unternehmen ansehen →",
+      "prosTitle": "Für Selbstständige",
+      "prosDesc": "Wenn Sie von Mundpropaganda abhängen, bauen wir ein System, um besser zu akquirieren, Interessenten zu filtern und mehr abzuschließen — ohne Ihre Zeit zu sprengen.",
+      "prosCta": "Lösungen für Selbstständige ansehen →"
+    },
+    "filter": {
+      "badge": "Aufnahmefilter",
+      "title1": "Wir arbeiten nicht auf Masse.",
+      "title2": "Wir arbeiten auf Passung.",
+      "p1": "Wir nehmen nicht jeden Kunden an. Wenn wir keine klare Chance sehen, Ordnung zu schaffen oder besser zu verkaufen, sagen wir es Ihnen offen.",
+      "p2": "Wir lehnen lieber ein Projekt ab, als heiße Luft zu versprechen.",
+      "howTitle": "So kommen Sie zu AYCweb:",
+      "step1Title": "Bewerbung",
+      "step1Desc": "Sie zeigen uns, wie Sie heute verkaufen oder kalkulieren.",
+      "step2Title": "Diagnose",
+      "step2Desc": "Wir prüfen, ob es eine Reibung gibt, die sich zu lösen lohnt.",
+      "step3Title": "Architektur & Angebot",
+      "step3Desc": "Wenn es passt, präsentieren wir das System und den nächsten Schritt."
+    },
+    "guarantee": {
+      "title": "Garantie ohne Risiko",
+      "desc": "Wir wählen sorgfältig aus. Wenn wir entscheiden, dass wir nicht das richtige Team sind, <strong>erhalten Sie 100 % zurück</strong>. Wenn es in den ersten 30 Tagen keine echte Zufriedenheit gibt, <strong>erhalten Sie 100 % zurück</strong>. Ohne Kleingedrucktes.",
+      "card1Title": "Gegenseitiges Commitment",
+      "card1Desc": "Echte Absicht zu bauen.",
+      "card2Title": "30 Tage Absicherung",
+      "card2Desc": "Sie tragen das Risiko nicht allein.",
+      "card3Title": "Null Überraschungen",
+      "card3Desc": "Alles klar von Anfang an.",
+      "cta": "Ich möchte meinen Betrieb prüfen lassen"
+    }
+  }
+}

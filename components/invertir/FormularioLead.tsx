@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { submitLeadParaguay, type ActionResult } from "@/app/(funnels)/invertir-en-paraguay/actions";
+import { submitLeadParaguay, type ActionResult } from "@/app/[locale]/(funnels)/invertir-en-paraguay/actions";
 
 const initialState: ActionResult | null = null;
 

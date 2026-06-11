@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "title": "AYCweb Paraguay | B2B Digital Infrastructure Firm",
+    "description": "We build digital ecosystems that automate sales and operations for companies and professionals in Paraguay.",
+    "keywords": "b2b automation paraguay, digital infrastructure paraguay, dynamic quoting systems, business systems paraguay",
+    "ogTitle": "AYCweb | B2B Digital Infrastructure Firm",
+    "ogDescription": "High-performance operational and sales systems to scale in Paraguay."
+  },
+  "localeSwitcher": {
+    "label": "Language",
+    "es": "Español",
+    "en": "English",
+    "pt": "Português",
+    "de": "Deutsch"
+  },
+  "nav": {
+    "companies": "Companies",
+    "professionals": "Professionals",
+    "about": "About us",
+    "works": "Our Work",
+    "onboarding": "Onboarding",
+    "audit": "Audit my process",
+    "whatsappMsg": "Hi Oscar, I'd like to book a B2B audit.",
+    "choosePath": "Choose your path",
+    "companiesDesc": "Manufacturers, clinics, distributors.",
+    "prosDesc": "Doctors, dentists, lawyers, consultants.",
+    "startOnboarding": "Start Onboarding",
+    "openMenu": "Open menu",
+    "whatsappAria": "Contact via WhatsApp"
+  },
+  "home": {
+    "meta": {
+      "title": "AYCweb Paraguay | B2B Digital Infrastructure Firm",
+      "description": "We build digital ecosystems that automate sales and operations for companies and professionals. We're not for everyone — apply for an audit."
+    },
+    "hero": {
+      "badge": "Digital Infrastructure for Companies & Professionals",
+      "title": "Your operation doesn't need more improvisation.",
+      "titleHighlight": "It needs a system.",
+      "subtitle": "We turn manual processes into systems for capturing leads, quoting and closing — so you stop depending on Excel, loose messages and messy follow-up.",
+      "cta": "Book a B2B Audit",
+      "whatsappMsg": "Hi Oscar. I'd like to book a B2B audit for my operation.",
+      "iAmCompany": "I run a company",
+      "iAmPro": "I'm a professional"
+    },
+    "results": {
+      "title": "What changes when the engine goes live",
+      "item1": "You go from quoting across loose files to responding with centralized logic.",
+      "item2": "You cut manual errors in quotes, follow-up and documentation.",
+      "item3": "You filter better before talking to each prospect.",
+      "item4": "You organize your sales process without relying on human memory or improvisation.",
+      "item5": "You turn a scattered operation into a clear system for selling and service.",
+      "liveTitle": "Want to see it live?",
+      "liveLink": "See our systems in production →"
+    },
+    "segmentation": {
+      "title": "Two paths. Two systems.",
+      "subtitle": "Not everyone buys the same way. We design a different architecture for companies with complex operations and for professionals who need order.",
+      "companiesTitle": "For Companies",
+      "companiesDesc": "If your operation no longer fits in Excel, we design a system to quote faster, reduce errors and issue documents instantly.",
+      "companiesCta": "See solutions for companies →",
+      "prosTitle": "For Professionals",
+      "prosDesc": "If you depend on word of mouth, we build a system to capture better, filter prospects and convert more without saturating your time.",
+      "prosCta": "See solutions for professionals →"
+    },
+    "filter": {
+      "badge": "Admission Filter",
+      "title1": "We don't work for volume.",
+      "title2": "We work for fit.",
+      "p1": "We don't take every client. If we don't see a clear opportunity to bring order or sell better, we'll tell you straight.",
+      "p2": "We'd rather turn down a project than promise smoke.",
+      "howTitle": "How you get into AYCweb:",
+      "step1Title": "Application",
+      "step1Desc": "You show us how you sell or quote today.",
+      "step2Title": "Diagnosis",
+      "step2Desc": "We detect whether there's friction worth solving.",
+      "step3Title": "Architecture & Proposal",
+      "step3Desc": "If there's a fit, we present the system and the next step."
+    },
+    "guarantee": {
+      "title": "Friction-free guarantee",
+      "desc": "We choose carefully. If we decide we're not the right team, <strong>you get 100% back</strong>. If there's no real satisfaction within the first 30 days, <strong>you get 100% back</strong>. No fine print.",
+      "card1Title": "Mutual commitment",
+      "card1Desc": "Real intent to build.",
+      "card2Title": "30 days of backing",
+      "card2Desc": "You don't carry the risk alone.",
+      "card3Title": "Zero surprises",
+      "card3Desc": "Everything clear from day one.",
+      "cta": "I want my operation audited"
+    }
+  }
+}

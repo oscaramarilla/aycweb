@@ -1,14 +1,13 @@
 import type { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
-
-const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
+  output: 'export', // <-- Agregamos esto
   compress: true,
+  
+  // COMENTAMOS LOS REDIRECTS para poder exportar a Android
+  /*
   async redirects() {
     return [
-      { source: '/iditigal', destination: '/invertir-en-paraguay', permanent: true },
-      { source: '/kwhcoin',  destination: '/invertir-en-paraguay', permanent: true },
       { source: '/productos', destination: '/empresas', permanent: true },
       { source: '/soluciones', destination: '/profesionales', permanent: true },
       { source: '/precios', destination: '/empresas', permanent: true },
@@ -19,6 +18,7 @@ const nextConfig: NextConfig = {
       { source: '/contrato', destination: '/admin/contrato', permanent: true },
     ];
   },
+  */
 };
 
-export default withNextIntl(nextConfig);
+export default nextConfig;

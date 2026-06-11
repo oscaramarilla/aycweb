@@ -30,5 +30,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "aycweb-panel", "llave-aycweb", "out", "android", "capacitor.config.ts"]
 }

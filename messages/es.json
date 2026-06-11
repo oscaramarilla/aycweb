@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "title": "AYCweb Paraguay | Firma de Infraestructura Digital B2B",
+    "description": "Elegimos potenciar empresas y profesionales con sistemas operativos y comerciales de alto rendimiento en Paraguay.",
+    "keywords": "desarrollo web paraguay high ticket, automatización B2B paraguay, sistemas operativos, cotizadores dinámicos",
+    "ogTitle": "AYCweb | Firma de Infraestructura Digital B2B",
+    "ogDescription": "Sistemas operativos y comerciales de alto rendimiento para escalar en Paraguay."
+  },
+  "localeSwitcher": {
+    "label": "Idioma",
+    "es": "Español",
+    "en": "English",
+    "pt": "Português",
+    "de": "Deutsch"
+  },
+  "nav": {
+    "companies": "Empresas",
+    "professionals": "Profesionales",
+    "about": "Nosotros",
+    "works": "Obras",
+    "onboarding": "Onboarding",
+    "audit": "Auditar mi proceso",
+    "whatsappMsg": "Hola Oscar, quiero agendar una Auditoría B2B.",
+    "choosePath": "Elegí tu camino",
+    "companiesDesc": "Manufactureras, clínicas, distribuidoras.",
+    "prosDesc": "Médicos, dentistas, abogados, consultores.",
+    "startOnboarding": "Iniciar Onboarding",
+    "openMenu": "Abrir Menú",
+    "whatsappAria": "Contactar por WhatsApp"
+  },
+  "home": {
+    "meta": {
+      "title": "AYCweb Paraguay | Firma de Infraestructura Digital B2B",
+      "description": "Construimos ecosistemas digitales que automatizan ventas y operaciones para empresas y profesionales. No somos para todos, postulá a una auditoría."
+    },
+    "hero": {
+      "badge": "Infraestructura Digital para Empresas y Profesionales",
+      "title": "Tu operación ya no necesita más improvisación.",
+      "titleHighlight": "Necesita un sistema.",
+      "subtitle": "Convertimos procesos manuales en sistemas de captación, cotización y cierre para que dejes de depender de Excel, mensajes sueltos y seguimiento desordenado.",
+      "cta": "Agendar Auditoría B2B",
+      "whatsappMsg": "Hola Oscar. Quiero agendar una Auditoría B2B para mi operación.",
+      "iAmCompany": "Soy empresa",
+      "iAmPro": "Soy profesional"
+    },
+    "results": {
+      "title": "Lo que cambia cuando el motor entra en operación",
+      "item1": "Pasás de cotizar entre archivos sueltos a responder con lógica centralizada.",
+      "item2": "Reducís errores manuales en presupuestos, seguimiento y documentación.",
+      "item3": "Filtrás mejor antes de hablar con cada prospecto.",
+      "item4": "Ordenás el proceso comercial sin depender de memoria humana o improvisación.",
+      "item5": "Transformás una operación dispersa en un sistema claro de venta y atención.",
+      "liveTitle": "¿Querés verlo en vivo?",
+      "liveLink": "Ver nuestras obras en producción →"
+    },
+    "segmentation": {
+      "title": "Dos caminos. Dos sistemas.",
+      "subtitle": "No todos compran igual. Diseñamos una arquitectura distinta para empresas con operación compleja y para profesionales que necesitan orden.",
+      "companiesTitle": "Para Empresas",
+      "companiesDesc": "Si tu operación ya no cabe en Excel, te diseñamos un sistema para cotizar más rápido, reducir errores y emitir documentos al instante.",
+      "companiesCta": "Ver soluciones para empresas →",
+      "prosTitle": "Para Profesionales",
+      "prosDesc": "Si dependés del boca a boca, armamos un sistema para captar mejor, filtrar prospectos y convertir más sin saturar tu tiempo.",
+      "prosCta": "Ver soluciones para profesionales →"
+    },
+    "filter": {
+      "badge": "Filtro de Admisión",
+      "title1": "No trabajamos por volumen.",
+      "title2": "Trabajamos por encaje.",
+      "p1": "No aceptamos a todos los clientes. Si no vemos una oportunidad clara de ordenar o vender mejor, te lo vamos a decir de frente.",
+      "p2": "Preferimos rechazar un proyecto antes que prometer humo.",
+      "howTitle": "Cómo entrás a AYCweb:",
+      "step1Title": "Postulación",
+      "step1Desc": "Nos mostrás cómo vendés o cotizás hoy.",
+      "step2Title": "Diagnóstico",
+      "step2Desc": "Detectamos si hay una fricción que valga la pena resolver.",
+      "step3Title": "Arquitectura y Propuesta",
+      "step3Desc": "Si hay encaje, presentamos el sistema y el siguiente paso."
+    },
+    "guarantee": {
+      "title": "Garantía sin fricción",
+      "desc": "Elegimos con cuidado. Si decidimos que no somos el equipo correcto, <strong>te devolvemos el 100%</strong>. Si en los primeros 30 días no hay conformidad real, <strong>te devolvemos el 100%</strong>. Sin letra chica.",
+      "card1Title": "Compromiso mutuo",
+      "card1Desc": "Intención real de construir.",
+      "card2Title": "30 días de respaldo",
+      "card2Desc": "No asumís el riesgo solo.",
+      "card3Title": "Cero sorpresas",
+      "card3Desc": "Todo claro desde el inicio.",
+      "cta": "Quiero auditar mi operación"
+    }
+  }
+}
