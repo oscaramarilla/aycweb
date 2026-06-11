@@ -14,6 +14,7 @@ const routes = [
   "/recursos",
   "/contrato-marco",
   "/legal",
+  "/privacidad",
   "/calculadora",
 ];
 
