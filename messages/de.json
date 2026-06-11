@@ -654,5 +654,127 @@
       "relatedLabel": "Weitere operative Lektüre",
       "backToAll": "← Zurück zu allen Ressourcen"
     }
+  },
+  "sos": {
+    "meta": {
+      "title": "AYCweb OS | Das Betriebssystem für KMU",
+      "description": "Ersetzen Sie Ihre nutzlose Website durch eine Maschine, die kalkuliert, PDFs erstellt und rund um die Uhr Verkäufe abschließt. B2B-Software im Abo ab 50 US$/Monat."
+    },
+    "hero": {
+      "badge": "Launch: Software as a Service (SaaS)",
+      "title": "Ihre Website bringt nichts.",
+      "titleHighlight": "Sie brauchen ein Betriebssystem.",
+      "subtitle": "Klassische Agenturen verkaufen Ihnen eine \"digitale Broschüre\". Wir installieren einen Motor, der kalkuliert, PDFs erstellt und Ihren Vertrieb über WhatsApp ordnet. Alles ab <strong>50 US$/Monat</strong>.",
+      "cta": "Abo-Pläne ansehen →"
+    },
+    "compare": {
+      "title": "Warum werfen 90 % der KMU Geld für Marketing weg?",
+      "subtitle": "Weil sie Kunden in einen kaputten internen Prozess holen (Excel und manuelles WhatsApp).",
+      "agTitle": "Klassische Agenturen",
+      "agLabel": "Die \"digitale Broschüre\"",
+      "agI1": "❌ Statische Seiten (WordPress).",
+      "agI2": "❌ Formulare, die in ein ungelesenes Postfach laufen.",
+      "agI3": "❌ Null Wirkung auf Ihren Tagesbetrieb.",
+      "agCost": "Kosten: 300 bis 800 US$ (Einmalzahlung, danach veraltet).",
+      "osBadge": "Die echte Lösung",
+      "osTitle": "AYCweb OS",
+      "osLabel": "Die Betriebsmaschine",
+      "osI1": "✅ Integrierte dynamische Angebots-Engines.",
+      "osI2": "✅ Automatische PDF-Angebotserstellung.",
+      "osI3": "✅ Direkte WhatsApp-Anbindung mit strukturierter Bestellung.",
+      "osCost": "Kosten: Ab 50 US$/Monat (Software immer aktuell).",
+      "shTitle": "Software-Häuser",
+      "shLabel": "Das \"maßgeschneiderte System\"",
+      "shI1": "❌ Brauchen 6 bis 8 Monate Entwicklung.",
+      "shI2": "❌ Unnötige Komplexität für ein KMU.",
+      "shI3": "❌ Hohes Risiko des Projektabbruchs.",
+      "shCost": "Kosten: 5.000 bis 15.000+ US$"
+    },
+    "case": {
+      "kicker": "Fallstudie: Metal Mad E.A.S.",
+      "quote": "„Wir kamen von 2 Stunden Kalkulation in Excel auf ein PDF-Angebot in 3 Minuten.“",
+      "link": "Die Logistik-Engine live testen →"
+    },
+    "plans": {
+      "title": "Abo-Pläne",
+      "subtitle": "Schnelle Implementierung in 7 Tagen. Jederzeit kündbar.",
+      "perMonth": "/Monat",
+      "basicName": "Basis-Motor",
+      "basicDesc": "Für Unternehmen, die Excel hinter sich lassen müssen.",
+      "basicF1": "Professionelle Landingpage (hohe Konversion)",
+      "basicF2": "1 dynamische Angebots-Engine (z. B. Fracht oder Dienstleistungen)",
+      "basicF3": "Automatische PDF-Angebotserstellung",
+      "basicF4": "Bestellweiterleitung per WhatsApp (Deep Link)",
+      "basicF5": "Direkter technischer Support per WhatsApp",
+      "basicCta": "Basis abonnieren",
+      "waBasic": "Hi Oscar! I'd like to subscribe to the AYCweb OS Basic plan (USD $50/month) to systematize my company.",
+      "proBadge": "Meistgewählt",
+      "proName": "Pro-Motor",
+      "proDesc": "Volle Kontrolle über den Vertriebsbetrieb.",
+      "proF1": "Alles aus dem Basis-Plan, plus:",
+      "proF2": "Mini-Dashboard mit Kennzahlen (Besuche und Abschlüsse)",
+      "proF3": "Basis-CRM (Verfolgung von Angebotsstatus)",
+      "proF4": "Bis zu 3 Angebots-Engines oder komplexe Formulare",
+      "proF5": "Automatisches Terminsystem (z. B. Termine)",
+      "proCta": "Pro abonnieren",
+      "waPro": "Hi Oscar! I want the AYCweb OS Pro plan (USD $100/month) with dashboard and advanced automations.",
+      "enterpriseQuestion": "Brauchen Sie ERP-Integrationen, komplexe Datenbanken oder mehrere Benutzer?",
+      "enterpriseLink": "Sprechen wir über den Enterprise-Plan (maßgeschneidert)",
+      "waEnterprise": "Hi! I'm looking for a custom system (Enterprise plan)."
+    }
+  },
+  "sales": {
+    "meta": {
+      "title": "AYC | Unternehmensautomatisierung",
+      "description": "Wir bauen keine Websites: Wir bauen Zeitmaschinen. Maßgeschneiderte Software und B2B-Automatisierung, um die Engpässe Ihres Unternehmens zu beseitigen."
+    },
+    "waMsg": "Hi Oscar, I'm on AYCweb. I'm interested in a free audit to automate my company's processes.",
+    "hero": {
+      "badge": "AYC | Unternehmensautomatisierung",
+      "title": "Wir bauen keine Websites.",
+      "titleHighlight": "Wir bauen Zeitmaschinen.",
+      "subtitle": "Wir beseitigen die Engpässe Ihres Unternehmens mit maßgeschneiderter Software und B2B-Automatisierung, damit Sie keine Zeit mehr im Tagesgeschäft verlieren und sich auf den Umsatz konzentrieren.",
+      "ctaPrimary": "Mein Unternehmen prüfen lassen (gratis)",
+      "ctaSecondary": "Echten Erfolgsfall ansehen"
+    },
+    "problem": {
+      "title": "80 % der Unternehmen verlieren so Geld:",
+      "subtitle": "Wenn Ihr Team das jeden Tag tut, verlieren Sie Rentabilität.",
+      "p1Title": "Angebote von Hand",
+      "p1Desc": "Verkäufer verlieren Stunden in Word/Excel, machen Rechenfehler und lassen wichtige Verkäufe erkalten.",
+      "p2Title": "Chaos im WhatsApp",
+      "p2Desc": "Kundenbestellungen vermischt mit Sprachnachrichten, verlorene Nachrichten und Lieferungen mit falschen Daten.",
+      "p3Title": "Kosten im Blindflug",
+      "p3Desc": "Fracht, Ausschuss oder Dienstleistungen nach Bauchgefühl bepreisen und unbemerkt Betriebskosten subventionieren."
+    },
+    "solutions": {
+      "kicker": "Unsere Lösungen",
+      "title": "Software für das echte Leben.",
+      "s1Card": "📄 PDF-Motor",
+      "s1Title": "Dynamische Firmen-Angebots-Engines",
+      "s1Desc": "Ihre Verkäufer öffnen eine App auf dem Handy, wählen die Produkte, und das System erzeugt in 10 Sekunden ein perfektes Firmen-PDF mit exakten Berechnungen.",
+      "s1Tag": "Hohe Abschlussquote",
+      "s2Card": "🛒 B2B-Portal",
+      "s2Title": "Bestellportale für Kunden",
+      "s2Desc": "Schluss mit WhatsApp-Chaos. Ihre Stammkunden erhalten einen privaten Katalog, in dem sie mit 3 Klicks bestellen — und bei Ihnen kommt alles geordnet in einer Datenbank an.",
+      "s2Tag": "Null Logistikfehler"
+    },
+    "case": {
+      "kicker": "Fallstudie: Fertigungsindustrie",
+      "title": "Wie <highlight>Metal Mad</highlight> seine Kalkulationszeit um 98 % senkte",
+      "desc": "Das Team verlor täglich 2 Stunden mit Firmenangeboten. Wir entwickelten den \"V3.0 PRO Motor\" — Schultische und -stühle in 15 Sekunden kalkuliert, mit null Rechenfehlern.",
+      "stat1Unit": "Sek.",
+      "stat1Label": "Erstellungszeit",
+      "stat2Label": "Abschlussgeschwindigkeit",
+      "pdfTitle": "ANGEBOT",
+      "pdfTotal": "Gesamtbetrag:",
+      "generatedBadge": "100 % automatisch erstellt"
+    },
+    "finalCta": {
+      "title": "Verlieren Sie kein Geld mehr mit Handarbeit.",
+      "subtitle": "Technologie ist kein Luxus mehr — sie ist der einzige Weg, Ihren Vertrieb zu skalieren, ohne im Tagesgeschäft verrückt zu werden.",
+      "button": "Sprechen wir über Ihr Unternehmen (15 Min.)"
+    },
+    "footer": "© {year} AYC | Unternehmensautomatisierung. Lambaré, Paraguay."
   }
 }

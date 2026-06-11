@@ -654,5 +654,127 @@
       "relatedLabel": "Other operational reads",
       "backToAll": "← Back to all resources"
     }
+  },
+  "sos": {
+    "meta": {
+      "title": "AYCweb OS | The Operating System for SMBs",
+      "description": "Replace your useless website with a machine that quotes, generates PDFs and closes sales 24/7. B2B software by subscription from USD $50/month."
+    },
+    "hero": {
+      "badge": "Launch: Software as a Service (SaaS)",
+      "title": "Your website is useless.",
+      "titleHighlight": "You need an Operating System.",
+      "subtitle": "Traditional agencies sell you a \"digital brochure\". We install an engine that quotes, issues PDFs and organizes your sales through WhatsApp. All from <strong>USD $50/month</strong>.",
+      "cta": "See Subscription Plans →"
+    },
+    "compare": {
+      "title": "Why do 90% of SMBs throw money away on marketing?",
+      "subtitle": "Because they bring clients into a broken internal process (Excel and manual WhatsApp).",
+      "agTitle": "Traditional Agencies",
+      "agLabel": "The \"Digital Brochure\"",
+      "agI1": "❌ Static pages (WordPress).",
+      "agI2": "❌ Forms that go to an inbox nobody reads.",
+      "agI3": "❌ Zero impact on your daily operation.",
+      "agCost": "Cost: USD $300 to $800 (One-time payment, then it goes stale).",
+      "osBadge": "The Real Solution",
+      "osTitle": "AYCweb OS",
+      "osLabel": "The Operating Machine",
+      "osI1": "✅ Integrated dynamic quoting engines.",
+      "osI2": "✅ Automatic PDF quote generation.",
+      "osI3": "✅ Direct WhatsApp connection with the structured order.",
+      "osCost": "Cost: From USD $50/month (Software always up to date).",
+      "shTitle": "Software Houses",
+      "shLabel": "The \"Custom System\"",
+      "shI1": "❌ They take 6 to 8 months to build.",
+      "shI2": "❌ Unnecessary complexity for an SMB.",
+      "shI3": "❌ High risk of project abandonment.",
+      "shCost": "Cost: USD $5,000 to $15,000+"
+    },
+    "case": {
+      "kicker": "Case Study: Metal Mad E.A.S.",
+      "quote": "\"We went from spending 2 hours quoting in Excel to generating a PDF quote in 3 minutes.\"",
+      "link": "Try the logistics engine live →"
+    },
+    "plans": {
+      "title": "Subscription Plans",
+      "subtitle": "Fast implementation in 7 days. Cancel anytime.",
+      "perMonth": "/month",
+      "basicName": "Basic Engine",
+      "basicDesc": "For companies that need to leave Excel behind.",
+      "basicF1": "Professional Landing Page (High conversion)",
+      "basicF2": "1 Dynamic Quoting Engine (e.g. Freight or Services)",
+      "basicF3": "Automatic PDF Quote Generation",
+      "basicF4": "Order routing via WhatsApp (Deep Link)",
+      "basicF5": "Direct technical support on WhatsApp",
+      "basicCta": "Subscribe to Basic",
+      "waBasic": "Hi Oscar! I'd like to subscribe to the AYCweb OS Basic plan (USD $50/month) to systematize my company.",
+      "proBadge": "Most Popular",
+      "proName": "Pro Engine",
+      "proDesc": "Full control over your sales operation.",
+      "proF1": "Everything in the Basic plan, plus:",
+      "proF2": "Mini Metrics Dashboard (Visits and Closes)",
+      "proF3": "Basic CRM (Quote status tracking)",
+      "proF4": "Up to 3 Quoting Engines or Complex Forms",
+      "proF5": "Automatic Scheduling System (e.g. Appointments)",
+      "proCta": "Subscribe to Pro",
+      "waPro": "Hi Oscar! I want the AYCweb OS Pro plan (USD $100/month) with dashboard and advanced automations.",
+      "enterpriseQuestion": "Need ERP integrations, complex databases or multiple users?",
+      "enterpriseLink": "Let's talk about the Enterprise plan (Custom)",
+      "waEnterprise": "Hi! I'm looking for a custom system (Enterprise plan)."
+    }
+  },
+  "sales": {
+    "meta": {
+      "title": "AYC | Corporate Automation",
+      "description": "We don't build websites: we build time machines. Custom software and B2B automation to eliminate your company's bottlenecks."
+    },
+    "waMsg": "Hi Oscar, I'm on AYCweb. I'm interested in a free audit to automate my company's processes.",
+    "hero": {
+      "badge": "AYC | Corporate Automation",
+      "title": "We don't build websites.",
+      "titleHighlight": "We build time machines.",
+      "subtitle": "We eliminate your company's bottlenecks with custom software and B2B automation so you stop wasting time on operations and focus on invoicing.",
+      "ctaPrimary": "Audit my company (Free)",
+      "ctaSecondary": "See a real success case"
+    },
+    "problem": {
+      "title": "80% of companies lose money like this:",
+      "subtitle": "If your team does this every day, you're losing profitability.",
+      "p1Title": "Handmade quotes",
+      "p1Desc": "Salespeople losing hours in Word/Excel, making calculation errors and cooling down key sales.",
+      "p2Title": "WhatsApp chaos",
+      "p2Desc": "Client orders mixed with voice notes, lost messages and shipments sent with wrong data.",
+      "p3Title": "Blind costing",
+      "p3Desc": "Pricing freight, waste or services by gut feeling, subsidizing operating costs without noticing."
+    },
+    "solutions": {
+      "kicker": "Our Solutions",
+      "title": "Software designed for real life.",
+      "s1Card": "📄 PDF Engine",
+      "s1Title": "Dynamic Corporate Quoting Engines",
+      "s1Desc": "Your salespeople open an app on their phone, select the products, and the system generates a perfect institutional PDF with exact calculations in 10 seconds.",
+      "s1Tag": "High Sales Closing",
+      "s2Card": "🛒 B2B Portal",
+      "s2Title": "Order Portals for Clients",
+      "s2Desc": "Eliminate WhatsApp chaos. We give your recurring clients a private catalog where they place orders in 3 clicks, and everything reaches you organized in a database.",
+      "s2Tag": "Zero Logistics Errors"
+    },
+    "case": {
+      "kicker": "Case Study: Manufacturing Industry",
+      "title": "How <highlight>Metal Mad</highlight> cut its quoting time by 98%",
+      "desc": "The team lost 2 hours a day building corporate quotes. We developed the \"V3.0 PRO Engine\", quoting school tables and chairs in 15 seconds with zero calculation errors.",
+      "stat1Unit": "sec",
+      "stat1Label": "Creation time",
+      "stat2Label": "Closing agility",
+      "pdfTitle": "QUOTE",
+      "pdfTotal": "Total due:",
+      "generatedBadge": "Generated 100% Automatically"
+    },
+    "finalCta": {
+      "title": "Stop losing money on manual tasks.",
+      "subtitle": "Technology is no longer a luxury — it's the only way to scale your sales without going crazy on operations.",
+      "button": "Let's talk about your company (15 min)"
+    },
+    "footer": "© {year} AYC | Corporate Automation. Lambaré, Paraguay."
   }
 }

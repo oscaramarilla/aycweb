@@ -654,5 +654,127 @@
       "relatedLabel": "Otras lecturas operativas",
       "backToAll": "← Volver a todos los recursos"
     }
+  },
+  "sos": {
+    "meta": {
+      "title": "AYCweb OS | El Sistema Operativo para PyMEs",
+      "description": "Reemplazá tu página web inútil por una máquina que cotiza, genera PDFs y cierra ventas 24/7. Software B2B por suscripción desde USD $50/mes."
+    },
+    "hero": {
+      "badge": "Lanzamiento: Software as a Service (SaaS)",
+      "title": "Tu página web no sirve.",
+      "titleHighlight": "Necesitás un Sistema Operativo.",
+      "subtitle": "Las agencias tradicionales te venden un \"folleto digital\". Nosotros te instalamos un motor que cotiza, emite PDFs y organiza tus ventas por WhatsApp. Todo desde <strong>USD $50/mes</strong>.",
+      "cta": "Ver Planes de Suscripción →"
+    },
+    "compare": {
+      "title": "¿Por qué el 90% de las PyMEs tiran la plata en marketing?",
+      "subtitle": "Porque traen clientes a un proceso interno roto (Excel y WhatsApp manual).",
+      "agTitle": "Agencias Tradicionales",
+      "agLabel": "El \"Folleto Digital\"",
+      "agI1": "❌ Páginas estáticas (WordPress).",
+      "agI2": "❌ Formularios que van a un mail que nadie lee.",
+      "agI3": "❌ Cero impacto en tu operación diaria.",
+      "agCost": "Costo: USD $300 a $800 (Pago único, luego queda obsoleta).",
+      "osBadge": "La Solución Real",
+      "osTitle": "AYCweb OS",
+      "osLabel": "La Máquina Operativa",
+      "osI1": "✅ Cotizadores dinámicos integrados.",
+      "osI2": "✅ Generación automática de presupuestos PDF.",
+      "osI3": "✅ Conexión directa a WhatsApp con el pedido estructurado.",
+      "osCost": "Costo: Desde USD $50/mes (Software siempre actualizado).",
+      "shTitle": "Software Houses",
+      "shLabel": "El \"Sistema a Medida\"",
+      "shI1": "❌ Tardan de 6 a 8 meses en desarrollar.",
+      "shI2": "❌ Complejidad innecesaria para una PyME.",
+      "shI3": "❌ Riesgo alto de abandono del proyecto.",
+      "shCost": "Costo: USD $5.000 a $15.000+"
+    },
+    "case": {
+      "kicker": "Caso de Estudio: Metal Mad E.A.S.",
+      "quote": "\"Pasamos de tardar 2 horas cotizando en Excel a generar un presupuesto PDF en 3 minutos.\"",
+      "link": "Probar el motor logístico en vivo →"
+    },
+    "plans": {
+      "title": "Planes de Suscripción",
+      "subtitle": "Implementación rápida en 7 días. Cancela cuando quieras.",
+      "perMonth": "/mes",
+      "basicName": "Motor Básico",
+      "basicDesc": "Para empresas que necesitan dejar el Excel.",
+      "basicF1": "Landing Page Profesional (Alta conversión)",
+      "basicF2": "1 Cotizador Dinámico (Ej. Fletes o Servicios)",
+      "basicF3": "Generación Automática de Presupuesto PDF",
+      "basicF4": "Derivación de pedidos por WhatsApp (Deep Link)",
+      "basicF5": "Soporte técnico directo por WhatsApp",
+      "basicCta": "Suscribirse al Básico",
+      "waBasic": "¡Hola Oscar! Quiero suscribirme al plan AYCweb OS Básico (USD $50/mes) para sistematizar mi empresa.",
+      "proBadge": "Más Elegido",
+      "proName": "Motor Pro",
+      "proDesc": "Control total sobre la operación comercial.",
+      "proF1": "Todo lo del Plan Básico, más:",
+      "proF2": "Mini-Dashboard de Métricas (Visitas y Cierres)",
+      "proF3": "CRM Básico (Seguimiento de estados de cotización)",
+      "proF4": "Hasta 3 Cotizadores o Formularios Complejos",
+      "proF5": "Sistema de Agendamiento Automático (Ej. Turnos)",
+      "proCta": "Suscribirse al Pro",
+      "waPro": "¡Hola Oscar! Quiero el plan AYCweb OS Pro (USD $100/mes) con dashboard y automatizaciones avanzadas.",
+      "enterpriseQuestion": "¿Necesitás integraciones con ERP, bases de datos complejas o múltiples usuarios?",
+      "enterpriseLink": "Hablemos del Plan Enterprise (A medida)",
+      "waEnterprise": "Hola! Busco un sistema a medida (Plan Enterprise)."
+    }
+  },
+  "sales": {
+    "meta": {
+      "title": "AYC | Automatizaciones Corporativas",
+      "description": "No hacemos páginas web: construimos máquinas de tiempo. Software a medida y automatización B2B para eliminar los cuellos de botella de tu empresa."
+    },
+    "waMsg": "Hola Oscar, estoy en AYCweb. Me interesa una auditoría gratuita para automatizar los procesos de mi empresa.",
+    "hero": {
+      "badge": "AYC | Automatizaciones Corporativas",
+      "title": "No hacemos páginas web.",
+      "titleHighlight": "Construimos máquinas de tiempo.",
+      "subtitle": "Eliminamos los cuellos de botella de tu empresa con software a medida y automatización B2B para que dejes de perder tiempo en la operativa y te enfoques en facturar.",
+      "ctaPrimary": "Auditar mi empresa (Gratis)",
+      "ctaSecondary": "Ver caso de éxito real"
+    },
+    "problem": {
+      "title": "El 80% de las empresas pierden dinero así:",
+      "subtitle": "Si tu equipo hace esto todos los días, estás perdiendo rentabilidad.",
+      "p1Title": "Presupuestos a mano",
+      "p1Desc": "Vendedores perdiendo horas en Word/Excel, cometiendo errores de cálculo y enfriando ventas clave.",
+      "p2Title": "Caos en WhatsApp",
+      "p2Desc": "Pedidos de clientes mezclados con audios, mensajes perdidos y despachos enviados con datos incorrectos.",
+      "p3Title": "Costos a ciegas",
+      "p3Desc": "Fijar precios de fletes, mermas o servicios por instinto, subsidiando costos operativos sin darte cuenta."
+    },
+    "solutions": {
+      "kicker": "Nuestras Soluciones",
+      "title": "Software diseñado para la vida real.",
+      "s1Card": "📄 Motor PDF",
+      "s1Title": "Cotizadores Corporativos Dinámicos",
+      "s1Desc": "Tus vendedores abren una app en su celular, seleccionan los productos, y el sistema genera un PDF institucional perfecto con cálculos exactos en 10 segundos.",
+      "s1Tag": "Alto Cierre de Ventas",
+      "s2Card": "🛒 Portal B2B",
+      "s2Title": "Portales de Pedidos para Clientes",
+      "s2Desc": "Elimina el caos de WhatsApp. Le damos a tus clientes recurrentes un catálogo privado donde hacen sus pedidos con 3 clics, y a ti te llega todo ordenado en una base de datos.",
+      "s2Tag": "Cero Errores de Logística"
+    },
+    "case": {
+      "kicker": "Caso de Estudio: Industria Manufacturera",
+      "title": "Cómo <highlight>Metal Mad</highlight> redujo su tiempo de cotización en un 98%",
+      "desc": "El equipo perdía 2 horas diarias armando presupuestos corporativos. Desarrollamos el \"Motor V3.0 PRO\", permitiendo cotizar mesas y sillas escolares en 15 segundos con cero errores de cálculo.",
+      "stat1Unit": "seg",
+      "stat1Label": "Tiempo de creación",
+      "stat2Label": "Agilidad de cierre",
+      "pdfTitle": "PRESUPUESTO",
+      "pdfTotal": "Total a Pagar:",
+      "generatedBadge": "Generado 100% Automático"
+    },
+    "finalCta": {
+      "title": "Deja de perder plata en tareas manuales.",
+      "subtitle": "La tecnología ya no es un lujo, es la única forma de escalar tus ventas sin volverte loco en la operativa.",
+      "button": "Hablemos de tu empresa (15 min)"
+    },
+    "footer": "© {year} AYC | Automatizaciones Corporativas. Lambaré, Paraguay."
   }
 }
