@@ -1,11 +1,14 @@
 "use client";
 
 import { useActionState } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { submitLeadParaguay, type ActionResult } from "@/app/[locale]/(funnels)/invertir-en-paraguay/actions";
 
 const initialState: ActionResult | null = null;
 
 export default function FormularioLead() {
+  const t = useTranslations("invest.form");
+  const locale = useLocale();
   const [result, dispatch, pending] = useActionState(
     submitLeadParaguay,
     initialState
@@ -16,11 +19,10 @@ export default function FormularioLead() {
       <div className="rounded-3xl border border-emerald-500/30 bg-emerald-950/20 p-8 text-center">
         <p className="mb-2 text-4xl">✅</p>
         <h3 className="mb-3 text-xl font-black text-white">
-          ¡Recibimos tu solicitud!
+          {t("successTitle")}
         </h3>
         <p className="mb-6 text-stone-400">
-          En 24 h hábiles nos ponemos en contacto. Podés también enviarnos el
-          resumen directamente por WhatsApp:
+          {t("successBody")}
         </p>
         <a
           href={result.waUrl}
@@ -28,7 +30,7 @@ export default function FormularioLead() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-8 py-4 font-black text-zinc-950 transition hover:bg-[#1DA851] active:scale-95"
         >
-          Enviar resumen por WhatsApp →
+          {t("successCta")}
         </a>
       </div>
     );
@@ -36,6 +38,8 @@ export default function FormularioLead() {
 
   return (
     <form action={dispatch} className="space-y-4">
+      <input type="hidden" name="locale" value={locale} />
+
       {result && !result.ok && (
         <p className="rounded-xl border border-red-800 bg-red-950/30 px-4 py-3 text-sm text-red-300">
           {result.error}
@@ -44,81 +48,81 @@ export default function FormularioLead() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">Nombre *</label>
+          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">{t("name")}</label>
           <input name="nombre" required minLength={2} maxLength={80}
-            className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400" placeholder="Tu nombre" />
+            className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400" placeholder={t("namePlaceholder")} />
         </div>
         <div>
-          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">Empresa (opcional)</label>
+          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">{t("company")}</label>
           <input name="empresa" maxLength={120}
-            className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400" placeholder="Tu empresa" />
+            className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400" placeholder={t("companyPlaceholder")} />
         </div>
         <div>
-          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">Email *</label>
+          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">{t("email")}</label>
           <input name="email" type="email" required
-            className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400" placeholder="correo@empresa.com" />
+            className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400" placeholder={t("emailPlaceholder")} />
         </div>
         <div>
-          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">WhatsApp *</label>
+          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">{t("whatsapp")}</label>
           <input name="whatsapp" required minLength={6} maxLength={20}
-            className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400" placeholder="+54 9 11 1234-5678" />
+            className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400" placeholder={t("whatsappPlaceholder")} />
         </div>
         <div>
-          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">País *</label>
+          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">{t("country")}</label>
           <input name="pais" required minLength={2} maxLength={60}
-            className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400" placeholder="Argentina, Brasil, España..." />
+            className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400" placeholder={t("countryPlaceholder")} />
         </div>
         <div>
-          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">Sector de interés *</label>
+          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">{t("sectorLabel")}</label>
           <select name="sector" required className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400">
-            <option value="">Seleccioná un sector</option>
-            <option value="energia">Energía e industrialización</option>
-            <option value="agroindustria">Agroindustria</option>
-            <option value="tecnologia">Tecnología e infraestructura digital</option>
-            <option value="logistica">Logística y corredor bioceánico</option>
-            <option value="real_estate">Real Estate productivo</option>
-            <option value="otro">Otro / Explorar</option>
+            <option value="">{t("sectorPlaceholder")}</option>
+            <option value="energia">{t("sectorEnergia")}</option>
+            <option value="agroindustria">{t("sectorAgro")}</option>
+            <option value="tecnologia">{t("sectorTec")}</option>
+            <option value="logistica">{t("sectorLog")}</option>
+            <option value="real_estate">{t("sectorRealEstate")}</option>
+            <option value="otro">{t("sectorOtro")}</option>
           </select>
         </div>
         <div>
-          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">Objetivo *</label>
+          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">{t("objectiveLabel")}</label>
           <select name="objetivo" required className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400">
-            <option value="">¿Qué buscás?</option>
-            <option value="invertir">Invertir capital</option>
-            <option value="instalar_operacion">Instalar una operación</option>
-            <option value="socio_local">Encontrar socio local</option>
-            <option value="exportar_importar">Exportar / importar</option>
-            <option value="explorar">Explorar opciones</option>
+            <option value="">{t("objectivePlaceholder")}</option>
+            <option value="invertir">{t("objInvertir")}</option>
+            <option value="instalar_operacion">{t("objInstalar")}</option>
+            <option value="socio_local">{t("objSocio")}</option>
+            <option value="exportar_importar">{t("objExportar")}</option>
+            <option value="explorar">{t("objExplorar")}</option>
           </select>
         </div>
         <div>
-          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">Rango de capital *</label>
+          <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">{t("capitalLabel")}</label>
           <select name="capital" required className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400">
-            <option value="">Seleccioná un rango</option>
-            <option value="menos_50k">Menos de US$ 50.000</option>
-            <option value="50k_250k">US$ 50.000 – 250.000</option>
-            <option value="250k_1m">US$ 250.000 – 1.000.000</option>
-            <option value="mas_1m">Más de US$ 1.000.000</option>
-            <option value="prefiere_no_decir">Prefiero no decirlo</option>
+            <option value="">{t("capitalPlaceholder")}</option>
+            <option value="menos_50k">{t("capital1")}</option>
+            <option value="50k_250k">{t("capital2")}</option>
+            <option value="250k_1m">{t("capital3")}</option>
+            <option value="mas_1m">{t("capital4")}</option>
+            <option value="prefiere_no_decir">{t("capital5")}</option>
           </select>
         </div>
       </div>
 
       <div>
-        <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">Horizonte de decisión *</label>
+        <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">{t("horizonLabel")}</label>
         <select name="horizonte" required className="w-full rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400">
-          <option value="">¿En cuánto tiempo decidís?</option>
-          <option value="0_6m">0 – 6 meses</option>
-          <option value="6_18m">6 – 18 meses</option>
-          <option value="mas_18m">Más de 18 meses</option>
+          <option value="">{t("horizonPlaceholder")}</option>
+          <option value="0_6m">{t("horizon1")}</option>
+          <option value="6_18m">{t("horizon2")}</option>
+          <option value="mas_18m">{t("horizon3")}</option>
         </select>
       </div>
 
       <div>
-        <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">Mensaje adicional (opcional)</label>
+        <label className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-stone-500">{t("messageLabel")}</label>
         <textarea name="mensaje" maxLength={600} rows={3}
           className="w-full resize-none rounded-xl border border-stone-700 bg-stone-950 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-400"
-          placeholder="Contexto adicional, preguntas específicas, tamaño del proyecto..."
+          placeholder={t("messagePlaceholder")}
         />
       </div>
 
@@ -127,11 +131,11 @@ export default function FormularioLead() {
         disabled={pending}
         className="w-full rounded-xl bg-amber-400 px-6 py-4 font-black uppercase tracking-wide text-stone-950 transition hover:bg-amber-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {pending ? "Enviando..." : "Solicitar dossier y llamada estratégica →"}
+        {pending ? t("submitting") : t("submit")}
       </button>
 
       <p className="text-center text-xs text-stone-600">
-        Sin costo. Sin spam. Respondemos en 24 h hábiles.
+        {t("footnote")}
       </p>
     </form>
   );

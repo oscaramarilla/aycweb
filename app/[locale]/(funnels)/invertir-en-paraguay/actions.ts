@@ -1,5 +1,8 @@
 "use server";
 
+import { getTranslations } from "next-intl/server";
+import { hasLocale } from "next-intl";
+import { routing } from "@/i18n/routing";
 import { leadParaguaySchema, SECTOR_LABELS, CAPITAL_LABELS, type LeadParaguay } from "@/lib/domain/leadParaguay";
 import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
@@ -11,6 +14,13 @@ export async function submitLeadParaguay(
   _prevState: ActionResult | null,
   formData: FormData
 ): Promise<ActionResult> {
+  // El locale viaja como campo oculto del formulario para localizar errores.
+  const rawLocale = formData.get("locale");
+  const locale = hasLocale(routing.locales, rawLocale)
+    ? rawLocale
+    : routing.defaultLocale;
+  const t = await getTranslations({ locale, namespace: "invest.form" });
+
   const raw = {
     nombre:    formData.get("nombre"),
     empresa:   formData.get("empresa") ?? "",
@@ -26,7 +36,7 @@ export async function submitLeadParaguay(
 
   const parsed = leadParaguaySchema.safeParse(raw);
   if (!parsed.success) {
-    return { ok: false, error: "Datos inválidos. Revisá el formulario." };
+    return { ok: false, error: t("errorInvalid") };
   }
 
   const lead: LeadParaguay = parsed.data;
@@ -48,6 +58,7 @@ export async function submitLeadParaguay(
         body: JSON.stringify({
           ...lead,
           source: "invertir-en-paraguay",
+          locale,
           created_at: new Date().toISOString(),
         }),
       });
@@ -64,6 +75,7 @@ export async function submitLeadParaguay(
     `Email: ${lead.email}`,
     `WhatsApp: ${lead.whatsapp}`,
     `País: ${lead.pais}`,
+    `Idioma: ${locale.toUpperCase()}`,
     `Sector: ${SECTOR_LABELS[lead.sector]}`,
     `Capital: ${CAPITAL_LABELS[lead.capital]}`,
     `Horizonte: ${lead.horizonte}`,
