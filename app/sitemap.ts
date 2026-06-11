@@ -68,5 +68,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...marketingUrls, ...solucionesHubUrl, ...solucionesUrls, ...blogUrls, ...funnelUrls];
+  // ── Hub Invertir en Paraguay (es/en/pt-br/de, con hreflang propio) ────────
+  const invertirLocales = ["es", "en", "pt-br", "de"];
+  const invertirUrls: MetadataRoute.Sitemap = invertirLocales.map((lang) => ({
+    url: `${BASE_URL}/${lang}/invertir-en-paraguay`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as MetadataRoute.Sitemap[number]["changeFrequency"],
+    priority: 0.9,
+    alternates: {
+      languages: Object.fromEntries(
+        invertirLocales.map((l) => [l, `${BASE_URL}/${l}/invertir-en-paraguay`])
+      ),
+    },
+  }));
+
+  return [...marketingUrls, ...solucionesHubUrl, ...solucionesUrls, ...blogUrls, ...funnelUrls, ...invertirUrls];
 }

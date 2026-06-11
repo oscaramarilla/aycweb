@@ -23,6 +23,10 @@ const nextConfig: NextConfig = {
       { source: '/os/:path*', destination: '/es/empresas', permanent: true },
       // Ruta personal obsoleta con precios viejos → página corporativa vigente
       { source: '/oscar', destination: '/es/nosotros', permanent: true },
+      // Campañas del hub Invertir en Paraguay
+      { source: '/iditigal', destination: '/es/invertir-en-paraguay', permanent: true },
+      { source: '/kwhcoin',  destination: '/es/invertir-en-paraguay', permanent: true },
+      { source: '/invertir-en-paraguay', destination: '/es/invertir-en-paraguay', permanent: true },
     ];
   },
 };
