@@ -2,10 +2,53 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { buildWaLink, AYCWEB_CONTACT } from "@/lib/config/contact";
+import { locales } from "@/lib/i18n";
 
 const WA_CTA = buildWaLink(AYCWEB_CONTACT.globalMessages.auditB2B);
+
+// Reemplaza el segmento de idioma de la ruta actual; si la ruta no tiene
+// prefijo (ej. /soluciones), lleva al home del idioma elegido.
+function swapLocale(pathname: string, target: string): string {
+  const seg = pathname.split("/");
+  if ((locales as readonly string[]).includes(seg[1])) {
+    seg[1] = target;
+    return seg.join("/") || `/${target}`;
+  }
+  return `/${target}`;
+}
+
+function LocaleSwitcher({
+  lang,
+  onSelect,
+  className = "",
+}: {
+  lang: string;
+  onSelect?: () => void;
+  className?: string;
+}) {
+  const pathname = usePathname() ?? "/";
+
+  return (
+    <div className={`flex items-center gap-1 ${className}`} role="group" aria-label="Idioma / Language">
+      {(locales as readonly string[]).map((l) => (
+        <Link
+          key={l}
+          href={swapLocale(pathname, l)}
+          onClick={onSelect}
+          className={`rounded-md border px-2 py-1 text-[11px] font-black uppercase tracking-wider transition-colors ${
+            l === lang
+              ? "border-blue-500/40 bg-blue-600/20 text-blue-400"
+              : "border-transparent text-slate-500 hover:text-white"
+          }`}
+        >
+          {l.split("-")[0]}
+        </Link>
+      ))}
+    </div>
+  );
+}
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -48,6 +91,8 @@ export default function Navbar() {
             <Link href={`/${lang}/diagnostico-comercial`} className="bg-blue-600 hover:bg-blue-500 text-white font-black text-[14px] px-6 py-2.5 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)]">
               Solicitar Diagnóstico B2B
             </Link>
+
+            <LocaleSwitcher lang={lang} />
           </div>
 
           {/* MOBILE TOGGLE */}
@@ -90,6 +135,8 @@ export default function Navbar() {
           <Link href={`/${lang}/nosotros`} onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">Nosotros</Link>
           <Link href={`/${lang}/obras`} onClick={toggleMenu} className="text-xl font-bold text-blue-400 py-4 border-b border-white/[0.05]">Obras</Link>
           <Link href={`/${lang}/recursos`} onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">Biblioteca B2B</Link>
+
+          <LocaleSwitcher lang={lang} onSelect={toggleMenu} className="mt-6 justify-center" />
 
           <Link href={`/${lang}/diagnostico-comercial`} onClick={toggleMenu} className="mt-6 bg-blue-600 text-white text-center font-black text-lg w-full py-4 rounded-xl active:scale-95 shadow-[0_0_30px_rgba(37,99,235,0.4)]">
             Solicitar Diagnóstico B2B
