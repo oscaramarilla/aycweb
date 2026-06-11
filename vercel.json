@@ -1,0 +1,9 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/nurturing",
+      "schedule": "0 9 * * *",
+      "description": "Agente de Nurturing: Envía emails a Leads Tier B y C diariamente a las 9 AM UTC"
+    }
+  ]
+}
