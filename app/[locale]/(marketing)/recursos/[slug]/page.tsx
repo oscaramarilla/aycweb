@@ -1,6 +1,7 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { articulos, getArticuloBySlug, Articulo } from "@/lib/data/articulos";
 
 // ── Static params para SSG ──────────────────────────────────────────────────
@@ -12,11 +13,14 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const articulo = getArticuloBySlug(slug);
-  if (!articulo) return { title: "Artículo no encontrado | AYCweb" };
+  if (!articulo) {
+    const t = await getTranslations({ locale, namespace: "resources.article" });
+    return { title: t("notFoundTitle") };
+  }
 
   return {
     title: `${articulo.titulo} | AYCweb`,
@@ -171,13 +175,16 @@ function parseBold(text: string): string {
 export default async function ArticuloPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
+
   const articulo = getArticuloBySlug(slug);
 
   if (!articulo) notFound();
 
+  const t = await getTranslations("resources.article");
   const colors = colorMap[articulo.categoriaColor] ?? colorMap.blue;
   const relacionados = articulos.filter((a: Articulo) => a.slug !== articulo.slug);
   const whatsappNumber = "595985864209";
@@ -192,9 +199,9 @@ export default async function ArticuloPage({
         <div className="max-w-3xl mx-auto">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-[11px] md:text-xs text-slate-500 mb-6 md:mb-8 font-medium uppercase tracking-widest">
-            <Link href="/" className="hover:text-slate-300 transition-colors">Inicio</Link>
+            <Link href="/" className="hover:text-slate-300 transition-colors">{t("breadcrumbHome")}</Link>
             <span>/</span>
-            <Link href="/recursos" className="hover:text-slate-300 transition-colors">Recursos</Link>
+            <Link href="/recursos" className="hover:text-slate-300 transition-colors">{t("breadcrumbIndex")}</Link>
             <span>/</span>
             <span className="text-slate-600 truncate max-w-[200px]">{articulo.titulo}</span>
           </nav>
@@ -256,22 +263,22 @@ export default async function ArticuloPage({
             <div className="relative z-10 text-center md:text-left flex flex-col md:flex-row items-center gap-8">
               <div className="flex-1">
                 <p className="text-slate-500 text-[11px] font-bold uppercase tracking-widest mb-2">
-                  ¿Esto aplica a tu empresa?
+                  {t("ctaKicker")}
                 </p>
                 <h3 className="text-2xl md:text-3xl font-black text-white mb-3 leading-tight">
-                  Llevá esta teoría a la práctica.
+                  {t("ctaTitle")}
                 </h3>
                 <p className="text-slate-400 text-[14px] md:text-sm leading-relaxed mb-0">
-                  Agendá una auditoría sin costo. Evaluamos tu operación y te decimos exactamente cómo construir este sistema en tu negocio.
+                  {t("ctaBody")}
                 </p>
               </div>
               <div className="w-full md:w-auto">
                 <a
-                  href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hola Oscar, leí un artículo en AYCweb y quiero auditar mi operación.")}`}
+                  href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(t("waMsg"))}`}
                   target="_blank" rel="noopener noreferrer"
                   className="inline-block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-black py-3.5 px-8 rounded-xl transition-all shadow-[0_0_25px_rgba(37,99,235,0.35)] active:scale-95 text-[14px]"
                 >
-                  Auditar mi operación
+                  {t("ctaButton")}
                 </a>
               </div>
             </div>
@@ -283,7 +290,7 @@ export default async function ArticuloPage({
       <section className="px-6 pb-20 border-t border-white/[0.05] pt-16 relative z-10 bg-[#04050a]">
         <div className="max-w-3xl mx-auto">
           <p className="text-slate-500 text-[11px] font-bold uppercase tracking-widest mb-6">
-            Otras lecturas operativas
+            {t("relatedLabel")}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {relacionados.map((rel) => {
@@ -309,7 +316,7 @@ export default async function ArticuloPage({
 
           <div className="mt-10 text-center">
             <Link href="/recursos" className="inline-flex items-center gap-2 text-slate-500 hover:text-white text-sm font-bold transition-colors">
-              &larr; Volver a todos los recursos
+              {t("backToAll")}
             </Link>
           </div>
         </div>

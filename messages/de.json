@@ -511,5 +511,148 @@
       "waFinal": "Hi Oscar, I'm coming from the Professionals page and I'd like to book the free assessment.",
       "note": "Kostenlos. Unverbindlich."
     }
+  },
+  "about": {
+    "meta": {
+      "title": "Unsere Geschichte | AYCweb",
+      "description": "AYCweb entstand im echten Betrieb: Industrie, Logistik und B2B. Wir bauen Systeme, weil wir das manuelle Chaos zuerst selbst erlitten haben."
+    },
+    "waMsg": "Hi Oscar. I read AYCweb's story and I'd like to book an operational audit.",
+    "hero": {
+      "badge": "Vom Operator zum Erbauer",
+      "title": "Wir kennen das B2B-Chaos,",
+      "titleHighlight": "weil wir es gelebt haben.",
+      "subtitle": "AYCweb entstand nicht in einer Designagentur. Es entstand in Fertigung, Logistik, Ausschreibungen und echtem Betrieb."
+    },
+    "story": {
+      "title": "Die Software entstand aus Notwendigkeit.",
+      "p1": "Wir wissen, was es heißt, Geld zu verlieren — durch ein falsch kalkuliertes Angebot, eine verlegte Nachricht oder einen Betrieb, der von unverbundenen Tools zusammengehalten wird.",
+      "p2": "Echte Unternehmen zu führen zwang uns, eigene Systeme zu bauen. Zuerst lösten wir unser eigenes Chaos. Dann begannen wir, dieselbe Infrastruktur für andere zu bauen.",
+      "p3": "Das ist der Unterschied: Wir starten nicht bei der Theorie. Wir starten bei echter Reibung, echtem Druck und echten Abschlüssen."
+    },
+    "quote": {
+      "text": "„B2B-Unternehmen brauchen keine schönere Website. Sie brauchen digitale Infrastruktur, die das manuelle Chaos beseitigt und den Vertrieb beschleunigt.“",
+      "founderRole": "Gründer, AYCweb"
+    },
+    "production": {
+      "title": "Systeme in Produktion",
+      "subtitle": "Echte Betriebe laufen auf unserer Infrastruktur.",
+      "companiesTitle": "Bereich Unternehmen",
+      "prosTitle": "Bereich Selbstständige"
+    },
+    "cta": {
+      "title": "Ihr Unternehmen kann das nächste sein.",
+      "subtitle": "Wenn Sie spüren, dass manuelle Prozesse Ihren Betrieb ausbremsen, helfen wir Ihnen, die richtige Infrastruktur zu entwerfen.",
+      "button": "Betriebsanalyse vereinbaren"
+    }
+  },
+  "works": {
+    "meta": {
+      "title": "Referenzen | Systeme in Produktion | AYCweb",
+      "description": "Weniger Design-Renderings, mehr Code im echten Industrieeinsatz. Sehen Sie live, wie wir operative Engpässe lösen."
+    },
+    "waMsg": "Hi Oscar. I've been watching AYCweb's work and I want that level of automation in my business.",
+    "badge": "Systeme in Produktion",
+    "title": "Unsere",
+    "titleHighlight": "Referenzen.",
+    "subtitle": "Weniger Design-Renderings, mehr Code im echten Industrieeinsatz. Sehen Sie live, wie wir operative Engpässe lösen.",
+    "featuredBadge": "Vorzeigefall",
+    "mainTitle": "Das B2B-Betriebssystem in Aktion",
+    "mainDesc": "Volle Nachvollziehbarkeit: von der Lead-Erfassung bis zur Dokumentenunterschrift, 100 % automatisiert.",
+    "moreTitle": "Mehr Automatisierung im Einsatz",
+    "v1Title": "B2B-Angebots-Engine",
+    "v1Tag": "Logistik & B2B",
+    "v2Title": "B2C-Verträge",
+    "v2Tag": "Recht & Automatisch",
+    "v3Title": "Kunststoffkalkulation",
+    "v3Tag": "Fertigung",
+    "v4Title": "Ausgerollte Systeme",
+    "v4Tag": "Echtes Portfolio",
+    "ctaTitle": "Wollen Sie diese Geschwindigkeit in Ihrem Unternehmen?",
+    "ctaSubtitle": "Wenn Ihre manuellen Prozesse langsamer sind als das, was Sie gerade gesehen haben, verlieren Sie jeden Tag Geld.",
+    "ctaButton": "B2B-Audit vereinbaren"
+  },
+  "onboarding": {
+    "meta": {
+      "title": "Onboarding | Kundenbereich | AYCweb",
+      "description": "Drei Zahlungswege zur Aktivierung Ihres Projekts: lokale PYG-Überweisung, internationales USD-Banking oder USDT-Krypto."
+    },
+    "badge": "Kundenbereich",
+    "title": "Drei Wege,",
+    "titleHighlight": "den Motor zu starten.",
+    "subtitle": "Sichern Sie sich Ihren Platz im technischen Zeitplan. Wählen Sie den Zahlungsweg, der am besten zu Ihrem Unternehmen passt.",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "pyg": {
+      "title": "Lokale Überweisung",
+      "desc": "Ideal für Unternehmen und Selbstständige mit Sitz in Paraguay und lokalem Bankkonto.",
+      "holderLabel": "Kontoinhaber",
+      "opt1Label": "Option 1: Ueno-Alias (Ausweis)",
+      "ciLabel": "Ausweis / Dokument",
+      "opt2Label": "Option 2: Itaú-Alias (Mobil)",
+      "celLabel": "Mobil / Alias",
+      "accountLabel": "Kontonummer (Sparkonto)",
+      "cta": "Überwiesen — Beleg senden",
+      "waMsg": "Hi Oscar. I just made the initial transfer to start the onboarding. Here's the receipt:",
+      "qrAlt": "QR PYG-Überweisung"
+    },
+    "usd": {
+      "badge": "LATAM-Expansion",
+      "title": "Internationales Banking",
+      "desc": "Ideal für Kunden außerhalb Paraguays oder Unternehmen, die mit US-Dollar-Konten aktivieren möchten.",
+      "notice": "Aus Gründen der internationalen Bankensicherheit geben wir Swift/Routing Number erst nach Validierung heraus.",
+      "cta": "USD-Konto anfragen",
+      "waMsg": "Hi Oscar. I'd like the USD account details to activate the international onboarding."
+    },
+    "crypto": {
+      "title": "Krypto (USDT)",
+      "desc": "Ideal für sofortige Zahlungen — ohne Bankbürokratie und grenzüberschreitende Verzögerungen.",
+      "networkLabel": "Tron-Netzwerk (TRC20)",
+      "walletLabel": "Wallet",
+      "cta": "Hash senden (TXID)",
+      "waMsg": "Hi Oscar. I just transferred USDT. Here's the hash to confirm:",
+      "qrAlt": "QR USDT TRC20"
+    }
+  },
+  "resources": {
+    "meta": {
+      "title": "Ressourcen & kommerzielle Ingenieurskunst | AYCweb",
+      "description": "B2B-Wissensbibliothek für Unternehmer. Fachartikel über Vertriebsautomatisierung, Betriebssysteme und industrielle Digitalisierung in Paraguay.",
+      "ogDescription": "Fachartikel für Unternehmer, die nicht länger im manuellen Modus arbeiten wollen."
+    },
+    "hero": {
+      "badge": "B2B-Wissensbibliothek",
+      "title": "Ressourcen &",
+      "titleHighlight": "kommerzielle Ingenieurskunst",
+      "subtitle": "Fachartikel für Unternehmer, die genau verstehen wollen, welche Systeme sie brauchen, wann sie sie brauchen und warum Reihenfolge wichtiger ist als Budget.",
+      "topic1": "Vertriebsautomatisierung",
+      "topic2": "Gesundheitswesen",
+      "topic3": "Industrie & Technologie"
+    },
+    "counter": "{count} veröffentlichte Artikel",
+    "sortLabel": "Neueste zuerst",
+    "readArticle": "Artikel lesen",
+    "languageNote": "Die Artikel sind derzeit auf Spanisch verfügbar.",
+    "cta": {
+      "kicker": "Genug gelesen?",
+      "title1": "Vom Lesen über Systeme",
+      "title2": "zu einem laufenden System.",
+      "subtitle": "Wir diagnostizieren Ihren Betrieb in 30 Minuten und sagen Ihnen genau, was zuerst zu bauen ist, damit der ROI sofort eintritt.",
+      "button": "Kostenlose Analyse vereinbaren",
+      "casesButton": "Fallstudien ansehen",
+      "waMsg": "Hi Oscar, I read AYCweb's resources and I'd like an assessment of my operation."
+    },
+    "article": {
+      "notFoundTitle": "Artikel nicht gefunden | AYCweb",
+      "breadcrumbHome": "Start",
+      "breadcrumbIndex": "Ressourcen",
+      "ctaKicker": "Trifft das auf Ihr Unternehmen zu?",
+      "ctaTitle": "Bringen Sie diese Theorie in die Praxis.",
+      "ctaBody": "Vereinbaren Sie ein kostenloses Audit. Wir bewerten Ihren Betrieb und sagen Ihnen genau, wie Sie dieses System in Ihrem Unternehmen aufbauen.",
+      "ctaButton": "Betrieb prüfen lassen",
+      "waMsg": "Hi Oscar, I read an article on AYCweb and I'd like my operation audited.",
+      "relatedLabel": "Weitere operative Lektüre",
+      "backToAll": "← Zurück zu allen Ressourcen"
+    }
   }
 }

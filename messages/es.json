@@ -511,5 +511,148 @@
       "waFinal": "Hola Oscar, vengo de la página de Profesionales y quiero agendar el diagnóstico gratuito.",
       "note": "Sin costo. Sin compromiso."
     }
+  },
+  "about": {
+    "meta": {
+      "title": "Nuestra Historia | AYCweb",
+      "description": "AYCweb nació operando en industria, logística y B2B real. Construimos sistemas porque primero sufrimos el caos manual."
+    },
+    "waMsg": "Hola Oscar. Leí la historia de AYCweb y quiero agendar una auditoría operativa.",
+    "hero": {
+      "badge": "De operadores a constructores",
+      "title": "Conocemos el caos B2B",
+      "titleHighlight": "porque lo vivimos.",
+      "subtitle": "AYCweb no nació en una agencia de diseño. Nació en manufactura, logística, licitaciones y operación real."
+    },
+    "story": {
+      "title": "El software nació por necesidad.",
+      "p1": "Sabemos lo que es perder plata por una cotización mal calculada, un mensaje traspapelado o una operación sostenida con herramientas que no se conectan entre sí.",
+      "p2": "Operar negocios reales nos obligó a construir nuestros propios sistemas. Primero resolvimos nuestro caos. Después empezamos a construir esa misma infraestructura para otros.",
+      "p3": "Esa es la diferencia: no partimos de teoría. Partimos de fricción real, presión real y cierre real."
+    },
+    "quote": {
+      "text": "\"Las empresas B2B no necesitan una web más linda. Necesitan infraestructura digital que elimine el caos manual y acelere las ventas.\"",
+      "founderRole": "Fundador, AYCweb"
+    },
+    "production": {
+      "title": "Sistemas en producción",
+      "subtitle": "Operaciones reales corriendo sobre nuestra infraestructura.",
+      "companiesTitle": "División Empresas",
+      "prosTitle": "División Profesionales"
+    },
+    "cta": {
+      "title": "Tu empresa puede ser la próxima.",
+      "subtitle": "Si ya sentís que tu operación está frenada por procesos manuales, podemos ayudarte a diseñar la infraestructura correcta.",
+      "button": "Agendar diagnóstico operativo"
+    }
+  },
+  "works": {
+    "meta": {
+      "title": "Obras | Sistemas en Producción | AYCweb",
+      "description": "Menos renders de diseño, más código operando en la industria real. Mirá cómo resolvemos cuellos de botella operativos en vivo."
+    },
+    "waMsg": "Hola Oscar. Estuve viendo las obras de AYCweb y quiero ese nivel de automatización en mi negocio.",
+    "badge": "Sistemas en Producción",
+    "title": "Nuestras",
+    "titleHighlight": "Obras.",
+    "subtitle": "Menos renders de diseño, más código operando en la industria real. Mirá cómo resolvemos cuellos de botella operativos en vivo.",
+    "featuredBadge": "Caso Destacado",
+    "mainTitle": "El Ecosistema Operativo B2B en Acción",
+    "mainDesc": "Trazabilidad total: desde la captación del lead hasta la firma del documento, 100% automatizado.",
+    "moreTitle": "Más automatizaciones en campo",
+    "v1Title": "Motor Cotizador B2B",
+    "v1Tag": "Logística & B2B",
+    "v2Title": "Contratos B2C",
+    "v2Tag": "Legal & Automático",
+    "v3Title": "Cálculo de Plásticos",
+    "v3Tag": "Manufactura",
+    "v4Title": "Sistemas Desplegados",
+    "v4Tag": "Portafolio Real",
+    "ctaTitle": "¿Querés esta velocidad en tu empresa?",
+    "ctaSubtitle": "Si tus procesos manuales son más lentos de lo que acabás de ver, estás perdiendo dinero todos los días.",
+    "ctaButton": "Agendar Auditoría B2B"
+  },
+  "onboarding": {
+    "meta": {
+      "title": "Onboarding | Área de Clientes | AYCweb",
+      "description": "Tres rieles de pago para activar tu proyecto: transferencia local PYG, banca internacional USD o cripto USDT."
+    },
+    "badge": "Área de Clientes",
+    "title": "Tres formas de",
+    "titleHighlight": "encender el motor.",
+    "subtitle": "Asegurá tu lugar en la agenda técnica. Elegí el riel financiero que mejor se adapte a la operativa de tu empresa.",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "pyg": {
+      "title": "Transferencia Local",
+      "desc": "Ideal para empresas y profesionales radicados en Paraguay operando con banca local.",
+      "holderLabel": "Titular de cuenta",
+      "opt1Label": "Opción 1: Alias CI Ueno",
+      "ciLabel": "CI / Documento",
+      "opt2Label": "Opción 2: Alias Cel Itaú",
+      "celLabel": "Celular / Alias",
+      "accountLabel": "N° Cuenta C.A.",
+      "cta": "Ya transferí — Enviar comprobante",
+      "waMsg": "Hola Oscar. Acabo de hacer la transferencia inicial para arrancar el Onboarding. Te envío el comprobante:",
+      "qrAlt": "QR Transferencia PYG"
+    },
+    "usd": {
+      "badge": "Expansión LATAM",
+      "title": "Banca Internacional",
+      "desc": "Ideal para clientes fuera de Paraguay o empresas que quieran activar con cuentas en dólares.",
+      "notice": "Por seguridad bancaria internacional, proveemos el Swift/Routing Number únicamente previa validación.",
+      "cta": "Solicitar cuenta USD",
+      "waMsg": "Hola Oscar. Quiero los datos de la cuenta USD para activar el onboarding internacional."
+    },
+    "crypto": {
+      "title": "Cripto (USDT)",
+      "desc": "Ideal para pagos inmediatos, sin fricción burocrática bancaria ni demoras transfronterizas.",
+      "networkLabel": "Red Tron (TRC20)",
+      "walletLabel": "Wallet",
+      "cta": "Enviar Hash (TXID)",
+      "waMsg": "Hola Oscar. Acabo de transferir USDT. Te paso el Hash para confirmar:",
+      "qrAlt": "QR USDT TRC20"
+    }
+  },
+  "resources": {
+    "meta": {
+      "title": "Recursos e Ingeniería Comercial | AYCweb",
+      "description": "Biblioteca de autoridad B2B para dueños de empresas. Artículos técnicos sobre automatización comercial, sistemas operativos y digitalización industrial en Paraguay.",
+      "ogDescription": "Artículos técnicos para dueños de empresas que quieren dejar de operar en modo manual."
+    },
+    "hero": {
+      "badge": "Biblioteca de Autoridad B2B",
+      "title": "Recursos e",
+      "titleHighlight": "Ingeniería Comercial",
+      "subtitle": "Artículos técnicos para dueños de empresas que quieren entender exactamente qué sistemas necesitan, cuándo los necesitan y por qué el orden importa más que el presupuesto.",
+      "topic1": "Automatización Comercial",
+      "topic2": "Sector Salud",
+      "topic3": "Industria & Tecnología"
+    },
+    "counter": "{count} artículos publicados",
+    "sortLabel": "Más recientes primero",
+    "readArticle": "Leer artículo",
+    "languageNote": "Los artículos están disponibles en español.",
+    "cta": {
+      "kicker": "¿Leíste suficiente?",
+      "title1": "Pasá de leer sobre sistemas",
+      "title2": "a tener uno funcionando.",
+      "subtitle": "Diagnosticamos tu operación en 30 minutos y te decimos exactamente qué construir primero para que el ROI sea inmediato.",
+      "button": "Agendar Diagnóstico Gratuito",
+      "casesButton": "Ver Casos de Estudio",
+      "waMsg": "Hola Oscar, leí los recursos de AYCweb y quiero un diagnóstico de mi operación."
+    },
+    "article": {
+      "notFoundTitle": "Artículo no encontrado | AYCweb",
+      "breadcrumbHome": "Inicio",
+      "breadcrumbIndex": "Recursos",
+      "ctaKicker": "¿Esto aplica a tu empresa?",
+      "ctaTitle": "Llevá esta teoría a la práctica.",
+      "ctaBody": "Agendá una auditoría sin costo. Evaluamos tu operación y te decimos exactamente cómo construir este sistema en tu negocio.",
+      "ctaButton": "Auditar mi operación",
+      "waMsg": "Hola Oscar, leí un artículo en AYCweb y quiero auditar mi operación.",
+      "relatedLabel": "Otras lecturas operativas",
+      "backToAll": "← Volver a todos los recursos"
+    }
   }
 }

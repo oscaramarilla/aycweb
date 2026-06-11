@@ -1,25 +1,26 @@
 import { Metadata } from "next";
-import Link from "next/link";
+import { setRequestLocale, getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { articulos, Articulo } from "@/lib/data/articulos";
+import { routing } from "@/i18n/routing";
 
-export const metadata: Metadata = {
-  title: "Recursos e Ingeniería Comercial | AYCweb",
-  description:
-    "Biblioteca de autoridad B2B para dueños de empresas. Artículos técnicos sobre automatización comercial, sistemas operativos y digitalización industrial en Paraguay.",
-  keywords: [
-    "automatización comercial paraguay",
-    "sistemas B2B paraguay",
-    "digitalización industrial",
-    "cotizadores automáticos",
-    "ingeniería comercial",
-  ],
-  openGraph: {
-    title: "Recursos e Ingeniería Comercial | AYCweb",
-    description:
-      "Artículos técnicos para dueños de empresas que quieren dejar de operar en modo manual.",
-    type: "website",
-  },
+type Props = {
+  params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "resources.meta" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("title"),
+      description: t("ogDescription"),
+      type: "website",
+    },
+  };
+}
 
 const colorMap: Record<string, { badge: string; dot: string; hover: string }> = {
   emerald: {
@@ -39,7 +40,12 @@ const colorMap: Record<string, { badge: string; dot: string; hover: string }> = 
   },
 };
 
-export default function RecursosPage() {
+export default async function RecursosPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("resources");
+
   return (
     <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans">
 
@@ -51,32 +57,30 @@ export default function RecursosPage() {
 
         <div className="max-w-4xl mx-auto relative z-10">
           <span className="inline-block px-4 py-1.5 rounded-full bg-zinc-900 text-zinc-400 text-xs font-bold uppercase tracking-widest border border-zinc-800 mb-6">
-            Biblioteca de Autoridad B2B
+            {t("hero.badge")}
           </span>
 
           <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter leading-[1.05] text-white">
-            Recursos e{" "}
-            <span className="text-blue-500">Ingeniería Comercial</span>
+            {t("hero.title")}{" "}
+            <span className="text-blue-500">{t("hero.titleHighlight")}</span>
           </h1>
 
           <p className="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8">
-            Artículos técnicos para dueños de empresas que quieren entender
-            exactamente qué sistemas necesitan, cuándo los necesitan y por qué
-            el orden importa más que el presupuesto.
+            {t("hero.subtitle")}
           </p>
 
           <div className="flex flex-wrap justify-center gap-3 text-xs font-semibold text-zinc-500">
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-              Automatización Comercial
+              {t("hero.topic1")}
             </span>
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-purple-500 inline-block" />
-              Sector Salud
+              {t("hero.topic2")}
             </span>
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-500 inline-block" />
-              Industria &amp; Tecnología
+              {t("hero.topic3")}
             </span>
           </div>
         </div>
@@ -89,13 +93,20 @@ export default function RecursosPage() {
           {/* Contador */}
           <div className="flex items-center justify-between mb-10">
             <p className="text-zinc-500 text-sm font-medium">
-              {articulos.length} artículos publicados
+              {t("counter", { count: articulos.length })}
             </p>
             <div className="h-px flex-1 bg-zinc-900 mx-6" />
             <span className="text-zinc-600 text-xs uppercase tracking-widest font-bold">
-              Más recientes primero
+              {t("sortLabel")}
             </span>
           </div>
+
+          {/* Aviso de idioma para visitantes no hispanohablantes */}
+          {locale !== routing.defaultLocale && (
+            <p className="mb-8 rounded-xl border border-zinc-800 bg-zinc-900/60 px-4 py-3 text-sm text-zinc-400">
+              {t("languageNote")}
+            </p>
+          )}
 
           {/* Cards grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -146,7 +157,7 @@ export default function RecursosPage() {
 
                   {/* Arrow indicator */}
                   <div className="mt-4 flex items-center gap-1.5 text-zinc-600 group-hover:text-zinc-300 transition-colors text-xs font-bold uppercase tracking-widest">
-                    Leer artículo
+                    {t("readArticle")}
                     <svg
                       className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"
                       fill="none"
@@ -173,30 +184,29 @@ export default function RecursosPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 to-black pointer-events-none" />
         <div className="max-w-3xl mx-auto relative z-10">
           <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-4">
-            ¿Leíste suficiente?
+            {t("cta.kicker")}
           </p>
           <h2 className="text-3xl md:text-4xl font-black text-white mb-5 leading-tight">
-            Pasá de leer sobre sistemas <br className="hidden md:block" />
-            a tener uno funcionando.
+            {t("cta.title1")} <br className="hidden md:block" />
+            {t("cta.title2")}
           </h2>
           <p className="text-zinc-400 text-base mb-8 max-w-xl mx-auto leading-relaxed">
-            Diagnosticamos tu operación en 30 minutos y te decimos exactamente
-            qué construir primero para que el ROI sea inmediato.
+            {t("cta.subtitle")}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
-              href="https://wa.me/595985864209?text=Hola%20Oscar%2C%20le%C3%AD%20los%20recursos%20de%20AYCweb%20y%20quiero%20un%20diagn%C3%B3stico%20de%20mi%20operaci%C3%B3n."
+              href={`https://wa.me/595985864209?text=${encodeURIComponent(t("cta.waMsg"))}`}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-10 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.35)] active:scale-95"
             >
-              Agendar Diagnóstico Gratuito
+              {t("cta.button")}
             </a>
             <Link
               href="/casos"
               className="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white font-bold py-4 px-10 rounded-xl transition-all"
             >
-              Ver Casos de Estudio
+              {t("cta.casesButton")}
             </Link>
           </div>
         </div>

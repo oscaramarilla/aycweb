@@ -511,5 +511,148 @@
       "waFinal": "Hi Oscar, I'm coming from the Professionals page and I'd like to book the free assessment.",
       "note": "Free. No commitment."
     }
+  },
+  "about": {
+    "meta": {
+      "title": "Our Story | AYCweb",
+      "description": "AYCweb was born operating in real industry, logistics and B2B. We build systems because we suffered manual chaos first."
+    },
+    "waMsg": "Hi Oscar. I read AYCweb's story and I'd like to book an operational audit.",
+    "hero": {
+      "badge": "From operators to builders",
+      "title": "We know B2B chaos",
+      "titleHighlight": "because we lived it.",
+      "subtitle": "AYCweb wasn't born in a design agency. It was born in manufacturing, logistics, public tenders and real operations."
+    },
+    "story": {
+      "title": "The software was born out of necessity.",
+      "p1": "We know what it's like to lose money over a miscalculated quote, a misplaced message or an operation held together by tools that don't talk to each other.",
+      "p2": "Running real businesses forced us to build our own systems. First we solved our own chaos. Then we started building that same infrastructure for others.",
+      "p3": "That's the difference: we don't start from theory. We start from real friction, real pressure and real closing."
+    },
+    "quote": {
+      "text": "\"B2B companies don't need a prettier website. They need digital infrastructure that eliminates manual chaos and accelerates sales.\"",
+      "founderRole": "Founder, AYCweb"
+    },
+    "production": {
+      "title": "Systems in production",
+      "subtitle": "Real operations running on our infrastructure.",
+      "companiesTitle": "Companies Division",
+      "prosTitle": "Professionals Division"
+    },
+    "cta": {
+      "title": "Your company can be next.",
+      "subtitle": "If you already feel your operation is held back by manual processes, we can help you design the right infrastructure.",
+      "button": "Book an operational assessment"
+    }
+  },
+  "works": {
+    "meta": {
+      "title": "Our Work | Systems in Production | AYCweb",
+      "description": "Fewer design renders, more code operating in real industry. Watch how we solve operational bottlenecks live."
+    },
+    "waMsg": "Hi Oscar. I've been watching AYCweb's work and I want that level of automation in my business.",
+    "badge": "Systems in Production",
+    "title": "Our",
+    "titleHighlight": "Work.",
+    "subtitle": "Fewer design renders, more code operating in real industry. Watch how we solve operational bottlenecks live.",
+    "featuredBadge": "Featured Case",
+    "mainTitle": "The B2B Operating Ecosystem in Action",
+    "mainDesc": "Full traceability: from lead capture to document signing, 100% automated.",
+    "moreTitle": "More automation in the field",
+    "v1Title": "B2B Quoting Engine",
+    "v1Tag": "Logistics & B2B",
+    "v2Title": "B2C Contracts",
+    "v2Tag": "Legal & Automatic",
+    "v3Title": "Plastics Calculation",
+    "v3Tag": "Manufacturing",
+    "v4Title": "Deployed Systems",
+    "v4Tag": "Real Portfolio",
+    "ctaTitle": "Want this speed in your company?",
+    "ctaSubtitle": "If your manual processes are slower than what you just watched, you're losing money every day.",
+    "ctaButton": "Book a B2B Audit"
+  },
+  "onboarding": {
+    "meta": {
+      "title": "Onboarding | Client Area | AYCweb",
+      "description": "Three payment rails to activate your project: local PYG transfer, international USD banking or USDT crypto."
+    },
+    "badge": "Client Area",
+    "title": "Three ways to",
+    "titleHighlight": "start the engine.",
+    "subtitle": "Secure your spot in the technical schedule. Choose the financial rail that best fits your company's operations.",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "pyg": {
+      "title": "Local Transfer",
+      "desc": "Ideal for companies and professionals based in Paraguay operating with local banking.",
+      "holderLabel": "Account holder",
+      "opt1Label": "Option 1: Ueno ID alias",
+      "ciLabel": "ID / Document",
+      "opt2Label": "Option 2: Itaú phone alias",
+      "celLabel": "Phone / Alias",
+      "accountLabel": "Savings account no.",
+      "cta": "I've transferred — Send receipt",
+      "waMsg": "Hi Oscar. I just made the initial transfer to start the onboarding. Here's the receipt:",
+      "qrAlt": "PYG transfer QR"
+    },
+    "usd": {
+      "badge": "LATAM Expansion",
+      "title": "International Banking",
+      "desc": "Ideal for clients outside Paraguay or companies that want to activate with US dollar accounts.",
+      "notice": "For international banking security, we provide the Swift/Routing Number only after validation.",
+      "cta": "Request USD account",
+      "waMsg": "Hi Oscar. I'd like the USD account details to activate the international onboarding."
+    },
+    "crypto": {
+      "title": "Crypto (USDT)",
+      "desc": "Ideal for immediate payments, without banking bureaucracy or cross-border delays.",
+      "networkLabel": "Tron Network (TRC20)",
+      "walletLabel": "Wallet",
+      "cta": "Send Hash (TXID)",
+      "waMsg": "Hi Oscar. I just transferred USDT. Here's the hash to confirm:",
+      "qrAlt": "USDT TRC20 QR"
+    }
+  },
+  "resources": {
+    "meta": {
+      "title": "Resources & Commercial Engineering | AYCweb",
+      "description": "A B2B authority library for business owners. Technical articles on sales automation, operating systems and industrial digitalization in Paraguay.",
+      "ogDescription": "Technical articles for business owners who want to stop operating in manual mode."
+    },
+    "hero": {
+      "badge": "B2B Authority Library",
+      "title": "Resources &",
+      "titleHighlight": "Commercial Engineering",
+      "subtitle": "Technical articles for business owners who want to understand exactly which systems they need, when they need them and why order matters more than budget.",
+      "topic1": "Sales Automation",
+      "topic2": "Healthcare",
+      "topic3": "Industry & Technology"
+    },
+    "counter": "{count} published articles",
+    "sortLabel": "Newest first",
+    "readArticle": "Read article",
+    "languageNote": "Articles are currently available in Spanish.",
+    "cta": {
+      "kicker": "Read enough?",
+      "title1": "Go from reading about systems",
+      "title2": "to having one running.",
+      "subtitle": "We diagnose your operation in 30 minutes and tell you exactly what to build first so the ROI is immediate.",
+      "button": "Book a Free Assessment",
+      "casesButton": "See Case Studies",
+      "waMsg": "Hi Oscar, I read AYCweb's resources and I'd like an assessment of my operation."
+    },
+    "article": {
+      "notFoundTitle": "Article not found | AYCweb",
+      "breadcrumbHome": "Home",
+      "breadcrumbIndex": "Resources",
+      "ctaKicker": "Does this apply to your company?",
+      "ctaTitle": "Take this theory into practice.",
+      "ctaBody": "Book a free audit. We evaluate your operation and tell you exactly how to build this system in your business.",
+      "ctaButton": "Audit my operation",
+      "waMsg": "Hi Oscar, I read an article on AYCweb and I'd like my operation audited.",
+      "relatedLabel": "Other operational reads",
+      "backToAll": "← Back to all resources"
+    }
   }
 }
