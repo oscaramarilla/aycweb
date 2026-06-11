@@ -283,5 +283,233 @@
       "bmBrazilBusiness": "Brazil business",
       "bmUruguayBusiness": "Uruguay business"
     }
+  },
+  "companies": {
+    "meta": {
+      "title": "For Companies | B2B Digital Infrastructure | AYCweb",
+      "description": "Dynamic quoting engines, PDF generation and operational systems for manufacturers, clinics, agribusiness and distributors in Paraguay."
+    },
+    "hero": {
+      "badge": "Companies Line",
+      "title": "Your operation no longer",
+      "titleHighlight": "fits in Excel.",
+      "subtitle": "Dynamic quoting engines, PDF generation and operational systems for companies that already invoice seriously and need to stop quoting by hand.",
+      "ctaPrimary": "Free assessment",
+      "ctaSecondary": "See plans",
+      "waDiagnostico": "Hi Oscar, I run a company and I'd like to book a free operational assessment."
+    },
+    "pains": {
+      "title": "What you'll stop doing by hand",
+      "subtitle": "If these pains sound familiar, you're ready for real infrastructure.",
+      "beforeLabel": "Before",
+      "afterLabel": "After",
+      "p1Before": "45 minutes quoting a large order",
+      "p1After": "Quote in 30 seconds",
+      "p2Before": "Calculation errors in Excel sheets",
+      "p2After": "100% automatic accuracy",
+      "p3Before": "Salespeople answering repetitive WhatsApps",
+      "p3After": "A system that filters before you talk",
+      "p4Before": "PDFs handcrafted in Word",
+      "p4After": "Documents generated instantly"
+    },
+    "plans": {
+      "badge": "Investment Architecture",
+      "title": "Three tiers. Zero ambiguity.",
+      "subtitle": "You pay once for the setup. Then only monthly maintenance so the engine never stops.",
+      "setupLabel": "One-time setup",
+      "quotePrice": "Custom quote",
+      "idealLabel": "Ideal for:",
+      "featuredBadge": "MOST POPULAR",
+      "waPlan": "Hi Oscar, I'm interested in the {plan} plan ({price}) for my company.",
+      "starter": {
+        "name": "Company Starter",
+        "delivery": "Delivered in 3 weeks",
+        "tagline": "A solid base to start systematizing lead capture, presentation and your first sales flow.",
+        "f1": "Multi-page site built for B2B",
+        "f2": "Funnel with conditional forms",
+        "f3": "Contact base ready for CRM",
+        "f4": "Conversion-driven B2B copy",
+        "f5": "Technical SEO and PageSpeed 95+",
+        "f6": "WhatsApp routes per section",
+        "ideal": "Companies just moving off Excel and manual WhatsApp.",
+        "cta": "I want the Starter"
+      },
+      "sistema": {
+        "name": "Company System",
+        "delivery": "Delivered in 4-6 weeks",
+        "tagline": "Complete infrastructure with real automation for companies with sales volume.",
+        "f1": "Everything in the Starter",
+        "f2": "Interactive dynamic quoting engine",
+        "f3": "Automatic PDF and contract generation",
+        "f4": "Internal panel for salespeople",
+        "f5": "Basic conversion metrics",
+        "f6": "Advanced WhatsApp integration",
+        "ideal": "Companies with complex sales processes and data at scale.",
+        "cta": "I want the System"
+      },
+      "medida": {
+        "name": "Custom Architecture",
+        "delivery": "Timeline after audit",
+        "tagline": "For operations with their own logic, ERP integrations or complex bottlenecks.",
+        "f1": "Secure portals with login",
+        "f2": "ERP and API connections",
+        "f3": "Real-time dashboards",
+        "f4": "Complex process automation",
+        "f5": "Dedicated SLA",
+        "f6": "Priority support",
+        "ideal": "Cases that require custom software.",
+        "cta": "Technical Audit"
+      },
+      "maintenanceLabel": "Monthly maintenance",
+      "maintenancePrice": "$80 USD/month",
+      "maintenanceBody": "Enterprise hosting, corporate domain, backups and continuous technical support. Your engine never stops."
+    },
+    "sectors": {
+      "title": "Industries where we already operate",
+      "subtitle": "Every sector has its own quoting logic. We know it.",
+      "s1Name": "Manufacturers",
+      "s1Desc": "Quoting engines with raw material and margin calculations",
+      "s2Name": "Clinics & Hospitals",
+      "s2Desc": "Schedules, medical estimates and referrals",
+      "s3Name": "Agribusiness",
+      "s3Desc": "Quoting by hectare, lot and season",
+      "s4Name": "Distributors",
+      "s4Desc": "B2B catalogs with per-client pricing",
+      "s5Name": "Metalworks",
+      "s5Desc": "Estimates by project, blueprints and materials",
+      "s6Name": "Logistics",
+      "s6Desc": "Freight, route and operating cost calculations"
+    },
+    "guarantee": {
+      "title": "Unbreakable Guarantee",
+      "subtitle": "We don't take every client. That's why we can guarantee results.",
+      "g1Title": "You pay first",
+      "g1Body": "We filter out the curious. Mutual commitment from day one.",
+      "g2Title": "30 days, 100%",
+      "g2Body": "If it doesn't work, full refund. No argument.",
+      "g3Title": "No fine print",
+      "g3Body": "Zero hidden costs. Zero excuses."
+    },
+    "finalCta": {
+      "title": "Ready to audit your operation?",
+      "subtitle": "In 15 minutes we'll tell you whether we can generate a clear ROI for you. If not, we'll tell you that too. No runaround.",
+      "cta": "Book the assessment",
+      "waFinal": "Hi Oscar, I'm coming from the Companies page and I'd like to book the free operational assessment.",
+      "note": "Free. No commitment."
+    }
+  },
+  "pros": {
+    "meta": {
+      "title": "For Professionals | Client Acquisition & Digital Authority | AYCweb",
+      "description": "Acquisition systems, online scheduling and positioning for doctors, dentists, lawyers, accountants, architects and independent professionals in Paraguay."
+    },
+    "hero": {
+      "badge": "Professionals Line",
+      "title": "Your practice",
+      "titleHighlight": "works for you.",
+      "subtitle": "Acquisition systems, online scheduling and digital authority for doctors, lawyers, accountants, architects and professionals who want to stop depending on word of mouth.",
+      "ctaPrimary": "Free assessment",
+      "ctaSecondary": "See plans",
+      "waDiagnostico": "Hi Oscar, I'm an independent professional and I'd like to book a free assessment for my service."
+    },
+    "pains": {
+      "title": "Does any of this sound familiar?",
+      "subtitle": "If one of these phrases describes you, you're ready for infrastructure that backs you up.",
+      "p1Title": "Your schedule has gaps",
+      "p1Desc": "Word of mouth keeps you afloat but doesn't scale. You want to fill the week, not pray for Monday to arrive.",
+      "p2Title": "Inquiries that don't qualify",
+      "p2Desc": "People message you on WhatsApp asking for prices without knowing what you offer. You waste time explaining the basics over and over.",
+      "p3Title": "They google you and find nothing",
+      "p3Desc": "When someone recommends you, the first thing they do is search for you on Google. If you don't show up, you lost the client before talking.",
+      "p4Title": "No visible authority",
+      "p4Desc": "You know you're good at what you do, but your online presence doesn't reflect it. Service quality isn't visible before the first contact."
+    },
+    "gets": {
+      "badge": "What you'll get",
+      "title": "Four tools that change your day",
+      "g1Title": "Autopilot scheduling",
+      "g1Desc": "Your patients/clients book online without WhatsApp back-and-forth. They arrive already knowing price, time and what to bring.",
+      "g2Title": "Inquiry filter",
+      "g2Desc": "Forms that pre-qualify before contact. You only talk to people ready to pay.",
+      "g3Title": "Authority through SEO",
+      "g3Desc": "An optimized blog where you answer the questions your client asks Google. Showing up first means winning the client.",
+      "g4Title": "Organized WhatsApp",
+      "g4Desc": "Each service with its own direct link and pre-written message. Zero ambiguity about what they're asking for."
+    },
+    "plans": {
+      "badge": "Professional Investment",
+      "title": "Two plans. No runaround.",
+      "subtitle": "You pay once. Your system is up and running. Then only maintenance.",
+      "setupLabel": "One-time setup",
+      "idealLabel": "Ideal for:",
+      "featuredBadge": "RECOMMENDED",
+      "waPlan": "Hi Oscar, I'm a professional and I'm interested in the {plan} plan ({price}).",
+      "starter": {
+        "name": "Professional Starter",
+        "delivery": "Delivered in 1 week",
+        "tagline": "A clear digital presence and direct focus to start acquiring clients seriously.",
+        "f1": "Professional single-page landing",
+        "f2": "Conversion-driven copywriting",
+        "f3": "Pre-written WhatsApp messages",
+        "f4": "QR / Pagopar payment links",
+        "f5": "Mobile-first design",
+        "f6": "PageSpeed 95+",
+        "ideal": "Professionals just building their serious digital presence.",
+        "cta": "I want the Base"
+      },
+      "pro": {
+        "name": "Professional Pro",
+        "delivery": "Delivered in 2 weeks",
+        "tagline": "A complete acquisition, authority and inquiry-filtering system to level up.",
+        "f1": "Everything in Professional Starter, plus:",
+        "f2": "Integrated Calendly / Google Calendar scheduling",
+        "f3": "Patient/client pre-qualification forms",
+        "f4": "Authority blog and on-page SEO",
+        "f5": "Testimonials and case section",
+        "f6": "WhatsApp per specific service",
+        "ideal": "Professionals who already have demand and need to filter and close better.",
+        "cta": "I want the Pro"
+      },
+      "maintenanceLabel": "Monthly maintenance",
+      "maintenancePrice": "$25 USD/month",
+      "maintenanceBody": "Hosting, domain, backups and updates. Your site always online and fast."
+    },
+    "profs": {
+      "title": "Who already trusts AYCweb",
+      "subtitle": "We design systems for different professions, but they all share one thing: their work deserves to look professional.",
+      "pr1Name": "Engineers & Doctors",
+      "pr1Desc": "Specialists and general practice",
+      "pr2Name": "Dentists",
+      "pr2Desc": "Dental offices and clinics",
+      "pr3Name": "Lawyers",
+      "pr3Desc": "Firms and independent professionals",
+      "pr4Name": "Accountants",
+      "pr4Desc": "Accounting firms and advisors",
+      "pr5Name": "Architects",
+      "pr5Desc": "Studios and interior designers",
+      "pr6Name": "Photographers",
+      "pr6Desc": "Weddings, events, products",
+      "pr7Name": "Consultants",
+      "pr7Desc": "Coaching, marketing, finance",
+      "pr8Name": "Designers",
+      "pr8Desc": "Graphic, web, branding"
+    },
+    "guarantee": {
+      "title": "Unbreakable Guarantee",
+      "subtitle": "We don't work with everyone. That's why we can guarantee the result.",
+      "g1Title": "You pay first",
+      "g1Body": "Mutual commitment from day one.",
+      "g2Title": "30 days, 100%",
+      "g2Body": "If it doesn't work, full refund.",
+      "g3Title": "No fine print",
+      "g3Body": "Zero hidden costs. Zero excuses."
+    },
+    "finalCta": {
+      "title": "Let's talk about your practice",
+      "subtitle": "In 15 minutes we'll tell you whether we can help you acquire better. If not, we'll tell you that too, straight up.",
+      "cta": "Book the assessment",
+      "waFinal": "Hi Oscar, I'm coming from the Professionals page and I'd like to book the free assessment.",
+      "note": "Free. No commitment."
+    }
   }
 }

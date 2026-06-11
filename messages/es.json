@@ -283,5 +283,233 @@
       "bmBrazilBusiness": "Brasil empresarial",
       "bmUruguayBusiness": "Uruguay empresarial"
     }
+  },
+  "companies": {
+    "meta": {
+      "title": "Para Empresas | Infraestructura Digital B2B | AYCweb",
+      "description": "Cotizadores dinámicos, generación de PDFs y motores operativos para manufactureras, clínicas, agroindustria y distribuidoras en Paraguay."
+    },
+    "hero": {
+      "badge": "Línea Empresas",
+      "title": "Tu operación ya no",
+      "titleHighlight": "cabe en Excel.",
+      "subtitle": "Cotizadores dinámicos, generación de PDFs y motores operativos para empresas que ya facturan en serio y necesitan dejar de cotizar a mano.",
+      "ctaPrimary": "Diagnóstico gratuito",
+      "ctaSecondary": "Ver planes",
+      "waDiagnostico": "Hola Oscar, soy de una empresa y quiero agendar un diagnóstico operativo gratuito."
+    },
+    "pains": {
+      "title": "Lo que ya no vas a hacer manual",
+      "subtitle": "Si estos dolores te suenan, estás listo para una infraestructura real.",
+      "beforeLabel": "Antes",
+      "afterLabel": "Después",
+      "p1Before": "45 minutos cotizando un pedido grande",
+      "p1After": "Cotización en 30 segundos",
+      "p2Before": "Errores de cálculo en planillas Excel",
+      "p2After": "Precisión del 100% automática",
+      "p3Before": "Vendedores respondiendo WhatsApps repetidos",
+      "p3After": "Sistema que filtra antes de hablar",
+      "p4Before": "PDFs hechos a mano en Word",
+      "p4After": "Documentos generados al instante"
+    },
+    "plans": {
+      "badge": "Arquitectura de Inversión",
+      "title": "Tres niveles. Cero ambigüedad.",
+      "subtitle": "Pagás una vez por el setup. Después solo mantenimiento mensual para que el motor no se detenga.",
+      "setupLabel": "Setup único",
+      "quotePrice": "Cotización",
+      "idealLabel": "Ideal para:",
+      "featuredBadge": "MÁS ELEGIDO",
+      "waPlan": "Hola Oscar, me interesa el plan {plan} ({price}) para mi empresa.",
+      "starter": {
+        "name": "Starter Empresa",
+        "delivery": "Entrega en 3 semanas",
+        "tagline": "Base sólida para empezar a sistematizar captación, presentación y primer flujo comercial.",
+        "f1": "Sitio multi-página adaptado a B2B",
+        "f2": "Embudo con formularios condicionales",
+        "f3": "Base de contactos preparada para CRM",
+        "f4": "Copy B2B orientado a conversión",
+        "f5": "SEO técnico y PageSpeed 95+",
+        "f6": "Rutas WhatsApp por sección",
+        "ideal": "Empresas que recién están saliendo de Excel y WhatsApp manual.",
+        "cta": "Quiero el Starter"
+      },
+      "sistema": {
+        "name": "Sistema Empresa",
+        "delivery": "Entrega en 4-6 semanas",
+        "tagline": "Infraestructura completa con automatización real para empresas con volumen comercial.",
+        "f1": "Todo lo del Starter",
+        "f2": "Cotizador dinámico interactivo",
+        "f3": "Generación de PDFs y contratos automáticos",
+        "f4": "Panel interno para vendedores",
+        "f5": "Métricas básicas de conversión",
+        "f6": "Integración WhatsApp avanzada",
+        "ideal": "Empresas con procesos comerciales complejos y datos en escala.",
+        "cta": "Quiero el Sistema"
+      },
+      "medida": {
+        "name": "Arquitectura a Medida",
+        "delivery": "Cronograma tras auditoría",
+        "tagline": "Para operaciones con lógica propia, integraciones ERP o cuellos de botella complejos.",
+        "f1": "Portales seguros con login",
+        "f2": "Conexión con ERPs y APIs",
+        "f3": "Dashboards en tiempo real",
+        "f4": "Automatización de procesos complejos",
+        "f5": "SLA dedicado",
+        "f6": "Soporte prioritario",
+        "ideal": "Casos que requieren software a medida.",
+        "cta": "Auditoría Técnica"
+      },
+      "maintenanceLabel": "Mantenimiento mensual",
+      "maintenancePrice": "$80 USD/mes",
+      "maintenanceBody": "Hosting enterprise, dominio corporativo, copias de seguridad y soporte técnico continuo. Tu motor nunca se detiene."
+    },
+    "sectors": {
+      "title": "Industrias donde ya operamos",
+      "subtitle": "Cada sector tiene su propia lógica de cotización. La conocemos.",
+      "s1Name": "Manufactureras",
+      "s1Desc": "Cotizadores con cálculo de materia prima y márgenes",
+      "s2Name": "Clínicas y Hospitales",
+      "s2Desc": "Agendas, presupuestos médicos y derivaciones",
+      "s3Name": "Agroindustria",
+      "s3Desc": "Cotización por hectárea, lote y temporada",
+      "s4Name": "Distribuidoras",
+      "s4Desc": "Catálogos B2B con precios diferenciados por cliente",
+      "s5Name": "Metalúrgicas",
+      "s5Desc": "Presupuestos por proyecto, planos y materiales",
+      "s6Name": "Logística",
+      "s6Desc": "Cálculo de fletes, rutas y costos operativos"
+    },
+    "guarantee": {
+      "title": "Garantía Inquebrantable",
+      "subtitle": "No aceptamos a todos los clientes. Por eso podemos garantizar resultado.",
+      "g1Title": "Pagás primero",
+      "g1Body": "Filtramos curiosos. Compromiso mutuo desde el día uno.",
+      "g2Title": "30 días, 100%",
+      "g2Body": "Si no funciona, devolución total. Sin discusión.",
+      "g3Title": "Sin letra chica",
+      "g3Body": "Cero costos ocultos. Cero excusas."
+    },
+    "finalCta": {
+      "title": "¿Listo para auditar tu operación?",
+      "subtitle": "En 15 minutos te decimos si podemos generarte un ROI claro. Si no, también te lo decimos. Sin vueltas.",
+      "cta": "Agendar diagnóstico",
+      "waFinal": "Hola Oscar, vengo de la página de Empresas y quiero agendar el diagnóstico operativo gratuito.",
+      "note": "Sin costo. Sin compromiso."
+    }
+  },
+  "pros": {
+    "meta": {
+      "title": "Para Profesionales | Captación y Autoridad Digital | AYCweb",
+      "description": "Sistemas de captación, agenda online y posicionamiento para médicos, dentistas, abogados, contadores, arquitectos y profesionales independientes en Paraguay."
+    },
+    "hero": {
+      "badge": "Línea Profesionales",
+      "title": "Tu consultorio",
+      "titleHighlight": "trabaja por vos.",
+      "subtitle": "Sistemas de captación, agenda online y autoridad digital para médicos, abogados, contadores, arquitectos y profesionales que quieren dejar de depender del boca a boca.",
+      "ctaPrimary": "Diagnóstico gratuito",
+      "ctaSecondary": "Ver planes",
+      "waDiagnostico": "Hola Oscar, soy profesional independiente y quiero agendar un diagnóstico gratuito para mi servicio."
+    },
+    "pains": {
+      "title": "¿Te suena algo de esto?",
+      "subtitle": "Si una de estas frases te define, estás listo para una infraestructura que te respalde.",
+      "p1Title": "Tu agenda tiene huecos",
+      "p1Desc": "El boca a boca te mantiene a flote pero no escala. Querés llenar la semana, no rezar para que llegue el lunes.",
+      "p2Title": "Consultas que no califican",
+      "p2Desc": "Te escriben por WhatsApp pidiendo precio sin saber lo que ofrecés. Perdés tiempo explicando lo básico una y otra vez.",
+      "p3Title": "Te googlean y no encuentran nada",
+      "p3Desc": "Cuando alguien te recomienda, lo primero que hace es buscarte en Google. Si no aparecés, perdiste el cliente antes de hablar.",
+      "p4Title": "No tenés autoridad visible",
+      "p4Desc": "Sabés que sos bueno en lo tuyo, pero tu presencia online no lo refleja. La calidad del servicio no se ve antes del primer contacto."
+    },
+    "gets": {
+      "badge": "Lo que vas a tener",
+      "title": "Cuatro herramientas que cambian tu día",
+      "g1Title": "Agenda autopiloto",
+      "g1Desc": "Tus pacientes/clientes reservan online sin ida y vuelta de WhatsApps. Llegan ya sabiendo precio, horario y qué llevar.",
+      "g2Title": "Filtro de consultas",
+      "g2Desc": "Formularios que precalifican antes del contacto. Solo hablás con quien ya está listo para pagar.",
+      "g3Title": "Autoridad por SEO",
+      "g3Desc": "Blog optimizado donde respondés las preguntas que tu cliente hace en Google. Aparecer primero es ganar el cliente.",
+      "g4Title": "WhatsApp ordenado",
+      "g4Desc": "Cada servicio con su propio link directo y mensaje pre-armado. Cero ambigüedad sobre qué te están pidiendo."
+    },
+    "plans": {
+      "badge": "Inversión Profesional",
+      "title": "Dos planes. Cero vueltas.",
+      "subtitle": "Pagás una vez. Tu sistema queda funcionando. Después solo mantenimiento.",
+      "setupLabel": "Setup único",
+      "idealLabel": "Ideal para:",
+      "featuredBadge": "RECOMENDADO",
+      "waPlan": "Hola Oscar, soy profesional y me interesa el plan {plan} ({price}).",
+      "starter": {
+        "name": "Profesional Starter",
+        "delivery": "Entrega en 1 semana",
+        "tagline": "Presencia digital clara y enfoque directo para empezar a captar de forma seria.",
+        "f1": "Landing page profesional de una sola página",
+        "f2": "Copywriting orientado a conversión",
+        "f3": "Mensajes pre-armados a WhatsApp",
+        "f4": "Links de pago QR / Pagopar",
+        "f5": "Diseño mobile-first",
+        "f6": "PageSpeed 95+",
+        "ideal": "Profesionales que recién están armando su presencia digital seria.",
+        "cta": "Quiero la Base"
+      },
+      "pro": {
+        "name": "Profesional Pro",
+        "delivery": "Entrega en 2 semanas",
+        "tagline": "Sistema completo de captación, autoridad y filtro de consultas para subir nivel.",
+        "f1": "Todo lo de Profesional Starter, más:",
+        "f2": "Agenda Calendly / Google Calendar integrada",
+        "f3": "Formularios de precalificación de pacientes/clientes",
+        "f4": "Blog de autoridad y SEO on-page",
+        "f5": "Sección de testimonios y casos",
+        "f6": "WhatsApp por servicio específico",
+        "ideal": "Profesionales que ya tienen demanda y necesitan filtrar y cerrar mejor.",
+        "cta": "Quiero el Pro"
+      },
+      "maintenanceLabel": "Mantenimiento mensual",
+      "maintenancePrice": "$25 USD/mes",
+      "maintenanceBody": "Hosting, dominio, backups y actualizaciones. Tu sitio siempre online y rápido."
+    },
+    "profs": {
+      "title": "Quiénes ya confían en AYCweb",
+      "subtitle": "Diseñamos sistemas para distintas profesiones, pero todas comparten una cosa: su trabajo merece verse profesional.",
+      "pr1Name": "Ingenieros y Médicos",
+      "pr1Desc": "Especialistas y consulta general",
+      "pr2Name": "Odontólogos",
+      "pr2Desc": "Consultorios y clínicas dentales",
+      "pr3Name": "Abogados",
+      "pr3Desc": "Estudios y profesionales independientes",
+      "pr4Name": "Contadores",
+      "pr4Desc": "Estudios contables y asesores",
+      "pr5Name": "Arquitectos",
+      "pr5Desc": "Estudios y diseñadores de interiores",
+      "pr6Name": "Fotógrafos",
+      "pr6Desc": "Bodas, eventos, productos",
+      "pr7Name": "Consultores",
+      "pr7Desc": "Coaching, marketing, finanzas",
+      "pr8Name": "Diseñadores",
+      "pr8Desc": "Gráfico, web, branding"
+    },
+    "guarantee": {
+      "title": "Garantía Inquebrantable",
+      "subtitle": "No trabajamos con todo el mundo. Por eso podemos garantizar el resultado.",
+      "g1Title": "Pagás primero",
+      "g1Body": "Compromiso mutuo desde el día uno.",
+      "g2Title": "30 días, 100%",
+      "g2Body": "Si no funciona, devolución total.",
+      "g3Title": "Sin letra chica",
+      "g3Body": "Cero costos ocultos. Cero excusas."
+    },
+    "finalCta": {
+      "title": "Hablemos de tu práctica",
+      "subtitle": "En 15 minutos te decimos si podemos ayudarte a captar mejor. Si no, también te lo decimos sin vueltas.",
+      "cta": "Agendar diagnóstico",
+      "waFinal": "Hola Oscar, vengo de la página de Profesionales y quiero agendar el diagnóstico gratuito.",
+      "note": "Sin costo. Sin compromiso."
+    }
   }
 }

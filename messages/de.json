@@ -283,5 +283,233 @@
       "bmBrazilBusiness": "Brasilien Gewerbe",
       "bmUruguayBusiness": "Uruguay Gewerbe"
     }
+  },
+  "companies": {
+    "meta": {
+      "title": "Für Unternehmen | Digitale B2B-Infrastruktur | AYCweb",
+      "description": "Dynamische Angebots-Engines, PDF-Erstellung und operative Systeme für Produktion, Kliniken, Agroindustrie und Großhandel in Paraguay."
+    },
+    "hero": {
+      "badge": "Linie Unternehmen",
+      "title": "Ihr Betrieb passt nicht mehr",
+      "titleHighlight": "in Excel.",
+      "subtitle": "Dynamische Angebots-Engines, PDF-Erstellung und operative Systeme für Unternehmen, die ernsthaft Umsatz machen und aufhören müssen, von Hand zu kalkulieren.",
+      "ctaPrimary": "Kostenlose Analyse",
+      "ctaSecondary": "Pläne ansehen",
+      "waDiagnostico": "Hi Oscar, I run a company and I'd like to book a free operational assessment."
+    },
+    "pains": {
+      "title": "Was Sie nicht mehr von Hand machen werden",
+      "subtitle": "Wenn Ihnen diese Schmerzen bekannt vorkommen, sind Sie bereit für echte Infrastruktur.",
+      "beforeLabel": "Vorher",
+      "afterLabel": "Nachher",
+      "p1Before": "45 Minuten für die Kalkulation eines Großauftrags",
+      "p1After": "Angebot in 30 Sekunden",
+      "p2Before": "Rechenfehler in Excel-Tabellen",
+      "p2After": "100 % automatische Genauigkeit",
+      "p3Before": "Verkäufer beantworten immer gleiche WhatsApps",
+      "p3After": "Ein System, das vor dem Gespräch filtert",
+      "p4Before": "PDFs von Hand in Word gebaut",
+      "p4After": "Dokumente sofort generiert"
+    },
+    "plans": {
+      "badge": "Investitionsarchitektur",
+      "title": "Drei Stufen. Null Mehrdeutigkeit.",
+      "subtitle": "Sie zahlen einmal für das Setup. Danach nur monatliche Wartung, damit der Motor nie stehen bleibt.",
+      "setupLabel": "Einmaliges Setup",
+      "quotePrice": "Auf Anfrage",
+      "idealLabel": "Ideal für:",
+      "featuredBadge": "MEISTGEWÄHLT",
+      "waPlan": "Hi Oscar, I'm interested in the {plan} plan ({price}) for my company.",
+      "starter": {
+        "name": "Starter Unternehmen",
+        "delivery": "Lieferung in 3 Wochen",
+        "tagline": "Solide Basis, um Kundengewinnung, Präsentation und den ersten Vertriebsfluss zu systematisieren.",
+        "f1": "Mehrseitige B2B-Website",
+        "f2": "Funnel mit bedingten Formularen",
+        "f3": "CRM-fähige Kontaktdatenbank",
+        "f4": "Konversionsorientierte B2B-Texte",
+        "f5": "Technisches SEO und PageSpeed 95+",
+        "f6": "WhatsApp-Routen pro Bereich",
+        "ideal": "Unternehmen, die gerade Excel und manuelles WhatsApp hinter sich lassen.",
+        "cta": "Ich will den Starter"
+      },
+      "sistema": {
+        "name": "System Unternehmen",
+        "delivery": "Lieferung in 4-6 Wochen",
+        "tagline": "Komplette Infrastruktur mit echter Automatisierung für Unternehmen mit Vertriebsvolumen.",
+        "f1": "Alles aus dem Starter",
+        "f2": "Interaktive dynamische Angebots-Engine",
+        "f3": "Automatische PDF- und Vertragserstellung",
+        "f4": "Internes Panel für Verkäufer",
+        "f5": "Grundlegende Konversionsmetriken",
+        "f6": "Erweiterte WhatsApp-Integration",
+        "ideal": "Unternehmen mit komplexen Vertriebsprozessen und Daten in großem Umfang.",
+        "cta": "Ich will das System"
+      },
+      "medida": {
+        "name": "Maßgeschneiderte Architektur",
+        "delivery": "Zeitplan nach Audit",
+        "tagline": "Für Betriebe mit eigener Logik, ERP-Integrationen oder komplexen Engpässen.",
+        "f1": "Sichere Portale mit Login",
+        "f2": "Anbindung an ERPs und APIs",
+        "f3": "Echtzeit-Dashboards",
+        "f4": "Automatisierung komplexer Prozesse",
+        "f5": "Dediziertes SLA",
+        "f6": "Prioritäts-Support",
+        "ideal": "Fälle, die maßgeschneiderte Software erfordern.",
+        "cta": "Technisches Audit"
+      },
+      "maintenanceLabel": "Monatliche Wartung",
+      "maintenancePrice": "80 US$/Monat",
+      "maintenanceBody": "Enterprise-Hosting, Firmendomain, Backups und kontinuierlicher technischer Support. Ihr Motor bleibt nie stehen."
+    },
+    "sectors": {
+      "title": "Branchen, in denen wir bereits arbeiten",
+      "subtitle": "Jede Branche hat ihre eigene Kalkulationslogik. Wir kennen sie.",
+      "s1Name": "Produktion",
+      "s1Desc": "Angebots-Engines mit Rohstoff- und Margenkalkulation",
+      "s2Name": "Kliniken & Krankenhäuser",
+      "s2Desc": "Terminpläne, medizinische Kostenvoranschläge und Überweisungen",
+      "s3Name": "Agroindustrie",
+      "s3Desc": "Kalkulation nach Hektar, Parzelle und Saison",
+      "s4Name": "Großhandel",
+      "s4Desc": "B2B-Kataloge mit kundenspezifischen Preisen",
+      "s5Name": "Metallverarbeitung",
+      "s5Desc": "Kostenvoranschläge nach Projekt, Plänen und Material",
+      "s6Name": "Logistik",
+      "s6Desc": "Fracht-, Routen- und Betriebskostenkalkulation"
+    },
+    "guarantee": {
+      "title": "Unzerbrechliche Garantie",
+      "subtitle": "Wir nehmen nicht jeden Kunden an. Deshalb können wir Ergebnisse garantieren.",
+      "g1Title": "Sie zahlen zuerst",
+      "g1Body": "Wir filtern Neugierige heraus. Gegenseitiges Commitment ab Tag eins.",
+      "g2Title": "30 Tage, 100 %",
+      "g2Body": "Wenn es nicht funktioniert, volle Rückerstattung. Ohne Diskussion.",
+      "g3Title": "Kein Kleingedrucktes",
+      "g3Body": "Null versteckte Kosten. Null Ausreden."
+    },
+    "finalCta": {
+      "title": "Bereit, Ihren Betrieb prüfen zu lassen?",
+      "subtitle": "In 15 Minuten sagen wir Ihnen, ob wir einen klaren ROI für Sie erzeugen können. Wenn nicht, sagen wir Ihnen das auch. Ohne Umschweife.",
+      "cta": "Analyse vereinbaren",
+      "waFinal": "Hi Oscar, I'm coming from the Companies page and I'd like to book the free operational assessment.",
+      "note": "Kostenlos. Unverbindlich."
+    }
+  },
+  "pros": {
+    "meta": {
+      "title": "Für Selbstständige | Kundengewinnung & digitale Autorität | AYCweb",
+      "description": "Akquise-Systeme, Online-Terminbuchung und Positionierung für Ärzte, Zahnärzte, Anwälte, Buchhalter, Architekten und Selbstständige in Paraguay."
+    },
+    "hero": {
+      "badge": "Linie Selbstständige",
+      "title": "Ihre Praxis",
+      "titleHighlight": "arbeitet für Sie.",
+      "subtitle": "Akquise-Systeme, Online-Terminbuchung und digitale Autorität für Ärzte, Anwälte, Buchhalter, Architekten und Selbstständige, die nicht länger von Mundpropaganda abhängen wollen.",
+      "ctaPrimary": "Kostenlose Analyse",
+      "ctaSecondary": "Pläne ansehen",
+      "waDiagnostico": "Hi Oscar, I'm an independent professional and I'd like to book a free assessment for my service."
+    },
+    "pains": {
+      "title": "Kommt Ihnen etwas davon bekannt vor?",
+      "subtitle": "Wenn einer dieser Sätze auf Sie zutrifft, sind Sie bereit für eine Infrastruktur, die Sie trägt.",
+      "p1Title": "Ihr Kalender hat Lücken",
+      "p1Desc": "Mundpropaganda hält Sie über Wasser, skaliert aber nicht. Sie wollen die Woche füllen, nicht auf den Montag hoffen.",
+      "p2Title": "Anfragen, die nicht qualifizieren",
+      "p2Desc": "Man schreibt Ihnen auf WhatsApp und fragt nach Preisen, ohne Ihr Angebot zu kennen. Sie verlieren Zeit damit, immer wieder die Grundlagen zu erklären.",
+      "p3Title": "Man googelt Sie und findet nichts",
+      "p3Desc": "Wenn Sie jemand empfiehlt, sucht er Sie als Erstes bei Google. Wenn Sie nicht erscheinen, haben Sie den Kunden verloren, bevor Sie sprechen.",
+      "p4Title": "Keine sichtbare Autorität",
+      "p4Desc": "Sie wissen, dass Sie gut sind — aber Ihr Online-Auftritt zeigt es nicht. Servicequalität ist vor dem ersten Kontakt unsichtbar."
+    },
+    "gets": {
+      "badge": "Was Sie bekommen",
+      "title": "Vier Werkzeuge, die Ihren Tag verändern",
+      "g1Title": "Kalender im Autopilot",
+      "g1Desc": "Ihre Patienten/Kunden buchen online ohne WhatsApp-Hin-und-Her. Sie kommen und kennen bereits Preis, Uhrzeit und was mitzubringen ist.",
+      "g2Title": "Anfragefilter",
+      "g2Desc": "Formulare, die vor dem Kontakt vorqualifizieren. Sie sprechen nur mit Menschen, die bereit sind zu zahlen.",
+      "g3Title": "Autorität durch SEO",
+      "g3Desc": "Ein optimierter Blog, in dem Sie die Fragen beantworten, die Ihr Kunde Google stellt. Wer zuerst erscheint, gewinnt den Kunden.",
+      "g4Title": "Geordnetes WhatsApp",
+      "g4Desc": "Jede Leistung mit eigenem Direktlink und vorgefertigter Nachricht. Null Unklarheit darüber, was angefragt wird."
+    },
+    "plans": {
+      "badge": "Professionelle Investition",
+      "title": "Zwei Pläne. Keine Umschweife.",
+      "subtitle": "Sie zahlen einmal. Ihr System läuft. Danach nur Wartung.",
+      "setupLabel": "Einmaliges Setup",
+      "idealLabel": "Ideal für:",
+      "featuredBadge": "EMPFOHLEN",
+      "waPlan": "Hi Oscar, I'm a professional and I'm interested in the {plan} plan ({price}).",
+      "starter": {
+        "name": "Starter Selbstständige",
+        "delivery": "Lieferung in 1 Woche",
+        "tagline": "Klare digitale Präsenz und direkter Fokus, um seriös Kunden zu gewinnen.",
+        "f1": "Professionelle One-Page-Landingpage",
+        "f2": "Konversionsorientiertes Copywriting",
+        "f3": "Vorgefertigte WhatsApp-Nachrichten",
+        "f4": "QR- / Pagopar-Zahlungslinks",
+        "f5": "Mobile-First-Design",
+        "f6": "PageSpeed 95+",
+        "ideal": "Selbstständige, die gerade ihre seriöse digitale Präsenz aufbauen.",
+        "cta": "Ich will die Basis"
+      },
+      "pro": {
+        "name": "Pro Selbstständige",
+        "delivery": "Lieferung in 2 Wochen",
+        "tagline": "Komplettes System für Akquise, Autorität und Anfragenfilter, um aufzusteigen.",
+        "f1": "Alles aus dem Starter, plus:",
+        "f2": "Integrierte Calendly- / Google-Calendar-Terminbuchung",
+        "f3": "Vorqualifizierungsformulare für Patienten/Kunden",
+        "f4": "Autoritäts-Blog und On-Page-SEO",
+        "f5": "Bereich für Referenzen und Fälle",
+        "f6": "WhatsApp pro Leistung",
+        "ideal": "Selbstständige mit bestehender Nachfrage, die besser filtern und abschließen müssen.",
+        "cta": "Ich will Pro"
+      },
+      "maintenanceLabel": "Monatliche Wartung",
+      "maintenancePrice": "25 US$/Monat",
+      "maintenanceBody": "Hosting, Domain, Backups und Updates. Ihre Website immer online und schnell."
+    },
+    "profs": {
+      "title": "Wer AYCweb bereits vertraut",
+      "subtitle": "Wir entwerfen Systeme für verschiedene Berufe, aber alle teilen eines: Ihre Arbeit verdient einen professionellen Auftritt.",
+      "pr1Name": "Ingenieure & Ärzte",
+      "pr1Desc": "Spezialisten und Allgemeinpraxis",
+      "pr2Name": "Zahnärzte",
+      "pr2Desc": "Praxen und Zahnkliniken",
+      "pr3Name": "Anwälte",
+      "pr3Desc": "Kanzleien und Selbstständige",
+      "pr4Name": "Buchhalter",
+      "pr4Desc": "Steuerbüros und Berater",
+      "pr5Name": "Architekten",
+      "pr5Desc": "Büros und Innenarchitekten",
+      "pr6Name": "Fotografen",
+      "pr6Desc": "Hochzeiten, Events, Produkte",
+      "pr7Name": "Berater",
+      "pr7Desc": "Coaching, Marketing, Finanzen",
+      "pr8Name": "Designer",
+      "pr8Desc": "Grafik, Web, Branding"
+    },
+    "guarantee": {
+      "title": "Unzerbrechliche Garantie",
+      "subtitle": "Wir arbeiten nicht mit jedem. Deshalb können wir das Ergebnis garantieren.",
+      "g1Title": "Sie zahlen zuerst",
+      "g1Body": "Gegenseitiges Commitment ab Tag eins.",
+      "g2Title": "30 Tage, 100 %",
+      "g2Body": "Wenn es nicht funktioniert, volle Rückerstattung.",
+      "g3Title": "Kein Kleingedrucktes",
+      "g3Body": "Null versteckte Kosten. Null Ausreden."
+    },
+    "finalCta": {
+      "title": "Sprechen wir über Ihre Praxis",
+      "subtitle": "In 15 Minuten sagen wir Ihnen, ob wir Ihnen helfen können, besser zu akquirieren. Wenn nicht, sagen wir Ihnen das auch — direkt.",
+      "cta": "Analyse vereinbaren",
+      "waFinal": "Hi Oscar, I'm coming from the Professionals page and I'd like to book the free assessment.",
+      "note": "Kostenlos. Unverbindlich."
+    }
   }
 }
