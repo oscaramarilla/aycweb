@@ -50,7 +50,10 @@ function LocaleSwitcher({
   );
 }
 
-export default function Navbar() {
+// `t` recibe el diccionario del idioma (getDictionary) desde un layout server.
+// Es opcional: sin prop, los textos caen al español (ej. /soluciones).
+export default function Navbar({ t }: { t?: Record<string, string> }) {
+  const tx = (key: string, fallback: string) => t?.[key] ?? fallback;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -81,15 +84,15 @@ export default function Navbar() {
           {/* DESKTOP NAV */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {/* FRÍO: Exploración */}
-            <Link href={`/${lang}/empresas`} className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Empresas</Link>
-            <Link href={`/${lang}/profesionales`} className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Profesionales</Link>
-            <Link href="/soluciones" className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Soluciones</Link>
-            <Link href={`/${lang}/nosotros`} className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">Nosotros</Link>
-            <Link href={`/${lang}/obras`} className="text-[14px] font-bold text-blue-400 hover:text-blue-300 transition-colors">Obras</Link>
+            <Link href={`/${lang}/empresas`} className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">{tx("nav.companies", "Empresas")}</Link>
+            <Link href={`/${lang}/profesionales`} className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">{tx("nav.professionals", "Profesionales")}</Link>
+            <Link href="/soluciones" className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">{tx("nav.solutions", "Soluciones")}</Link>
+            <Link href={`/${lang}/nosotros`} className="text-[14px] font-bold text-slate-300 hover:text-white transition-colors">{tx("nav.about", "Nosotros")}</Link>
+            <Link href={`/${lang}/obras`} className="text-[14px] font-bold text-blue-400 hover:text-blue-300 transition-colors">{tx("nav.works", "Obras")}</Link>
 
             {/* CALIENTE: Acción (Fondo sólido) */}
             <Link href={`/${lang}/diagnostico-comercial`} className="bg-blue-600 hover:bg-blue-500 text-white font-black text-[14px] px-6 py-2.5 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)]">
-              Solicitar Diagnóstico B2B
+              {tx("nav.cta", "Solicitar Diagnóstico B2B")}
             </Link>
 
             <LocaleSwitcher lang={lang} />
@@ -109,37 +112,37 @@ export default function Navbar() {
       {/* MOBILE MENU */}
       <div className={`fixed inset-0 z-[90] bg-[#070810] transition-all duration-300 md:hidden ${isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"}`}>
         <div className="flex flex-col h-full overflow-y-auto px-6 pt-24 pb-24">
-          <div className="text-[11px] uppercase tracking-[0.25em] text-slate-500 font-bold mb-3">Elegí tu camino</div>
-          
+          <div className="text-[11px] uppercase tracking-[0.25em] text-slate-500 font-bold mb-3">{tx("nav.choosePath", "Elegí tu camino")}</div>
+
           <Link href={`/${lang}/empresas`} onClick={toggleMenu} className="rounded-2xl border border-blue-900/40 bg-blue-950/20 p-5 mb-3 active:scale-[0.98] transition-transform">
             <div className="flex items-center gap-3 mb-2">
-              <span className="text-3xl">🏭</span><div className="text-2xl font-black text-white">Empresas</div>
+              <span className="text-3xl">🏭</span><div className="text-2xl font-black text-white">{tx("nav.companies", "Empresas")}</div>
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed">Manufactureras, clínicas, distribuidoras.</p>
+            <p className="text-sm text-slate-400 leading-relaxed">{tx("nav.companiesDesc", "Manufactureras, clínicas, distribuidoras.")}</p>
           </Link>
 
           <Link href={`/${lang}/profesionales`} onClick={toggleMenu} className="rounded-2xl border border-emerald-900/40 bg-emerald-950/20 p-5 mb-6 active:scale-[0.98] transition-transform">
             <div className="flex items-center gap-3 mb-2">
-              <span className="text-3xl">🧑‍⚕️</span><div className="text-2xl font-black text-white">Profesionales</div>
+              <span className="text-3xl">🧑‍⚕️</span><div className="text-2xl font-black text-white">{tx("nav.professionals", "Profesionales")}</div>
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed">Médicos, dentistas, abogados, consultores.</p>
+            <p className="text-sm text-slate-400 leading-relaxed">{tx("nav.prosDesc", "Médicos, dentistas, abogados, consultores.")}</p>
           </Link>
 
           <Link href="/soluciones" onClick={toggleMenu} className="block rounded-2xl border border-violet-900/40 bg-violet-950/20 p-5 mb-6 active:scale-[0.98] transition-transform">
             <div className="flex items-center gap-3 mb-2">
-              <span className="text-3xl">🚀</span><div className="text-2xl font-black text-white">Soluciones</div>
+              <span className="text-3xl">🚀</span><div className="text-2xl font-black text-white">{tx("nav.solutions", "Soluciones")}</div>
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed">40 soluciones digitales especializadas por industria.</p>
+            <p className="text-sm text-slate-400 leading-relaxed">{tx("nav.solutionsDesc", "40 soluciones digitales especializadas por industria.")}</p>
           </Link>
 
-          <Link href={`/${lang}/nosotros`} onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">Nosotros</Link>
-          <Link href={`/${lang}/obras`} onClick={toggleMenu} className="text-xl font-bold text-blue-400 py-4 border-b border-white/[0.05]">Obras</Link>
-          <Link href={`/${lang}/recursos`} onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">Biblioteca B2B</Link>
+          <Link href={`/${lang}/nosotros`} onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">{tx("nav.about", "Nosotros")}</Link>
+          <Link href={`/${lang}/obras`} onClick={toggleMenu} className="text-xl font-bold text-blue-400 py-4 border-b border-white/[0.05]">{tx("nav.works", "Obras")}</Link>
+          <Link href={`/${lang}/recursos`} onClick={toggleMenu} className="text-xl font-bold text-slate-200 hover:text-blue-400 py-4 border-b border-white/[0.05]">{tx("nav.library", "Biblioteca B2B")}</Link>
 
           <LocaleSwitcher lang={lang} onSelect={toggleMenu} className="mt-6 justify-center" />
 
           <Link href={`/${lang}/diagnostico-comercial`} onClick={toggleMenu} className="mt-6 bg-blue-600 text-white text-center font-black text-lg w-full py-4 rounded-xl active:scale-95 shadow-[0_0_30px_rgba(37,99,235,0.4)]">
-            Solicitar Diagnóstico B2B
+            {tx("nav.cta", "Solicitar Diagnóstico B2B")}
           </Link>
         </div>
       </div>
