@@ -58,7 +58,7 @@ export function scoreLead(lead: LeadParaguay): LeadScore {
   // Señales secundarias de seriedad
   if (lead.empresa && lead.empresa.trim().length > 1) score += 3;
   if (lead.mensaje && lead.mensaje.trim().length >= 40) score += 3;
-  if (!lead.email.match(/@(gmail|hotmail|outlook|yahoo|icloud)\./i)) score += 4; // email corporativo
+  if (lead.email.includes("@") && !lead.email.match(/@(gmail|hotmail|outlook|yahoo|icloud)\./i)) score += 4; // email corporativo
 
   score = Math.min(100, score);
 

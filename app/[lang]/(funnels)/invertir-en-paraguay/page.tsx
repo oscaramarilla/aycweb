@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { getInvertirDict, INVERTIR_I18N, type InvertirLocale } from "@/lib/config/invertirParaguay";
+import { getAgenteUi } from "@/lib/config/agenteCalificador";
 import { AYCWEB_CONTACT } from "@/lib/config/contact";
 import CalculadoraKwh from "@/components/invertir/CalculadoraKwh";
 import FormularioLead from "@/components/invertir/FormularioLead";
+import AgenteCalificador from "@/components/agente/AgenteCalificador";
 
 const PAGE_PATH = "/invertir-en-paraguay";
 const BASE_URL = "https://www.aycweb.com";
@@ -348,6 +350,9 @@ export default async function InvertirEnParaguay({ params }: Props) {
           </div>
         </section>
       </main>
+
+      {/* ── AGENTE CALIFICADOR (chat con IA) ── */}
+      <AgenteCalificador ui={getAgenteUi(lang)} lang={lang} />
     </>
   );
 }
