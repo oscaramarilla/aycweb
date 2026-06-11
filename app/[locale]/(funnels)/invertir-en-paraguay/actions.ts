@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { leadParaguaySchema, SECTOR_LABELS, CAPITAL_LABELS, type LeadParaguay } from "@/lib/domain/leadParaguay";
+import { scoreLead, TIER_LABELS } from "@/lib/domain/leadScoring";
 import { AYCWEB_CONTACT } from "@/lib/config/contact";
 
 export type ActionResult =
@@ -40,6 +41,7 @@ export async function submitLeadParaguay(
   }
 
   const lead: LeadParaguay = parsed.data;
+  const { score, tier } = scoreLead(lead);
 
   // Persist to Supabase REST API (requires SUPABASE_URL + SUPABASE_SERVICE_KEY env vars)
   const supabaseUrl = process.env.SUPABASE_URL;
@@ -59,6 +61,8 @@ export async function submitLeadParaguay(
           ...lead,
           source: "invertir-en-paraguay",
           locale,
+          score,
+          tier,
           created_at: new Date().toISOString(),
         }),
       });
@@ -70,6 +74,7 @@ export async function submitLeadParaguay(
   // Build WhatsApp notification link for Oscar
   const resumen = [
     `*Nuevo lead · Invertir en Paraguay*`,
+    `Score: ${score}/100 · Tier ${TIER_LABELS[tier]}`,
     `Nombre: ${lead.nombre}`,
     lead.empresa ? `Empresa: ${lead.empresa}` : null,
     `Email: ${lead.email}`,
