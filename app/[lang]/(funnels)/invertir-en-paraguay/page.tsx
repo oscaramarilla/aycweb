@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { getInvertirDict, INVERTIR_I18N, type InvertirLocale } from "@/lib/config/invertirParaguay";
 import { getAgenteUi } from "@/lib/config/agenteCalificador";
+import { getConfianzaDict, getBookingUrl } from "@/lib/config/confianzaInternacional";
 import { AYCWEB_CONTACT } from "@/lib/config/contact";
 import CalculadoraKwh from "@/components/invertir/CalculadoraKwh";
 import FormularioLead from "@/components/invertir/FormularioLead";
+import ConfianzaInternacional from "@/components/invertir/ConfianzaInternacional";
 import AgenteCalificador from "@/components/agente/AgenteCalificador";
 
 const PAGE_PATH = "/invertir-en-paraguay";
@@ -73,6 +75,8 @@ export default async function InvertirEnParaguay({ params }: Props) {
 
   const WA_DOSSIER = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(dict.wa.dossier)}`;
   const WA_LLAMADA = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(dict.wa.call)}`;
+  const confianza = getConfianzaDict(lang);
+  const bookingUrl = getBookingUrl(lang);
 
   const faqs = [
     [dict.faq.q1, dict.faq.a1],
@@ -157,6 +161,14 @@ export default async function InvertirEnParaguay({ params }: Props) {
                 className="inline-flex min-h-14 items-center justify-center gap-2 rounded-xl border border-stone-700 bg-stone-900 px-8 py-3 text-base font-bold text-white transition hover:bg-stone-800"
               >
                 {dict.hero.ctaWhatsapp}
+              </a>
+              <a
+                href={bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-8 py-3 text-base font-bold text-emerald-300 transition hover:bg-emerald-500/20"
+              >
+                {confianza.bookCall}
               </a>
             </div>
 
@@ -325,6 +337,9 @@ export default async function InvertirEnParaguay({ params }: Props) {
             </div>
           </div>
         </section>
+
+        {/* ── CONFIANZA INTERNACIONAL ── */}
+        <ConfianzaInternacional dict={confianza} bookingUrl={bookingUrl} lang={lang} />
 
         {/* ── FORMULARIO ── */}
         <section id="formulario" className="scroll-mt-10 mx-auto max-w-3xl px-6 py-16 lg:px-8">
