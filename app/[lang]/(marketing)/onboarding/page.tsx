@@ -234,7 +234,7 @@ export default function OnboardingPage() {
 
               <h4 className="text-sm font-bold text-emerald-400 mt-5 mb-2">Cláusula 1 — Objeto del Contrato</h4>
               <p className="mb-3 leading-relaxed">
-                AYCweb se compromete a desarrollar, desplegar y mantener la infraestructura digital del Cliente bajo un modelo de suscripción anual obligatoria. El entregable mínimo viable (MVP) consiste en el dominio en producción completamente funcional, con las características técnicas y comerciales acordadas en el diagnóstico y la cotización previa. El Cliente se obliga a contratar el servicio por un período mínimo de doce (12) meses contados desde la fecha de puesta en producción del MVP.
+     AYC se compromete a desarrollar, desplegar y mantener la infraestructura digital del Cliente bajo un modelo de suscripción anual obligatoria. El entregable mínimo viable (MVP) consiste en el dominio en producción completamente funcional, con las características técnicas y comerciales acordadas en el diagnóstico y la cotización previa. El Cliente se obliga a contratar el servicio por un período mínimo de doce (12) meses contados desde la fecha de puesta en producción del MVP.
               </p>
 
               <h4 className="text-sm font-bold text-emerald-400 mt-5 mb-2">Cláusula 2 — Estructura Financiera</h4>
