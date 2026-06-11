@@ -389,6 +389,112 @@ La digitalización industrial no es un proyecto de tecnología. Es un proyecto d
 Y la secuencia empieza por lo que genera dinero: el proceso comercial.
     `.trim(),
   },
+  {
+    slug: "paraguay-energy-tax-arbitrage-us-european-investors",
+    titulo: "Paraguay in 2026: The Energy and Tax Arbitrage Most U.S. and European Investors Are Still Missing",
+    descripcion:
+      "Business electricity at ~US$0.045/kWh, >99.9% renewable, a 1% maquila tax and investment-grade ratings: the verified numbers behind Paraguay's 2026 window.",
+    categoria: "International Investment",
+    categoriaColor: "emerald",
+    fechaPublicacion: "June 11, 2026",
+    tiempoLectura: "7 min read",
+    autor: "Oscar Amarilla Cáceres",
+    contenido:
+      "Paraguay combines the cheapest renewable business electricity in the region, a 1% maquila tax regime and a newly earned investment-grade rating — and most U.S. and European capital still hasn't priced it in. Here are the verified numbers and how to act on them.",
+    bloques: [
+      {
+        tipo: "prosa",
+        texto:
+          "Every investment thesis starts with a gap between fundamentals and attention. In 2026, Paraguay is exactly that gap: a country that exports surplus renewable energy at scrap prices, taxes export manufacturing at 1%, and just earned investment-grade ratings from two agencies — while most U.S. and European portfolios still can't place it on a map. This article lays out the verified numbers, with sources, and what they mean if you run an energy-intensive operation or allocate capital to emerging markets.",
+      },
+      {
+        tipo: "ficha",
+        titulo: "Paraguay 2026 at a glance (verified data)",
+        items: [
+          { clave: "Business electricity tariff", valor: "~US$0.045/kWh — vs ~US$0.164 world business average (ANDE)" },
+          { clave: "Renewable generation", valor: ">99.9% — hydroelectric, Itaipú and Yacyretá (ANDE)" },
+          { clave: "Maquila tax regime", valor: "Single 1% tax on value added in Paraguayan territory" },
+          { clave: "Credit rating", valor: "Investment grade: Moody's Baa3 + S&P BBB− (MEF, Dec 2025)" },
+          { clave: "Bioceanic corridor", valor: "PY–BR bridge joins its spans June 2026; ~8,000 km shorter route to Asia (MOPC)" },
+        ],
+      },
+      {
+        tipo: "prosa",
+        texto:
+          "The core of the thesis is energy. Paraguay has 8,760 MW of installed capacity against a peak demand of roughly 5,000 MW. In 2025 it used 25,768 GWh of the 36,439 GWh it was entitled to from the Itaipú dam alone — and ceded the surplus at around US$15.7 per MWh, while the regional market price hovers near US$100. That spread is structural, not cyclical: it exists because transmission, not generation, is the binding constraint. Every operation that consumes electricity inside Paraguay — a data center, a steel mill, a fertilizer plant, a manufacturing line — captures part of that spread as margin.",
+      },
+      {
+        tipo: "tabla",
+        titulo: "What businesses pay for electricity (US$/kWh, business tariffs)",
+        columnas: ["Market", "Tariff", "vs Paraguay"],
+        filas: [
+          ["Paraguay", "$0.045", "—"],
+          ["United States", "$0.145", "3.2× more expensive"],
+          ["Brazil", "$0.173", "3.8× more expensive"],
+          ["Europe (average)", "$0.217", "4.8× more expensive"],
+          ["Germany", "$0.285", "6.3× more expensive"],
+          ["World business average", "$0.164", "3.6× more expensive"],
+        ],
+      },
+      {
+        tipo: "prosa",
+        texto:
+          "The second layer is fiscal. Paraguay's maquila regime applies a single 1% tax on the value added in national territory for export-oriented production — one of the most aggressive manufacturing incentives in the hemisphere. Combined with the December 2025 milestone of holding investment-grade ratings from both Moody's (Baa3) and S&P (BBB−), the country now clears the formal hurdle that kept institutional capital out. And with the Capricorn Bioceanic Corridor's Carmelo Peralta–Puerto Murtinho bridge joining its spans in June 2026, cargo from Paraguay gains a route to Asian markets roughly 8,000 km shorter than the Atlantic alternatives.",
+      },
+      {
+        tipo: "prosa",
+        texto:
+          "Who is this window actually for? Five profiles keep appearing in our pipeline: data-center and high-density compute operators chasing renewable power costs; electro-intensive industry (steel, aluminum, fertilizers) doing the same math; agro-processors who want to transform grain instead of exporting it raw; logistics operators positioning ahead of the corridor; and productive real-estate investors building the warehouses all of the above will rent. What they share is simple: their unit economics are dominated by energy, tax or freight — the three variables Paraguay reprices.",
+      },
+      {
+        tipo: "timeline",
+        titulo: "From the data to the ground in 3 steps",
+        pasos: [
+          {
+            titulo: "Request your sector dossier (free)",
+            descripcion: "A document with verified figures and their sources, an introductory regulatory framework and a map of the key local players in your sector.",
+          },
+          {
+            titulo: "30-minute strategy call",
+            descripcion: "We review your objective, capital range and timeline — and tell you honestly whether Paraguay fits your plan.",
+          },
+          {
+            titulo: "Connection and landing",
+            descripcion: "Introductions to verified local operators, plus the digital infrastructure for your operation, built by AYCweb from Asunción.",
+          },
+        ],
+      },
+      {
+        tipo: "faq",
+        titulo: "What investors ask us first",
+        items: [
+          {
+            pregunta: "Is this financial advice or an investment offer?",
+            respuesta: "No. It is commercial intelligence and connection with local operators. We do not sell securities, manage third-party funds or recommend instruments — every figure above is published with its public source so you can verify it independently.",
+          },
+          {
+            pregunta: "Can foreign investors and companies operate in Paraguay?",
+            respuesta: "Yes. We orient you through the practical steps — incorporation, banking and local operations — and point you to the verified professionals you will need at each stage.",
+          },
+          {
+            pregunta: "How do I verify these numbers?",
+            respuesta: "Every figure is sourced: energy data from ANDE and Paraguay's National Congress, ratings from Ministry of Economy and Finance coverage (Dec 2025), corridor timelines from MOPC. The dossier includes the full source list.",
+          },
+          {
+            pregunta: "What does it cost to start?",
+            respuesta: "The sector dossier and the first 30-minute call cost nothing. Ongoing support, representation and digital infrastructure are quoted per project scope, with a signed contract and staged payments.",
+          },
+        ],
+      },
+      {
+        tipo: "cta",
+        titulo: "Get the verified map — and the local network to execute",
+        texto: "The full investment thesis, an energy-arbitrage calculator with your own consumption numbers, and a free sector dossier are one click away.",
+        href: "/en/invertir-en-paraguay",
+        boton: "Explore the Paraguay 2026 thesis →",
+      },
+    ],
+  },
 ];
 
 export function getArticuloBySlug(slug: string): Articulo | undefined {
