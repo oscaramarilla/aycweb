@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Paquete anidado de Kapso: tiene su propio tooling, fuera del lint de Next.
+    "kapso/**",
   ]),
 ]);
 

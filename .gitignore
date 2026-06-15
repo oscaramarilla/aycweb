@@ -54,6 +54,10 @@ llave-aycweb
 
 # Internal/private app
 /aycweb-panel/
+
+# Kapso (paquete anidado): deps locales y caché del CLI — no versionar
+/kapso/node_modules/
+/kapso/.kapso/cache/
 .env
 .env.local
 .env*.local
