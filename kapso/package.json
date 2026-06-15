@@ -1,0 +1,13 @@
+{
+  "name": "aycweb-kapso",
+  "private": true,
+  "description": "Workflows y funciones de Kapso para la recepción automática de WhatsApp de AYC. Paquete anidado: no forma parte del build de Next.js.",
+  "scripts": {
+    "test:matcher": "node test/run-matcher-tests.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@kapso/workflows": "latest",
+    "typescript": "^5"
+  }
+}

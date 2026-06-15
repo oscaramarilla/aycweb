@@ -1,0 +1,10 @@
+# Manifiesto de la función sonda-eco (diagnóstico TEMPORAL).
+# Borrar junto con el workflow sonda-payload una vez confirmada la ruta del
+# texto entrante. Ver kapso/README.md (paso "Workflow sonda").
+name: sonda-eco
+description: >-
+  TEMPORAL. Devuelve el payload completo del nodo función para descubrir la
+  ruta del texto entrante. Borrar tras el diagnóstico.
+runtime: cloudflare
+public_endpoint: false
+invoke_response_mode: passthrough

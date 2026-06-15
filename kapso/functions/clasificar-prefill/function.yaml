@@ -1,0 +1,13 @@
+# Manifiesto de la función clasificar-prefill (capa 1 del decide).
+# El código vive en index.js. Si `kapso build` rechaza algún campo de este
+# manifiesto, crear la función con el script y regenerar el yaml canónico:
+#   node ../.agents/skills/automate-whatsapp/scripts/create-function.js \
+#     --name clasificar-prefill --code-file functions/clasificar-prefill/index.js
+#   kapso pull   # materializa el function.yaml con el esquema correcto
+name: clasificar-prefill
+description: >-
+  Clasificación determinística del mensaje entrante de WhatsApp contra los
+  textos prellenados que genera el sitio ayc.com.py. Devuelve next_edge.
+runtime: cloudflare
+public_endpoint: false
+invoke_response_mode: passthrough
