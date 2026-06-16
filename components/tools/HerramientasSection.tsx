@@ -1,17 +1,18 @@
 import Link from "next/link";
 import { HERRAMIENTAS_B2B } from "@/lib/config/herramientas";
 
-export default function HerramientasSection() {
+// `t` opcional con fallback español (la sección aparece en la home).
+export default function HerramientasSection({ t }: { t?: Record<string, string> }) {
+  const tx = (key: string, fallback: string) => t?.[key] ?? fallback;
   return (
     <section className="py-16 md:py-24 relative z-10 bg-[#04050a] border-t border-white/[0.05]">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight">
-            Herramientas Operativas Abiertas
+            {tx("tools.title", "Herramientas Operativas Abiertas")}
           </h2>
           <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Recursos gratuitos diseñados para eliminar fricción técnica en tu
-            día a día comercial.
+            {tx("tools.sub", "Recursos gratuitos diseñados para eliminar fricción técnica en tu día a día comercial.")}
           </p>
         </div>
 
@@ -47,7 +48,7 @@ export default function HerramientasSection() {
                 </p>
                 {isExternal && (
                   <span className="mt-3 text-xs text-slate-500 group-hover:text-slate-300 transition-colors">
-                    Abrir en nueva ventana →
+                    {tx("tools.openNew", "Abrir en nueva ventana →")}
                   </span>
                 )}
               </Tag>

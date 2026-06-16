@@ -19,7 +19,7 @@ export default async function MarketingLayout({
       <main className="flex-1">
         {children}
       </main>
-      <Footer />
+      <Footer t={dict} lang={lang} />
       <FloatingResourcesCTA />
     </div>
   );

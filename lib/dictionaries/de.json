@@ -123,5 +123,48 @@
   "home.gar2T": "Intelligente Garantie",
   "home.gar2D": "Wenn die erste Etappe keine validierte operative Verbesserung bringt, brechen wir das Projekt ab und erstatten die Anzahlung.",
   "home.gar3T": "Null Überraschungen",
-  "home.gar3D": "Alles klar von Anfang an."
+  "home.gar3D": "Alles klar von Anfang an.",
+
+  "footer.nav": "Navigation",
+  "footer.solutions": "Lösungen",
+  "footer.companies": "Unternehmen",
+  "footer.professionals": "Selbstständige",
+  "footer.about": "Über uns",
+  "footer.works": "Referenzen",
+
+  "franja.kicker": "Systeme in Produktion",
+  "franja.viewAll": "Alle Systeme im Einsatz ansehen →",
+
+  "tools.title": "Offene operative Werkzeuge",
+  "tools.sub": "Kostenlose Ressourcen, die technische Reibung in Ihrem Vertriebsalltag beseitigen.",
+  "tools.openNew": "In neuem Fenster öffnen →",
+
+  "pricomp.anchorLabel": "Wertanker:",
+  "pricomp.anchorText": "Beide Pläne ersetzen <b>1 Bürokraft + 1 Junior-Vertriebler</b> in Ihrem Betrieb. Das System wird nicht müde, wird nicht krank und verlangt keine Gehaltserhöhung.",
+  "pricomp.feature": "Funktion",
+  "pricomp.recommended": "Empfohlen",
+  "pricomp.perMonth": "USD/Monat",
+  "pricomp.f1": "Automatisiertes Angebotssystem",
+  "pricomp.f2": "Professionelle PDF-Erstellung",
+  "pricomp.f3": "WhatsApp-Integration",
+  "pricomp.f4": "Echtzeit-Kennzahlen-Dashboard",
+  "pricomp.f5": "Wartung und Updates",
+  "pricomp.f6": "Fortgeschrittene parametrische Angebots-Engine",
+  "pricomp.f7": "Automatisierung mehrstufiger Abläufe",
+  "pricomp.f8": "Integration in bestehende Systeme (ERP/API)",
+  "pricomp.f9": "Prioritäts-Support 48 Std.",
+  "pricomp.note": "Die aufgeführten Funktionen sind repräsentativ für jeden Plan. Das endgültige Angebot wird in der Diagnosephase je nach konkretem Betrieb definiert.",
+
+  "caso.before": "Vorher",
+  "caso.after": "Nachher",
+
+  "recursos.badge": "Allgemeine Bibliothek · AYCweb",
+  "recursos.h1a": "Ressourcen, um",
+  "recursos.h1b": "besser zu operieren",
+  "recursos.sub": "Artikel, Leitfäden und Analysen zu Vertriebsautomatisierung, digitaler Infrastruktur und operativem Management für Unternehmen der Region.",
+  "recursos.countOne": "{n} veröffentlichter Artikel",
+  "recursos.countMany": "{n} veröffentlichte Artikel",
+  "recursos.ctaKicker": "Möchten Sie das auf Ihren Betrieb anwenden?",
+  "recursos.ctaTitle": "Kostenloses Audit vereinbaren",
+  "recursos.ctaButton": "Mit Oscar sprechen →"
 }

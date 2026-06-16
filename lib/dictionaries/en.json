@@ -123,5 +123,48 @@
   "home.gar2T": "Smart Guarantee",
   "home.gar2D": "If the first stage doesn't deliver a validated operational improvement, we cancel the project and refund the initial payment.",
   "home.gar3T": "Zero surprises",
-  "home.gar3D": "Everything clear from day one."
+  "home.gar3D": "Everything clear from day one.",
+
+  "footer.nav": "Navigation",
+  "footer.solutions": "Solutions",
+  "footer.companies": "Companies",
+  "footer.professionals": "Professionals",
+  "footer.about": "About us",
+  "footer.works": "Our Work",
+
+  "franja.kicker": "Systems in production",
+  "franja.viewAll": "See all systems in production →",
+
+  "tools.title": "Open Operational Tools",
+  "tools.sub": "Free resources designed to remove technical friction from your day-to-day sales work.",
+  "tools.openNew": "Open in new window →",
+
+  "pricomp.anchorLabel": "Value anchor:",
+  "pricomp.anchorText": "Either plan replaces <b>1 admin assistant + 1 junior salesperson</b> in your operation. The system doesn't get tired, doesn't get sick and doesn't ask for a raise.",
+  "pricomp.feature": "Feature",
+  "pricomp.recommended": "Recommended",
+  "pricomp.perMonth": "USD/month",
+  "pricomp.f1": "Automated quoting system",
+  "pricomp.f2": "Professional PDF generation",
+  "pricomp.f3": "WhatsApp integration",
+  "pricomp.f4": "Real-time metrics dashboard",
+  "pricomp.f5": "Maintenance and updates",
+  "pricomp.f6": "Advanced parametric quoting engine",
+  "pricomp.f7": "Multi-stage flow automation",
+  "pricomp.f8": "Integration with existing systems (ERP/API)",
+  "pricomp.f9": "Priority 48 h support",
+  "pricomp.note": "The detailed features are representative of each plan. The final proposal is defined in the diagnostic stage based on your specific operation.",
+
+  "caso.before": "Before",
+  "caso.after": "After",
+
+  "recursos.badge": "General Library · AYCweb",
+  "recursos.h1a": "Resources to",
+  "recursos.h1b": "operate better",
+  "recursos.sub": "Articles, guides and analysis on sales automation, digital infrastructure and operational management for companies across the region.",
+  "recursos.countOne": "{n} published article",
+  "recursos.countMany": "{n} published articles",
+  "recursos.ctaKicker": "Want to apply this to your operation?",
+  "recursos.ctaTitle": "Book a free audit",
+  "recursos.ctaButton": "Talk to Oscar →"
 }
