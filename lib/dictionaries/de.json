@@ -412,5 +412,20 @@
   "nos.ctaTitle": "Passt Ihr Betrieb zu AYCweb?",
   "nos.ctaDesc": "In einer 15-minütigen Diagnose zeige ich Ihnen, wie Automatisierung auf Ihren konkreten Fall angewandt funktioniert und was sie in Kosten, Geschwindigkeit und zurückgewonnener Zeit bedeutet.",
   "nos.ctaButton": "Automatisierungs-Diagnose vereinbaren",
-  "nos.waMsg": "Hi Oscar, I'd like to book a diagnostic to see how AYCweb can automate my operation."
+  "nos.waMsg": "Hi Oscar, I'd like to book a diagnostic to see how AYCweb can automate my operation.",
+
+  "demo.back": "← Zurück zu Unternehmen",
+  "demo.badge": "Öffentliche Demo · Ohne Anmeldung",
+  "demo.h1a": "B2B-Angebots-",
+  "demo.h1b": "Engine",
+  "demo.sub": "Machen Sie den Wert greifbar, Ihren Betrieb zu systematisieren. Passen Sie Ihre Geschäftsparameter an, und die Engine berechnet Investition, monatliche Ersparnis und ROI in Echtzeit.",
+  "demo.feat1": "Ohne Anmeldung",
+  "demo.feat2": "Berechnung in Echtzeit",
+  "demo.feat3": "Direkter Versand per WhatsApp",
+  "demo.ctaKicker": "Ergeben die Zahlen für Ihren Betrieb Sinn?",
+  "demo.ctaTitle": "Der nächste Schritt ist ein echtes Audit",
+  "demo.ctaDesc": "Diese Demo ist eine Simulation. Im B2B-Audit analysieren wir Ihren aktuellen Betrieb, erkennen die echten Reibungspunkte und präsentieren Ihnen ein maßgeschneidertes System.",
+  "demo.ctaButton": "B2B-Diagnose anfragen",
+  "demo.ctaWorks": "Systeme im Einsatz ansehen →",
+  "demo.note": "Wir nehmen nicht jeden Kunden an. Wenn es keine echte Passung gibt, sagen wir es Ihnen offen."
 }

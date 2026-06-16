@@ -412,5 +412,20 @@
   "nos.ctaTitle": "Is your operation a fit for AYCweb?",
   "nos.ctaDesc": "In a 15-minute diagnostic I show you how automation works applied to your concrete case and what it means in cost, speed and time returned.",
   "nos.ctaButton": "Book an Automation Diagnostic",
-  "nos.waMsg": "Hi Oscar, I'd like to book a diagnostic to see how AYCweb can automate my operation."
+  "nos.waMsg": "Hi Oscar, I'd like to book a diagnostic to see how AYCweb can automate my operation.",
+
+  "demo.back": "← Back to Companies",
+  "demo.badge": "Public demo · No sign-up",
+  "demo.h1a": "B2B Quoting",
+  "demo.h1b": "Engine",
+  "demo.sub": "Make the value of systematizing your operation tangible. Adjust your business parameters and the engine calculates investment, monthly savings and ROI in real time.",
+  "demo.feat1": "No sign-up",
+  "demo.feat2": "Real-time calculation",
+  "demo.feat3": "Direct send via WhatsApp",
+  "demo.ctaKicker": "Do the numbers make sense for your operation?",
+  "demo.ctaTitle": "The next step is a real audit",
+  "demo.ctaDesc": "This demo is a simulation. In the B2B audit we analyze your current operation, detect the real friction points and present you a custom system.",
+  "demo.ctaButton": "Request B2B Diagnostic",
+  "demo.ctaWorks": "See systems in production →",
+  "demo.note": "We don't take every client. If there's no real fit, we tell you straight."
 }
