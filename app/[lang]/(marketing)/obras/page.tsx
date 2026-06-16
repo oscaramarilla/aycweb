@@ -4,6 +4,7 @@ import { AYCWEB_CONTACT, buildWaLink } from "../../../../lib/config/contact";
 import { SHOWROOM } from "../../../../lib/config/showroom";
 import { CASOS_OBRAS } from "../../../../lib/config/obras";
 import { VideoCard } from "../../../../components/obras/VideoShowroom";
+import { getDictionary } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "Casos de Éxito y Sistemas Implementados | AYCweb Paraguay",
@@ -55,7 +56,9 @@ export const metadata: Metadata = {
 
 // ─── COMPONENTE PRINCIPAL ─────────────────────────────────────────────────────
 
-export default function ObrasPage() {
+export default async function ObrasPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const d = await getDictionary(lang);
   const auditLink = buildWaLink(AYCWEB_CONTACT.globalMessages.auditB2B);
 
   return (
@@ -67,13 +70,13 @@ export default function ObrasPage() {
       <section className="relative pt-28 pb-12 md:pt-40 md:pb-16 px-6 text-center z-10">
         <div className="max-w-4xl mx-auto">
           <span className="inline-block px-4 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 text-[11px] md:text-xs font-bold uppercase tracking-widest mb-6 shadow-sm">
-            Showroom Operativo
+            {d["obras.badge"]}
           </span>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-[1.05] text-white">
-            Nuestras Obras.
+            {d["obras.h1"]}
           </h1>
           <p className="text-base md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
-            No mostramos renders ni promesas genéricas. Este showroom presenta los sistemas en funcionamiento, con enfoque en el valor real que entregan.
+            {d["obras.sub"]}
           </p>
         </div>
       </section>
@@ -101,10 +104,10 @@ export default function ObrasPage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">
-              Sistemas en Producción (Casos de Éxito)
+              {d["obras.casosTitle"]}
             </h2>
             <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg">
-              No mostramos solo trabajos visuales. Mostramos sistemas en producción que ahorran tiempo, reducen fricción operativa y ayudan a vender mejor.
+              {d["obras.casosSub"]}
             </p>
           </div>
 
@@ -142,7 +145,7 @@ export default function ObrasPage() {
                   <div>
                     <h4 className="text-[11px] uppercase tracking-widest font-bold text-slate-500 mb-2 flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
-                      El Problema
+                      {d["obras.problemLabel"]}
                     </h4>
                     <p className="text-slate-300 leading-relaxed text-sm md:text-base">
                       {caso.problem}
@@ -153,7 +156,7 @@ export default function ObrasPage() {
                   <div>
                     <h4 className="text-[11px] uppercase tracking-widest font-bold text-slate-500 mb-2 flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                      Solución AYCweb
+                      {d["obras.solutionLabel"]}
                     </h4>
                     <ul className="space-y-2">
                       {caso.solution.map((item, i) => (
@@ -169,7 +172,7 @@ export default function ObrasPage() {
                   <div className="rounded-xl border border-emerald-500/20 bg-emerald-950/10 p-5">
                     <h4 className="text-[11px] uppercase tracking-widest font-bold text-emerald-400 mb-2 flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                      RESULTADO OPERATIVO
+                      {d["obras.resultLabel"]}
                     </h4>
                     <p className="text-white font-bold text-base md:text-lg leading-relaxed">
                       {caso.result}
@@ -200,13 +203,13 @@ export default function ObrasPage() {
                   {/* CTA del caso */}
                   <div className="pt-2 border-t border-slate-800/60 flex flex-col sm:flex-row items-start sm:items-center gap-3">
                     <Link
-                      href="/es/diagnostico-comercial"
+                      href={`/${lang}/diagnostico-comercial`}
                       className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-black text-[14px] px-6 py-3 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.25)] active:scale-95"
                     >
                       <span aria-hidden="true">⚡</span>
                       {caso.ctaMessage}
                     </Link>
-                    <span className="text-slate-600 text-xs">Sin costo · Sin compromiso</span>
+                    <span className="text-slate-600 text-xs">{d["obras.noCost"]}</span>
                   </div>
                 </div>
               </article>
@@ -219,10 +222,10 @@ export default function ObrasPage() {
       <section className="relative z-10 px-6 mb-12">
         <div className="max-w-2xl mx-auto text-center">
           <h3 className="text-2xl md:text-3xl font-black text-white mb-4">
-            Cada sistema bien diseñado recupera tiempo
+            {d["obras.recoverTitle"]}
           </h3>
           <p className="text-slate-400 text-base md:text-lg leading-relaxed">
-            Una infraestructura digital filtra consultas, acelera presupuestos y ordena oportunidades. Eso construimos: máquinas comerciales que convierten procesos lentos en métricas medibles.
+            {d["obras.recoverSub"]}
           </p>
         </div>
       </section>
@@ -230,15 +233,15 @@ export default function ObrasPage() {
       {/* CTA final */}
       <section className="relative z-10 px-6">
         <div className="rounded-[2rem] border border-slate-800 bg-slate-950/80 p-7 max-w-lg mx-auto text-center">
-          <h3 className="text-2xl font-black text-white">¿Tu operación sufre problemas similares?</h3>
+          <h3 className="text-2xl font-black text-white">{d["obras.ctaTitle"]}</h3>
           <p className="mt-4 text-slate-400 leading-relaxed">
-            Si tu empresa enfrenta cuellos de botella en cotización, seguimiento de pedidos o captación de clientes, solicité un diagnóstico B2B sin costo.
+            {d["obras.ctaSub"]}
           </p>
           <Link
-            href="/es/diagnostico-comercial"
+            href={`/${lang}/diagnostico-comercial`}
             className="mt-8 inline-flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-black py-4 px-6 rounded-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.3)]"
           >
-            Solicitar Diagnóstico B2B
+            {d["obras.ctaButton"]}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>

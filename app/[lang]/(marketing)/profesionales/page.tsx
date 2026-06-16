@@ -3,6 +3,7 @@ import { buildWaLink } from "@/lib/config/contact";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 import { PLANES_PRECIOS, TEXTO_FINANCIAMIENTO } from "@/lib/config/precios";
 import PricingCard from "@/components/pricing/PricingCard";
+import { getDictionary } from "@/lib/i18n";
 
 const START = PLANES_PRECIOS.starter;
 
@@ -57,70 +58,36 @@ export const metadata: Metadata = {
   },
 };
 
-const PROBLEMAS = [
-  {
-    icon: "📱",
-    titulo: "Mensajes sueltos en WhatsApp",
-    desc: "Confirmás turnos uno por uno. Cada vez que alguien pregunta precio, horario o disponibilidad, sos vos el que responde manualmente.",
-  },
-  {
-    icon: "🔄",
-    titulo: "Ida y vuelta infinita",
-    desc: "Tres mensajes para agendar, dos para confirmar, uno para reagendar. Tu tiempo de atención se va en administración, no en tu trabajo real.",
-  },
-  {
-    icon: "😤",
-    titulo: "Consultas que no califican",
-    desc: "Te escriben sin saber precio, sin saber qué ofrecés, sin intención real de contratar. Filtrás consultas en lugar de cerrar clientes.",
-  },
-] as const;
+const PROBLEM_ICONS = ["📱", "🔄", "😤"] as const;
 
-const INCLUYE_SETUP = [
-  "Página de captación con tu oferta clara",
-  "Formulario de precalificación de consultas",
-  "Enlace de agenda online (Calendly o Google Calendar)",
-  "Mensajes automáticos de confirmación y recordatorio",
-  "Link directo a WhatsApp ya pre-armado por servicio",
-];
+export default async function ProfesionalesPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const d = await getDictionary(lang);
 
-const INCLUYE_MANT = [
-  "Hosting y uptime de toda la infraestructura",
-  "Soporte técnico ante cualquier caída o ajuste",
-  "Actualizaciones menores de contenido (precios, horarios)",
-  "Monitoreo de rendimiento (PageSpeed, disponibilidad)",
-];
+  const setup = String(START.setupTotal);
+  const mant = String(START.mantenimientoMensual);
+  const plan = START.nombre;
+  const fill = (s: string) =>
+    s.replace(/\{plan\}/g, plan).replace(/\{setup\}/g, setup).replace(/\{mant\}/g, mant);
 
-const FAQ_SCHEMA = [
-  {
-    pregunta: "¿Cuánto cuesta el sistema de agenda automática para profesionales?",
-    respuesta: `El plan AYCweb Start tiene un setup único de USD ${START.setupTotal}. El mantenimiento mensual es de USD ${START.mantenimientoMensual}/mes, pagadero el día 15 de cada mes.`,
-  },
-  {
-    pregunta: "¿En cuánto tiempo queda configurada la agenda online?",
-    respuesta: "En 24 horas hábiles desde el pago. El sistema incluye página de captación, formulario de precalificación y enlace de agenda online.",
-  },
-  {
-    pregunta: "¿Para qué tipo de profesionales funciona este sistema?",
-    respuesta: "Médicos, dentistas, psicólogos, abogados, arquitectos, nutricionistas, contadores y cualquier profesional independiente que gestione turnos o consultas por WhatsApp.",
-  },
-  {
-    pregunta: "¿El sistema puede filtrar consultas antes de que lleguen a WhatsApp?",
-    respuesta: "Sí. Incluye formulario de precalificación que filtra consultas según criterios definidos: tipo de servicio, disponibilidad horaria y presupuesto del cliente.",
-  },
-];
+  const problemas = [1, 2, 3].map((n) => ({
+    icon: PROBLEM_ICONS[n - 1],
+    titulo: d[`prof.p${n}Title`],
+    desc: d[`prof.p${n}Desc`],
+  }));
+  const incluyeSetup = [1, 2, 3, 4, 5].map((n) => d[`prof.setup${n}`]);
+  const incluyeMant = [1, 2, 3, 4].map((n) => d[`prof.mant${n}`]);
+  const activateLabel = fill(d["prof.activate"]);
 
-export default function ProfesionalesPage({ params }: { params?: { lang?: string } }) {
-  const ctaWa = buildWaLink(
-    `Hola Oscar, soy profesional independiente y quiero activar ${START.nombre} por $${START.setupTotal}.`
-  );
+  const ctaWa = buildWaLink(fill(d["prof.waActivate"]));
 
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_SCHEMA.map((item) => ({
+    mainEntity: [1, 2, 3, 4].map((n) => ({
       "@type": "Question",
-      name: item.pregunta,
-      acceptedAnswer: { "@type": "Answer", text: item.respuesta },
+      name: fill(d[`prof.faqQ${n}`]),
+      acceptedAnswer: { "@type": "Answer", text: fill(d[`prof.faqA${n}`]) },
     })),
   };
 
@@ -140,20 +107,19 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
         <div className="max-w-4xl mx-auto text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 text-[11px] font-bold uppercase tracking-[0.2em] mb-6">
             <span className="text-base">🧑‍⚕️</span>
-            Línea Profesionales
+            {d["prof.badge"]}
           </span>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.05] tracking-tighter text-white mb-6">
-            Tu agenda no necesita <br className="hidden sm:block" />
-            más mensajes sueltos en WhatsApp.
+            {d["prof.h1a"]}
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
-              Necesita un sistema automático.
+              {d["prof.h1b"]}
             </span>
           </h1>
 
           <p className="text-base md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10">
-            Configuramos tu captación, filtro de consultas y enlace de agenda para que tus clientes se agenden solos — sin que vos tengas que estar pendiente del celular.
+            {d["prof.sub"]}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
@@ -163,15 +129,15 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
               rel="noopener noreferrer"
               className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-12 rounded-xl transition-all shadow-[0_0_30px_rgba(16,185,129,0.4)] active:scale-95 text-lg"
             >
-              Activar {START.nombre} — ${START.setupTotal}
+              {activateLabel}
             </a>
             <CheckoutForm
               planes={PLANES_PROF}
               colorScheme="emerald"
-              triggerLabel="⚡ Pagar con USDT"
+              triggerLabel={d["prof.payUsdt"]}
             />
           </div>
-          <p className="text-xs text-slate-600 mt-3">Pagás en USDT y desplegamos en 24 hs.</p>
+          <p className="text-xs text-slate-600 mt-3">{d["prof.payNote"]}</p>
         </div>
       </section>
 
@@ -179,15 +145,15 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
       <section className="relative z-10 px-6 py-16 md:py-24 border-b border-white/[0.05]">
         <div className="max-w-5xl mx-auto">
           <p className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-3">
-            Por qué esto no escala
+            {d["prof.problemsKicker"]}
           </p>
           <h2 className="text-3xl md:text-4xl font-black text-white text-center mb-12 tracking-tight">
-            El problema no es tu servicio.<br />
-            <span className="text-slate-400 font-normal">Es cómo lo gestionás.</span>
+            {d["prof.problemsTitle1"]}<br />
+            <span className="text-slate-400 font-normal">{d["prof.problemsTitle2"]}</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {PROBLEMAS.map((p) => (
+            {problemas.map((p) => (
               <div
                 key={p.titulo}
                 className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 hover:border-slate-600 transition-colors"
@@ -207,13 +173,13 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
 
         <div className="max-w-4xl mx-auto">
           <p className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-400 mb-3">
-            Una sola oferta. Sin sorpresas.
+            {d["prof.offerKicker"]}
           </p>
           <h2 className="text-3xl md:text-4xl font-black text-white text-center mb-4 tracking-tight">
-            AYCweb Start para Profesionales
+            {d["prof.offerTitle"]}
           </h2>
           <p className="text-slate-400 text-center text-base mb-12 max-w-xl mx-auto">
-            Plan de entrada para profesionales independientes. No reemplaza un sistema empresarial completo; ordena tu captación, agenda y WhatsApp para empezar rápido.
+            {d["prof.offerSub"]}
           </p>
 
           {/* PricingCard con nueva jerarquía visual: domina el costo mensual */}
@@ -222,8 +188,8 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
               planId="starter"
               accent="emerald"
               ctaHref={ctaWa}
-              ctaLabel={`Activar ${START.nombre} — $${START.setupTotal}`}
-              tagline="Dejamos todo configurado y funcionando para que empieces a recibir agendamientos desde el día uno."
+              ctaLabel={activateLabel}
+              tagline={d["prof.cardTagline"]}
             />
           </div>
 
@@ -231,10 +197,10 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
             <div className="bg-slate-900/60 border border-emerald-500/20 rounded-2xl p-6">
               <span className="inline-block text-[10px] font-black uppercase tracking-[0.18em] text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full mb-4">
-                Incluye Setup
+                {d["prof.setupBadge"]}
               </span>
               <ul className="space-y-2.5">
-                {INCLUYE_SETUP.map((item) => (
+                {incluyeSetup.map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-slate-300">
                     <span className="text-emerald-400 mt-0.5 flex-shrink-0">✓</span>
                     {item}
@@ -244,10 +210,10 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
             </div>
             <div className="bg-slate-900/60 border border-slate-700/50 rounded-2xl p-6">
               <span className="inline-block text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 bg-slate-800/60 border border-slate-700 px-3 py-1 rounded-full mb-4">
-                Incluye Mantenimiento
+                {d["prof.mantBadge"]}
               </span>
               <ul className="space-y-2.5">
-                {INCLUYE_MANT.map((item) => (
+                {incluyeMant.map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-slate-300">
                     <span className="text-cyan-400 mt-0.5 flex-shrink-0">✓</span>
                     {item}
@@ -266,16 +232,16 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
                 rel="noopener noreferrer"
                 className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 px-14 rounded-xl transition-all shadow-[0_0_40px_rgba(16,185,129,0.35)] active:scale-95 text-lg"
               >
-                Activar {START.nombre} — ${START.setupTotal}
+                {activateLabel}
               </a>
               <CheckoutForm
                 planes={PLANES_PROF}
                 colorScheme="emerald"
-                triggerLabel="⚡ Pagar con USDT"
+                triggerLabel={d["prof.payUsdt"]}
               />
             </div>
             <p className="text-slate-500 text-xs">
-              Te contactamos dentro de las 24 hs hábiles para coordinar el setup.
+              {d["prof.activateNote"]}
             </p>
           </div>
         </div>
@@ -285,16 +251,16 @@ export default function ProfesionalesPage({ params }: { params?: { lang?: string
       <section className="relative z-10 px-6 py-10 md:py-14 border-t border-white/[0.05]">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-400 mb-3">
-            ¿Tu operación ya tiene más volumen?
+            {d["prof.diagKicker"]}
           </p>
           <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-6 max-w-xl mx-auto">
-            Si ya manejás varios clientes, agenda, cotizaciones, pedidos o seguimiento por WhatsApp, conviene hacer un diagnóstico antes de elegir el sistema.
+            {d["prof.diagText"]}
           </p>
           <a
-            href={`/${params?.lang || "es"}/diagnostico-comercial`}
+            href={`/${lang}/diagnostico-comercial`}
             className="inline-block border border-amber-500/40 text-amber-300 hover:bg-amber-500/10 font-bold py-3 px-10 rounded-xl transition-all active:scale-95 text-sm"
           >
-            Solicitar diagnóstico comercial
+            {d["prof.diagCta"]}
           </a>
         </div>
       </section>
