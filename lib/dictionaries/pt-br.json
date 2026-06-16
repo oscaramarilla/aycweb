@@ -412,5 +412,20 @@
   "nos.ctaTitle": "Sua operação tem encaixe com a AYCweb?",
   "nos.ctaDesc": "Em 15 minutos de diagnóstico eu mostro como a automação funciona aplicada ao seu caso concreto e o que significa em custo, velocidade e tempo devolvido.",
   "nos.ctaButton": "Agendar Diagnóstico de Automação",
-  "nos.waMsg": "Olá Oscar, quero agendar um diagnóstico para ver como a AYCweb pode automatizar minha operação."
+  "nos.waMsg": "Olá Oscar, quero agendar um diagnóstico para ver como a AYCweb pode automatizar minha operação.",
+
+  "demo.back": "← Voltar a Empresas",
+  "demo.badge": "Demo pública · Sem cadastro",
+  "demo.h1a": "Motor de Cotação",
+  "demo.h1b": "B2B",
+  "demo.sub": "Torne tangível o valor de sistematizar sua operação. Ajuste os parâmetros do seu negócio e o motor calcula investimento, economia mensal e ROI em tempo real.",
+  "demo.feat1": "Sem cadastro",
+  "demo.feat2": "Cálculo em tempo real",
+  "demo.feat3": "Envio direto pelo WhatsApp",
+  "demo.ctaKicker": "Os números fazem sentido para a sua operação?",
+  "demo.ctaTitle": "O próximo passo é uma auditoria real",
+  "demo.ctaDesc": "Esta demo é uma simulação. Na auditoria B2B analisamos sua operação atual, detectamos os atritos reais e apresentamos um sistema sob medida.",
+  "demo.ctaButton": "Solicitar Diagnóstico B2B",
+  "demo.ctaWorks": "Ver sistemas em produção →",
+  "demo.note": "Não aceitamos todos os clientes. Se não houver encaixe real, falamos na lata."
 }
