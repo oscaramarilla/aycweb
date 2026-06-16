@@ -6,6 +6,7 @@ import type { CasoObra } from "@/lib/config/obras";
 interface CasoCardProps {
   caso: CasoObra;
   lang?: string;
+  t?: Record<string, string>;
 }
 
 /**
@@ -13,7 +14,8 @@ interface CasoCardProps {
  * Muestra el problema, la solución (como checkmarks), el resultado cuantificado
  * y un CTA contextual.
  */
-export default function CasoCard({ caso, lang = "es" }: CasoCardProps) {
+export default function CasoCard({ caso, lang = "es", t }: CasoCardProps) {
+  const tx = (key: string, fallback: string) => t?.[key] ?? fallback;
   return (
     <article className="group bg-slate-900/40 border border-slate-800 rounded-2xl p-5 md:p-6 hover:border-blue-500/30 transition-all flex flex-col relative overflow-hidden">
       {/* Tag de industria */}
@@ -43,14 +45,14 @@ export default function CasoCard({ caso, lang = "es" }: CasoCardProps) {
       <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-3 md:p-4 mb-4">
         <div className="flex items-center justify-between gap-3">
           <div className="flex-1 text-center">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-red-400/80 block mb-1">Antes</span>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-red-400/80 block mb-1">{tx("caso.before", "Antes")}</span>
             <span className="text-slate-500 text-[10px] md:text-xs leading-tight block">
               {extraerAntes(caso)}
             </span>
           </div>
           <div className="text-slate-600 font-black text-lg">→</div>
           <div className="flex-1 text-center">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400/80 block mb-1">Después</span>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400/80 block mb-1">{tx("caso.after", "Después")}</span>
             <span className="text-emerald-300 text-[10px] md:text-xs leading-tight font-bold block">
               {extraerDespues(caso)}
             </span>

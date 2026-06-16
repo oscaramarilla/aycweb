@@ -16,6 +16,10 @@ import {
 interface FranjaClientesProps {
   /** "blue" → paleta azul/violeta (empresas). "neutral" → paleta neutra (home). */
   palette: "blue" | "neutral";
+  /** Diccionario del idioma; opcional con fallback español. */
+  t?: Record<string, string>;
+  /** Idioma activo para el link a /obras. */
+  lang?: string;
 }
 
 // ─── Mapas de estilos por color de paleta ────────────────────────────────────
@@ -38,7 +42,8 @@ const resultStyles: Record<PaletteColor, string> = {
 
 // ─── Componente ───────────────────────────────────────────────────────────────
 
-export function FranjaClientes({ palette }: FranjaClientesProps) {
+export function FranjaClientes({ palette, t, lang = "es" }: FranjaClientesProps) {
+  const tx = (key: string, fallback: string) => t?.[key] ?? fallback;
   const wrapperBg =
     palette === "blue"
       ? "bg-[#04050a] border-y border-white/[0.05]"
@@ -54,7 +59,7 @@ export function FranjaClientes({ palette }: FranjaClientesProps) {
       <div className="max-w-6xl mx-auto px-6">
         {/* Encabezado minimalista */}
         <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 mb-6">
-          Sistemas en producción
+          {tx("franja.kicker", "Sistemas en producción")}
         </p>
 
         {/*
@@ -132,10 +137,10 @@ export function FranjaClientes({ palette }: FranjaClientesProps) {
         {/* Link discreto a la página de obras completa */}
         <div className="text-center mt-6">
           <Link
-            href="/es/obras"
+            href={`/${lang}/obras`}
             className="text-[12px] text-slate-500 hover:text-slate-300 transition-colors font-medium tracking-wide"
           >
-            Ver todos los casos en producción →
+            {tx("franja.viewAll", "Ver todos los casos en producción →")}
           </Link>
         </div>
       </div>

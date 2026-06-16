@@ -2,6 +2,7 @@ import { articulos } from "@/lib/data/articulos";
 import { ResourceCard } from "@/components/ResourceCard";
 import { buildWhatsAppLink } from "@/lib/services/whatsapp-link";
 import { getWhatsAppText } from "@/lib/config/contacto";
+import { getDictionary } from "@/lib/i18n";
 
 export const dynamic = "force-static";
 
@@ -23,7 +24,9 @@ export default async function RecursosIndex({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
+  const d = await getDictionary(lang);
   const categorias = getCategoriasUnicas(articulos);
+  const countText = (articulos.length === 1 ? d["recursos.countOne"] : d["recursos.countMany"]).replace("{n}", String(articulos.length));
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 relative overflow-hidden">
@@ -37,20 +40,18 @@ export default async function RecursosIndex({
       <section className="relative z-10 px-6 pt-28 pb-14 text-center">
         <div className="max-w-4xl mx-auto">
           <span className="inline-block px-4 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 text-[11px] font-bold uppercase tracking-widest mb-6 shadow-sm">
-            Librería General · AYCweb
+            {d["recursos.badge"]}
           </span>
 
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter leading-tight mb-5">
-            Recursos para{" "}
+            {d["recursos.h1a"]}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-              operar mejor
+              {d["recursos.h1b"]}
             </span>
           </h1>
 
           <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Artículos, guías y análisis sobre automatización comercial,
-            infraestructura digital y gestión operativa para empresas de la
-            región.
+            {d["recursos.sub"]}
           </p>
 
           {/* Badges de categorías */}
@@ -77,8 +78,7 @@ export default async function RecursosIndex({
         <div className="max-w-6xl mx-auto">
           {/* Contador */}
           <p className="text-slate-600 text-xs font-bold uppercase tracking-widest mb-8">
-            {articulos.length} artículo{articulos.length !== 1 ? "s" : ""} publicado
-            {articulos.length !== 1 ? "s" : ""}
+            {countText}
           </p>
 
           {/* Grid responsive: 1 col mobile · 2 tablet · 3 desktop */}
@@ -95,10 +95,10 @@ export default async function RecursosIndex({
         <div className="max-w-3xl mx-auto">
           <div className="bg-slate-900/50 border border-slate-800/50 backdrop-blur-sm rounded-2xl p-8 text-center">
             <p className="text-slate-400 text-sm mb-2 font-semibold uppercase tracking-widest text-[11px]">
-              ¿Querés aplicar esto a tu operación?
+              {d["recursos.ctaKicker"]}
             </p>
             <h3 className="text-xl md:text-2xl font-black text-white mb-4">
-              Agendá una auditoría sin costo
+              {d["recursos.ctaTitle"]}
             </h3>
             <a
               href={buildWhatsAppLink(getWhatsAppText("recursos", lang))}
@@ -106,7 +106,7 @@ export default async function RecursosIndex({
               rel="noopener noreferrer"
               className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-3 px-8 rounded-xl transition-all shadow-[0_0_24px_rgba(37,99,235,0.35)] hover:shadow-[0_0_32px_rgba(37,99,235,0.5)] active:scale-95 text-sm"
             >
-              Hablar con Oscar →
+              {d["recursos.ctaButton"]}
             </a>
           </div>
         </div>

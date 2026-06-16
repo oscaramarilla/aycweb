@@ -100,7 +100,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       </section>
 
       {/* ================= 1b) PRUEBA SOCIAL: Franja de clientes ================= */}
-      <FranjaClientes palette="neutral" />
+      <FranjaClientes palette="neutral" t={d} lang={lang} />
 
       {/* ================= 2) EVIDENCIA DE RESULTADO con gráfico + testimonios ================= */}
       <section className="py-16 md:py-24 relative z-10 bg-[#04050a] border-b border-white/[0.05]">
@@ -311,7 +311,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {CASOS_OBRAS.map((caso) => (
-              <CasoCard key={caso.id} caso={caso} lang={lang} />
+              <CasoCard key={caso.id} caso={caso} lang={lang} t={d} />
             ))}
           </div>
 
@@ -372,7 +372,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             />
           </div>
 
-          <PricingComparativa />
+          <PricingComparativa t={d} />
 
           <div className="text-center mt-8">
             <p className="text-[11px] md:text-xs text-slate-500 max-w-xl mx-auto leading-relaxed">
@@ -421,7 +421,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       </section>
 
       {/* ================= 6) HERRAMIENTAS OPERATIVAS ABIERTAS (PLG) ================= */}
-      <HerramientasSection />
+      <HerramientasSection t={d} />
 
     </div>
   );

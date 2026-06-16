@@ -123,5 +123,48 @@
   "home.gar2T": "Garantía Inteligente",
   "home.gar2D": "Si en la primera etapa no logramos una mejora operativa validada, cancelamos el proyecto y devolvemos el pago inicial.",
   "home.gar3T": "Cero sorpresas",
-  "home.gar3D": "Todo claro desde el inicio."
+  "home.gar3D": "Todo claro desde el inicio.",
+
+  "footer.nav": "Navegación",
+  "footer.solutions": "Soluciones",
+  "footer.companies": "Empresas",
+  "footer.professionals": "Profesionales",
+  "footer.about": "Nosotros",
+  "footer.works": "Obras",
+
+  "franja.kicker": "Sistemas en producción",
+  "franja.viewAll": "Ver todos los casos en producción →",
+
+  "tools.title": "Herramientas Operativas Abiertas",
+  "tools.sub": "Recursos gratuitos diseñados para eliminar fricción técnica en tu día a día comercial.",
+  "tools.openNew": "Abrir en nueva ventana →",
+
+  "pricomp.anchorLabel": "Anclaje de valor:",
+  "pricomp.anchorText": "Cualquiera de los dos planes reemplaza <b>1 asistente administrativo + 1 vendedor junior</b> en tu operación. El sistema no se cansa, no se enferma y no pide aumento.",
+  "pricomp.feature": "Feature",
+  "pricomp.recommended": "Recomendado",
+  "pricomp.perMonth": "USD/mes",
+  "pricomp.f1": "Sistema de cotización automatizado",
+  "pricomp.f2": "Generación de PDF profesional",
+  "pricomp.f3": "Integración con WhatsApp",
+  "pricomp.f4": "Panel de métricas en tiempo real",
+  "pricomp.f5": "Mantenimiento y actualizaciones",
+  "pricomp.f6": "Cotizador paramétrico avanzado",
+  "pricomp.f7": "Automatización de flujos multi-etapa",
+  "pricomp.f8": "Integración con sistemas existentes (ERP/API)",
+  "pricomp.f9": "Soporte prioritario 48 h",
+  "pricomp.note": "Los features detallados son representativos de cada plan. La propuesta final se define en la etapa de diagnóstico según la operación específica.",
+
+  "caso.before": "Antes",
+  "caso.after": "Después",
+
+  "recursos.badge": "Librería General · AYCweb",
+  "recursos.h1a": "Recursos para",
+  "recursos.h1b": "operar mejor",
+  "recursos.sub": "Artículos, guías y análisis sobre automatización comercial, infraestructura digital y gestión operativa para empresas de la región.",
+  "recursos.countOne": "{n} artículo publicado",
+  "recursos.countMany": "{n} artículos publicados",
+  "recursos.ctaKicker": "¿Querés aplicar esto a tu operación?",
+  "recursos.ctaTitle": "Agendá una auditoría sin costo",
+  "recursos.ctaButton": "Hablar con Oscar →"
 }

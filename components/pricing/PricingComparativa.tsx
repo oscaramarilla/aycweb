@@ -6,7 +6,8 @@ import { PLANES_PRECIOS, formatCurrencyUSD } from "@/lib/config/precios";
  * PricingComparativa — Tabla comparativa Business vs Enterprise.
  * Muestra features lado a lado con checkmarks y anclaje de valor.
  */
-export default function PricingComparativa() {
+export default function PricingComparativa({ t }: { t?: Record<string, string> }) {
+  const tx = (key: string, fallback: string) => t?.[key] ?? fallback;
   const business = PLANES_PRECIOS.business;
   const enterprise = PLANES_PRECIOS.enterprise;
 
@@ -15,15 +16,15 @@ export default function PricingComparativa() {
     business: boolean | string;
     enterprise: boolean | string;
   }> = [
-    { label: "Sistema de cotización automatizado", business: true, enterprise: true },
-    { label: "Generación de PDF profesional", business: true, enterprise: true },
-    { label: "Integración con WhatsApp", business: true, enterprise: true },
-    { label: "Panel de métricas en tiempo real", business: true, enterprise: true },
-    { label: "Mantenimiento y actualizaciones", business: true, enterprise: true },
-    { label: "Cotizador paramétrico avanzado", business: false, enterprise: true },
-    { label: "Automatización de flujos multi-etapa", business: false, enterprise: true },
-    { label: "Integración con sistemas existentes (ERP/API)", business: false, enterprise: true },
-    { label: "Soporte prioritario 48 h", business: false, enterprise: true },
+    { label: tx("pricomp.f1", "Sistema de cotización automatizado"), business: true, enterprise: true },
+    { label: tx("pricomp.f2", "Generación de PDF profesional"), business: true, enterprise: true },
+    { label: tx("pricomp.f3", "Integración con WhatsApp"), business: true, enterprise: true },
+    { label: tx("pricomp.f4", "Panel de métricas en tiempo real"), business: true, enterprise: true },
+    { label: tx("pricomp.f5", "Mantenimiento y actualizaciones"), business: true, enterprise: true },
+    { label: tx("pricomp.f6", "Cotizador paramétrico avanzado"), business: false, enterprise: true },
+    { label: tx("pricomp.f7", "Automatización de flujos multi-etapa"), business: false, enterprise: true },
+    { label: tx("pricomp.f8", "Integración con sistemas existentes (ERP/API)"), business: false, enterprise: true },
+    { label: tx("pricomp.f9", "Soporte prioritario 48 h"), business: false, enterprise: true },
   ];
 
   return (
@@ -31,8 +32,15 @@ export default function PricingComparativa() {
       {/* Anclaje de valor */}
       <div className="bg-gradient-to-r from-blue-600/10 via-transparent to-violet-600/10 border border-white/[0.06] rounded-2xl p-4 md:p-5 mb-6 text-center">
         <p className="text-slate-300 text-[13px] md:text-sm leading-relaxed">
-          💡 <span className="text-white font-bold">Anclaje de valor:</span>{" "}
-          Cualquiera de los dos planes reemplaza <span className="text-blue-300 font-bold">1 asistente administrativo + 1 vendedor junior</span> en tu operación. El sistema no se cansa, no se enferma y no pide aumento.
+          💡 <span className="text-white font-bold">{tx("pricomp.anchorLabel", "Anclaje de valor:")}</span>{" "}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: tx(
+                "pricomp.anchorText",
+                "Cualquiera de los dos planes reemplaza <b>1 asistente administrativo + 1 vendedor junior</b> en tu operación. El sistema no se cansa, no se enferma y no pide aumento."
+              ).replace(/<b>/g, '<span class="text-blue-300 font-bold">').replace(/<\/b>/g, "</span>"),
+            }}
+          />
         </p>
       </div>
 
@@ -41,18 +49,18 @@ export default function PricingComparativa() {
         {/* Header */}
         <div className="grid grid-cols-3 bg-white/[0.03] border-b border-white/[0.08]">
           <div className="p-3 md:p-4 text-left">
-            <span className="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-500">Feature</span>
+            <span className="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-500">{tx("pricomp.feature", "Feature")}</span>
           </div>
           <div className="p-3 md:p-4 text-center border-l border-white/[0.06]">
             <span className="text-[11px] md:text-xs font-bold uppercase tracking-wider text-blue-400">Business</span>
             <span className="block text-[18px] md:text-xl font-black text-white mt-1">{formatCurrencyUSD(business.setupTotal)}</span>
-            <span className="text-[9px] md:text-[10px] text-slate-500">{business.mantenimientoMensual} USD/mes</span>
+            <span className="text-[9px] md:text-[10px] text-slate-500">{business.mantenimientoMensual} {tx("pricomp.perMonth", "USD/mes")}</span>
           </div>
           <div className="p-3 md:p-4 text-center border-l border-white/[0.06] bg-violet-500/5">
             <span className="text-[11px] md:text-xs font-bold uppercase tracking-wider text-violet-400">Enterprise</span>
             <span className="block text-[18px] md:text-xl font-black text-white mt-1">{formatCurrencyUSD(enterprise.setupTotal)}</span>
-            <span className="text-[9px] md:text-[10px] text-slate-500">{enterprise.mantenimientoMensual} USD/mes</span>
-            <span className="block text-[8px] md:text-[9px] font-bold uppercase tracking-wider text-violet-400 mt-0.5">Recomendado</span>
+            <span className="text-[9px] md:text-[10px] text-slate-500">{enterprise.mantenimientoMensual} {tx("pricomp.perMonth", "USD/mes")}</span>
+            <span className="block text-[8px] md:text-[9px] font-bold uppercase tracking-wider text-violet-400 mt-0.5">{tx("pricomp.recommended", "Recomendado")}</span>
           </div>
         </div>
 
@@ -95,7 +103,7 @@ export default function PricingComparativa() {
 
       {/* Footer */}
       <p className="text-[10px] md:text-xs text-slate-600 text-center mt-4 leading-relaxed">
-        Los features detallados son representativos de cada plan. La propuesta final se define en la etapa de diagnóstico según la operación específica.
+        {tx("pricomp.note", "Los features detallados son representativos de cada plan. La propuesta final se define en la etapa de diagnóstico según la operación específica.")}
       </p>
     </div>
   );
