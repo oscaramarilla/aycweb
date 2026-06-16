@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { buildWaLink } from "../../../../lib/config/contact";
+import { getDictionary } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "AYC = Automatiza y Convertí | Firma de Infraestructura Digital B2B · Paraguay",
@@ -83,7 +84,17 @@ const FAQ_SCHEMA = [
   },
 ];
 
-export default function NosotrosPage() {
+export default async function NosotrosPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const d = await getDictionary(lang);
+  // Inyecta clases de estilo en el markup propio de los textos del diccionario.
+  const rich = (key: string) =>
+    d[key]
+      .replace(/<b>/g, '<strong class="text-white">')
+      .replace(/<\/b>/g, "</strong>")
+      .replace(/<i>/g, '<em>')
+      .replace(/<\/i>/g, "</em>");
+
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -105,23 +116,20 @@ export default function NosotrosPage() {
       <section className="px-6 pt-28 pb-16 text-center">
         <div className="max-w-5xl mx-auto">
           <span className="inline-block text-blue-400 font-bold tracking-widest uppercase text-[11px] mb-4">
-            Infraestructura Digital B2B
+            {d["nos.heroKicker"]}
           </span>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tight leading-tight">
-            AYC:{" "}
+            {d["nos.heroH1a"]}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-              Automatiza y Convertí.
+              {d["nos.heroH1b"]}
             </span>
           </h1>
-          <p className="text-slate-400 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed mb-4">
-            No hacemos páginas web. Construimos{" "}
-            <strong className="text-white">máquinas del tiempo</strong> y{" "}
-            <strong className="text-white">puentes digitales</strong> que automatizan ventas y
-            operaciones.
-          </p>
+          <p
+            className="text-slate-400 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed mb-4"
+            dangerouslySetInnerHTML={{ __html: rich("nos.heroP1") }}
+          />
           <p className="text-slate-500 max-w-2xl mx-auto text-[15px] leading-relaxed">
-            Cada dólar que ponés en nuestro sistema vuelve multiplicado porque la máquina no
-            duerme, no cobra aguinaldo y no se equivoca al cotizar.
+            {d["nos.heroP2"]}
           </p>
         </div>
       </section>
@@ -133,55 +141,47 @@ export default function NosotrosPage() {
             {/* Columna izquierda: Bio */}
             <div>
               <span className="text-slate-500 font-bold tracking-widest uppercase text-[11px] mb-4 block">
-                Fundador & Arquitecto de Sistemas
+                {d["nos.bioKicker"]}
               </span>
               <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
                 Oscar Amarilla
               </h2>
               <p className="text-blue-400 font-bold mb-6 text-[15px]">
-                Infraestructura Digital · AYCweb Paraguay
+                {d["nos.bioRole"]}
               </p>
               <p className="text-slate-400 leading-relaxed mb-6 text-[15px]">
-                Más de 12 años construyendo sistemas desde cero. Aprendí tecnología porque vi
-                que los sistemas que necesitaban las empresas paraguayas no existían —o
-                costaban como si vinieran del exterior sin entender la operación local.
+                {d["nos.bioP1"]}
               </p>
               <p className="text-slate-400 leading-relaxed mb-8 text-[15px]">
-                Descubrí que el recurso más escaso de un CEO o un médico no es la plata, es
-                el tiempo. Y decidí construir sistemas que se lo devuelvan.
+                {d["nos.bioP2"]}
               </p>
               <blockquote className="border-l-4 border-blue-500 pl-6 py-2 text-slate-300 italic leading-relaxed text-[15px]">
-                &ldquo;Vi cómo las empresas paraguayas perdían horas —y ventas— por procesos
-                manuales, y decidí construir las máquinas del tiempo que no
-                existían.&rdquo;
+                {d["nos.bioQuote"]}
               </blockquote>
             </div>
 
             {/* Columna derecha: Las tres capas de AYC */}
             <div className="rounded-2xl border border-blue-500/30 bg-blue-950/20 p-8">
               <h3 className="text-xl font-black text-white mb-4">
-                Las tres capas de AYC
+                {d["nos.layersTitle"]}
               </h3>
               <div className="space-y-4 text-[15px]">
                 <div>
-                  <p className="text-blue-400 font-bold mb-1">Automatiza y Convertí</p>
+                  <p className="text-blue-400 font-bold mb-1">{d["nos.layer1T"]}</p>
                   <p className="text-slate-400 leading-relaxed">
-                    El resultado que te importa: más ingresos, más tiempo libre, retorno real
-                    de cada inversión.
+                    {d["nos.layer1D"]}
                   </p>
                 </div>
                 <div className="border-t border-slate-700/50 pt-4">
-                  <p className="text-blue-400 font-bold mb-1">Arquitectura y Código</p>
+                  <p className="text-blue-400 font-bold mb-1">{d["nos.layer2T"]}</p>
                   <p className="text-slate-400 leading-relaxed">
-                    El respaldo técnico: agentes de IA que piensan por vos y código
-                    inquebrantable (Next.js, Supabase) que sostiene la operación 24/7.
+                    {d["nos.layer2D"]}
                   </p>
                 </div>
                 <div className="border-t border-slate-700/50 pt-4">
-                  <p className="text-blue-400 font-bold mb-1">Máquinas del Tiempo</p>
+                  <p className="text-blue-400 font-bold mb-1">{d["nos.layer3T"]}</p>
                   <p className="text-slate-400 leading-relaxed">
-                    La metáfora que lo explica todo: procesos de 2 horas reducidos a 3
-                    segundos. Literalmente te regalan años de vida operativa.
+                    {d["nos.layer3D"]}
                   </p>
                 </div>
               </div>
@@ -195,43 +195,39 @@ export default function NosotrosPage() {
         <div className="max-w-5xl mx-auto">
           <div className="mb-12 text-center">
             <span className="text-slate-500 font-bold tracking-widest uppercase text-[11px] mb-3 block">
-              La Metáfora
+              {d["nos.bridgeKicker"]}
             </span>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-              Construimos el Puente Digital
+              {d["nos.bridgeTitle"]}
             </h2>
-            <p className="text-slate-400 max-w-3xl mx-auto text-[16px] leading-relaxed">
-              Tu empresa ya es excelente en el mundo físico. Hacés los mejores muebles, das
-              las mejores consultas, fabricás con la mejor calidad.{" "}
-              <strong className="text-white">
-                Nuestro trabajo es construir el puente de titanio
-              </strong>{" "}
-              para que esa misma excelencia exista en el mundo digital sin perder calidad.
-            </p>
+            <p
+              className="text-slate-400 max-w-3xl mx-auto text-[16px] leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: rich("nos.bridgeDesc") }}
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
                 icon: "🏭",
-                tag: "Lo que ya tenés",
+                tag: d["nos.bridge1Tag"],
                 tagColor: "text-emerald-400",
-                title: "Mundo Físico",
-                desc: "Tu empresa ya funciona. Tenés clientes, producto y operación. Eso no se toca.",
+                title: d["nos.bridge1T"],
+                desc: d["nos.bridge1D"],
               },
               {
                 icon: "🌉",
-                tag: "Lo que construimos",
+                tag: d["nos.bridge2Tag"],
                 tagColor: "text-blue-400",
-                title: "El Puente",
-                desc: "Cotizadores automáticos, funnels de ventas, dashboards. La infraestructura que conecta tu excelencia con el mundo digital.",
+                title: d["nos.bridge2T"],
+                desc: d["nos.bridge2D"],
               },
               {
                 icon: "⚡",
-                tag: "El resultado",
+                tag: d["nos.bridge3Tag"],
                 tagColor: "text-purple-400",
-                title: "Mundo Digital",
-                desc: "Ventas que entran solas, presupuestos que se generan en segundos, clientes filtrados automáticamente.",
+                title: d["nos.bridge3T"],
+                desc: d["nos.bridge3D"],
               },
             ].map((item, i) => (
               <div
@@ -257,19 +253,15 @@ export default function NosotrosPage() {
         <div className="max-w-5xl mx-auto">
           <div className="mb-12 text-center">
             <span className="text-slate-500 font-bold tracking-widest uppercase text-[11px] mb-3 block">
-              El Argumento Letal
+              {d["nos.timeKicker"]}
             </span>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-              La Máquina del Tiempo
+              {d["nos.timeTitle"]}
             </h2>
-            <p className="text-slate-400 max-w-3xl mx-auto text-[16px] leading-relaxed">
-              Un sistema que toma un proceso manual de 2 horas y lo reduce a 3 segundos de
-              forma automática{" "}
-              <strong className="text-white">
-                literalmente te está regalando años de vida operativa
-              </strong>
-              .
-            </p>
+            <p
+              className="text-slate-400 max-w-3xl mx-auto text-[16px] leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: rich("nos.timeDesc") }}
+            />
           </div>
 
           {/* Antes / Después */}
@@ -277,18 +269,13 @@ export default function NosotrosPage() {
             {/* ANTES */}
             <div className="rounded-2xl border border-red-500/20 bg-red-950/10 p-8">
               <span className="text-[11px] font-bold uppercase tracking-widest text-red-400 mb-4 block">
-                Antes de AYC
+                {d["nos.beforeLabel"]}
               </span>
               <h3 className="font-black text-white mb-4 text-[18px]">
-                Procesos que te roban horas
+                {d["nos.beforeTitle"]}
               </h3>
               <ul className="space-y-3 text-[14px]">
-                {[
-                  "Cotizaciones armadas a mano en Excel — 45 min por cliente",
-                  "Mensajes repetitivos en WhatsApp — 2-3 horas diarias",
-                  "Filtrado manual de curiosos — perdés tiempo con gente que no va a comprar",
-                  "Presupuestos que se pierden entre chats y cuadernos",
-                ].map((item, i) => (
+                {[d["nos.before1"], d["nos.before2"], d["nos.before3"], d["nos.before4"]].map((item, i) => (
                   <li
                     key={i}
                     className="flex gap-3 text-slate-400 leading-relaxed"
@@ -303,18 +290,13 @@ export default function NosotrosPage() {
             {/* DESPUÉS */}
             <div className="rounded-2xl border border-emerald-500/20 bg-emerald-950/10 p-8">
               <span className="text-[11px] font-bold uppercase tracking-widest text-emerald-400 mb-4 block">
-                Con AYC (La Máquina del Tiempo)
+                {d["nos.afterLabel"]}
               </span>
               <h3 className="font-black text-white mb-4 text-[18px]">
-                Lo que tu sistema hace por vos
+                {d["nos.afterTitle"]}
               </h3>
               <ul className="space-y-3 text-[14px]">
-                {[
-                  "Cotización automática en 3 segundos — sin abrir Excel",
-                  "Agentes responden y filtran — solo llegan leads calificados",
-                  "Cada oportunidad queda registrada — nada se pierde",
-                  "Tu equipo cierra negocios, la máquina hace el trabajo pesado",
-                ].map((item, i) => (
+                {[d["nos.after1"], d["nos.after2"], d["nos.after3"], d["nos.after4"]].map((item, i) => (
                   <li
                     key={i}
                     className="flex gap-3 text-slate-400 leading-relaxed"
@@ -329,12 +311,11 @@ export default function NosotrosPage() {
 
           {/* Métrica destacada */}
           <div className="rounded-2xl border border-blue-500/20 bg-blue-950/10 p-6 text-center max-w-2xl mx-auto">
-            <p className="text-blue-400 font-black text-[28px] mb-2">2 horas → 3 segundos</p>
-            <p className="text-slate-400 text-[15px]">
-              Eso es una{" "}
-              <strong className="text-white">Máquina del Tiempo</strong>. Eso es lo que
-              construimos.
-            </p>
+            <p className="text-blue-400 font-black text-[28px] mb-2">{d["nos.metricBig"]}</p>
+            <p
+              className="text-slate-400 text-[15px]"
+              dangerouslySetInnerHTML={{ __html: rich("nos.metricDesc") }}
+            />
           </div>
         </div>
       </section>
@@ -344,41 +325,24 @@ export default function NosotrosPage() {
         <div className="max-w-5xl mx-auto">
           <div className="mb-10 text-center">
             <span className="text-slate-500 font-bold tracking-widest uppercase text-[11px] mb-3 block">
-              El Respaldo Técnico
+              {d["nos.archKicker"]}
             </span>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-              Arquitectura y Código
+              {d["nos.archTitle"]}
             </h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-[15px]">
-              Una vez que le prometiste el cielo, el cerebro racional pide pruebas. Aquí está
-              nuestra chapa de ingeniero. No usamos plantillas prefabricadas.{" "}
-              <strong className="text-white">Construimos inteligencia.</strong>
-            </p>
+            <p
+              className="text-slate-400 max-w-2xl mx-auto text-[15px]"
+              dangerouslySetInnerHTML={{ __html: rich("nos.archDesc") }}
+            />
           </div>
 
           {/* Agentes */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             {[
-              {
-                icon: "🔍",
-                title: "Agente de Análisis",
-                desc: "Audita tu operación actual, releva procesos y documenta requerimientos con precisión quirúrgica.",
-              },
-              {
-                icon: "🧠",
-                title: "Agente de Arquitectura",
-                desc: "Diseña la estructura del sistema, el modelo de datos y las integraciones necesarias.",
-              },
-              {
-                icon: "⚙️",
-                title: "Agente de Desarrollo",
-                desc: "Escribe código modular, testeable y documentado. Implementa cada componente con contexto completo.",
-              },
-              {
-                icon: "✅",
-                title: "Agente de QA & Deploy",
-                desc: "Ejecuta pruebas, verifica consistencia y despliega a producción con monitoreo continuo.",
-              },
+              { icon: "🔍", title: d["nos.agent1T"], desc: d["nos.agent1D"] },
+              { icon: "🧠", title: d["nos.agent2T"], desc: d["nos.agent2D"] },
+              { icon: "⚙️", title: d["nos.agent3T"], desc: d["nos.agent3D"] },
+              { icon: "✅", title: d["nos.agent4T"], desc: d["nos.agent4D"] },
             ].map((agent, i) => (
               <div
                 key={i}
@@ -396,41 +360,38 @@ export default function NosotrosPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <p className="text-slate-500 text-[11px] font-bold uppercase tracking-widest mb-3">
-                  Stack tecnológico
+                  {d["nos.stackLabel"]}
                 </p>
-                <p className="text-slate-300 text-[14px] leading-relaxed">
-                  Infraestructura B2B construida con{" "}
-                  <span className="text-white font-semibold">Next.js</span>,{" "}
-                  <span className="text-white font-semibold">Supabase</span>,{" "}
-                  <span className="text-white font-semibold">Vercel</span>, y{" "}
-                  <strong className="text-blue-400 font-semibold">
-                    orquestación multi-agente
-                  </strong>{" "}
-                  donde Claude y Cline colaboran en cadena: análisis → diseño → desarrollo →
-                  QA → deploy.
-                </p>
+                <p
+                  className="text-slate-300 text-[14px] leading-relaxed"
+                  dangerouslySetInnerHTML={{
+                    __html: d["nos.stackDesc"]
+                      .replace(/<b>orquestación multi-agente<\/b>|<b>multi-agent orchestration<\/b>|<b>orquestração multiagente<\/b>|<b>Multi-Agenten-Orchestrierung<\/b>/g, (m) => `<strong class="text-blue-400 font-semibold">${m.replace(/<\/?b>/g, "")}</strong>`)
+                      .replace(/<b>/g, '<span class="text-white font-semibold">')
+                      .replace(/<\/b>/g, "</span>"),
+                  }}
+                />
               </div>
               <div className="border-t md:border-t-0 md:border-l border-slate-700/50 pt-4 md:pt-0 md:pl-6">
                 <p className="text-slate-500 text-[11px] font-bold uppercase tracking-widest mb-3">
-                  Eficiencia en costos
+                  {d["nos.costLabel"]}
                 </p>
-                <p className="text-slate-300 text-[14px] leading-relaxed">
-                  <span className="text-emerald-400 font-bold">Cada llamada a API se diseña con contexto preciso</span>,
-                  minimizando tokens y reutilizando resultados. El costo por funcionalidad
-                  entregada es hasta{" "}
-                  <span className="text-white font-semibold">3× más eficiente</span> que el
-                  uso genérico de IA.
-                </p>
+                <p
+                  className="text-slate-300 text-[14px] leading-relaxed"
+                  dangerouslySetInnerHTML={{
+                    __html: d["nos.costDesc"]
+                      .replace(/<\/?b>/, (m) => (m === "<b>" ? '<span class="text-emerald-400 font-bold">' : "</span>"))
+                      .replace(/<b>/g, '<span class="text-white font-semibold">')
+                      .replace(/<\/b>/g, "</span>"),
+                  }}
+                />
               </div>
             </div>
             <div className="mt-6 pt-4 border-t border-slate-700/50 text-center">
-              <p className="text-slate-400 text-[14px] leading-relaxed">
-                <strong className="text-white">
-                  Todos los agentes son orquestados por un solo arquitecto humano.
-                </strong>{" "}
-                No hay automatización sin supervisión. Velocidad de máquina con criterio
-                humano.
-              </p>
+              <p
+                className="text-slate-400 text-[14px] leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: rich("nos.archNote") }}
+              />
             </div>
           </div>
         </div>
@@ -441,41 +402,38 @@ export default function NosotrosPage() {
         <div className="max-w-5xl mx-auto">
           <div className="mb-10 text-center">
             <span className="text-slate-500 font-bold tracking-widest uppercase text-[11px] mb-3 block">
-              El Resultado que Importa
+              {d["nos.roiKicker"]}
             </span>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-              ROI y ROT: Tu retorno real
+              {d["nos.roiTitle"]}
             </h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-[15px]">
-              No le traemos &ldquo;likes&rdquo; a tu empresa. Le traemos{" "}
-              <strong className="text-white">
-                clientes que pasaron por un embudo y están listos para comprar
-              </strong>
-              . Y le devolvemos el recurso más escaso que existe.
-            </p>
+            <p
+              className="text-slate-400 max-w-2xl mx-auto text-[15px]"
+              dangerouslySetInnerHTML={{ __html: rich("nos.roiDesc") }}
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
                 icon: "💰",
-                title: "Ingresos (Conversión)",
-                desc: "No medimos alcance; medimos cuántos leads se convirtieron en ventas reales. Cada sistema está optimizado para que el embudo convierta.",
-                metric: "Conversión real",
+                title: d["nos.roi1T"],
+                desc: d["nos.roi1D"],
+                metric: d["nos.roi1M"],
                 metricColor: "text-emerald-400",
               },
               {
                 icon: "📈",
-                title: "Retorno de Inversión (ROI)",
-                desc: "Cada dólar que invertís en tu sistema vuelve multiplicado. No es un gasto de marketing — es infraestructura que genera retorno medible.",
-                metric: "Cada dólar vuelve",
+                title: d["nos.roi2T"],
+                desc: d["nos.roi2D"],
+                metric: d["nos.roi2M"],
                 metricColor: "text-blue-400",
               },
               {
                 icon: "⏱️",
-                title: "Retorno del Tiempo (ROT)",
-                desc: "El recurso más escaso de un CEO no es la plata, es el tiempo. Le devolvemos las 3 horas diarias que pasás respondiendo mensajes repetitivos.",
-                metric: "Horas recuperadas",
+                title: d["nos.roi3T"],
+                desc: d["nos.roi3D"],
+                metric: d["nos.roi3M"],
                 metricColor: "text-purple-400",
               },
             ].map((item, i) => (
@@ -498,12 +456,16 @@ export default function NosotrosPage() {
           </div>
 
           <div className="mt-8 rounded-2xl border border-blue-500/20 bg-blue-950/10 p-6 text-center max-w-2xl mx-auto">
-            <p className="text-slate-300 text-[14px] leading-relaxed">
-              <strong className="text-blue-400">El ROT es nuestro argumento letal.</strong>{" "}
-              El recurso más escaso de un CEO o un médico no es la plata, es el tiempo. Le
-              estás diciendo: <em>&ldquo;Te voy a devolver las horas que perdés en
-              automatismos&rdquo;</em>.
-            </p>
+            <p
+              className="text-slate-300 text-[14px] leading-relaxed"
+              dangerouslySetInnerHTML={{
+                __html: d["nos.roiNote"]
+                  .replace(/<b>/g, '<strong class="text-blue-400">')
+                  .replace(/<\/b>/g, "</strong>")
+                  .replace(/<i>/g, '<em>')
+                  .replace(/<\/i>/g, "</em>"),
+              }}
+            />
           </div>
         </div>
       </section>
@@ -512,25 +474,13 @@ export default function NosotrosPage() {
       <section className="px-6 py-12 border-t border-white/[0.04]">
         <div className="max-w-5xl mx-auto">
           <h3 className="text-lg font-black text-white mb-6">
-            Por qué importa quién construye el sistema
+            {d["nos.garTitle"]}
           </h3>
           <div className="space-y-4 mb-10">
             {[
-              {
-                icon: "🔍",
-                title: "Auditoría antes de propuesta",
-                desc: "Nunca arranca nada sin entender tu operación actual. Si no hay encaje real, te lo digo antes de cobrarte.",
-              },
-              {
-                icon: "🤝",
-                title: "Interlocutor directo",
-                desc: "El proyecto no se terceriza ni el criterio. Hablás con quien diseña y construye el sistema.",
-              },
-              {
-                icon: "✅",
-                title: "Garantía real",
-                desc: "Garantía Inteligente: cancelás en la primera etapa si el sistema no cumple el objetivo. Pago inicial devuelto si determinamos inviabilidad técnica antes del desarrollo.",
-              },
+              { icon: "🔍", title: d["nos.gar1T"], desc: d["nos.gar1D"] },
+              { icon: "🤝", title: d["nos.gar2T"], desc: d["nos.gar2D"] },
+              { icon: "✅", title: d["nos.gar3T"], desc: d["nos.gar3D"] },
             ].map((p, i) => (
               <div
                 key={i}
@@ -586,22 +536,18 @@ export default function NosotrosPage() {
       <section className="px-6 py-16 border-t border-white/[0.04] text-center">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-black mb-3">
-            ¿Tu operación tiene encaje con AYCweb?
+            {d["nos.ctaTitle"]}
           </h2>
           <p className="text-slate-400 mb-8 text-[15px] leading-relaxed">
-            En 15 minutos de diagnóstico te muestro cómo funciona la automatización
-            aplicada a tu caso concreto y qué significa en costo, velocidad y tiempo
-            devuelto.
+            {d["nos.ctaDesc"]}
           </p>
           <a
-            href={buildWaLink(
-              "Hola Oscar, quiero agendar un diagnóstico para ver cómo AYCweb puede automatizar mi operación."
-            )}
+            href={buildWaLink(d["nos.waMsg"])}
             className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-3.5 px-8 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)]"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Agendar Diagnóstico de Automatización
+            {d["nos.ctaButton"]}
           </a>
         </div>
       </section>
