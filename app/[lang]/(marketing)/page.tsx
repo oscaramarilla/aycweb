@@ -7,6 +7,7 @@ import { CASOS_OBRAS } from "@/lib/config/obras";
 import { getDictionary } from "@/lib/i18n";
 import PricingCard from "@/components/pricing/PricingCard";
 import PricingComparativa from "@/components/pricing/PricingComparativa";
+import CalculadoraPago from "@/components/pricing/CalculadoraPago";
 import CasoCard from "@/components/CasoCard";
 import HerramientasSection from "@/components/tools/HerramientasSection";
 
@@ -373,6 +374,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           </div>
 
           <PricingComparativa t={d} />
+
+          <CalculadoraPago dict={d} lang={lang} ctaHref={`/${lang}/diagnostico-comercial`} />
 
           <div className="text-center mt-8">
             <p className="text-[11px] md:text-xs text-slate-500 max-w-xl mx-auto leading-relaxed">
